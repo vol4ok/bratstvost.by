@@ -1,0 +1,93 @@
+@import "config"
+@import "vendors"
+@import "mixins"
+
+MAX_PATGE_WIDTH = 600px
+
+
+/* Flex classes */
+
+.flexbox
+  display: box
+  display: flex
+
+.flex-row
+  flex-direction: row
+  box-orient: horizontal
+
+.flex-col
+  flex-direction: column
+  box-orient: vertical
+
+.flex-stretch
+  box-align: stretch
+  align-items: stretch
+
+.flex-center
+  box-align: center
+  align-items: center
+
+.flex-start
+  box-align: start
+  align-items: flex-start
+
+.flex1
+  box-flex: 1
+  flex: 1
+
+.flex2
+  box-flex: 2
+  flex: 2
+
+.page
+  margin: 20px auto
+  max-width: MAX_PATGE_WIDTH
+
+.event
+  margin: 1.5em 0 1.5em
+  padding: 0 1em
+
+.icon
+  margin: 0 auto
+  size: 200px 200px
+  background: url("img/icon.gif")
+
+.last-update
+  text-align: center
+  color: #bbb
+
+.date
+  margin-right: 1em
+  background: #222
+  text-align: center
+  width: 80px
+  .wrap
+    padding: 5px 0
+  .day
+    font: 40px/40px HEAD_FONT
+  .mon
+    font: 24px/24px HEAD_FONT
+    text-transform: uppercase
+  .time
+    color: #eee
+    font: 20px/20px HEAD_FONT
+    padding: 5px 0
+
+.red
+  background: #800000
+  color: white
+
+.yellow
+  background: #808000
+  color: white
+
+.green
+  background: #008000
+  color: white
+
+.info
+  font: 0.875em "PT Sans"
+  ul
+    color: #555
+    margin: 0.5em 0 0.5em
+    list-style: none
