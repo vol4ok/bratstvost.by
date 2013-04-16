@@ -1,3 +1,5 @@
+<meta name="robots" content="noindex, nofollow, noarchive">
+
 [На главную](index.html)
 
 - [Что такое Trello?](#a1)
