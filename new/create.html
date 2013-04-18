@@ -1,10 +1,44 @@
 <!doctype html>
 <html lang="en">
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+<link rel="stylesheet" href="components/codemirror/lib/codemirror.css">
+<link rel="stylesheet" href="components/bootstrap/docs/assets/css/bootstrap.css">
+<link rel="stylesheet" href="components/bootstrap-datepicker/css">
+<link rel="stylesheet" href="create.css">
+
+<script src="components/jquery/jquery.js"></script>
+<script src="components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
+<script src="components/codemirror/lib/codemirror.js"></script>
+<script src="components/codemirror/addon/edit/continuelist.js"></script>
+<script src="components/codemirror/mode/xml/xml.js"></script>
+<script src="components/codemirror/mode/markdown/markdown.js"></script>
+
+<script>
+  $(function(){
+    $('.datepicker').datepicker({format: 'dd.mm.yyyy'});
+    var editor = CodeMirror.fromTextArea(document.getElementById("body"), {
+        mode: 'markdown',
+        theme: "default",
+        extraKeys: {"Enter": "newlineAndIndentContinueMarkdownList"}
+      });
+  });
+</script>
+
 <title>Document</title>
 
 <div class="page">
   <form action="create">
-    
+    <fieldset>
+      <label for="title">Title</label>
+      <input type="text" name="title">
+      <label for="body">Body</label>
+      <textarea name="body" id="body" cols="30" rows="10"></textarea>
+      <label for="date">Date</label>
+      <input type="text" name="date" class="datepicker"><br>
+      <button type="submit" class="btn">Submit</button>
+    <fieldset> 
   </form>
 </div>

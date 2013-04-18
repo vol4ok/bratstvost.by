@@ -8,8 +8,15 @@ module.exports = (grunt) ->
         files:
           "base.css": "base.styl"
           "main.css": "main.styl"
+          "admin.css": "admin.styl"
+    coffee:
+      compile:
+        options:
+          bare: yes
+        files:
+          "admin.js": "admin.coffee"
 
   grunt.loadNpmTasks("grunt-contrib-coffee")
   grunt.loadNpmTasks("grunt-contrib-stylus")
 
-  grunt.registerTask("default", ["stylus"])
+  grunt.registerTask("default", ["coffee", "stylus"])

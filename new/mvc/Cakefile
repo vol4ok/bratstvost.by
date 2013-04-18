@@ -1,0 +1,53 @@
+require "build-env"
+b = require "nbuild"
+
+TARGETS = [
+  "mvc.coffee"
+  "module.coffee"
+  "controller.coffee"
+  "view.coffee"
+  "model.coffee"
+]
+    
+build = (opt, done) ->
+  outdir = opt.outdir or __dirname
+  b.mkdirp(outdir)
+  $.chain [
+    (cb) -> 
+      $.syncMap TARGETS, (file, fn) ->
+        console.log 'compile coffee', file
+        b.fs_coffee("#{__dirname}/#{file}", bare: yes, fn)
+      , cb
+    (err, results, cb) -> 
+      console.log "merging..."
+      b.ss_merge(results, {}, cb)
+    (err, str, cb) ->
+      console.log "optimizing..."
+      $.parallel {
+        "mvc.js": (fn) ->
+          b.ss_js str,
+            transform: [b.TRANSFORM_COFFEESCRIPT_REPLACER, b.TRANSFORM_NAMESPACE_WRAPPER]
+            namespace: "mvc"
+          , fn
+      }, cb
+    (err, results, cb) ->
+      console.log $.keys(results)
+      if opt.as_string
+        done(null, results["mvc.js"])
+      else
+        console.log "writing..."
+        b.write("#{outdir}/mvc.js", results["mvc.js"], cb)
+    (err) ->
+      console.log "MVC successfully builded!"
+      done(null)
+  ], (err) -> 
+    console.log "Error:", err
+    done(err)
+    
+
+
+if task?
+  task 'sbuild', -> build({}, ->)
+  task 'build',  -> build({}, ->)
+
+exports.build = build

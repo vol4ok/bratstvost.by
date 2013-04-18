@@ -1,0 +1,22 @@
+.popup-holder{display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:1000;-moz-box-align:center;-webkit-box-align:center;box-align:center;-moz-box-pack:center;-webkit-box-pack:center;box-pack:center;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;}
+.popup-holder.active{display:-webkit-box;display:-moz-box;display:box;display:-webkit-flex;display:-ms-flexbox;display:flex;background:rgba(255,255,255,0.5)}
+.blur{-webkit-filter:blur(3px);-webkit-user-select:none;-moz-user-select:none;user-select:none}
+.new-event{z-index:1001;display:none;position:relative;margin:auto;width:500px;padding:1em;background:#fff;box-shadow:0 3px 10px rgba(0,0,0,0.4);-webkit-box-shadow:0 3px 10px rgba(0,0,0,0.4);}
+.new-event.active{display:block}
+.new-event .x{position:absolute;top:0;right:10px;font:12px "PT Sans Narrow","HelveticaNeueCondensed","Arial Narrow",sans-serif;background:#eee;padding:2px 5px;}
+.new-event .x:hover{background:#444;color:#fff;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;user-select:none}
+.new-event-btn{font:bold 1.5em/1.5em "PT Sans Narrow","HelveticaNeueCondensed","Arial Narrow",sans-serif;text-transform:uppercase;padding:.5em;-moz-transition:all .25s ease-in-out;-webkit-transition:all .25s ease-in-out;-o-transition:all .25s ease-in-out;transition:all .25s ease-in-out;}
+.new-event-btn:hover{background:#222;color:#fff}
+.new-event-btn:active{background:#800}
+.input-text,.input-textarea,.input-date{padding:.5em;display:-webkit-box;display:-moz-box;display:box;display:-webkit-flex;display:-ms-flexbox;display:flex;}
+.input-text input,.input-textarea input,.input-date input,.input-text textarea,.input-textarea textarea,.input-date textarea{-webkit-box-flex:1;-moz-box-flex:1;box-flex:1;-webkit-flex:1;-ms-flex:1;flex:1;font:1em/1.5em "PT Sans";border:1px solid rgba(0,0,0,0.05);padding:5px;}
+.input-text input:hover,.input-textarea input:hover,.input-date input:hover,.input-text textarea:hover,.input-textarea textarea:hover,.input-date textarea:hover{border:1px solid #eee}
+.input-text input:active,.input-textarea input:active,.input-date input:active,.input-text textarea:active,.input-textarea textarea:active,.input-date textarea:active,.input-text input:focus,.input-textarea input:focus,.input-date input:focus,.input-text textarea:focus,.input-textarea textarea:focus,.input-date textarea:focus{border:1px solid #aaa}
+.input-select{padding:.5em;display:-webkit-box;display:-moz-box;display:box;display:-webkit-flex;display:-ms-flexbox;display:flex;}
+.input-select select{-webkit-box-flex:1;-moz-box-flex:1;box-flex:1;-webkit-flex:1;-ms-flex:1;flex:1;-webkit-appearance:listbox;-moz-appearance:listbox;-ms-appearance:listbox;-o-appearance:listbox;-moz-appearance:listbox;-webkit-appearance:listbox;border-radius:0;-webkit-border-radius:0;font:1em/1.5em "PT Sans";border:1px inset rgba(0,0,0,0.05);background:#fff;padding:5px;}
+.input-select select:hover{border:1px solid #eee}
+.input-select select:active,.input-select select:focus{border:1px solid #aaa}
+.add-infoline{font:2em/.5em}
+button{border:1px solid transparent;background:#fff;font:1.125em/1.125em "PT Sans";text-shadow:1px 0 0 #fff;padding:.75em;margin:.5em;}
+button:hover{background:#aaa;text-shadow:none}
+button:active{color:#fff;background:#222;text-shadow:none}
