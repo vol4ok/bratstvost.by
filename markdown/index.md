@@ -36,6 +36,50 @@
 ##### *20 Марта, 2013*
 *Статья на sobor.by* — [Подопечные братства Спиридона Тримифунтского приняли участие в чине прощения и покатались на санях](http://www.sobor.by/page/Podopechnie_bratstva_Spiridona_Trimifuntskogo_prinyali_uchastie_v_chine_proshcheniya_i_pokatalis_na_sanyah)
 
+### Карта интернатов которые окормляет братство
+
+<script src="http://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU"></script>
+<script>
+  var map;
+  ymaps.ready(function () {
+    map = new ymaps.Map("ymap", {
+      center: [53.902400, 27.561892],
+      zoom: 8
+    });
+    objects = [
+      {
+        coord: [53.956459,27.546367],
+        label: "Психоневрологический дом-интернат для престарелых и инвалидов №3"
+      },
+      {
+        coord: [53.956989,27.545892],
+        label: "Дом-Интернат для Детей-Инвалидов с Особенностями Психофизического Развития"
+      },
+      {
+        coord: [54.101959,28.456472],
+        label: "Психоневрологический дом-интернат для престарелых и инвалидов в д. Тарасики"
+      },
+      {
+        coord: [54.297003,26.870215],
+        label: "Дом-интернат для пенсионеров и инвалидов в г. Молодечно"
+      },
+      {
+        coord: [53.902572,27.661536],
+        label: "Дом-интернат для пенсионеров и инвалидов в м-не Дражня"
+      },
+      {
+        coord: [54.309124,26.847636],
+        label: "Школа-интернат для Детей с Нарушением Зрения в г. Молодечно"
+      }
+    ];
+    objects.forEach(function(obj){
+      place = new ymaps.Placemark(obj.coord, {hintContent: obj.label}, {preset: 'twirl#hospitalIcon' });
+      map.geoObjects.add(place);
+    });
+  });
+</script>
+<div id="ymap" style="width:640px;height:480px;"></div>
+
 ---
 
 ### Контакты
