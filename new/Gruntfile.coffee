@@ -3,20 +3,32 @@ module.exports = (grunt) ->
     stylus:
       compile:
         options:
-          paths: ["core.css"]
+          paths: ["styles/core.css"]
           compress: yes
         files:
-          "base.css": "base.styl"
-          "main.css": "main.styl"
-          "admin.css": "admin.styl"
+          "styles/base.css": "styles/base.styl"
+          "styles/main.css": "styles/main.styl"
+          "styles/admin.css": "styles/admin.styl"
     coffee:
       compile:
         options:
           bare: yes
         files:
-          "admin.js": "admin.coffee"
+          "scripts/admin.js": "scripts/admin.coffee"
+    concat:
+      vendor:
+        src: [
+          "components/jquery/jquery.js"
+          "components/underscore/underscore.js"
+          "scripts/misc.js"
+          "scripts/async.js"
+          "components/backbone/backbone.js"
+          "components/bootstrap-datepicker/js/bootstrap-datepicker.js"
+        ],
+        dest: "scripts/vendor.js"
 
   grunt.loadNpmTasks("grunt-contrib-coffee")
   grunt.loadNpmTasks("grunt-contrib-stylus")
+  grunt.loadNpmTasks("grunt-contrib-concat")
 
-  grunt.registerTask("default", ["coffee", "stylus"])
+  grunt.registerTask("default", ["coffee", "stylus", "concat"])

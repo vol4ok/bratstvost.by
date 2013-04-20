@@ -1,7 +1,7 @@
 .popup-holder{display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:1000;-moz-box-align:center;-webkit-box-align:center;box-align:center;-moz-box-pack:center;-webkit-box-pack:center;box-pack:center;-webkit-align-items:center;align-items:center;-webkit-justify-content:center;justify-content:center;}
-.popup-holder.active{display:-webkit-box;display:-moz-box;display:box;display:-webkit-flex;display:-ms-flexbox;display:flex;background:rgba(255,255,255,0.5)}
+.popup-holder.active{display:-webkit-box;display:-moz-box;display:box;display:-webkit-flex;display:-ms-flexbox;display:flex;background:rgba(0,191,255,0.4)}
 .blur{-webkit-filter:blur(3px);-webkit-user-select:none;-moz-user-select:none;user-select:none}
-.new-event{z-index:1001;display:none;position:relative;margin:auto;width:500px;padding:1em;background:#fff;box-shadow:0 3px 10px rgba(0,0,0,0.4);-webkit-box-shadow:0 3px 10px rgba(0,0,0,0.4);}
+.new-event{z-index:1001;display:none;position:relative;margin:auto;width:500px;padding:1em;background:rgba(255,255,255,0.6);box-shadow:0 3px 10px rgba(0,0,0,0.4);-webkit-box-shadow:0 3px 10px rgba(0,0,0,0.4);}
 .new-event.active{display:block}
 .new-event .x{position:absolute;top:0;right:10px;font:12px "PT Sans Narrow","HelveticaNeueCondensed","Arial Narrow",sans-serif;background:#eee;padding:2px 5px;}
 .new-event .x:hover{background:#444;color:#fff;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;user-select:none}

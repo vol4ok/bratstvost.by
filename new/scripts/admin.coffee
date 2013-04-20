@@ -87,6 +87,7 @@ class UIPopupDialog extends UIView
 
   constructor: (options) -> 
     super
+    @$el.find(".datepicker").datepicker(format: 'dd.mm.yyyy')
 
   show: (callback) =>
     @$el.addClass("active")

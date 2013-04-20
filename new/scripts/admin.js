@@ -170,6 +170,9 @@ UIPopupDialog = (function(_super) {
     this.on_close = __bind(this.on_close, this);
     this.hide = __bind(this.hide, this);
     this.show = __bind(this.show, this);    UIPopupDialog.__super__.constructor.apply(this, arguments);
+    this.$el.find(".datepicker").datepicker({
+      format: 'dd.mm.yyyy'
+    });
   }
 
   UIPopupDialog.prototype.show = function(callback) {

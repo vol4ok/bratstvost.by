@@ -12,6 +12,10 @@
   "devDependencies": {
     "grunt-contrib-coffee": "~0.6.6",
     "grunt-contrib-stylus": "~0.5.0",
-    "grunt": "~0.4.1"
+    "grunt": "~0.4.1",
+    "grunt-contrib-concat": "~0.2.0",
+    "marked": "~0.2.8",
+    "moment": "~2.0.0",
+    "core.js": "~0.4.2"
   }
 }
