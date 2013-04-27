@@ -36,6 +36,11 @@
 
 ### Новости
 
+##### *28 Апреля, 2013*
+
+![с Вербным Воскресеньем](https://dl.dropboxusercontent.com/u/159112/BratstvoST/images/IMG_2510%202.jpg)
+Братство в честь Святителя Спиридона Тримифунтского поздравляет всех с Вербным Воскресеньем!
+
 ##### *18 Апреля, 2013*
 [Программа пребывания Десницы Святителя Спиридона Тримифунтского в Беларуси](http://sobor.by/videonews/Programma_prebivaniya_Desnitsi_Svyatitelya_Spiridona_Trimifuntskogo_v_Belarusi)
 
