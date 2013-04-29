@@ -13,8 +13,11 @@ module.exports = (grunt) ->
       compile:
         options:
           bare: yes
+          sourceMap: true
         files:
           "scripts/admin.js": "scripts/admin.coffee"
+          "scripts/create.js": "scripts/create.coffee"
+          "scripts/events.js": "scripts/events.coffee"
     concat:
       vendor:
         src: [

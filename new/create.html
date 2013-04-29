@@ -9,16 +9,21 @@
 <link rel="stylesheet" href="components/bootstrap-datepicker/css/datepicker.css">
 
 <script src="components/jquery/jquery.js"></script>
-<script src="components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script src="components/underscore/underscore.js"></script>
+<script src="components/backbone/backbone.js"></script>
+<script src="components/socket.io-client/dist/socket.io.js"></script>
+<script src="components/coffee-script/extras/coffee-script.js"></script>
 
 <script src="components/codemirror/lib/codemirror.js"></script>
 <script src="components/codemirror/addon/edit/continuelist.js"></script>
-<script src="components/codemirror/mode/xml/xml.js"></script>
-<script src="components/codemirror/mode/markdown/markdown.js"></script>
-<script src="components/codemirror/mode/javascript/javascript.js"></script>
-<script src="components/codemirror/mode/coffeescript/coffeescript.js"></script>
+<script src="components/codemirror/mode/yaml/yaml.js"></script>
+<script src="components/marked/lib/marked.js"></script>
+<script src="components/moment/moment.js"></script>
 
 
+<script src="scripts/js-yaml.js"></script>
+<script src="scripts/to-markdown.js"></script>
+<script src="scripts/misc.js"></script>
 <script src="components/prefix-free/prefixfree.js"></script>
 
 <style>
@@ -37,20 +42,28 @@
 
   .CodeMirror {
     width: 100%;
+    max-width: 600px;
     box-sizing: border-box;
+    border-radius: 5px;
+    font-size: 11px;
+  }
+  .events {
+    max-width: 600px;
+    overflow: hidden;
+  }
+  .events tr {
+    overflow: hidden;
+    max-width: 600px;
+  }
+  .events td {
+      max-width: 600px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
   }
 </style>
 
-<script>
-  $(function(){
-    $('.datepicker').datepicker({format: 'dd.mm.yyyy'});
-    var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
-        mode: 'application/json',
-        theme: "monokai",
-        extraKeys: {"Enter": "newlineAndIndentContinueMarkdownList"}
-      });
-  });
-</script>
+<script src="scripts/create.js"></script>
 
 <title>Document</title>
 
@@ -58,33 +71,48 @@
   <header>
     <h2>Event manager</h2>
   </header>
-  <div class="row">
-    <table class="table table-bordered table-hover events">
-      <tr>
-        <th>Name</th>
-        <th>Title</th>
-        <th>Date</th>
-        <th>Desc</th>
-      </tr>
-      <tr>
-        <td colspan="4" class="center"><a href="#">Create new</a></td>
-      </tr>
-      <tr>
-        <td>asdf</td>
-        <td>asdf</td>
-        <td>asdf</td>
-        <td>asdf</td>
-      </tr>
-    </table>
-  </div>
 
-  <div class="row">
-    <form action=""></form>
-      <fieldset>
-        <textarea id="editor"></textarea>
-        <div class="btn-group">
-          <button type="submit" class="btn btn-large btn-primary">Save</button>
-        </div>
-      </fieldset>
+  <div class="event-list autoload" id="event-list" data-class="UIEventList">
+
+    <div class="row">
+      <table class="table table-bordered table-hover events">
+        <tr>
+          <th width="20%">Name</th>
+          <th width="20%">Title</th>
+          <th width="15%">Date</th>
+          <th width="45%">Desc</th>
+        </tr>
+        <tbody>
+          <tr>
+            <td colspan="4" class="center"><a href="#" class="create-new-btn">Create new</a></td>
+          </tr>
+        </tbody>
+        <tbody class="items">
+          <tr>
+            <td>asdf</td>
+            <td>asdf</td>
+            <td>asdf</td>
+            <td>asdf</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="row">
+      <div class="message">&nbsp;</div>
+    </div>
+
+    <div class="row">
+      <form>
+        <fieldset>
+          <textarea class="editor" data-class="UIEditor" id="editor"></textarea>
+          <br>
+          <div class="btn-group">
+            <button type="submit" class="btn btn-large btn-primary save-btn">Save</button>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+
   </div>
 </div>
