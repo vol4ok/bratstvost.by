@@ -1,4 +1,4 @@
-//@ sourceMappingURL=events.map
+//@ sourceMappingURL=admin.map
 var Application, Collection, Event, EventList, EventsEditorApp, Model, News, NewsList, UIEventList, UIEventView, UINewsList, UINewsView, UIView, bindEvent, bindEvents, event_full2short, event_short2full, ico2name, md2html, name2ico, news_full2short, news_short2full, strip_md_rexp, _ref, _ref1,
   __hasProp = {}.hasOwnProperty,
   __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },

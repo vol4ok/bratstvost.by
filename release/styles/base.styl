@@ -1,0 +1,86 @@
+@import "config"
+@import "vendors"
+@import "mixins"
+@import "reset"
+
+reset_all()
+
+body
+  font: DEFAULT_FONT_SIZE/DEFAULT_LINE_HEIGHT DEFAULT_FONT
+
+h1, h2, h3, h4, h5, h6
+  -moz-font-feature-settings: "liga=1, kern=1";
+  -ms-font-feature-settings: "liga" 1, "kern" 1;
+  -webkit-font-feature-settings: "liga" 1, "kern" 1;
+  -o-font-feature-settings: "liga" 1, "kern" 1;
+  font-feature-settings: "liga" 1, "kern" 1;
+  text-rendering: optimizeLegibility;
+  font-weight: normal;
+
+.text
+  p
+    color: TEXT_COLOR
+    font: 1em/1.5em DEFAULT_FONT
+    margin: 0.5em 0 0.5em
+
+  h1
+    font: 2em/1.125em HEAD_FONT
+    margin: 1em 0 0.75em
+    text-align: center
+
+  h2
+    font: bold 1.75em/1.125em HEAD_FONT
+    margin: 1em 0 0.5em
+    text-align: center
+
+  h3
+    font: bold 1.25em/1em HEAD_FONT
+    margin: 0em 0 0.5em
+
+  h4
+    font: 1.25em HEAD_FONT
+    margin: 1em 0 1em
+
+  ul, ol
+    margin: 0 1em 1em
+
+  ul
+    list-style: outside disc
+  ol
+    list-style: outside decimal
+
+  li
+    margin: 0.5em 0
+
+
+.flexbox
+  display: box
+  display: flex
+
+.flex-row
+  flex-direction: row
+  box-orient: horizontal
+
+.flex-col
+  flex-direction: column
+  box-orient: vertical
+
+.flex-stretch
+  box-align: stretch
+  align-items: stretch 
+
+.flex-center
+  box-align: center
+  align-items: center
+
+.flex-start
+  box-align: start
+  align-items: flex-start
+
+.flex1
+  box-flex: 1
+  flex: 1
+
+.flex2
+  box-flex: 2
+  flex: 2
