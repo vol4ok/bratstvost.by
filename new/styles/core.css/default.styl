@@ -1,0 +1,44 @@
+/*** Vendor prefixes for gradients ***/
+
+VENDOR_PREFIXES          ?= webkit moz o ms official
+
+/*** Typography ***/
+
+DEFAULT_FONT_SIZE        ?= 100%
+DEFAULT_FONT             ?= "PT Sans", Helvetica, Arial, serif
+DEFAULT_LINE_HEIGHT      ?= 1.5em
+
+/*** GRID ***/
+
+GRID_COLUMNS             ?= 12
+GRID_COLUMN_WIDTH        ?= 60px
+GRID_GUTTER_WIDTH        ?= 20px
+GRID_ROW_WIDTH           ?= (GRID_COLUMNS * GRID_COLUMN_WIDTH) + (GRID_GUTTER_WIDTH * (GRID_COLUMNS - 1))
+
+FLUID_GRID_COLUMN_WIDTH  ?= (GRID_COLUMN_WIDTH / GRID_ROW_WIDTH * 100)%
+FLUID_GRID_GUTTER_WIDTH  ?= (GRID_GUTTER_WIDTH / GRID_ROW_WIDTH * 100)%
+
+
+/*** Colors ***/
+
+BLACK                    ?= #000
+GRAYDARKER               ?= #222
+GRAYDARK                 ?= #333
+GRAY                     ?= #555
+GRAYLIGHT                ?= #999
+GRAYLIGHTER              ?= #eee
+WHITE                    ?= #fff
+
+BLUE                     ?= #049cdb
+BLUEDARK                 ?= #0064cd
+GREEN                    ?= #46a546
+RED                      ?= #9d261d
+YELLOW                   ?= #ffc40d
+ORANGE                   ?= #f89406
+PINK                     ?= #c3325f
+PURPLE                   ?= #7a43b6
+
+TEXT_COLOR               ?= GRAYDARK
+LINK_COLOR               ?= #08c
+LINK_COLOR_HOVER         ?= darken(LINK_COLOR, 15%)
+

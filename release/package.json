@@ -25,6 +25,8 @@
     "js-yaml": "~2.0.4",
     "hogan-express": "~0.3.3",
     "moment": "~2.0.0",
-    "core.js": "~0.4.2"
+    "core.js": "~0.4.2",
+    "colors": "~0.6.0-1",
+    "mongoose": "~3.6.8"
   }
 }

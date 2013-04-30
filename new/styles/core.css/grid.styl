@@ -1,0 +1,52 @@
+/*** fixed grid ***/
+
+generate-fixed($columns = GRID_COLUMNS, $width = GRID_COLUMN_WIDTH, $gutter = GRID_GUTTER_WIDTH)
+  .row
+    margin-left: $gutter * -1
+    clearfix()
+
+  [class*="span"]
+    float: left
+    margin-left: $gutter
+
+  for $i in 1..$columns
+    .span{$i}
+      width: $width * $i + $gutter * ($i - 1)
+
+  for $i in 1..$columns - 1
+    .offset{$i}
+      margin-left: $width * $i + $gutter * ($i - 1) + $gutter * 2
+
+/*** fluid grid ***/
+
+generate-fluid($columns = GRID_COLUMNS, $width = FLUID_GRID_COLUMN_WIDTH, $gutter = FLUID_GRID_GUTTER_WIDTH)
+  .row-fluid
+    width: 100%
+    clearfix()
+
+    [class*="span"]
+      float: left
+      margin-left: ($gutter)%
+
+    [class*="span"]:first-child
+      margin-left: 0
+
+    for $i in 1..$columns
+      .span{$i}
+        width: ($width * $i + $gutter * ($i - 1))%
+
+/*** helpers ***/
+
+offset-length($offset, $width = GRID_COLUMN_WIDTH, $gutter = GRID_GUTTER_WIDTH)
+  return $width * $offset + $gutter * ($offset - 1) + $gutter * 2
+
+offset($offset, $width = GRID_COLUMN_WIDTH, $gutter = GRID_GUTTER_WIDTH)
+  margin-left: offset-length($offset, $width, $gutter)
+
+span-width($span, $width = GRID_COLUMN_WIDTH, $gutter = GRID_GUTTER_WIDTH)
+  return $width * $span + $gutter * ($span - 1)
+
+span($span, $width = GRID_COLUMN_WIDTH, $gutter = GRID_GUTTER_WIDTH)
+  float: left
+  margin-left: $gutter
+  width: span-width($span, $width, $gutter)
