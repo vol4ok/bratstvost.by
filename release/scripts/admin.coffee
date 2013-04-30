@@ -7,7 +7,7 @@ Backbone.registerObject = Backbone.View::registerObject = (name, obj=this) -> Ba
 Backbone.getObjectByName = Backbone.View::getObjectByName = (name) -> Backbone.__objects[name]
 
 bindEvent = (src, trg) ->
-  $$ = Backbone.getObjectByName 
+  $$ = Backbone.getObjectByName
   [srcObj, event]  = if (t = src.split(' ')).length is 1 then [this, t[0]] else [$$(t[0]), t[1]]
   [trgObj, method] = if (t = trg.split(' ')).length is 1 then [this, t[0]] else [$$(t[0]), t[1]]
   srcObj.on(event, trgObj[method])
@@ -61,20 +61,20 @@ Collection = Backbone.Collection
 Backbone.sync = (method, model, options) ->
   console.log "sync", method.toUpperCase, model, options
 
-  sock = io.connect('http://localhost:3000' + _.result(model, 'url'))
+  sock = io.connect('http://vol4ok.com:3000' + _.result(model, 'url'))
   sock.emit method, model, (err, data) ->
     console.log "sync-complete", err, data
     unless err
       options.success(data)
     else
       options.error(data)
-    
+
 
 String::capitalize = ->
     return this.substr(0, 1).toUpperCase() + this.substr(1).toLowerCase()
 
 String::translit = (->
-  L = 
+  L =
     "А": "A",   "а": "a",   "Б": "B",   "б": "b",   "В": "V",   "в": "v"
     "Г": "G",   "г": "g",   "Д": "D",   "д": "d",   "Е": "E",   "е": "e"
     "Ё": "Yo",  "ё": "yo",  "Ж": "Zh",  "ж": "zh",  "З": "Z",   "з": "z"
@@ -96,7 +96,7 @@ String::translit = (->
 
 md2html = (->
   rexp = /^<p>(.*)<\/p>\s*$/
-  (str) -> 
+  (str) ->
     console.log "md2html", str
     md = marked(str)
     if rexp.test(md) then RegExp.$1 else md
@@ -104,18 +104,18 @@ md2html = (->
 
 strip_md_rexp = /^<p>(.*)<\/p>\s*$/
 
-name2ico = 
+name2ico =
   user: "user"
   time: "time"
   place: "map-marker"
 
-ico2name = 
+ico2name =
   user: "user"
   time: "time"
   "map-marker": "place"
 
 event_short2full = (short) ->
-  full = 
+  full =
     _id:       short._id || _.guid()
     title:     short.title
     desc:      marked(short.desc)
@@ -139,19 +139,19 @@ event_short2full = (short) ->
   for key,val of short.info
     m = /^(user|place|time)?\s*(.*)$/.exec(key.trim())
     m[1] or= "user"
-    info = 
+    info =
       icon: name2ico[m[1].toLowerCase()]
       term: m[2].capitalize()
       desc: md2html(val)
     if strip_md_rexp.test(info.desc)
-      info.desc = RegExp.$1 
+      info.desc = RegExp.$1
     full.info.push(info)
 
   return full
 
 
 event_full2short = (full) ->
-  short = 
+  short =
     title:     full.title
     desc:      toMarkdown(full.desc)
     info:      {}
@@ -160,9 +160,9 @@ event_full2short = (full) ->
     archived:  full.archived
 
   short.date = if full.hasTime
-    moment(full.date).format("DD.MM.YY HH:mm") 
+    moment(full.date).format("DD.MM.YY HH:mm")
   else
-    moment(full.date).format("DD.MM.YY") 
+    moment(full.date).format("DD.MM.YY")
 
   for info in full.info
     short.info["#{ico2name[info.icon]} #{info.term}"] = toMarkdown(info.desc)
@@ -171,9 +171,9 @@ event_full2short = (full) ->
 
 
 
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
- # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #  
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+ # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 
 class Event extends Model
@@ -200,17 +200,17 @@ class UIEventList extends UIView
   @registerClass(@name)
 
   NEW_EVENT_TEMPLATE = '''
-    title: 
-    desc: 
-    date: 
-    info: 
-      user Организатор: 
-      time Время выезда: 
+    title:
+    desc:
+    date:
+    info:
+      user Организатор:
+      time Время выезда:
     verified: no
     published: no
   '''
 
-  events: 
+  events:
     "click .create-new-btn": "on_createBtnClick"
     "click .save-btn": "on_saveBtnClick"
     "click .template-btn": "on_templateBtnClick"
@@ -234,7 +234,7 @@ class UIEventList extends UIView
     @$modalEl      = @$('.editor-modal')
     @$modalMessage = @$(".modal-message")
 
-    @editor = CodeMirror.fromTextArea @$(".editor")[0], 
+    @editor = CodeMirror.fromTextArea @$(".editor")[0],
       mode: "text/x-yaml"
       #theme: "monokai"
       tabSize: 2
@@ -287,14 +287,14 @@ class UIEventList extends UIView
         @$itemsEl.append(item.render())
 
   on_publishItem: (item) =>
-    item.model.save {published: yes}, 
+    item.model.save {published: yes},
       success: => item.published()
       error: @on_saveError
 
     @refresh()
 
-  on_unpublishItem: (item) => 
-    item.model.save {published: no}, 
+  on_unpublishItem: (item) =>
+    item.model.save {published: no},
       success: => item.unpublished()
       error: @on_saveError
     @refresh()
@@ -365,7 +365,7 @@ class UIEventView extends UIView
   @registerClass(@name)
   tagName: "tr"
 
-  events: 
+  events:
     "dblclick": "on_dblclick"
     "click .edit-btn": "on_editBtnClick"
     "click .remove-btn": "on_removeBtnClick"
@@ -373,7 +373,7 @@ class UIEventView extends UIView
 
   template: "UIEventView-template"
 
-  constructor: -> 
+  constructor: ->
     super
     if _.isString(@template)
       @template = _.template($("##{@template}").html())
@@ -384,9 +384,9 @@ class UIEventView extends UIView
       title: @model.get("title")
       published: @model.get("published")
       date: if @model.get("hasTime")
-        "#{mdate.format("D MMMM")}, <b>#{mdate.format("HH:mm")}</b>" 
+        "#{mdate.format("D MMMM")}, <b>#{mdate.format("HH:mm")}</b>"
       else
-        mdate.format("D MMMM") 
+        mdate.format("D MMMM")
     tpl = @template(args)
     @$el.html(tpl)
     @$el.attr("id", @model.id)
@@ -418,14 +418,14 @@ class UIEventView extends UIView
 
 
 
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
- # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #  
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+ # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 
 
 news_short2full = (short) ->
-  full = 
+  full =
     _id:        short._id || _.guid()
     title:      short.title
     short_body: marked(short.short)
@@ -442,13 +442,13 @@ news_short2full = (short) ->
 
 
 news_full2short = (full) ->
-  short = 
+  short =
     title:     full.title
     short:     toMarkdown(full.short_body)
     full:      toMarkdown(full.full_body)
     published: full.published
     date:      moment(full.date).format("DD.MM.YY")
-     
+
   return short
 
 
@@ -478,14 +478,14 @@ class UINewsList extends UIView
   @registerClass(@name)
 
   NEW_EVENT_TEMPLATE = '''
-    title: 
-    short: 
-    full: 
-    date: 
+    title:
+    short:
+    full:
+    date:
     published: false
   '''
 
-  events: 
+  events:
     "click .create-new-btn": "on_createBtnClick"
     "click .save-btn": "on_saveBtnClick"
     "click .template-btn": "on_templateBtnClick"
@@ -502,7 +502,7 @@ class UINewsList extends UIView
     @$modalEl      = @$('.editor-modal')
     @$modalMessage = @$(".modal-message")
 
-    @editor = CodeMirror.fromTextArea @$(".editor")[0], 
+    @editor = CodeMirror.fromTextArea @$(".editor")[0],
       mode: "text/x-yaml"
       #theme: "monokai"
       tabSize: 2
@@ -554,13 +554,13 @@ class UINewsList extends UIView
       @$itemsEl.append(item.render())
 
   on_publishItem: (item) =>
-    item.model.save {published: yes}, 
+    item.model.save {published: yes},
       success: => item.render()
       error: @on_saveError
     @refresh()
 
-  on_unpublishItem: (item) => 
-    item.model.save {published: no}, 
+  on_unpublishItem: (item) =>
+    item.model.save {published: no},
       success: => item.render()
       error: @on_saveError
     @refresh()
@@ -629,7 +629,7 @@ class UINewsView extends UIView
   @registerClass(@name)
   tagName: "tr"
 
-  events: 
+  events:
     "dblclick": "on_dblclick"
     "click .edit-btn": "on_editBtnClick"
     "click .remove-btn": "on_removeBtnClick"
@@ -637,7 +637,7 @@ class UINewsView extends UIView
 
   template: "UINewsView-template"
 
-  constructor: -> 
+  constructor: ->
     super
     if _.isString(@template)
       @template = _.template($("##{@template}").html())
@@ -671,9 +671,9 @@ class UINewsView extends UIView
 
 
 
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
- # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #  
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+ # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 
 

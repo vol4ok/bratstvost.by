@@ -21,7 +21,7 @@ EventSchema = new Schema
   published: { type: Boolean, default: no }
   verified: { type: Boolean, default: no }
   archived: { type: Boolean, default: no }
-  updated: { type: Date, default: Date.now }
+  updated: Date
   info: [
     icon: String
     term: String
@@ -84,7 +84,7 @@ app.get '/', (req, res) ->
           getDay:   (date) -> return moment(@date).format("D")
           getMonth: (date) -> return moment(@date).format("MMM")
           getTime:  (date) -> return moment(@date).format("HH:mm")
-          getColor: (date) -> 
+          getColor: (date) ->
             d = moment(@date).startOf('day').diff(moment().startOf('day'), 'days')
             if d > 1
               return "green"
@@ -135,6 +135,7 @@ class EventsController
     console.log "UPDATE EVENT".magenta, data
     _id = data._id
     delete data._id
+    data.updated ?= new Date
     if moment(data.date).startOf('day') < moment().startOf('day')
       data.archived = yes
     else
@@ -142,7 +143,7 @@ class EventsController
     Event.findByIdAndUpdate _id, data, {upsert: yes}, (err, results) =>
       console.log err, results
       callback(err, results)
-      
+
 
   on_delete: (data, callback) =>
     console.log "DELETE EVENT".magenta, data

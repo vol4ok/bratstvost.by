@@ -122,7 +122,7 @@ Backbone.sync = function(method, model, options) {
   var sock;
 
   console.log("sync", method.toUpperCase, model, options);
-  sock = io.connect('http://localhost:3000' + _.result(model, 'url'));
+  sock = io.connect('http://vol4ok.com:3000' + _.result(model, 'url'));
   return sock.emit(method, model, function(err, data) {
     console.log("sync-complete", err, data);
     if (!err) {
@@ -363,7 +363,7 @@ UIEventList = (function(_super) {
 
   UIEventList.registerClass(UIEventList.name);
 
-  NEW_EVENT_TEMPLATE = 'title: \ndesc: \ndate: \ninfo: \n  user Организатор: \n  time Время выезда: \nverified: no\npublished: no';
+  NEW_EVENT_TEMPLATE = 'title:\ndesc:\ndate:\ninfo:\n  user Организатор:\n  time Время выезда:\nverified: no\npublished: no';
 
   UIEventList.prototype.events = {
     "click .create-new-btn": "on_createBtnClick",
@@ -747,7 +747,7 @@ UINewsList = (function(_super) {
 
   UINewsList.registerClass(UINewsList.name);
 
-  NEW_EVENT_TEMPLATE = 'title: \nshort: \nfull: \ndate: \npublished: false';
+  NEW_EVENT_TEMPLATE = 'title:\nshort:\nfull:\ndate:\npublished: false';
 
   UINewsList.prototype.events = {
     "click .create-new-btn": "on_createBtnClick",
