@@ -36,13 +36,20 @@
 
 ### Новости
 
+##### *16 мая, 2013*
+
+[**Встреча с отцом Артемием**](http://www.facebook.com/media/set/?set=a.452235341528650.1073741829.444251692327015&type=1&l=b2abff9741) — Протоиерей Артемий, хранитель мощей святителя Спиридона с о. Корфу встретился с членами братства.
+
 ##### *15 мая, 2013*
 Десница Святого Спиридона в Беларуси 
 
 <iframe width="420" height="315" src="http://www.youtube.com/embed/p0VvbevKlQ8" frameborder="0" allowfullscreen></iframe>
 
 ##### *15 мая, 2013*
-[Фрагмент интервью у нашего брата Александра Тихоновича в программе «Разговор на Колокольне»](http://youtu.be/HojMlT9hQC8?t=17m25s)
+
+<iframe src="http://player.vimeo.com/video/66309568" width="500" height="281" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe> <p><a href="http://vimeo.com/66309568">«Разговор на колокольне» с Александром Тихановичем</a> from <a href="http://vimeo.com/bratstvost">Bratstvo ST</a> on <a href="http://vimeo.com">Vimeo</a>.</p>
+
+Фрагмент интервью у нашего братчика Александра Тихоновича в программе «Разговор на Колокольне»
 
 ##### *8 мая, 2013*
 Выражаем благодарность Андрею Минчику за организацию праздника для проживающих интерната в Дражне.
