@@ -100,7 +100,23 @@
 
 ![Со светлым Христовым Воскресением!](http://bratstvost.by/easter.jpg)
 
-[Архив носотей](news-archive.html)
+##### *4 мая, 2013*
+
+Статья на [sobor.by](http://sobor.by) — [Свято место пусто не бывает- 200 человек соборовались в Борисовском 
+психоневрологическом интернате](http://sobor.by/foto.php?cont=soborovanie_v_internate_v_tarasikah-5-2013)
+
+
+##### *3 Мая, 2013*
+
+Cюжет о Братстве в передаче "Седмица"
+
+<iframe src="http://player.vimeo.com/video/65376123" width="500" height="375" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe> <p><a href="http://vimeo.com/65376123">Cюжет о Братстве в передаче "Седмица"</a> from <a href="http://vimeo.com/bratstvost">Bratstvo ST</a> on <a href="http://vimeo.com">Vimeo</a>.</p>
+
+<br>
+<br>
+**[Архив новостей](news-archive.html)**
+<br>
+<br>
 
 ### Карта интернатов которые окормляет братство
 
