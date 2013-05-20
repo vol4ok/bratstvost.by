@@ -23,8 +23,7 @@ module.exports = (grunt) ->
       client:
         files:
           "temp/scripts/misc.js": ["scripts/backbone-ext.coffee", "scripts/misc.coffee"]
-
-
+          "public/js/main.js": ["scripts/main.coffee"]
 
 
     copy:

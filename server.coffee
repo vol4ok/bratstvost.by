@@ -31,6 +31,9 @@ app.get "/", (req, res) ->
         moment(@date).format(fmt)
     res.render("index")
 
+app.get "/ev", (req, res) ->
+  res.render("event")
+
 app.get "/archive", (req, res) ->
   res.send("archive")
 

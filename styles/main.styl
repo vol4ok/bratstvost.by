@@ -3,16 +3,22 @@
 @import "mixins"
 
 body
-  background: #d2d6db
+  background: #dbe0e7
   overflow-x: hidden
   clearfix()
 
-.container
+.main-container
   width: 960px
   margin-right: auto
   margin-left: auto
   min-height: 100%
+  margin-bottom: 100px
   clearfix()
+
+
+
+
+
 
 
 
@@ -26,11 +32,18 @@ body
     height: 98px
   .name
     h1
-      color: #787677
+      color: #6e7378
       font: bold 1.75em/1.75em DEFAULT_FONT
       text-align: center
       margin: 0
       text-shadow: 0 1px 0 rgba(white, 0.8)
+
+
+
+
+
+
+
 
 // NAV
 
@@ -73,6 +86,11 @@ body
 
 
 
+
+
+
+
+
 COL_COUNT    = 10
 COL_WIDTH    = 78px
 GUT_WIDTH    = 20px
@@ -89,74 +107,65 @@ get-offset($n)
   margin: 0
   clearfix()
 
-.news-col,
-.events-col
+.main-content-col,
+.aside-content-col
   width: get-offset(6)
   float: left
   box-sizing: border-box
   clearfix()
 
-.events-col
+.aside-content-col
   width: get-span(4)
 
+
+
+
+
+
+
+// NEWS
 .news-list
   box-sizing: border-box
+  background: white
+  border-radius: 5px
+  margin-right: 20px
+  box-shadow: 0 1px 4px rgba(black, .4)
+  padding: 10px
   clearfix()
-  h2
-    font: bold 20px NARROW_FONT
-    color: #656364
-    text-shadow: 0 1px 0 rgba(white, 0.8)
-  .row
-    clearfix()
+  header
+    padding: 10px
 
-  .block
+  // hr
+  //   width: 528px
+  //   border: none
+  //   border-top: 1px solid #e8e8e8
+  //   border-bottom: 1px solid white
+
+  .news-view
     float: left
-    width: get-span(3)
-    height: BLOCK_HEIGHT
-    margin: 0 GUT_WIDTH GUT_WIDTH 0
+    font: 15px/19px SERIF_FONT
+    width: get-span(3) - GUT_WIDTH
+    padding: 20px 10px
     clearfix()
-    &.large
-      width: get-span(6)
+    &:nth-child(odd)
+      clear: left
 
-  .news
-    position: relative
+  .news-img
     overflow: hidden
-    background: white
-    border-radius: 5px
-    box-shadow: 0 1px 4px rgba(black, .4)
-    .header
-      absolute: top left right height 206px
-    .body
-      absolute: top 206px left right height 80px
-      //background: gold
-      overflow: hidden
-      padding: 0 10px
-      p
-        font: 14px/24px SERIF_FONT
-        margin: 6px 0
-    .footer
-      absolute: top 286px left right
-      border-top: 1px solid #eee
-    .time
-      float: left
-    .social
-      float: right
-    .h2-pos
-      absolute: top left
-    .highlight
-      position: relative
-      &:after
-        content: ""
-        absolute: top left right bottom
-        background: white
-        opacity: 0
-        transition: opacity 100ms ease-in-out
+    border-radius: 4px
+    margin: 0
+    padding: 0
 
-  .news:hover
-    .highlight:after
-      opacity: 0.3
-
+  .news-date
+    font: 12px SANS_FONT
+    text-transform: uppercase
+    color: #888
     
+
+
+
+
+
 
 
 
@@ -177,9 +186,8 @@ get-offset($n)
   display: table
   .event-date, .event-desc, .event-state
     display: table-cell
-  margin: 1.5em 0
+  padding: 10px 0
   cursor: pointer
-
 .event-state
   position: relative
   &:before
@@ -188,15 +196,14 @@ get-offset($n)
     width: 3px
     background: #1873c6
     transition: width 100ms ease-in-out
+  &.new:before
+    background: #36a4ff
+    box-shadow: 0 0 3px #36a4ff, 0 0 10px #36a4ff
+
 
 .event-short:hover
   .event-state:before
     width: 7px
-
-.event-short.new
-  .event-state:before
-    background: #36a4ff
-    box-shadow: 0 0 3px #36a4ff, 0 0 10px #36a4ff
 
 .event-date
   vertical-align: middle
@@ -229,79 +236,70 @@ get-offset($n)
       &:hover
         border-bottom: 1px solid #399edf
 
-.billboard
-  display: none
-
-  .slides 
-    list-style: none
-    padding: 0
-    margin: 0
-    li
-      height: 269px
-      display: none
-      background: url(/easter-576.jpg)
-    li.active
-      padding: 0
-      margin: 0
-      display: block
-
-.post-body
-  .post-date, .post-text
-    display: inline-block
-    float: left
-  clearfix()
-
-.post-date
-  vertical-align: middle
-  padding: 8px
-  background: #eee
-  width: 56px
-  .day
-    font: 36px/40px DEFAULT_FONT
-    text-align: center
-  .month
-    font: 18px/18px DEFAULT_FONT
-    text-transform: uppercase
-    text-align: center
-
-.post-text
-  width: 425px
-  vertical-align: middle
+.event-more
+  height: 0
+  overflow: hidden
+  &.active
+    height: auto
   padding-left: 20px
 
-.post-image
-  background-repeat: no-repeat
-  margin-top: 10px
-  float: left
-  width: 64px
-  height: 64px
-  background: #444
-  border: 1px solid #222
-  border-radius: 3px
-
-.post-footer
-  margin-top: 10px
-  clearfix()
-  border-top: 1px dotted #ccc
-  time
-    font: 12px DEFAULT_FONT
-    color: #aaa
-  .social
-    list-style: none
-    padding: 0
+  dt
+    display: block
     margin: 0
-    li
-      float: left
-      clearfix()
-    a
-      display: block
-      padding: 2px
-      font-size: 24px
-      color: #aaa
-      text-decoration: none
-      &:hover, &:hover, &:visited
-        color: #333
-        text-decoration: none
+    padding: 0
+    float: left
+    clear: left
+    font: bold 14px/18px NARROW_FONT
+    max-width: 120px
+    overflow: hidden
+    text-overflow: ellipsis
+    white-space: nowrap
+    text-align: left
+    padding-right: 5px
+    &:after
+      content: ": "
+
+  dd
+    relative: top 1px
+    margin: 0
+    padding: 0
+    font: 13px/19px DEFAULT_FONT
+    display: block
+    margin-bottom: 5px
+    margin-left: 20px
+
+
+
+// MODALS
+
+.modal-container
+  display: none
+  position: relative
+  display: box
+  display: flex
+  clearfix()
+
+.modal-underlay
+  display: none
+  absolute: all
+  background: black
+  opacity: .4
+
+.modal
+  display: none
+  box-align: center
+  align-items: center
+  box-pack: center
+  justify-content: center
+
+
+
+
+
+// MISC
+
+.pull-right
+  float: right
 
 .readmore
   &:after
@@ -325,5 +323,3 @@ get-offset($n)
     background: #2d90ff
     text-decoration: none
 
-.pull-right
-  float: right

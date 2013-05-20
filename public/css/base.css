@@ -1600,7 +1600,7 @@ ul.icons-ul > li .icon-li {
   content: "\f14d";
 }
 
-html,body{height:100%;min-height:100%}
+html,body{min-height:100%}
 body{font:100%/1.5em "PT Sans"}
 .text p{color:GRAYDARK;font:normal .875em/1.5em "PT Sans";margin:0 0 1em}
 .text a{color:#08c;text-decoration:none;border-bottom:1px solid rgba(0,136,204,0.1);-moz-transition:border .4s ease-in-out;-webkit-transition:border .4s ease-in-out;-o-transition:border .4s ease-in-out;transition:border .4s ease-in-out;text-shadow:0 1px 0 #fff;}
