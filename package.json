@@ -1,0 +1,29 @@
+{
+  "name": "bratstvost.by",
+  "version": "0.0.0",
+  "description": "bratstvost website",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "Andrew Volkov <hello@vol4ok.net>",
+  "license": "MIT",
+  "dependencies": {
+    "hogan-express": "~0.3.3",
+    "lodash": "~1.2.1",
+    "moment": "~2.0.0",
+    "express": "~3.2.3",
+    "mongoose": "~3.6.9"
+  },
+  "devDependencies": {
+    "grunt-contrib-coffee": "~0.7.0",
+    "grunt": "~0.4.1",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-less": "~0.5.1",
+    "grunt-contrib-stylus": "~0.5.0",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-cssmin": "~0.6.0",
+    "grunt-rework": "0.0.3"
+  }
+}

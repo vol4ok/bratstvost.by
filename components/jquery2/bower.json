@@ -1,0 +1,19 @@
+{
+  "name": "jquery2",
+  "version": "2.0.0",
+  "description": "jQuery v2 component - if you need both v2 (ie9+) and v1 (ie8-)",
+  "keywords": [
+    "jquery",
+    "component"
+  ],
+  "main": "jquery.js",
+  "license": "MIT",
+  "gitHead": "1769ba07a448f43cdff39e19f784ddf49eb5e22f",
+  "readme": "jQuery Component\n================\n\nShim repository for the [jQuery](http://jquery.com).\n\nPackage Managers\n----------------\n\n* [Bower](http://twitter.github.com/bower/): `jquery`\n* [Component](https://github.com/component/component): `components/jquery`\n* [Composer](http://packagist.org/packages/components/jquery): `components/jquery`\n",
+  "readmeFilename": "README.md",
+  "_id": "jquery2@2.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/iki/jquery2.git"
+  }
+}

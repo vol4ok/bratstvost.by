@@ -1,0 +1,329 @@
+@import "config"
+@import "vendors"
+@import "mixins"
+
+body
+  background: #d2d6db
+  overflow-x: hidden
+  clearfix()
+
+.container
+  width: 960px
+  margin-right: auto
+  margin-left: auto
+  min-height: 100%
+  clearfix()
+
+
+
+// HEADER
+
+.global-header
+  padding: 20px 0 10px
+  display: black
+  .icon
+    background: url(/logo-100.png) center no-repeat
+    height: 98px
+  .name
+    h1
+      color: #787677
+      font: bold 1.75em/1.75em DEFAULT_FONT
+      text-align: center
+      margin: 0
+      text-shadow: 0 1px 0 rgba(white, 0.8)
+
+// NAV
+
+.global-nav
+  border-radius: 5px
+  overflow: hidden
+  box-shadow: 0 1px 4px rgba(black, .4)
+  background: white
+  margin: 0
+  padding: 0
+  ul
+    list-style: none
+    display: table
+    width: 100%
+    margin: 0
+  li
+    display: table-cell
+    box-sizing: border-box
+    width: 240px
+    text-align: center
+    a
+      border-top: 3px solid #155cba
+      display: block
+      text-transform: uppercase
+      font: bold 16px NARROW_FONT
+      padding: 1em 0
+  li
+    a:hover
+      border-top: 3px solid #2d90ff
+  li.active
+    a
+      cursor: default
+      border-top: 3px solid #c89433
+      background: #e8e8e8
+      color: black
+    a:hover
+      background: #e8e8e8
+      color: black
+
+
+
+
+COL_COUNT    = 10
+COL_WIDTH    = 78px
+GUT_WIDTH    = 20px
+BLOCK_HEIGHT = 320px
+
+get-span($n)
+  return (COL_WIDTH + GUT_WIDTH) * $n - GUT_WIDTH
+
+get-offset($n)
+  return (COL_WIDTH + GUT_WIDTH) * $n
+
+.columns
+  padding: GUT_WIDTH 0 
+  margin: 0
+  clearfix()
+
+.news-col,
+.events-col
+  width: get-offset(6)
+  float: left
+  box-sizing: border-box
+  clearfix()
+
+.events-col
+  width: get-span(4)
+
+.news-list
+  box-sizing: border-box
+  clearfix()
+  h2
+    font: bold 20px NARROW_FONT
+    color: #656364
+    text-shadow: 0 1px 0 rgba(white, 0.8)
+  .row
+    clearfix()
+
+  .block
+    float: left
+    width: get-span(3)
+    height: BLOCK_HEIGHT
+    margin: 0 GUT_WIDTH GUT_WIDTH 0
+    clearfix()
+    &.large
+      width: get-span(6)
+
+  .news
+    position: relative
+    overflow: hidden
+    background: white
+    border-radius: 5px
+    box-shadow: 0 1px 4px rgba(black, .4)
+    .header
+      absolute: top left right height 206px
+    .body
+      absolute: top 206px left right height 80px
+      //background: gold
+      overflow: hidden
+      padding: 0 10px
+      p
+        font: 14px/24px SERIF_FONT
+        margin: 6px 0
+    .footer
+      absolute: top 286px left right
+      border-top: 1px solid #eee
+    .time
+      float: left
+    .social
+      float: right
+    .h2-pos
+      absolute: top left
+    .highlight
+      position: relative
+      &:after
+        content: ""
+        absolute: top left right bottom
+        background: white
+        opacity: 0
+        transition: opacity 100ms ease-in-out
+
+  .news:hover
+    .highlight:after
+      opacity: 0.3
+
+    
+
+
+
+// EVENTS
+
+.events-list
+  color: #e2e2e2
+  background: #042658
+  border-radius: 5px
+  box-shadow: 0 1px 4px rgba(black, .4)
+  box-sizing: border-box
+  padding: 20px
+  font-size: 14px
+  .small
+    font-size: 12px
+
+.event-short
+  display: table
+  .event-date, .event-desc, .event-state
+    display: table-cell
+  margin: 1.5em 0
+  cursor: pointer
+
+.event-state
+  position: relative
+  &:before
+    content: ""
+    absolute top left bottom
+    width: 3px
+    background: #1873c6
+    transition: width 100ms ease-in-out
+
+.event-short:hover
+  .event-state:before
+    width: 7px
+
+.event-short.new
+  .event-state:before
+    background: #36a4ff
+    box-shadow: 0 0 3px #36a4ff, 0 0 10px #36a4ff
+
+.event-date
+  vertical-align: middle
+  width: 50px
+  .day
+    font: 28px/32px DEFAULT_FONT
+    text-align: center
+  .month
+    font: 14px/14px DEFAULT_FONT
+    text-transform: uppercase
+    text-align: center
+
+.event-desc
+  vertical-align: middle
+  a
+    color: #399edf
+    text-decoration: none
+    border-bottom: 1px solid rgba(LINK_COLOR, .1)
+    transition: border .4s ease-in-out
+    &:hover
+      color: #399edf
+      text-decoration: none
+      border-bottom: 1px solid #399edf
+    &:active
+      color: #399edf
+      text-decoration: none
+    &:visited
+      color: #399edf
+      text-decoration: none
+      &:hover
+        border-bottom: 1px solid #399edf
+
+.billboard
+  display: none
+
+  .slides 
+    list-style: none
+    padding: 0
+    margin: 0
+    li
+      height: 269px
+      display: none
+      background: url(/easter-576.jpg)
+    li.active
+      padding: 0
+      margin: 0
+      display: block
+
+.post-body
+  .post-date, .post-text
+    display: inline-block
+    float: left
+  clearfix()
+
+.post-date
+  vertical-align: middle
+  padding: 8px
+  background: #eee
+  width: 56px
+  .day
+    font: 36px/40px DEFAULT_FONT
+    text-align: center
+  .month
+    font: 18px/18px DEFAULT_FONT
+    text-transform: uppercase
+    text-align: center
+
+.post-text
+  width: 425px
+  vertical-align: middle
+  padding-left: 20px
+
+.post-image
+  background-repeat: no-repeat
+  margin-top: 10px
+  float: left
+  width: 64px
+  height: 64px
+  background: #444
+  border: 1px solid #222
+  border-radius: 3px
+
+.post-footer
+  margin-top: 10px
+  clearfix()
+  border-top: 1px dotted #ccc
+  time
+    font: 12px DEFAULT_FONT
+    color: #aaa
+  .social
+    list-style: none
+    padding: 0
+    margin: 0
+    li
+      float: left
+      clearfix()
+    a
+      display: block
+      padding: 2px
+      font-size: 24px
+      color: #aaa
+      text-decoration: none
+      &:hover, &:hover, &:visited
+        color: #333
+        text-decoration: none
+
+.readmore
+  &:after
+    content: " →"
+  display: inline-block
+  padding: 4px 12px
+  color: white
+  background: #155cba
+  text-decoration: none
+  border-radius: 40px
+  &:hover
+    color: white
+    background: #2d90ff
+    text-decoration: none
+  &:active
+    color: white
+    background: #2d90ff
+    text-decoration: none
+  &:visited
+    color: white
+    background: #2d90ff
+    text-decoration: none
+
+.pull-right
+  float: right

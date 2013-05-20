@@ -1,0 +1,202 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="keywords" content="Православное братство в честь святителя Спиридона Тримифунтского, братья, сестры, волонтеры,  милосердие, благотворительность, психоневрологический интернат, мероприятия, новости, Тарасики, Молодечно, д. Куль" />
+<meta name="robots" content="index, follow">
+
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/main.css">
+
+<script src="/js/kernel.js"></script>
+
+<title>Братство в честь святителя Спиридона Тримифунтского</title>
+
+<div class="container">
+
+  <header class="header">
+    <div class="icon"></div>
+    <div class="name">
+      <h1>Братство в честь святителя Спиридона Тримифунтского</h1>
+    </div>
+  </header>
+  
+  <nav role="navigation"> 
+    <ul class="hnav global-nav">
+      <li class="active"><a href="#">Новости</a></li>
+      <li><a href="#">О Братстве</a></li>
+      <li><a href="#">Контакты</a></li>
+      <li><a href="#">Блог</a></li>
+    </ul>
+  </nav>
+  
+  <div class="columns">
+
+    <section class="main">
+
+
+      <section class="billboard">
+        <ul class="slides text">
+          <li class="active">
+            <p>Justo Pharetra</p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="news">
+
+        <header>
+          <h2>Новости</h2>
+        </header>
+
+        <!-- basic text post -->
+        <article>
+          <!-- <figure>
+            <img src="https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-ash3/946923_452236831528501_1151513779_n.jpg" width="536" alt="">
+          </figure> -->
+          <div class="post-body">
+            <div class="post-image" style="background:url(/thumb-1.png)"></div>
+            <div class="post-text">
+              <p>Встреча с отцом Артемием. Протоиерей Артемий, хранитель мощей святителя Спиридона с о. Корфу встретился с членами братства.</p>
+              <p><a href="#" class="readmore">Смотреть</a></p>
+            </div>
+          </div>
+          <div class="post-footer">
+            <time>Вчера в 12:30</time>
+          </div>
+          
+        </article>
+
+        <article>
+          <!-- <iframe width="536" height="402" src="http://www.youtube.com/embed/p0VvbevKlQ8" frameborder="0" allowfullscreen></iframe> -->
+
+          <div class="post-body">
+            <div class="post-image" style="background:url(/thumb-3.png)"></div>
+            <div class="post-text">
+              <p>Десница Святого Спиридона в Беларуси</p>  
+              <p><a href="#" class="readmore">Смотреть</a></p>
+            </div>
+          </div>
+          <div class="post-footer">
+            <time>Позавчера в 14:00</time>
+          </div>
+        </article>
+
+        <article>
+          <!-- <iframe src="http://player.vimeo.com/video/66309568?byline=0&amp;portrait=0" width="536" height="301" frameborder="0" webkitAllowFullScreen  mozallowfullscreen allowFullScreen></iframe>-->
+
+          <div class="post-body">
+            <div class="post-image" style="background:url(/thumb-2.png)"></div>
+            <div class="post-text">
+              <p>Фрагмент интервью у нашего братчика Александра Тихоновича в программе «Разговор на Колокольне»</p>
+              <p><a href="#" class="readmore">Смотреть</a></p>
+            </div>
+          </div>
+          
+          <div class="post-footer">
+            <time>Позавчера в 9:15</time>
+            <ul class="social pull-right">
+              <li><a href="https://www.facebook.com/sharer/sharer.php?u="><i class="icon-facebook-sign"></i></a></li>
+              <li><a href="http://twitter.com/intent/tweet?text="><i class="icon-twitter-sign"></i></a></li>
+            </ul>
+          </div>
+        </article>
+      
+        <!-- image post -->
+        <article>
+          <figure>
+            <img src="" alt="">
+            <figcaption></figcaption>
+          </figure>
+          <p></p>
+        </article>
+      
+        <!-- video post -->
+        <article>
+          <div class="video">
+            
+          </div>
+          <p></p>
+        </article>
+
+      </section>
+    </section>
+    
+    <section class="events">
+    
+      <header>
+        <h2><i class="icon-calendar"></i> Мероприятия</h2>
+        <p class="small">Обновлено <em>десять минут назад</em></p>
+      </header>
+
+      <article class="event-short">
+
+        <div class="event-state"></div>
+
+        <div class="event-date">
+          <div class="day">19</div>
+          <div class="month">мая</div>
+        </div>
+
+        <div class="event-desc">
+          Выезд проживающих ПНИ д. Тарасики на литургию и на Минское море
+        </div>
+
+      </article>
+
+      <article class="event-short">
+
+        <div class="event-state"></div>
+
+        <div class="event-date">
+          <div class="day">20</div>
+          <div class="month">мая</div>
+        </div>
+
+        <div class="event-desc">
+          Встреча с сестрами Свято-Димитриевского сестричества</a>
+        </div>
+
+      </article>
+    
+      <article class="event-short new">
+
+        <div class="event-state"></div>
+
+        <div class="event-date">
+          <div class="day">21</div>
+          <div class="month">мая</div>
+        </div>
+
+        <div class="event-desc">
+          Благотворительный концерт <a href="https://www.facebook.com/pages/Ambre-Hammond/112652052110017">Ambre Hammond</a>
+        </div>
+
+      </article>
+
+<!--       <article class="event-full">
+
+        <header>
+          <h4>Благотворительный концерт Ambre Hammond</h4>
+        </header>
+
+        <p>Благотворительный концерт автралийской пианистки <a href="https://www.facebook.com/pages/Ambre-Hammond/112652052110017">Ambre Hammond</a> для насельников интернатов.</p>
+        <p>
+          <ul>
+            <li><i class="map"></i>Столбцовкий психоневрологический интернат (д. Куль)</li>
+            <li><i class="date"></i>вторник, 21 мая 2013 г.</li>
+            <li><i class="time"></i>Начало в 15:00</li>
+            <li>Выезд из Минска в 13:00</li>
+            <li>Организаторы:
+              <ul>
+                <li>Братство святитеоя Спиридона Тримифунтского</li>
+                <li>Blue Sky Talent Company</li>
+              </ul>
+            </li>
+          </ul>
+        </p>
+
+      </article> -->
+      
+    </section>
+
+  </div>
+</div>
