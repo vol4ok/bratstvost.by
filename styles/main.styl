@@ -131,26 +131,27 @@ get-offset($n)
   margin-right: 20px
   box-shadow: 0 1px 4px rgba(black, .4)
   padding: 20px
-  column-width: get-span(3) - GUT_WIDTH
+  column-width: 200px
   column-gap: GUT_WIDTH
+  height: 500px
   clearfix()
 
   .news-view
-    //float: left
-    padding: 20px 0
+    padding: 10px 0
     -webkit-column-break-inside: avoid
-    -moz-column-break-inside: avoid
-    -o-column-break-inside: avoid
-    -ms-column-break-inside: avoid
     column-break-inside: avoid
-    break-inside: avoid;
     page-break-inside: avoid
+    break-inside: avoid
     clearfix()
-    border-top: 1px solid #ccc
+    border-top: 1px dotted #aaa
     &:first-child
       border-top: none
     p
       margin: .25em 0
+      &:first-child
+        margin-top: 0
+
+
   .news-body
     font: 15px/19px SERIF_FONT
 
@@ -161,7 +162,7 @@ get-offset($n)
     padding: 0
 
   .news-date
-    font: 12px SANS_FONT
+    font: 12px/12px SANS_FONT !important
     text-transform: uppercase
     color: #888
     
