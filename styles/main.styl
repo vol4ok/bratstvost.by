@@ -130,25 +130,32 @@ get-offset($n)
   border-radius: 5px
   margin-right: 20px
   box-shadow: 0 1px 4px rgba(black, .4)
-  padding: 10px
+  padding: 20px
+  column-width: get-span(3) - GUT_WIDTH
+  column-gap: GUT_WIDTH
+  //column-fill: balance
+  height: 750px
+  max-height: 750px; 
   clearfix()
-  header
-    padding: 10px
-
-  // hr
-  //   width: 528px
-  //   border: none
-  //   border-top: 1px solid #e8e8e8
-  //   border-bottom: 1px solid white
 
   .news-view
-    float: left
-    font: 15px/19px SERIF_FONT
-    width: get-span(3) - GUT_WIDTH
-    padding: 20px 10px
+    //float: left
+    padding: 20px 0
+    -webkit-column-break-inside: avoid
+    -moz-column-break-inside: avoid
+    -o-column-break-inside: avoid
+    -ms-column-break-inside: avoid
+    column-break-inside: avoid
+    break-inside: avoid;
+    page-break-inside: avoid
     clearfix()
-    &:nth-child(odd)
-      clear: left
+    border-bottom: 1px solid #eee
+    &:last-child
+      border-bottom: none
+    p
+      margin: .25em 0
+  .news-body
+    font: 15px/19px SERIF_FONT
 
   .news-img
     overflow: hidden
@@ -267,6 +274,19 @@ get-offset($n)
     display: block
     margin-bottom: 5px
     margin-left: 20px
+
+.archive
+  .event-short
+    color: #aaa
+  .event-state:before
+    background: #95a8ba
+
+
+
+
+
+
+
 
 
 
