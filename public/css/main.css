@@ -21,13 +21,13 @@ body:after{clear:both}
 .main-content-col:before,.aside-content-col:before,.main-content-col:after,.aside-content-col:after{display:table;content:""}
 .main-content-col:after,.aside-content-col:after{clear:both}
 .aside-content-col{width:372px}
-.news-list{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;background:#fff;border-radius:5px;-webkit-border-radius:5px;margin-right:20px;box-shadow:0 1px 4px rgba(0,0,0,0.4);-webkit-box-shadow:0 1px 4px rgba(0,0,0,0.4);padding:20px;-moz-column-width:254px;-webkit-column-width:254px;column-width:254px;-moz-column-gap:20px;-webkit-column-gap:20px;column-gap:20px;height:750px;max-height:750px;*zoom:1;}
+.news-list{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;background:#fff;border-radius:5px;-webkit-border-radius:5px;margin-right:20px;box-shadow:0 1px 4px rgba(0,0,0,0.4);-webkit-box-shadow:0 1px 4px rgba(0,0,0,0.4);padding:20px;-moz-column-width:254px;-webkit-column-width:254px;column-width:254px;-moz-column-gap:20px;-webkit-column-gap:20px;column-gap:20px;*zoom:1;}
 .news-list:before,.news-list:after{display:table;content:""}
 .news-list:after{clear:both}
-.news-list .news-view{padding:20px 0;-webkit-column-break-inside:avoid;-moz-column-break-inside:avoid;-o-column-break-inside:avoid;-ms-column-break-inside:avoid;column-break-inside:avoid;break-inside:avoid;page-break-inside:avoid;*zoom:1;border-bottom:1px solid #eee;}
+.news-list .news-view{padding:20px 0;-webkit-column-break-inside:avoid;-moz-column-break-inside:avoid;-o-column-break-inside:avoid;-ms-column-break-inside:avoid;column-break-inside:avoid;break-inside:avoid;page-break-inside:avoid;*zoom:1;border-top:1px solid #ccc;}
 .news-list .news-view:before,.news-list .news-view:after{display:table;content:""}
 .news-list .news-view:after{clear:both}
-.news-list .news-view:last-child{border-bottom:none}
+.news-list .news-view:first-child{border-top:none}
 .news-list .news-view p{margin:.25em 0}
 .news-list .news-body{font:15px/19px "PT Serif"}
 .news-list .news-img{overflow:hidden;border-radius:4px;-webkit-border-radius:4px;margin:0;padding:0}

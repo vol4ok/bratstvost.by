@@ -52,6 +52,7 @@
         </article>
 
         <article class="news-view">
+          <p><figure class="news-img"><img src="/2.png" width="254" alt=""></figure></p>
           <p><time class="news-date"> 23 МИНУТЫ НАЗАД</time></p>
           <p class="news-body">Видео «Святитель Спиридон Тримифунтский»</p>
         </article>
@@ -62,6 +63,7 @@
         </article>
 
         <article class="news-view">
+          <p><figure class="news-img"><img src="/3.png" width="254" alt=""></figure></p>
           <p><time class="news-date">11 МАЯ</time></p>
           <p class="news-body">Наши подопечные столбцовского ПНИ (д. Куль) заняли в республиканском чемпионате по футболу среди первое место.</p>
           <p><a href="#" class="readmore">Читать</a></p>

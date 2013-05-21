@@ -133,9 +133,6 @@ get-offset($n)
   padding: 20px
   column-width: get-span(3) - GUT_WIDTH
   column-gap: GUT_WIDTH
-  //column-fill: balance
-  height: 750px
-  max-height: 750px; 
   clearfix()
 
   .news-view
@@ -149,9 +146,9 @@ get-offset($n)
     break-inside: avoid;
     page-break-inside: avoid
     clearfix()
-    border-bottom: 1px solid #eee
-    &:last-child
-      border-bottom: none
+    border-top: 1px solid #ccc
+    &:first-child
+      border-top: none
     p
       margin: .25em 0
   .news-body
