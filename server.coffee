@@ -7,6 +7,9 @@ moment.lang("ru")
 
 {Event} = require "./event"
 
+$ = require "lodash"
+require("uasync")($)
+
 app = express()
   .use(express.static("public"))
   .use(express.logger('short'))

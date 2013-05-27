@@ -101,19 +101,102 @@ class UIModal extends UIView
     e.stopPropagation()
 
 
-class UIVideoModal extends UIModal
-  @registerClass(@name)
-
-class UIButton extends UIView
+class UINewsView extends UIView
   @registerClass(@name)
 
   events:
     "click": "on_click"
 
-  constructor: (options) -> super
+  constructor: ->
+    super
+    @videoId = @$el.data("video-id")
 
-  on_click: (e) -> 
-    @trigger("click")
+  on_click: =>
+    @trigger("show-video", this)
+
+
+class UINewsList extends UIView
+  @registerClass(@name)
+
+  constructor: ->
+    super
+    @items = {}
+    @_initNews()
+
+  _initNews: ->
+    for el in @$el.children()
+      $el = $(el)
+      nv = new (Backbone.getClassByName($el.data('class')))(el: el)
+      nv.on "show-video", (view) =>
+        @trigger("show-video", view)
+      @items[nv.id] = nv
+
+
+class UIVideoModal extends UIModal
+  @registerClass(@name)
+
+  template: '''
+    <iframe 
+      width="<%= width %>" 
+      height="<%= height %>" 
+      src="http://www.youtube.com/embed/<%= videoId %>" 
+      frameborder="0" 
+      allowfullscreen>
+    </iframe>
+  '''
+
+  constructor: ->
+    super
+    @cache = {}
+    @$body = @$(".modal-body")
+    @template = _.template(@template)
+    @on("close", @on_close)
+
+  preload: (view) =>
+    console.log "preload", view.videoId
+    html = @template
+      videoId: view.videoId
+      width: 480
+      height: 360
+    $html = $(html).hide()
+    @$body.append($html)
+    @cache[view.videoId] = $html
+
+  show: (view) =>
+    if @currVideoId
+      @cache[@currVideoId].hide()
+
+    @currVideoId = view.videoId
+    if @cache[view.videoId]
+      console.log "load from cache", view.videoId
+      @cache[view.videoId].show()
+    else
+      html = @template
+        videoId: view.videoId
+        width: 480
+        height: 360
+      $html = $(html)
+      @$body.append($html)
+      @cache[view.videoId] = $html
+      console.log "save to cache", view.videoId
+          
+    super
+
+  on_close: =>
+    @hide()
+
+
+
+# class UIButton extends UIView
+#   @registerClass(@name)
+
+#   events:
+#     "click": "on_click"
+
+#   constructor: (options) -> super
+
+#   on_click: (e) -> 
+#     @trigger("click")
 
 class MyApp extends Application
 
@@ -125,6 +208,7 @@ class MyApp extends Application
   on_load: => 
     console.log "Hello"
     @initAutoloadObjects() 
+      
     moment.lang("ru")
     $(".event-short").click (e) -> 
       $(this)
@@ -134,23 +218,13 @@ class MyApp extends Application
       $(this)
         .find(".event-state")
         .removeClass("new")
-    console.log "laoding fancybox"
-    $(".fb").fancybox
-      maxWidth    : 800
-      maxHeight   : 600
-      fitToView   : false
-      width       : '70%'
-      height      : '70%'
-      autoSize    : false
-      closeClick  : false
-      openEffect  : 'none'
-      closeEffect : 'none'
 
-  on_loaded: =>   
+  on_loaded: =>  
+    console.log "~~~~~ make bind" 
     bindEvents
-      "new-button click": "modal-1 show"
-      "modal-1 close": "modal-1 hide"
-      "modal-1 show": "page blur"
-      "modal-1 hide": "page unblur"
+      "news-list show-video": "video-modal show"
+    #  "news-list preload": "video-modal preload"
+    #   "modal-1 show": "page blur"
+    #   "modal-1 hide": "page unblur"
 
 window.app = new MyApp

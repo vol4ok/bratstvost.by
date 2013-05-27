@@ -1,5 +1,5 @@
 (function() {
-  var Application, Collection, Model, MyApp, UIButton, UIModal, UIPage, UIVideoModal, UIView, bindEvent, bindEvents, _ref,
+  var Application, Collection, Model, MyApp, UIModal, UINewsList, UINewsView, UIPage, UIVideoModal, UIView, bindEvent, bindEvents,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
@@ -165,40 +165,125 @@
 
   })(UIView);
 
+  UINewsView = (function(_super) {
+    __extends(UINewsView, _super);
+
+    UINewsView.registerClass(UINewsView.name);
+
+    UINewsView.prototype.events = {
+      "click": "on_click"
+    };
+
+    function UINewsView() {
+      this.on_click = __bind(this.on_click, this);      UINewsView.__super__.constructor.apply(this, arguments);
+      this.videoId = this.$el.data("video-id");
+    }
+
+    UINewsView.prototype.on_click = function() {
+      return this.trigger("show-video", this);
+    };
+
+    return UINewsView;
+
+  })(UIView);
+
+  UINewsList = (function(_super) {
+    __extends(UINewsList, _super);
+
+    UINewsList.registerClass(UINewsList.name);
+
+    function UINewsList() {
+      UINewsList.__super__.constructor.apply(this, arguments);
+      this.items = {};
+      this._initNews();
+    }
+
+    UINewsList.prototype._initNews = function() {
+      var $el, el, nv, _i, _len, _ref, _results,
+        _this = this;
+
+      _ref = this.$el.children();
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        el = _ref[_i];
+        $el = $(el);
+        nv = new (Backbone.getClassByName($el.data('class')))({
+          el: el
+        });
+        nv.on("show-video", function(view) {
+          return _this.trigger("show-video", view);
+        });
+        _results.push(this.items[nv.id] = nv);
+      }
+      return _results;
+    };
+
+    return UINewsList;
+
+  })(UIView);
+
   UIVideoModal = (function(_super) {
     __extends(UIVideoModal, _super);
 
+    UIVideoModal.registerClass(UIVideoModal.name);
+
+    UIVideoModal.prototype.template = '<iframe \n  width="<%= width %>" \n  height="<%= height %>" \n  src="http://www.youtube.com/embed/<%= videoId %>" \n  frameborder="0" \n  allowfullscreen>\n</iframe>';
+
     function UIVideoModal() {
-      _ref = UIVideoModal.__super__.constructor.apply(this, arguments);
-      return _ref;
+      this.on_close = __bind(this.on_close, this);
+      this.show = __bind(this.show, this);
+      this.preload = __bind(this.preload, this);      UIVideoModal.__super__.constructor.apply(this, arguments);
+      this.cache = {};
+      this.$body = this.$(".modal-body");
+      this.template = _.template(this.template);
+      this.on("close", this.on_close);
     }
 
-    UIVideoModal.registerClass(UIVideoModal.name);
+    UIVideoModal.prototype.preload = function(view) {
+      var $html, html;
+
+      console.log("preload", view.videoId);
+      html = this.template({
+        videoId: view.videoId,
+        width: 480,
+        height: 360
+      });
+      $html = $(html).hide();
+      this.$body.append($html);
+      return this.cache[view.videoId] = $html;
+    };
+
+    UIVideoModal.prototype.show = function(view) {
+      var $html, html;
+
+      if (this.currVideoId) {
+        this.cache[this.currVideoId].hide();
+      }
+      this.currVideoId = view.videoId;
+      if (this.cache[view.videoId]) {
+        console.log("load from cache", view.videoId);
+        this.cache[view.videoId].show();
+      } else {
+        html = this.template({
+          videoId: view.videoId,
+          width: 480,
+          height: 360
+        });
+        $html = $(html);
+        this.$body.append($html);
+        this.cache[view.videoId] = $html;
+        console.log("save to cache", view.videoId);
+      }
+      return UIVideoModal.__super__.show.apply(this, arguments);
+    };
+
+    UIVideoModal.prototype.on_close = function() {
+      return this.hide();
+    };
 
     return UIVideoModal;
 
   })(UIModal);
-
-  UIButton = (function(_super) {
-    __extends(UIButton, _super);
-
-    UIButton.registerClass(UIButton.name);
-
-    UIButton.prototype.events = {
-      "click": "on_click"
-    };
-
-    function UIButton(options) {
-      UIButton.__super__.constructor.apply(this, arguments);
-    }
-
-    UIButton.prototype.on_click = function(e) {
-      return this.trigger("click");
-    };
-
-    return UIButton;
-
-  })(UIView);
 
   MyApp = (function(_super) {
     __extends(MyApp, _super);
@@ -214,30 +299,16 @@
       console.log("Hello");
       this.initAutoloadObjects();
       moment.lang("ru");
-      $(".event-short").click(function(e) {
+      return $(".event-short").click(function(e) {
         $(this).parent().find(".event-more").toggleClass("active");
         return $(this).find(".event-state").removeClass("new");
-      });
-      console.log("laoding fancybox");
-      return $(".fb").fancybox({
-        maxWidth: 800,
-        maxHeight: 600,
-        fitToView: false,
-        width: '70%',
-        height: '70%',
-        autoSize: false,
-        closeClick: false,
-        openEffect: 'none',
-        closeEffect: 'none'
       });
     };
 
     MyApp.prototype.on_loaded = function() {
+      console.log("~~~~~ make bind");
       return bindEvents({
-        "new-button click": "modal-1 show",
-        "modal-1 close": "modal-1 hide",
-        "modal-1 show": "page blur",
-        "modal-1 hide": "page unblur"
+        "news-list show-video": "video-modal show"
       });
     };
 

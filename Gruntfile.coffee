@@ -74,7 +74,7 @@ module.exports = (grunt) ->
           'components/html5-boilerplate/css/normalize.css'
           'temp/style/font-awesome.css'
           'temp/style/base.css'
-          'components/fancybox/source/jquery.fancybox.css'
+          # 'components/fancybox/source/jquery.fancybox.css'
         ],
         dest: 'public/css/base.css'
 
@@ -85,7 +85,7 @@ module.exports = (grunt) ->
           'components/backbone/backbone.js'
           'components/moment/min/moment.min.js'
           'components/moment/min/lang/ru.js'
-          'components/fancybox/source/jquery.fancybox.js'
+          # 'components/fancybox/source/jquery.fancybox.js'
           'node_modules/bson/browser_build/bson.js'
           'scripts/uasync.js'
           'temp/scripts/misc.js'
@@ -127,7 +127,7 @@ module.exports = (grunt) ->
       all: ["temp"]
 
 
-  grunt.registerTask("default", ["stylus", "less:fontawesome", "copy:font", "copy:fancybox", "concat:style", "cssmin", 
+  grunt.registerTask("default", ["stylus", "less:fontawesome", "copy:font", "concat:style", "cssmin", 
       "coffee:client", "concat:kernel"])
   grunt.registerTask("dist", ["coffee", "copy"])
 
