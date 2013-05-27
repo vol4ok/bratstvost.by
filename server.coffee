@@ -1,9 +1,9 @@
 moment   = require "moment"
 mongoose = require "mongoose"
 moment   = require "moment"
-express = require "express"
+express  = require "express"
 
-# ua = require "express-useragent"
+moment.lang("ru")
 
 {Event} = require "./event"
 
@@ -27,12 +27,20 @@ app.get "/", (req, res) ->
   Event.find {published: yes}, null, {sort: "date"}, (err, result) ->
     res.locals
       events: result
-      formatDate: (fmt) ->
-        moment(@date).format(fmt)
+      formatDate: (fmt) -> moment(this).format(fmt)
+      formatPhone: (->
+        phoneRexp = /^(\+|00)(\d\d\d)(\d\d)(\d\d\d)(\d\d)(\d\d)$/
+        return (fmt) -> 
+          m = phoneRexp.exec(@phone)
+          return "8 (0#{m[3]}) #{m[4]}-#{m[5]}-#{m[6]}"
+      )()
     res.render("index")
 
 app.get "/ev", (req, res) ->
   res.render("event")
+
+app.get "/sample", (req, res) ->
+  res.render("sample")
 
 app.get "/archive", (req, res) ->
   res.send("archive")

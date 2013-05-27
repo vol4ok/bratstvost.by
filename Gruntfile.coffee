@@ -34,6 +34,13 @@ module.exports = (grunt) ->
           src: ["public/**", "views/**"]
           dest: "dist/"
         ]
+      fancybox:
+        files: [
+          expand: yes 
+          cwd: "components/fancybox/source"
+          src: ["*.png", "*.gif"]
+          dest: "public/css"
+        ]      
       font:
         files: [
           expand: yes 
@@ -67,14 +74,19 @@ module.exports = (grunt) ->
           'components/html5-boilerplate/css/normalize.css'
           'temp/style/font-awesome.css'
           'temp/style/base.css'
+          'components/fancybox/source/jquery.fancybox.css'
         ],
         dest: 'public/css/base.css'
 
       kernel:
         src: [
           'components/jquery2/jquery.js'
-          'components/lodash/dist/lodash.backbone.js'
+          'components/lodash/dist/lodash.underscore.js'
           'components/backbone/backbone.js'
+          'components/moment/min/moment.min.js'
+          'components/moment/min/lang/ru.js'
+          'components/fancybox/source/jquery.fancybox.js'
+          'node_modules/bson/browser_build/bson.js'
           'scripts/uasync.js'
           'temp/scripts/misc.js'
         ],
@@ -115,7 +127,7 @@ module.exports = (grunt) ->
       all: ["temp"]
 
 
-  grunt.registerTask("default", ["stylus", "less:fontawesome", "copy:font", "concat:style", "cssmin", 
+  grunt.registerTask("default", ["stylus", "less:fontawesome", "copy:font", "copy:fancybox", "concat:style", "cssmin", 
       "coffee:client", "concat:kernel"])
   grunt.registerTask("dist", ["coffee", "copy"])
 
