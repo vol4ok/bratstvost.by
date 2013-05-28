@@ -41,6 +41,26 @@ _1 июня_ — во Всемирный день ребенка в храме *
 
 ### Новости
 
+##### 28 мая, 2013
+
+**Фотоотчет**
+
+![](280513-4.jpg)
+
+[Встреча с молодежной группой](https://www.facebook.com/media/set/?set=a.457050707713780.1073741835.444251692327015&type=1&l=e8fd643b5e)
+
+![](280513-3.jpg)
+
+[Слободка 26.05.13](https://www.facebook.com/media/set/?set=a.457019154383602.1073741834.444251692327015&type=1&l=0638d9ee25)
+
+![](280513-2.jpg)
+
+[Ambre Hammond, Airport](https://www.facebook.com/media/set/?set=a.457249597693891.1073741839.444251692327015&type=1&l=730d5eb376)
+
+![](280513-1.jpg)
+
+[Тарасики-Заславль](https://www.facebook.com/media/set/?set=a.457057221046462.1073741837.444251692327015&type=1&l=30e20ec0b1)
+
 ##### *27 мая, 2013*
 
 [В Заславль доставят икону с частицей мощей святого младенца Гавриила Белостокского](http://sobor.by/page/V_Zaslavl_dostavyat_ikonu_s_chastitsey_moshchey_svyatogo_mladentsa_Gavriila_Belostokskogo)
