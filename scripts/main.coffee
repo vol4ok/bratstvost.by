@@ -27,6 +27,7 @@ class Application extends Backbone.Router
       $el = $(el)
       new (Backbone.getClassByName($el.data('class')))(el: $el)
       $el.removeClass("autoload")
+      el.removeAttribute("data-class")
       $el.removeData("class")
 
   on: (eventname, callback) ->
@@ -76,7 +77,7 @@ class UIModal extends UIView
   events: 
     "click .x": "on_close"
     "click": "on_click"
-    "click .modal": "on_modalClick"
+    "click .modal-view": "on_modalClick"
 
   constructor: (options) -> 
     super
@@ -101,7 +102,7 @@ class UIModal extends UIView
     e.stopPropagation()
 
 
-class UINewsView extends UIView
+class UIVideoNewsView extends UIView
   @registerClass(@name)
 
   events:
@@ -109,10 +110,29 @@ class UINewsView extends UIView
 
   constructor: ->
     super
-    @videoId = @$el.data("video-id")
+    @videoId = @model.video.id
 
   on_click: =>
     @trigger("show-video", this)
+
+
+
+
+class UITextNewsView extends UIView
+  @registerClass(@name)
+
+
+class UIPictureNewsView extends UIView
+  @registerClass(@name)
+
+  events:
+    "click": "on_click"
+
+  constructor: ->
+    super
+
+  on_click: =>
+    @trigger("show-picture", this)
 
 
 class UINewsList extends UIView
@@ -126,9 +146,22 @@ class UINewsList extends UIView
   _initNews: ->
     for el in @$el.children()
       $el = $(el)
-      nv = new (Backbone.getClassByName($el.data('class')))(el: el)
+      klass = $el.data("class")
+      continue unless klass
+
+      model = null
+      if $el.data("model")
+        model = JSON.parse(Base64.decode($el.data("model")))
+        el.removeAttribute("data-model")
+        $el.removeData('model')
+      el.removeAttribute("data-class")
+      $el.removeData('class')
+
+      nv = new (Backbone.getClassByName(klass))(el: el, model: model)
       nv.on "show-video", (view) =>
         @trigger("show-video", view)
+      nv.on "show-picture", (view) =>
+        @trigger("show-picture", view)
       @items[nv.id] = nv
 
 
@@ -152,16 +185,6 @@ class UIVideoModal extends UIModal
     @template = _.template(@template)
     @on("close", @on_close)
 
-  preload: (view) =>
-    console.log "preload", view.videoId
-    html = @template
-      videoId: view.videoId
-      width: 480
-      height: 360
-    $html = $(html).hide()
-    @$body.append($html)
-    @cache[view.videoId] = $html
-
   show: (view) =>
     if @currVideoId
       @cache[@currVideoId].hide()
@@ -181,6 +204,38 @@ class UIVideoModal extends UIModal
       console.log "save to cache", view.videoId
           
     super
+
+  on_close: =>
+    @hide()
+
+class UIPictureModal extends UIModal
+  @registerClass(@name)
+
+  constructor: ->
+    super
+    @on("close", @on_close)
+
+  show: (view) =>
+    super
+    unless @isInit
+      @$('#carousel').flexslider
+        animation: "slide"
+        controlNav: false
+        animationLoop: false
+        slideshow: false
+        itemWidth: 220
+        itemMargin: 5
+        asNavFor: '#slider'
+
+      @$('#slider').flexslider
+        animation: "slide"
+        controlNav: false
+        animationLoop: false
+        slideshow: false
+        sync: "#carousel"
+
+      @isInit = yes
+
 
   on_close: =>
     @hide()
@@ -220,11 +275,12 @@ class MyApp extends Application
         .removeClass("new")
 
   on_loaded: =>  
-    console.log "~~~~~ make bind" 
     bindEvents
       "news-list show-video": "video-modal show"
-    #  "news-list preload": "video-modal preload"
-    #   "modal-1 show": "page blur"
-    #   "modal-1 hide": "page unblur"
+      "news-list show-picture": "picture-modal show"
+      "video-modal show": "page blur"
+      "video-modal hide": "page unblur"
+      "picture-modal show": "page blur"
+      "picture-modal hide": "page unblur"
 
 window.app = new MyApp

@@ -1,5 +1,5 @@
 (function() {
-  var Application, Collection, Model, MyApp, UIModal, UINewsList, UINewsView, UIPage, UIVideoModal, UIView, bindEvent, bindEvents,
+  var Application, Collection, Model, MyApp, UIModal, UINewsList, UIPage, UIPictureModal, UIPictureNewsView, UITextNewsView, UIVideoModal, UIVideoNewsView, UIView, bindEvent, bindEvents, _ref,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
@@ -59,6 +59,7 @@
           el: $el
         });
         $el.removeClass("autoload");
+        el.removeAttribute("data-class");
         return $el.removeData("class");
       });
     };
@@ -126,7 +127,7 @@
     UIModal.prototype.events = {
       "click .x": "on_close",
       "click": "on_click",
-      "click .modal": "on_modalClick"
+      "click .modal-view": "on_modalClick"
     };
 
     function UIModal(options) {
@@ -165,25 +166,60 @@
 
   })(UIView);
 
-  UINewsView = (function(_super) {
-    __extends(UINewsView, _super);
+  UIVideoNewsView = (function(_super) {
+    __extends(UIVideoNewsView, _super);
 
-    UINewsView.registerClass(UINewsView.name);
+    UIVideoNewsView.registerClass(UIVideoNewsView.name);
 
-    UINewsView.prototype.events = {
+    UIVideoNewsView.prototype.events = {
       "click": "on_click"
     };
 
-    function UINewsView() {
-      this.on_click = __bind(this.on_click, this);      UINewsView.__super__.constructor.apply(this, arguments);
-      this.videoId = this.$el.data("video-id");
+    function UIVideoNewsView() {
+      this.on_click = __bind(this.on_click, this);      UIVideoNewsView.__super__.constructor.apply(this, arguments);
+      this.videoId = this.model.video.id;
     }
 
-    UINewsView.prototype.on_click = function() {
+    UIVideoNewsView.prototype.on_click = function() {
       return this.trigger("show-video", this);
     };
 
-    return UINewsView;
+    return UIVideoNewsView;
+
+  })(UIView);
+
+  UITextNewsView = (function(_super) {
+    __extends(UITextNewsView, _super);
+
+    function UITextNewsView() {
+      _ref = UITextNewsView.__super__.constructor.apply(this, arguments);
+      return _ref;
+    }
+
+    UITextNewsView.registerClass(UITextNewsView.name);
+
+    return UITextNewsView;
+
+  })(UIView);
+
+  UIPictureNewsView = (function(_super) {
+    __extends(UIPictureNewsView, _super);
+
+    UIPictureNewsView.registerClass(UIPictureNewsView.name);
+
+    UIPictureNewsView.prototype.events = {
+      "click": "on_click"
+    };
+
+    function UIPictureNewsView() {
+      this.on_click = __bind(this.on_click, this);      UIPictureNewsView.__super__.constructor.apply(this, arguments);
+    }
+
+    UIPictureNewsView.prototype.on_click = function() {
+      return this.trigger("show-picture", this);
+    };
+
+    return UIPictureNewsView;
 
   })(UIView);
 
@@ -199,19 +235,35 @@
     }
 
     UINewsList.prototype._initNews = function() {
-      var $el, el, nv, _i, _len, _ref, _results,
+      var $el, el, klass, model, nv, _i, _len, _ref1, _results,
         _this = this;
 
-      _ref = this.$el.children();
+      _ref1 = this.$el.children();
       _results = [];
-      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        el = _ref[_i];
+      for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
+        el = _ref1[_i];
         $el = $(el);
-        nv = new (Backbone.getClassByName($el.data('class')))({
-          el: el
+        klass = $el.data("class");
+        if (!klass) {
+          continue;
+        }
+        model = null;
+        if ($el.data("model")) {
+          model = JSON.parse(Base64.decode($el.data("model")));
+          el.removeAttribute("data-model");
+          $el.removeData('model');
+        }
+        el.removeAttribute("data-class");
+        $el.removeData('class');
+        nv = new (Backbone.getClassByName(klass))({
+          el: el,
+          model: model
         });
         nv.on("show-video", function(view) {
           return _this.trigger("show-video", view);
+        });
+        nv.on("show-picture", function(view) {
+          return _this.trigger("show-picture", view);
         });
         _results.push(this.items[nv.id] = nv);
       }
@@ -231,27 +283,12 @@
 
     function UIVideoModal() {
       this.on_close = __bind(this.on_close, this);
-      this.show = __bind(this.show, this);
-      this.preload = __bind(this.preload, this);      UIVideoModal.__super__.constructor.apply(this, arguments);
+      this.show = __bind(this.show, this);      UIVideoModal.__super__.constructor.apply(this, arguments);
       this.cache = {};
       this.$body = this.$(".modal-body");
       this.template = _.template(this.template);
       this.on("close", this.on_close);
     }
-
-    UIVideoModal.prototype.preload = function(view) {
-      var $html, html;
-
-      console.log("preload", view.videoId);
-      html = this.template({
-        videoId: view.videoId,
-        width: 480,
-        height: 360
-      });
-      $html = $(html).hide();
-      this.$body.append($html);
-      return this.cache[view.videoId] = $html;
-    };
 
     UIVideoModal.prototype.show = function(view) {
       var $html, html;
@@ -285,6 +322,48 @@
 
   })(UIModal);
 
+  UIPictureModal = (function(_super) {
+    __extends(UIPictureModal, _super);
+
+    UIPictureModal.registerClass(UIPictureModal.name);
+
+    function UIPictureModal() {
+      this.on_close = __bind(this.on_close, this);
+      this.show = __bind(this.show, this);      UIPictureModal.__super__.constructor.apply(this, arguments);
+      this.on("close", this.on_close);
+    }
+
+    UIPictureModal.prototype.show = function(view) {
+      UIPictureModal.__super__.show.apply(this, arguments);
+      if (!this.isInit) {
+        this.$('#carousel').flexslider({
+          animation: "slide",
+          controlNav: false,
+          animationLoop: false,
+          slideshow: false,
+          itemWidth: 220,
+          itemMargin: 5,
+          asNavFor: '#slider'
+        });
+        this.$('#slider').flexslider({
+          animation: "slide",
+          controlNav: false,
+          animationLoop: false,
+          slideshow: false,
+          sync: "#carousel"
+        });
+        return this.isInit = true;
+      }
+    };
+
+    UIPictureModal.prototype.on_close = function() {
+      return this.hide();
+    };
+
+    return UIPictureModal;
+
+  })(UIModal);
+
   MyApp = (function(_super) {
     __extends(MyApp, _super);
 
@@ -306,9 +385,13 @@
     };
 
     MyApp.prototype.on_loaded = function() {
-      console.log("~~~~~ make bind");
       return bindEvents({
-        "news-list show-video": "video-modal show"
+        "news-list show-video": "video-modal show",
+        "news-list show-picture": "picture-modal show",
+        "video-modal show": "page blur",
+        "video-modal hide": "page unblur",
+        "picture-modal show": "page blur",
+        "picture-modal hide": "page unblur"
       });
     };
 

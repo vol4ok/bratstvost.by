@@ -6,6 +6,7 @@ express  = require "express"
 moment.lang("ru")
 
 {Event} = require "./event"
+{News} = require "./news"
 
 $ = require "lodash"
 require("uasync")($)
@@ -27,16 +28,31 @@ app.set("meta-keyword", "")
 app.set("meta-description", "")
 
 app.get "/", (req, res) ->
-  Event.find {published: yes}, null, {sort: "date"}, (err, result) ->
+  $.parallel {
+    events: (cb) -> Event.find {published: yes}, null, {sort: "date"}, cb
+    news: (cb) -> News.find {published: yes}, null, {sort: "date"}, cb
+  }, (err, results) ->
     res.locals
-      events: result
+      events: results.events
+      news: results.news
+      fromNow: (arg) -> moment(this).fromNow()
       formatDate: (fmt) -> moment(this).format(fmt)
+      clickable: (arg) -> 
+        return "clickable" if @post_type is "video"
       formatPhone: (->
         phoneRexp = /^(\+|00)(\d\d\d)(\d\d)(\d\d\d)(\d\d)(\d\d)$/
         return (fmt) -> 
           m = phoneRexp.exec(@phone)
           return "8 (0#{m[3]}) #{m[4]}-#{m[5]}-#{m[6]}"
       )()
+      classByType: (->
+        t2c = 
+          "video": "UIVideoNewsView"
+          "text": "UITextNewsView"
+        return (arg) -> 
+          t2c[@post_type] || ""
+      )()
+      base64This: (arg) -> return new Buffer(JSON.stringify(this)).toString('base64')
     res.render("index")
 
 app.get "/ev", (req, res) ->

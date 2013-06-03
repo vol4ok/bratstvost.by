@@ -9,6 +9,21 @@
 <script src="/js/kernel.js"></script>
 <script src="/js/main.js"></script>
 
+<script type="text/javascript">
+  WebFontConfig = {
+    google: { families: [ 'PT+Sans:400,700,400italic,700italic:latin,cyrillic', 'PT+Sans+Narrow:400,700:latin,cyrillic', 'PT+Serif:400,700,400italic,700italic:latin,cyrillic' ] }
+  };
+  (function() {
+    var wf = document.createElement('script');
+    wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+      '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+    wf.type = 'text/javascript';
+    wf.async = 'true';
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(wf, s);
+  })(); 
+</script>
+
 <title>Братство в честь святителя Спиридона Тримифунтского</title>
 
 <section class="modals">
@@ -17,19 +32,69 @@
     class="autoload modal video backdrop" 
     id="video-modal"
     data-class="UIVideoModal">
+
     <div class="modal-view">
       <div class="x">ЗАКРЫТЬ</div>
       <header>
-        <h3>Десница Святителя Спиридона в Жировичах</h3>
+        <h3></h3>
+      </header>
+      <section class="modal-body"></section>
+      <footer></footer>
+    </div> <!-- modal-view -->
+  </div> <!-- modal -->
+
+  <div 
+    class="autoload modal picture backdrop" 
+    id="picture-modal"
+    data-class="UIPictureModal">
+
+    <div class="modal-view">
+      <div class="x">ЗАКРЫТЬ</div>
+      <header>
+        <h3></h3>
       </header>
       <section class="modal-body">
+
+        <div class="flexslider" id="slider">
+          <ul class="slides">
+            <li>
+              <img src="/img/slobodka/m/photo-1.jpg" />
+            </li>
+            <li>
+              <img src="/img/slobodka/m/photo-2.jpg" />
+            </li>
+            <li>
+              <img src="/img/slobodka/m/photo-3.jpg" />
+            </li>
+            <li>
+              <img src="/img/slobodka/m/photo-4.jpg" />
+            </li>
+          </ul>
+        </div>
+
+        <div class="flexslider" id="carousel">
+          <ul class="slides">
+            <li>
+              <img src="/img/slobodka/m/photo-1.jpg" />
+            </li>
+            <li>
+              <img src="/img/slobodka/m/photo-2.jpg" />
+            </li>
+            <li>
+              <img src="/img/slobodka/m/photo-3.jpg" />
+            </li>
+            <li>
+              <img src="/img/slobodka/m/photo-4.jpg" />
+            </li>
+          </ul>
+        </div>
+
       </section>
       <footer></footer>
-    </div>
-  </div>
+    </div> <!-- modal-view -->
+  </div> <!-- modal -->
 
-
-</section>
+</section> <!-- modals -->
 
 
 
@@ -50,36 +115,75 @@
 
 
 
-
     <!-- NEWS -->
 
     <div class="main-content-col">
 
 
-      <section class="autoload news-list" id="news-list" data-class="UINewsList">
 
-        <article class="news-view clickable" data-class="UINewsView" data-video-id="nN8Fp-ufgOg">
-          <figure class="news-img video">
-            <img src="/img/200513-nN8Fp-ufgOg.jpg" alt="Десница Святителя Спиридона в Жировичах">
+
+      <section 
+        class="autoload news-list" 
+        id="news-list" 
+        data-class="UINewsList">
+
+        <article class="news-view clickable" data-class="UIPictureNewsView">
+
+          <figure class="news-img picture">
+            <img src="/img/slobodka/s/photo-1.jpg" />
           </figure>
-          <p class="news-date"><time pubdate datetime="2013-05-20">20 мая</time></p>
-          <p class="news-body">Видео «Десница Святителя Спиридона в Жировичах»</p>
+
+          <p class="news-date">
+            <time pubdate 
+              datetime="2013-05-26">
+              26 МАЯ
+            </time>
+          </p>
+
+          <div class="news-body">
+            Поездка на литургию в д. Слободка.
+          </div>
+
         </article>
 
-        <article class="news-view clickable" data-class="UINewsView" data-video-id="DM38ALfUfrQ">
-          <figure class="news-img video">
-            <img src="/img/200513-DM38ALfUfrQ.jpg" alt="Святитель Спиридон Тримифунтский">
+        {{#news}}
+        <article 
+          class="news-view {{#clickable}}{{/clickable}}" 
+          data-class="{{#classByType}}{{/classByType}}" 
+          data-model="{{#base64This}}{{/base64This}}"
+          >
+
+          {{#thumb_url}}
+          <figure class="news-img {{post_type}}">
+            <img src="{{thumb_url}}" alt="{{thumb_alt}}">
           </figure>
-          <p class="news-date"><time>20 мая</time><p>
-          <p class="news-body">Видео «Святитель Спиридон Тримифунтский»</p>
+          {{/thumb_url}}
+
+          <ul>
+            {{#images}}
+            <li><img src="{{thumb_url}}" alt="{{alt}}"></li>
+            {{/images}}
+          </ul>
+          
+
+          {{#date}}
+          <p class="news-date">
+            <time pubdate 
+              datetime="{{#formatDate}}YYYY-MM-DD{{/formatDate}}">
+              {{#fromNow}}{{/fromNow}}
+            </time>
+          </p>
+          {{/date}}
+
+          <div class="news-body">
+            {{{body}}}
+          </div>
+
         </article>
+        {{/news}}
 
-      </section> 
-    </div>
-
-
-
-
+      </section> <!-- news-list -->
+    </div> <!-- main-content-col -->
 
 
 
@@ -180,10 +284,8 @@
             <h2><i class="icon-calendar"></i> Архив событий</h2>
           </header>
 
-        </section>
-
-      </section>
-    </div>
-
-  </div>
-</div>
+        </section> <!-- archive -->
+      </section> <!-- events-list -->
+    </div> <!-- aside-content-col -->
+  </div> <!-- columns -->
+</div> <!-- main-container -->

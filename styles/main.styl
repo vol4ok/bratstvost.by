@@ -181,7 +181,24 @@ get-offset($n)
         margin: -48px 0 0 -48px
         font: 96px/96px FontAwesome
         color: rgba(white, .3)
-
+    &.picture
+      position: relative
+      cursor: pointer
+      user-select: none
+      box-shadow: 0 2px 5px rgba(black,.5)
+      border-radius: 4px
+      &:before
+        content: ''
+        absolute: top left right height 50%
+        border-radius: 4px
+        background: linear-gradient(top, rgba(white,0.5) 0%,rgba(white,.1) 100%)
+      &:after
+        transition: color .2s ease-in-out
+        content: "\f03e"
+        absolute: top 50% left 50%
+        margin: -48px 0 0 -48px
+        font: 96px/96px FontAwesome
+        color: rgba(white, .3)
 
 
   .news-date
@@ -195,11 +212,20 @@ get-offset($n)
   .news-view.clickable:hover
     .news-body
       color: #399edf
-    .news-img.video:after
+    .news-img.video:after,
+    .news-img.picture:after
       color: rgba(white, .5)
 
 
-
+  .news-gallery
+    margin: 0
+    border: 0
+    // border: none
+    // .flex-control-nav
+    //   margin: 0 4px
+    // .flex-control-paging li a
+    //   width: 8px
+    //   height: 8px
 
 
 // EVENTS
@@ -374,6 +400,14 @@ get-offset($n)
 .modal.video
   fixed: all
   overflow: hidden
+
+.modal.picture
+  fixed: all
+  overflow: hidden
+  .modal-view
+    width: 800px
+  .flexslider
+    margin-bottom: 20px
 
 
 // .modal.centred-flex
