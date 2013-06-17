@@ -22,13 +22,13 @@
 
 ##### 18 июня, 2013
 
-_**Статья на (sobor.by)[http://sobor.by]**_
+**_Статья на [sobor.by](http://sobor.by)_**
 
 (Звёзды белорусской эстрады дадут большой благотворительный концерт для проживающих в психоневрологических интернатах)[http://sobor.by/page/Zvyozdi_belorusskoy_estradi_dadut_bolshoy_blagotvoritelniy_kontsert_dlya_progivayushchih_v_psihonevrologicheskih_internatah]
 
 ##### 18 июня, 2013
 
-_**Статья на (sobor.by)[http://sobor.by]**_
+**_Статья на [sobor.by](http://sobor.by)_**
 
 (Фокусник из Лондона выступил в Борисовском психоневрологическом интернате)[http://sobor.by/videonews/Fokusnik_iz_Londona_vistupil_v_Borisovskom_psihonevrologicheskom_internate]
 
