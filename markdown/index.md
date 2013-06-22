@@ -5,20 +5,50 @@
 ---
 
 ### Ближайшие мероприятия
-###### обновлено 14.06.13 в 13:00 
+###### обновлено 22.06.13 в 6:30 
 
 
-* **20 июня, четверг**<br>
-1025-летию Крещения Руси посвящается большой благотворительный концерт с участием белорусских звезд эстрады впервые совместно для насельников <abbr title="Психоневрологический интернат">ПНИ</abbr> г. Минска и области с проповедью епископа Вениамина и выступлениями священников.
-  * Начало концерта в 12:00
-  * Место проведение: интернат в Дражне _(ул. Ваупшасова, 33)_
-  * По всем вопросам звонить б. Сергию — [8 (029) 373-72-50](phone:00375293737250)
+
 
 [Архив мероприятий](archive.html)
 
 ---
 
 ### Новости
+
+##### 22 июня, 2013
+
+_**Новости с сайта sobor.by**_
+
+###### [Пусть люди, которые имеют сердце и душу, поймут, что в них кто-то нуждается - протоиерей Николай Мозгов ](http://www.sobor.by/videonews/Pust_lyudi_kotorie_imeyut_serdtse_i_dushu_poymut_chto_v_nih_kto_to_nugdaetsya___protoierey_Nikolay_Mozgov)
+<iframe width="420" height="315" src="http://www.youtube.com/embed/MWHfQzq1neM" frameborder="0" allowfullscreen></iframe>
+
+###### [Мы хотим, чтобы о ребятах, проживающих в интернатах, узнало как можно больше людей – Сергей Довгаль ](http://www.sobor.by/videonews/Mi_hotim_chtobi_o_rebyatah_progivayushchih_v_internatah_uznalo_kak_mogno_bolshe_lyudey__Sergey_Dovgalrn)
+<iframe width="420" height="315" src="http://www.youtube.com/embed/4Noc7AeCdAs" frameborder="0" allowfullscreen></iframe>
+
+###### [Александр Тиханович об особенном концерте для особенных зрителей](http://www.sobor.by/videonews/Aleksandr_Tihanovich_ob_osobennom_kontserte_dlya_osobennih_zriteley)
+<iframe width="420" height="315" src="http://www.youtube.com/embed/bbaV_xXjRAs" frameborder="0" allowfullscreen></iframe>
+
+###### [Сегодня праздник у каждого артиста, который выступил перед ними – Ольга Плотникова](http://www.sobor.by/videonews/Segodnya_prazdnik_u_kagdogo_artista_kotoriy_vistupil_pered_nimi__Olga_Plotnikova)
+<iframe width="420" height="315" src="http://www.youtube.com/embed/AyNwjaK2gCc" frameborder="0" allowfullscreen></iframe>
+
+###### [Звёзды белорусской эстрады дали благотворительный концерт для «особенных» зрителей](http://www.sobor.by/videonews/Zvyozdi_belorusskoy_estradi_dali_blagotvoritelniy_kontsert_dlya_osobennih_zriteley)
+<iframe width="420" height="315" src="http://www.youtube.com/embed/Y9orOkPdpHo" frameborder="0" allowfullscreen></iframe>
+
+###### [Памятник воинам-интернационалистам освятили на территории 50-й авиационный базы](http://www.sobor.by/videonews/Pamyatnik_voinam_internatsionalistam_osvyatili_na_territorii_50_y_aviatsionniy_bazi)
+<iframe width="420" height="315" src="http://www.youtube.com/embed/yiJ7llFfOtw" frameborder="0" allowfullscreen></iframe>
+
+##### 21 июня, 2013
+
+_**Фотоотечты**_
+
+<img src="https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-frc3/988488_467823349969849_959217793_n.jpg" alt="Благотворительный концерт в Дражне" width="420">
+
+###### [Благотворительный концерт в Дражне](https://www.facebook.com/media/set/?set=a.467819196636931.1073741891.444251692327015&type=1&l=86c8670a78)
+
+<img src="https://fbcdn-sphotos-c-a.akamaihd.net/hphotos-ak-ash3/222592_466729956745855_1085070774_n.jpg" width="420">
+
+###### [Тарасики. Edward Hilsum](https://www.facebook.com/media/set/?set=a.466729623412555.1073741886.444251692327015&type=1&l=dd3c9f0a74)
 
 ##### 18 июня, 2013
 
