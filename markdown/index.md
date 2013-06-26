@@ -5,7 +5,7 @@
 ---
 
 ### Ближайшие мероприятия
-###### обновлено 24.06.13 в 11:30 
+###### обновлено 25.06.13 в 10:00 
 
 
 * **26 июня, среда**<br>
@@ -27,11 +27,20 @@
 
 ### Новости
 
+##### 25 июня, 2013
+
+** Репортаж на телеканале Союз **
+
+<iframe width="420" height="315" src="http://www.youtube.com/embed/3-_KOICoahM" frameborder="0" allowfullscreen></iframe>
+
+[В Минске накануне праздника Святой Троицы состоялся благотворительный концерт для инвалидов](http://tv-soyuz.ru/videonews/allvideos/265-pravoslavie-vne-rossii/37592-v-minske-nakanune-prazdnika-svyatoy-troitsyi-sostoyalsya-blagotvoritelnyiy-kontsert-dlya-invalidov)
+
 ##### 23 июня, 2013
 
 <img src="calamus.jpg" alt="">
 
-<span style="color:red"><strong>C Днем Святой Троицы!</strong></span>
+Дорогие братья и сестры! <br>
+От всей души поздравляем Вас с праздником Святой Троицы! Пусть благодать Святого Духа пребывает с вами, питает и укрепляет вас в вере и сопутствует в добрых делах! И пусть тысячи вокруг вас спасутся!</span>
 
 
 ##### 22 июня, 2013
