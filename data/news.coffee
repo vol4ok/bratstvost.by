@@ -11,7 +11,7 @@ newsData0 =
   date: "2013-05-20"
   title: "Десница Святителя Спиридона в Жировичах"
   body: "Видео «Десница Святителя Спиридона в Жировичах»"
-  thumb: "/img/200513-nN8Fp-ufgOg.jpg"
+  thumb: "http://img.youtube.com/vi/nN8Fp-ufgOg/0.jpg"
   video: {
     host: "youtube"
     id: "nN8Fp-ufgOg"
@@ -23,7 +23,7 @@ newsData1 =
   date: "2013-05-19"
   title: "Святитель Спиридон Тримифунтский"
   body: "Видео «Святитель Спиридон Тримифунтский»"
-  thumb: "/img/200513-DM38ALfUfrQ.jpg"
+  thumb: "http://img.youtube.com/vi/DM38ALfUfrQ/0.jpg"
   video: {
     host: "youtube"
     id: "DM38ALfUfrQ"
