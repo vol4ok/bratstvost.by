@@ -33,13 +33,43 @@
     id="video-modal"
     data-class="UIVideoModal">
 
+    <script type="text/template" id="picture-video-template">
+
+      <div class="modal-view">
+
+        <header class="modal-head">
+          <h3><%= title %></h3>
+        </header>
+
+        <section class="modal-body">
+
+          <iframe 
+            width="480" 
+            height="360" 
+            src="http://www.youtube.com/embed/<%= video.id %>" 
+            frameborder="0" 
+            allowfullscreen>
+          </iframe>
+
+        </section>
+
+        <footer class="modal-text">
+          <%= body %>
+        </footer>
+
+        <div class="x">ЗАКРЫТЬ</div>
+      </div>
+    </script>
+
     <div class="modal-view">
-      <div class="x">ЗАКРЫТЬ</div>
+
+      
       <header>
         <h3></h3>
       </header>
       <section class="modal-body"></section>
       <footer></footer>
+      <div class="x">ЗАКРЫТЬ</div>
     </div> <!-- modal-view -->
   </div> <!-- modal -->
 
@@ -48,50 +78,36 @@
     id="picture-modal"
     data-class="UIPictureModal">
 
-    <div class="modal-view">
-      <div class="x">ЗАКРЫТЬ</div>
-      <header>
-        <h3></h3>
-      </header>
-      <section class="modal-body">
+    <script type="text/template" id="picture-modal-template">
 
-        <div class="flexslider" id="slider">
-          <ul class="slides">
-            <li>
-              <img src="/img/slobodka/m/photo-1.jpg" />
-            </li>
-            <li>
-              <img src="/img/slobodka/m/photo-2.jpg" />
-            </li>
-            <li>
-              <img src="/img/slobodka/m/photo-3.jpg" />
-            </li>
-            <li>
-              <img src="/img/slobodka/m/photo-4.jpg" />
-            </li>
-          </ul>
-        </div>
+      <div class="modal-view">
 
-        <div class="flexslider" id="carousel">
-          <ul class="slides">
-            <li>
-              <img src="/img/slobodka/m/photo-1.jpg" />
-            </li>
-            <li>
-              <img src="/img/slobodka/m/photo-2.jpg" />
-            </li>
-            <li>
-              <img src="/img/slobodka/m/photo-3.jpg" />
-            </li>
-            <li>
-              <img src="/img/slobodka/m/photo-4.jpg" />
-            </li>
-          </ul>
-        </div>
+        <header class="modal-head">
+          <h3><%= title %></h3>
+        </header>
 
-      </section>
-      <footer></footer>
-    </div> <!-- modal-view -->
+        <section class="modal-body">
+
+          <div class="flexslider" id="slider">
+            <ul class="slides">
+            
+              <% for(var i=0; i<images.m.length; i++){ %>
+                <li><img src="<%= images.m[i] %>" /></li>
+              <% } %>
+              
+            </ul>
+          </div>
+
+        </section>
+
+        <footer class="modal-text">
+          <%= body %>
+        </footer>
+
+        <div class="x">ЗАКРЫТЬ</div>
+      </div>
+    </script>
+
   </div> <!-- modal -->
 
 </section> <!-- modals -->
@@ -103,7 +119,7 @@
   <header class="global-header">
     <div class="icon"></div>
     <div class="name">
-      <h1>Братство в честь святителя Спиридона Тримифунтского</h1>
+      <h1>Братство святителя Спиридона</h1>
     </div>
   </header>
   
@@ -119,32 +135,10 @@
 
     <div class="main-content-col">
 
-
-
-
       <section 
         class="autoload news-list" 
         id="news-list" 
         data-class="UINewsList">
-
-        <article class="news-view clickable" data-class="UIPictureNewsView">
-
-          <figure class="news-img picture">
-            <img src="/img/slobodka/s/photo-1.jpg" />
-          </figure>
-
-          <p class="news-date">
-            <time pubdate 
-              datetime="2013-05-26">
-              26 МАЯ
-            </time>
-          </p>
-
-          <div class="news-body">
-            Поездка на литургию в д. Слободка.
-          </div>
-
-        </article>
 
         {{#news}}
         <article 
@@ -152,19 +146,6 @@
           data-class="{{#classByType}}{{/classByType}}" 
           data-model="{{#base64This}}{{/base64This}}"
           >
-
-          {{#thumb_url}}
-          <figure class="news-img {{post_type}}">
-            <img src="{{thumb_url}}" alt="{{thumb_alt}}">
-          </figure>
-          {{/thumb_url}}
-
-          <ul>
-            {{#images}}
-            <li><img src="{{thumb_url}}" alt="{{alt}}"></li>
-            {{/images}}
-          </ul>
-          
 
           {{#date}}
           <p class="news-date">
@@ -174,6 +155,12 @@
             </time>
           </p>
           {{/date}}
+
+          {{#thumb}}
+          <figure class="news-img {{post_type}}">
+            <img src="{{thumb}}" {{#title}}alt="{{title}}"{{/title}}>
+          </figure>
+          {{/thumb}}
 
           <div class="news-body">
             {{{body}}}
@@ -201,7 +188,11 @@
 
           <header>
             <h2><i class="icon-calendar"></i> Мероприятия</h2>
-            <p class="small">Обновлено <em>десять минут назад</em></p>
+            <p class="small">Обновлено <em>
+              {{#last_update}}
+                {{#fromNow}}{{/fromNow}}
+              {{/last_update}}
+            </em></p>
           </header>
                 
           {{#events}}

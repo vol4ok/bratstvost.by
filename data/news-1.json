@@ -1,0 +1,220 @@
+{
+  "id": "",
+  "type": "news-post",
+  "post-type": "video",
+  "state": "draft",
+  "date": "2013-05-20T00:00:00.000Z",
+  "url": "",
+  
+  "slug": null,
+  "author": "",
+  "head_title": "Десница Святителя Спиридона в Жировичах — Братство в честь святителя Спиридона Тримифунтского",
+  "meta_keywords": null,
+  "meta_description": null,
+  "meta-author"
+  
+  "thumb_url": "/img/200513-nN8Fp-ufgOg.jpg",
+  "thumb_alt": "Десница Святителя Спиридона в Жировичах",
+  
+  "title": "Десница Святителя Спиридона в Жировичах",
+  "body": "Видео «Десница Святителя Спиридона в Жировичах»",
+  
+  "source_url": null,
+  "source_title": null,
+  "tags": [],
+  
+  "data": {
+    "video_host": "youtube",
+    "video_id": "nN8Fp-ufgOg",
+    "video_link": "http://www.youtube.com/embed/nN8Fp-ufgOg",
+    "video_html": "<iframe width=\"480\" height=\"360\" src=\"http://www.youtube.com/embed/nN8Fp-ufgOg\" frameborder=\"0\" allowfullscreen></iframe>",
+    "video_opt": {
+      "width": 480,
+      "height": 360,
+      "frameborder": true,
+      "allowfullscreen": true
+    }
+  },
+  
+  "excerpt_html": "<p><figure class=\"news-img video\"><img src=\"/img/200513-nN8Fp-ufgOg.jpg\" alt=\"Десница Святителя Спиридона в Жировичах\"></figure></p><p class=\"news-date\"><time>20 мая</time></p><p class=\"news-body\">Видео «Десница Святителя Спиридона в Жировичах»</p>",
+  
+  "content_html": "<header><h3>Десница Святителя Спиридона в Жировичах</h3></header><section><iframe width=\"480\" height=\"360\" src=\"http://www.youtube.com/embed/nN8Fp-ufgOg\" frameborder=\"0\" allowfullscreen></iframe></section><footer></footer>",
+  
+  "body_text_short": "Видео «Десница Святителя Спиридона в Жировичах» http://www.youtube.com/embed/nN8Fp-ufgOg",
+  
+  "body_tw": "Видео «Десница Святителя Спиридона в Жировичах» http://www.youtube.com/embed/nN8Fp-ufgOg",
+  
+  "body_fb": "Видео «Десница Святителя Спиридона в Жировичах» http://www.youtube.com/embed/nN8Fp-ufgOg",
+  
+  "body_vk": "Видео «Десница Святителя Спиридона в Жировичах» http://www.youtube.com/embed/nN8Fp-ufgOg",
+}
+
+
+
+id
+news-article
+video
+date 
+image 
+image title Десница Святителя Спиридона в Жировичах
+body Видео «Десница Святителя Спиридона в Жировичах»
+updated
+created
+
+video_html
+<iframe width="480" height="360" src="http://www.youtube.com/embed/nN8Fp-ufgOg" frameborder="0" allowfullscreen></iframe>
+
+
+
+short_html_body
+
+<p><figure class="news-img video"><img src="/img/200513-nN8Fp-ufgOg.jpg" alt="Десница Святителя Спиридона в Жировичах"></figure></p>
+<p class="news-date"><time>20 мая</time></p>
+<p class="news-body">Видео «Десница Святителя Спиридона в Жировичах»</p>
+
+<header><h3>Десница Святителя Спиридона в Жировичах</h3></header><section><iframe width="480" height="360" src="http://www.youtube.com/embed/nN8Fp-ufgOg" frameborder="0" allowfullscreen></iframe></section><footer></footer>
+          
+full_html_body
+
+twitter_body
+facebook_body
+html_body
+
+
+micropost
+article
+video
+image
+
+type:
+news-post
+post
+
+post-type
+- custom
+- micro
+- readmore
+- readmore with image
+- image
+- imageset
+- video
+- link
+- audio
+
+custom-post
+
+{
+  "id": "",
+  "type": "", 
+  "state": "draft",
+  "created": "",
+  "updated": ""
+}
+
+type
+- news
+- article
+- event
+
+
+news:
+
+{
+  "news_type": "custom",
+  "date": "",
+  "title": "", 
+  "body": "",
+  "body_html": "",
+  "body_text": "",
+  "tweet": "",
+  "facebook": "",
+  "vkontakte": "",
+}
+
+{
+  "news_type": "video",
+  "date": "",
+  "title": "", 
+  "video": {
+    "host": "youtube|vimeo",
+    "id": "<id>",
+    "link": "http://www.youtube.com/embed/<id>",
+    "html": "<iframe width=\"480\" height=\"360\" src=\"http://www.youtube.com/embed/<id>\" frameborder=\"0\" allowfullscreen></iframe>",
+    "options": {
+      "width": 480,
+      "height": 360,
+      "frameborder": true,
+      "allowfullscreen": true
+    }
+  },
+  "body": ""
+}
+
+{
+  "news_type": "image",
+  "date": "",
+  "title": "", 
+  "thumb": {
+    "url": "",
+    "alt": ""
+  },
+  "body": ""
+}
+
+content-type
+- custom
+- text
+- video
+- article
+- images
+
+
+event:
+{
+  "id": "",
+  "type": "event",
+  "event-type": "default",
+  "state": "",
+  "hasTime": false,
+  "date": "2013-05-20T00:00:00.000Z",
+  "created": "",
+  "updated": "",
+  "attributes": {
+    "place": "",
+    "time": "",
+    "meeting_time": "",
+    "meeting_place": "",
+    "organizer": "",
+    "priest": "",
+    "phone": "",
+    "body": "",
+    "custom_fields": [
+      {
+        "term": "",
+        "data": "",
+        "icon": ""
+      }
+    ]
+  },
+  "title": "Благотворительный концерт Ambre Hammond",
+  "tweet": "",
+  "facebook": "",
+  "vkontakte": "",
+}
+
+
+event:
+{
+  "id": "",
+  "type": "event",
+  "event-type": "custom",
+  "state": "",
+  "hasTime": false,
+  "date": "2013-05-20T00:00:00.000Z",
+  "created": "",
+  "updated": "",
+  "excerpt": "Благотворительный концерт Ambre Hammond",
+  "tweet": "",
+  "facebook": "",
+  "vkontakte": "",
+}

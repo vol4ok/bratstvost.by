@@ -1,31 +1,8 @@
 (function() {
-  var Application, Collection, Model, MyApp, UIModal, UINewsList, UIPage, UIPictureModal, UIPictureNewsView, UITextNewsView, UIVideoModal, UIVideoNewsView, UIView, bindEvent, bindEvents, _ref,
+  var Application, Collection, Model, MyApp, UIModal, UINewsList, UIPage, UIPictureModal, UIPictureNewsView, UITextNewsView, UIVideoModal, UIVideoNewsView, UIView, _ref,
     __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
-
-  bindEvent = function(src, trg) {
-    var $$, event, method, srcObj, t, trgObj, _ref, _ref1;
-
-    $$ = Backbone.getObjectByName;
-    _ref = (t = src.split(' ')).length === 1 ? [this, t[0]] : [$$(t[0]), t[1]], srcObj = _ref[0], event = _ref[1];
-    _ref1 = (t = trg.split(' ')).length === 1 ? [this, t[0]] : [$$(t[0]), t[1]], trgObj = _ref1[0], method = _ref1[1];
-    return srcObj.on(event, trgObj[method]);
-  };
-
-  bindEvents = function(events) {
-    var src, trg, _results;
-
-    if (!events) {
-      return;
-    }
-    _results = [];
-    for (src in events) {
-      trg = events[src];
-      _results.push(bindEvent(src, trg));
-    }
-    return _results;
-  };
 
   UIView = (function(_super) {
     __extends(UIView, _super);
@@ -42,10 +19,44 @@
   Application = (function(_super) {
     __extends(Application, _super);
 
+    Application.prototype.bindEvent = function(src, trg) {
+      var $$, event, method, srcObj, t, trgObj, _ref, _ref1;
+
+      $$ = Backbone.getObjectByName;
+      _ref = (t = src.split(' ')).length === 1 ? [this, t[0]] : [$$(t[0]), t[1]], srcObj = _ref[0], event = _ref[1];
+      _ref1 = (t = trg.split(' ')).length === 1 ? [this, t[0]] : [$$(t[0]), t[1]], trgObj = _ref1[0], method = _ref1[1];
+      return srcObj.on(event, trgObj[method]);
+    };
+
+    Application.prototype.bindEvents = function(events) {
+      var src, trg, _results;
+
+      if (!events) {
+        return;
+      }
+      _results = [];
+      for (src in events) {
+        trg = events[src];
+        _results.push(this.bindEvent(src, trg));
+      }
+      return _results;
+    };
+
     function Application() {
       this.__on_laoded = __bind(this.__on_laoded, this);
       this.__on_load = __bind(this.__on_load, this);
-      this.initAutoloadObjects = __bind(this.initAutoloadObjects, this);      this.load = false;
+      this.initAutoloadObjects = __bind(this.initAutoloadObjects, this);
+      this.bindEvents = __bind(this.bindEvents, this);
+      this.bindEvent = __bind(this.bindEvent, this);
+      var _ref;
+
+      if ((_ref = this.cid) == null) {
+        this.cid = "app";
+      }
+      Application.__super__.constructor.apply(this, arguments);
+      Backbone.registerObject(this.cid, this);
+      window.$trigger = _.bind(this.trigger, this);
+      this.load = false;
       this.laoded = false;
       $(this.__on_load);
     }
@@ -141,12 +152,14 @@
     UIModal.prototype.show = function(callback) {
       this.$el.addClass("active");
       this.trigger("show");
+      $trigger("modal-show", this);
       return typeof callback === "function" ? callback() : void 0;
     };
 
     UIModal.prototype.hide = function(callback) {
       this.$el.removeClass("active");
       this.trigger("hide");
+      $trigger("modal-hide", this);
       return typeof callback === "function" ? callback() : void 0;
     };
 
@@ -279,37 +292,19 @@
 
     UIVideoModal.registerClass(UIVideoModal.name);
 
-    UIVideoModal.prototype.template = '<iframe \n  width="<%= width %>" \n  height="<%= height %>" \n  src="http://www.youtube.com/embed/<%= videoId %>" \n  frameborder="0" \n  allowfullscreen>\n</iframe>';
+    UIVideoModal.prototype.template = "#picture-video-template";
 
     function UIVideoModal() {
       this.on_close = __bind(this.on_close, this);
       this.show = __bind(this.show, this);      UIVideoModal.__super__.constructor.apply(this, arguments);
-      this.cache = {};
-      this.$body = this.$(".modal-body");
-      this.template = _.template(this.template);
+      this.template = _.template(this.$(this.template).text());
       this.on("close", this.on_close);
     }
 
     UIVideoModal.prototype.show = function(view) {
-      var $html, html;
-
-      if (this.currVideoId) {
-        this.cache[this.currVideoId].hide();
-      }
-      this.currVideoId = view.videoId;
-      if (this.cache[view.videoId]) {
-        console.log("load from cache", view.videoId);
-        this.cache[view.videoId].show();
-      } else {
-        html = this.template({
-          videoId: view.videoId,
-          width: 480,
-          height: 360
-        });
-        $html = $(html);
-        this.$body.append($html);
-        this.cache[view.videoId] = $html;
-        console.log("save to cache", view.videoId);
+      if (this.currentId !== view.model._id) {
+        this.$el.empty().html(this.template(view.model));
+        this.currentId = view.model._id;
       }
       return UIVideoModal.__super__.show.apply(this, arguments);
     };
@@ -327,33 +322,26 @@
 
     UIPictureModal.registerClass(UIPictureModal.name);
 
+    UIPictureModal.prototype.template = "#picture-modal-template";
+
     function UIPictureModal() {
       this.on_close = __bind(this.on_close, this);
       this.show = __bind(this.show, this);      UIPictureModal.__super__.constructor.apply(this, arguments);
+      this.template = _.template(this.$(this.template).text());
       this.on("close", this.on_close);
     }
 
     UIPictureModal.prototype.show = function(view) {
-      UIPictureModal.__super__.show.apply(this, arguments);
-      if (!this.isInit) {
-        this.$('#carousel').flexslider({
-          animation: "slide",
-          controlNav: false,
-          animationLoop: false,
-          slideshow: false,
-          itemWidth: 220,
-          itemMargin: 5,
-          asNavFor: '#slider'
-        });
+      if (this.currentId !== view.model._id) {
+        this.$el.empty().html(this.template(view.model));
         this.$('#slider').flexslider({
           animation: "slide",
           controlNav: false,
-          animationLoop: false,
-          slideshow: false,
-          sync: "#carousel"
+          slideshow: false
         });
-        return this.isInit = true;
+        this.currentId = view.model._id;
       }
+      return UIPictureModal.__super__.show.apply(this, arguments);
     };
 
     UIPictureModal.prototype.on_close = function() {
@@ -385,13 +373,11 @@
     };
 
     MyApp.prototype.on_loaded = function() {
-      return bindEvents({
+      return this.bindEvents({
         "news-list show-video": "video-modal show",
         "news-list show-picture": "picture-modal show",
-        "video-modal show": "page blur",
-        "video-modal hide": "page unblur",
-        "picture-modal show": "page blur",
-        "picture-modal hide": "page unblur"
+        "modal-show": "page blur",
+        "modal-hide": "page unblur"
       });
     };
 

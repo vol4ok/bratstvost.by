@@ -3,11 +3,11 @@
 @import "mixins"
 
 html
-  background: #dbe0e7
+  background: #7d94af
 
 body
-  position: relative
-  background: #dbe0e7
+  //position: relative
+  background: #7d94af
   overflow-x: hidden
   clearfix()
 
@@ -32,15 +32,16 @@ body
   padding: 20px 0 10px
   display: black
   .icon
-    background: url(/logo-100.png) center no-repeat
-    height: 98px
+    background: url(/logo-200.png) center no-repeat
+    height: 197px
   .name
     h1
-      color: #6e7378
-      font: bold 1.75em/1.75em DEFAULT_FONT
+      color: #eef4fa
+      font: bold 2em/1.4em DEFAULT_FONT
+      letter-spacing: 1px
       text-align: center
       margin: 0
-      text-shadow: 0 1px 0 rgba(white, 0.8)
+      text-shadow: 0 2px 2px rgba(#2f4963, 0.8)
 
 
 
@@ -139,7 +140,7 @@ get-offset($n)
 
   .news-view
     float: left
-    padding: 15px 10px
+    padding: 25px 10px
     width: get-span(3) - GUT_WIDTH
     clearfix()
     //border-top: 2px solid #eee
@@ -149,31 +150,33 @@ get-offset($n)
     &:nth-child(1), &:nth-child(2)
       padding-top: 0
       border-top: none
-    p
-      margin: .25em 0
+    p, figure
+      margin: .75em 0
       clearfix()
 
   .news-body
     cursor: default
     font: 15px/19px SERIF_FONT
     transition: color .2s ease-in-out
+    clearfix()
 
   .news-img
     overflow: hidden
     margin: 0
     padding: 0
     line-height: 0
+    clearfix()
     &.video
       position: relative
       cursor: pointer
       user-select: none
-      box-shadow: 0 2px 5px rgba(black,.5)
+      box-shadow: 0 1px 3px rgba(black,.6)
       border-radius: 4px
       &:before
         content: ''
         absolute: top left right height 50%
         border-radius: 4px
-        background: linear-gradient(top, rgba(white,0.5) 0%,rgba(white,.1) 100%)
+        background: linear-gradient(top, rgba(white,0.4) 0%,rgba(white,.1) 100%)
       &:after
         transition: color .2s ease-in-out
         content: "\f01d"
@@ -185,13 +188,15 @@ get-offset($n)
       position: relative
       cursor: pointer
       user-select: none
-      box-shadow: 0 2px 5px rgba(black,.5)
+      box-shadow: 0 1px 3px rgba(black,.6)
       border-radius: 4px
+      img
+        max-width: 254px
       &:before
         content: ''
         absolute: top left right height 50%
         border-radius: 4px
-        background: linear-gradient(top, rgba(white,0.5) 0%,rgba(white,.1) 100%)
+        background: linear-gradient(top, rgba(white,0.4) 0%,rgba(white,.1) 100%)
       &:after
         transition: color .2s ease-in-out
         content: "\f03e"
@@ -202,30 +207,35 @@ get-offset($n)
 
 
   .news-date
-    font: 12px SANS_FONT !important
+    display: block
+    cursor: default
+    font: bold 12px/16px NARROW_FONT !important
     text-transform: uppercase
-    color: #888
-    //padding: 3px 5px
-    //background: #eee
+    color: #f2f2f2
+    padding: 4px 4px 2px
+    background: #042658 //#155cba
+    border-radius: 2px
+    transition: all .1s ease-in-out
+    clearfix()
+    &:hover
+      background: #36a4ff
+
+  .news-view:hover
+    .news-date
+      background: #36a4ff 
     
 
   .news-view.clickable:hover
     .news-body
       color: #399edf
+      background: pointer
     .news-img.video:after,
     .news-img.picture:after
       color: rgba(white, .5)
+    .news-date
+      cursor: pointer
 
 
-  .news-gallery
-    margin: 0
-    border: 0
-    // border: none
-    // .flex-control-nav
-    //   margin: 0 4px
-    // .flex-control-paging li a
-    //   width: 8px
-    //   height: 8px
 
 
 // EVENTS
@@ -367,13 +377,17 @@ get-offset($n)
   absolute: all
   display: none
   z-index: 1000
+  min-height: 100%
   clearfix()
   &.none
     bottom: auto
     height: 0
   &.backdrop
-    //min-height: 100%
-    background: rgba(black, .6)
+    &:before
+      display: block
+      content: ""
+      fixed: all
+      background: rgba(white, .6)
   &.active
     display: block
   .modal-view
@@ -390,11 +404,11 @@ get-offset($n)
     font: 12px DEFAULT_FONT
     background: #eee
     padding: 2px 5px
+    cursor: pointer
+    user-select: none
     &:hover
       background: #444
       color: white
-      cursor: pointer
-      user-select: none
 
 
 .modal.video
@@ -402,12 +416,32 @@ get-offset($n)
   overflow: hidden
 
 .modal.picture
-  fixed: all
-  overflow: hidden
+  absolute: all
   .modal-view
-    width: 800px
+    margin-top: 100px
+    height: 540px
+    padding: 1px 0 0
+    background: rgba(black, .8)
+  .x
+    background: white
+    color: black
+    box-shadow: 0 1px 1px black
+    opacity: .25
+    &:hover
+      background: white
+      color: black
+      opacity: .75
   .flexslider
-    margin-bottom: 20px
+    margin: 0
+    overflow-x: hidden
+    border: none
+  .modal-head
+    color: white
+    padding: 0 20px
+  .modal-text
+    font: 15px DEFAULT_FONT
+    padding: 20px 20px 20px
+    color: white
 
 
 // .modal.centred-flex

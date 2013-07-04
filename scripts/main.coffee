@@ -1,23 +1,29 @@
-bindEvent = (src, trg) ->
-  $$ = Backbone.getObjectByName
-  [srcObj, event]  = if (t = src.split(' ')).length is 1 then [this, t[0]] else [$$(t[0]), t[1]]
-  [trgObj, method] = if (t = trg.split(' ')).length is 1 then [this, t[0]] else [$$(t[0]), t[1]]
-  srcObj.on(event, trgObj[method])
-
-bindEvents = (events) ->
-  return unless events
-  for src, trg of events
-    bindEvent(src, trg)
-
 class UIView extends Backbone.View
   constructor: ->
     super
     @registerObject(@id or @$el.attr("id") or @cid)
 
 
+
+
 class Application extends Backbone.Router
 
+  bindEvent: (src, trg) =>
+    $$ = Backbone.getObjectByName
+    [srcObj, event]  = if (t = src.split(' ')).length is 1 then [this, t[0]] else [$$(t[0]), t[1]]
+    [trgObj, method] = if (t = trg.split(' ')).length is 1 then [this, t[0]] else [$$(t[0]), t[1]]
+    srcObj.on(event, trgObj[method])
+
+  bindEvents: (events) =>
+    return unless events
+    for src, trg of events
+      @bindEvent(src, trg)
+
   constructor: ->
+    @cid ?= "app"
+    super
+    Backbone.registerObject(@cid, this)
+    window.$trigger = _.bind(@trigger, this)
     @load = false
     @laoded = false
     $(@__on_load)
@@ -50,6 +56,8 @@ class Application extends Backbone.Router
 Model = Backbone.Model
 Collection = Backbone.Collection
 
+
+
 ##################################
 ###################################
 ####################################
@@ -71,6 +79,9 @@ class UIPage extends UIView
     callback?()
 
 
+
+
+
 class UIModal extends UIView
   @registerClass(@name)
 
@@ -85,11 +96,13 @@ class UIModal extends UIView
   show: (callback) =>
     @$el.addClass("active")
     @trigger("show")
+    $trigger("modal-show", this)
     callback?()
 
   hide: (callback) =>
     @$el.removeClass("active")
     @trigger("hide")
+    $trigger("modal-hide", this)
     callback?()    
 
   on_close: (e) => 
@@ -100,6 +113,15 @@ class UIModal extends UIView
 
   on_modalClick: (e) =>
     e.stopPropagation()
+
+
+
+
+#################                        #################
+##############          NEWS VIEWS          ##############
+###########                                    ###########
+
+
 
 
 class UIVideoNewsView extends UIView
@@ -117,9 +139,9 @@ class UIVideoNewsView extends UIView
 
 
 
-
 class UITextNewsView extends UIView
   @registerClass(@name)
+
 
 
 class UIPictureNewsView extends UIView
@@ -133,6 +155,15 @@ class UIPictureNewsView extends UIView
 
   on_click: =>
     @trigger("show-picture", this)
+
+
+
+
+
+
+#################                  #################
+##############          LIST          ##############
+###########                              ###########
 
 
 class UINewsList extends UIView
@@ -165,93 +196,64 @@ class UINewsList extends UIView
       @items[nv.id] = nv
 
 
+
+
+#################                  #################
+##############          MODALS        ##############
+###########                              ###########
+
+
 class UIVideoModal extends UIModal
   @registerClass(@name)
 
-  template: '''
-    <iframe 
-      width="<%= width %>" 
-      height="<%= height %>" 
-      src="http://www.youtube.com/embed/<%= videoId %>" 
-      frameborder="0" 
-      allowfullscreen>
-    </iframe>
-  '''
+  template: "#picture-video-template"
 
   constructor: ->
     super
-    @cache = {}
-    @$body = @$(".modal-body")
-    @template = _.template(@template)
+    @template = _.template(@$(@template).text())
     @on("close", @on_close)
 
   show: (view) =>
-    if @currVideoId
-      @cache[@currVideoId].hide()
-
-    @currVideoId = view.videoId
-    if @cache[view.videoId]
-      console.log "load from cache", view.videoId
-      @cache[view.videoId].show()
-    else
-      html = @template
-        videoId: view.videoId
-        width: 480
-        height: 360
-      $html = $(html)
-      @$body.append($html)
-      @cache[view.videoId] = $html
-      console.log "save to cache", view.videoId
-          
+    unless @currentId is view.model._id
+      @$el.empty().html(@template(view.model))
+      @currentId = view.model._id
     super
 
   on_close: =>
     @hide()
+
+
 
 class UIPictureModal extends UIModal
   @registerClass(@name)
 
+  template: "#picture-modal-template"
+
   constructor: ->
     super
+    @template = _.template(@$(@template).text())
     @on("close", @on_close)
 
   show: (view) =>
-    super
-    unless @isInit
-      @$('#carousel').flexslider
-        animation: "slide"
-        controlNav: false
-        animationLoop: false
-        slideshow: false
-        itemWidth: 220
-        itemMargin: 5
-        asNavFor: '#slider'
-
+    unless @currentId is view.model._id
+      @$el.empty().html(@template(view.model))
       @$('#slider').flexslider
         animation: "slide"
-        controlNav: false
-        animationLoop: false
-        slideshow: false
-        sync: "#carousel"
-
-      @isInit = yes
-
+        controlNav: off
+        slideshow: off
+      @currentId = view.model._id
+    super
 
   on_close: =>
     @hide()
 
 
 
-# class UIButton extends UIView
-#   @registerClass(@name)
 
-#   events:
-#     "click": "on_click"
+#################               #################
+##############          APP        ##############
+###########                           ###########
 
-#   constructor: (options) -> super
-
-#   on_click: (e) -> 
-#     @trigger("click")
 
 class MyApp extends Application
 
@@ -275,12 +277,10 @@ class MyApp extends Application
         .removeClass("new")
 
   on_loaded: =>  
-    bindEvents
+    @bindEvents
       "news-list show-video": "video-modal show"
       "news-list show-picture": "picture-modal show"
-      "video-modal show": "page blur"
-      "video-modal hide": "page unblur"
-      "picture-modal show": "page blur"
-      "picture-modal hide": "page unblur"
+      "modal-show": "page blur"
+      "modal-hide": "page unblur"
 
 window.app = new MyApp

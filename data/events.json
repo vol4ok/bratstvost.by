@@ -1,0 +1,86 @@
+{
+  "id": "",
+  "type": "event",
+  "state"
+  "hasTime": false,
+  "data": {
+    "event-date": "2013-05-20T00:00:00.000Z",
+    "place"
+    "time"
+    "meeting_time"
+    "meeting_place"
+    "organizer"
+    "priest"
+    "phone"
+    "note"
+    "desc"
+    "custom_fields": [
+      {
+        "term": "",
+        "data": "",
+        "icon": ""
+      }
+    ]
+  },
+  
+  
+  
+  "title": "Благотворительный концерт Ambre Hammond",
+  "body_html": "Благотворительный концерт Ambre Hammond",
+    
+  "body_html_full": "",
+  
+  "body_text_short": "Видео «Десница Святителя Спиридона в Жировичах» http://www.youtube.com/embed/nN8Fp-ufgOg",
+  
+  "body_tw": "Видео «Десница Святителя Спиридона в Жировичах» http://www.youtube.com/embed/nN8Fp-ufgOg",
+  
+  "body_fb": "Видео «Десница Святителя Спиридона в Жировичах» http://www.youtube.com/embed/nN8Fp-ufgOg",
+  
+  "body_vk": "Видео «Десница Святителя Спиридона в Жировичах» http://www.youtube.com/embed/nN8Fp-ufgOg",
+}
+
+
+{
+  "date": "2013-05-27T13:00:00.000Z",
+  "title": "Выезд в ПНИ г.Молодечно",
+  "meeting_time": "13:00",
+  "organizer": "брат Сергий",
+  "phone": "00375293737250",
+  "published": false
+}
+
+
+
+
+
+{
+  "id": "",
+  "type": "event",
+  "state": "unpublished",
+  "hasTime": false,
+  "data": {
+    "date": "2013-05-20T00:00:00.000Z",
+    "place"
+    "time"
+    "meeting_time"
+    "meeting_place"
+    "organizer"
+    "priest"
+    "phone"
+    "note"
+    "desc"
+    "custom_fields": [
+      {
+        "term": "",
+        "data": "",
+        "icon": ""
+      }
+    ]
+  },
+  
+  
+  
+  "title": "Благотворительный концерт Ambre Hammond",
+  "body_html": "Благотворительный концерт Ambre Hammond",
+}
+

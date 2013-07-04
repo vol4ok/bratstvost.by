@@ -32,13 +32,17 @@ app.get "/", (req, res) ->
     events: (cb) -> Event.find {published: yes}, null, {sort: "date"}, cb
     news: (cb) -> News.find {published: yes}, null, {sort: "date"}, cb
   }, (err, results) ->
+    last_update = results.events[0].updated
+    for ev in results.events
+      last_update = ev.updated if last_update < ev.updated
     res.locals
+      last_update: last_update
       events: results.events
       news: results.news
       fromNow: (arg) -> moment(this).fromNow()
       formatDate: (fmt) -> moment(this).format(fmt)
       clickable: (arg) -> 
-        return "clickable" if @post_type is "video"
+        return if @post_type in ["video", "picture", "link"] then "clickable" else ""
       formatPhone: (->
         phoneRexp = /^(\+|00)(\d\d\d)(\d\d)(\d\d\d)(\d\d)(\d\d)$/
         return (fmt) -> 
@@ -48,7 +52,10 @@ app.get "/", (req, res) ->
       classByType: (->
         t2c = 
           "video": "UIVideoNewsView"
+          "picture": "UIPictureNewsView"
           "text": "UITextNewsView"
+          "link": "UILinkNewsView"
+          
         return (arg) -> 
           t2c[@post_type] || ""
       )()

@@ -9,11 +9,15 @@ NewsSchema = new Schema
   title: String
   head: String
   body: String
-  thumb_url: String 
-  thumb_alt: String
+  thumb: String 
   video: {
     host: String
     id: String
+  }
+  images: {
+    s: [ String ]
+    m: [ String ]
+    l: [ String ]
   }
   published: { type: Boolean, default: no }
   created: { type: Date, default: Date.now }
