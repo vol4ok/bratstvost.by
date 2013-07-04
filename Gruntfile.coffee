@@ -56,14 +56,16 @@ module.exports = (grunt) ->
       base:
         options:
           compress: yes
+          paths: ["styles/config", "styles/core"]
         files:
-          "temp/style/base.css": "styles/base.styl"
+          "temp/style/base.css": "styles/core/base.styl"
 
       main:
         options:
           compress: yes
+          paths: ["styles/config", "styles/core"]
         files:
-          "public/css/main.css": "styles/main.styl"
+          "public/css/main.css": "styles/pages/main.styl"
 
 
 
@@ -110,17 +112,11 @@ module.exports = (grunt) ->
 
     less:
 
-      bootstap:
-        options:
-          paths: ["styles", "components/bootstrap/less"]
-        files:
-          "temp/style/bootstrap.css": "styles/bootstrap.less"
-
       fontawesome:
         options:
-          paths: ["styles", "components/font-awesome/build/assets/font-awesome/less"]
+          paths: ["styles/config", "styles/core", "components/font-awesome/build/assets/font-awesome/less"]
         files:
-          "temp/style/font-awesome.css": "styles/font-awesome.less"
+          "temp/style/font-awesome.css": "styles/core/font-awesome.less"
 
 
     clean:
