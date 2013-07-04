@@ -4,3 +4,4 @@ dist
 __*
 public/img
 temp
+tools/fb/access.json
