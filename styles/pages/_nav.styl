@@ -1,0 +1,35 @@
+.global-nav
+  border-radius: 5px
+  overflow: hidden
+  box-shadow: 0 1px 4px rgba(black, .4)
+  background: white
+  margin: 0
+  padding: 0
+  ul
+    list-style: none
+    display: table
+    width: 100%
+    margin: 0
+  li
+    display: table-cell
+    box-sizing: border-box
+    width: 240px
+    text-align: center
+    a
+      border-top: 3px solid #155cba
+      display: block
+      text-transform: uppercase
+      font: bold 16px NARROW_FONT
+      padding: 1em 0
+  li
+    a:hover
+      border-top: 3px solid #2d90ff
+  li.active
+    a
+      cursor: default
+      border-top: 3px solid #c89433
+      background: #e8e8e8
+      color: black
+    a:hover
+      background: #e8e8e8
+      color: black

@@ -1,0 +1,79 @@
+.modal
+  absolute: all
+  display: none
+  z-index: 1000
+  min-height: 100%
+  clearfix()
+  &.none
+    bottom: auto
+    height: 0
+  &.backdrop
+    &:before
+      display: block
+      content: ""
+      fixed: all
+      background: rgba(white, .6)
+  &.active
+    display: block
+  .modal-view
+    position: relative
+    z-index: 1000
+    background: white
+    //border-radius: 5px
+    box-shadow: 0 3px 10px rgba(black, .4)
+    margin: 100px auto
+    width: 480px
+    padding: 20px
+  .x
+    absolute: top right 10px
+    font: 12px DEFAULT_FONT
+    background: #eee
+    padding: 2px 5px
+    cursor: pointer
+    user-select: none
+    &:hover
+      background: #444
+      color: white
+
+
+.modal.video
+  fixed: all
+  overflow: hidden
+
+.modal.picture
+  absolute: all
+  .modal-view
+    margin-top: 100px
+    height: 540px
+    padding: 1px 0 0
+    background: rgba(black, .8)
+  .x
+    background: white
+    color: black
+    box-shadow: 0 1px 1px black
+    opacity: .25
+    &:hover
+      background: white
+      color: black
+      opacity: .75
+  .flexslider
+    margin: 0
+    overflow-x: hidden
+    border: none
+  .modal-head
+    color: white
+    padding: 0 20px
+  .modal-text
+    font: 15px DEFAULT_FONT
+    padding: 20px 20px 20px
+    color: white
+
+
+// .modal.centred-flex
+//   display: box
+//   display: flex
+//   box-align: center
+//   align-items: center
+//   box-pack: center
+//   justify-content: center
+//   margin: auto
