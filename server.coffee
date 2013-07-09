@@ -30,7 +30,7 @@ app.set("meta-description", "")
 app.get "/", (req, res) ->
   $.parallel {
     events: (cb) -> Event.find {published: yes}, null, {sort: "date"}, cb
-    news: (cb) -> News.find {published: yes}, null, {sort: "date"}, cb
+    news: (cb) -> News.find {published: yes}, null, {sort: "-date"}, cb
   }, (err, results) ->
     last_update = results.events[0].updated
     for ev in results.events
