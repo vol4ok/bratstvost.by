@@ -5,6 +5,10 @@ express  = require "express"
 fs       = require "fs"
 request  = require "request"
 
+ALBUMS_JSON_PATH = "../../temp/albums.json"
+ACCESS_JSON_PATH = "../../temp/access.json"
+
+
 require("uasync")(_)
 require "colors"
 
@@ -28,7 +32,7 @@ app = express()
 app.configure ->
   @settings.access_token = false
   try
-    json = fs.readFileSync("access.json", "utf-8")
+    json = fs.readFileSync(ACCESS_JSON_PATH, "utf-8")
     @settings.access_token = JSON.parse(json).access_token
     console.log "load access_token OK!".grey
   catch e
@@ -54,7 +58,7 @@ auth = (req, res, done) ->
         args = qs.parse(body)
         app.settings.access_token = args["access_token"]
         res.redirect("/")
-        fs.writeFile "access.json", JSON.stringify(args), "utf-8", -> 
+        fs.writeFile ACCESS_JSON_PATH, JSON.stringify(args), "utf-8", -> 
           console.log "save access_token - OK!".grey
     else
       console.log "get access_token pahse 1"
@@ -85,7 +89,9 @@ getPageAccessToken = (cb) ->
 enumPageAlbums = (cb) ->
   request 
     url: "https://graph.facebook.com/#{PAGE_ID}/albums",
-    qs: access_token: app.get("page_access_token")
+    qs: 
+      fields: "id,created_time,name,description,count,type,cover_photo,link,photos.fields(picture,source).limit(999)"
+      access_token: app.get("page_access_token")
   , (error, response, body) ->
     data = JSON.parse(body)
     console.log data
@@ -102,16 +108,42 @@ enumPagePhotos = (id, cb) ->
 
 getPhotos = (req, res) ->
   getPageAccessToken () ->
-    #enumPageAlbums (data) ->
-    #  res.send("<pre>#{JSON.stringify(data, null, "  ")}</pre>")
-    enumPagePhotos "472153736203477", (data) ->
-      images = []
+    enumPageAlbums (data) ->
+      newsList = []
+      data = _.reject data.data, (item) -> item.type isnt "normal"
       for item in data
-        console.log item.source
-        images.push(item.source)
-      console.log images
-      res.send "<pre>#{JSON.stringify(images, null, "  ")}</pre>"
-      #res.send("<pre>#{JSON.stringify(data, null, "  ")}</pre>")
+        news = 
+          post_type: "picture"
+          date: item.created_time
+          title: item.name
+          body: item.description
+          published: yes
+          thumb: ""
+          images: {
+            s: []
+            m: []
+            l: []
+          }
+        for img in item.photos.data
+          news.images.s.push(img.picture)
+          news.images.m.push(img.source)
+          news.images.l.push(img.source)
+          if img.id is item.cover_photo
+            news.thumb = img.source
+        newsList.push(news)
+
+      json = JSON.stringify(newsList, null, "  ")
+      res.send("<pre style=\"background: black; color: lime; font: 11px menlo;\">#{json}</pre>")
+      fs.writeFileSync(ALBUMS_JSON_PATH, json, "utf-8")
+
+    # enumPagePhotos "472153736203477", (data) ->
+    #   images = []
+    #   for item in data
+    #     console.log item.source
+    #     images.push(item.source)
+    #   console.log images
+    #   res.send "<pre>#{JSON.stringify(images, null, "  ")}</pre>"
+    #res.send("<pre>#{JSON.stringify(data, null, "  ")}</pre>")
 
 app.get "/", auth, getPhotos
 
