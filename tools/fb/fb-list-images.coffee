@@ -115,8 +115,8 @@ getPhotos = (req, res) ->
         news = 
           post_type: "picture"
           date: item.created_time
-          title: item.name
-          body: item.description
+          title: item.name || ""
+          body: item.description || ""
           published: yes
           thumb: ""
           images: {
