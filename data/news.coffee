@@ -90,6 +90,12 @@ console.log parse(newsData1)
 console.log parse(newsData2)
 console.log parse(newsData3)
 
+fs = require "fs"
+json = fs.readFileSync("../temp/albums.json").toString()
+data = JSON.parse(json)
+for item in data
+  console.log parse(item)
+
 mongoose.disconnect()
 
 
