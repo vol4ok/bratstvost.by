@@ -18,17 +18,36 @@
   * Время меропрития: 7:00
   * Место сбора: храм Покрова Пресвятой Богородицы (Веснянка)
 
+* **9-11 августа**
+Паломническая поездка Братства в Корму с послушанием
+
 [Архив мероприятий](archive.html)
 
 ---
 
 ### Новости
 
+##### 16 июля, 2013
+
+**Фестиваль в заславле**
+
+<a href="https://www.facebook.com/media/set/?set=a.479084165510434.1073741900.444251692327015&type=1&l=0f7659bea1" style="display:block;overflow:hidden; max-height:320px;"><img style="position:relative;top:-120px;" width="420" src="https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-ash4/999054_479085835510267_1996941310_n.jpg" alt="Фестиваль в заславле"></a>
+
+[Фотоотчет](https://www.facebook.com/media/set/?set=a.479084165510434.1073741900.444251692327015&type=1&l=0f7659bea1)
+
+##### 16 июля, 2013
+
+**Освящение памятника воинам-интернационалистам**
+
+<iframe src="http://player.vimeo.com/video/70393320?byline=0&amp;portrait=0&amp;color=ff9933" width="536" height="402" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+
+[Репортаж их передачи «Седмица»](http://www.lestvitsa.dp.ua/?q=content/sedmica-vypusk-06072013-g-no432)
+
 ##### 15 июля, 2013
 
 **«Девушка, пианино, дорога». В Беларуси прошёл благотворителный гастрольный тур известной австралийской пианистки Эмбы Хаммонд**
 
-<iframe src="http://vk.com/video_ext.php?oid=-52959035&id=165698705&hash=c209e8988791bce0&hd=1" width="607" height="360" frameborder="0"></iframe>
+<iframe src="http://player.vimeo.com/video/70318171?byline=0&amp;portrait=0&amp;color=ff9933" width="536" height="402" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 
 [Репортаж их передачи «Седмица»](http://lestvitsa.dp.ua/?q=content%2Fsedmica-vypusk-22062013-g-no430)
 
