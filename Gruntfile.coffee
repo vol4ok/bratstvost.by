@@ -7,6 +7,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks("grunt-contrib-concat")
   grunt.loadNpmTasks("grunt-contrib-clean")
   grunt.loadNpmTasks("grunt-contrib-cssmin")
+  grunt.loadNpmTasks("grunt-contrib-uglify")
 
   grunt.initConfig
 
@@ -18,6 +19,7 @@ module.exports = (grunt) ->
           bare: yes
         files:
           "dist/event.js": "event.coffee"
+          "dist/news.js": "news.coffee"
           "dist/server.js": "server.coffee"
 
       client:
@@ -43,6 +45,12 @@ module.exports = (grunt) ->
           dest: "public/font"
         ]
 
+      dist:
+        files: [
+          expand: yes 
+          src: ["public/img/**", "public/css/images/**", "views/**", "public/font/**"]
+          dest: "dist"
+        ]
 
 
 
@@ -54,6 +62,7 @@ module.exports = (grunt) ->
           compress: yes
           paths: ["styles/config", "styles/core"]
         files:
+          "temp/style/base.css": "styles/core/base.styl"
           "public/css/main.css": "styles/pages/main.styl"
 
 
@@ -66,7 +75,6 @@ module.exports = (grunt) ->
           'temp/style/font-awesome.css'
           'temp/style/base.css'
           'components/flexslider/flexslider.css'
-          # 'components/fancybox/source/jquery.fancybox.css'
         ],
         dest: 'public/css/base.css'
 
@@ -89,15 +97,17 @@ module.exports = (grunt) ->
 
     cssmin:
 
-      base:
+      dist:
         files:
-          'public/css/base.min.css': 'public/css/base.css'
+          'dist/public/css/base.css': 'public/css/base.css'
+          'dist/public/css/main.css': 'public/css/main.css'
 
-      main:
+    uglify:
+      dist: 
         files:
-          'public/css/main.min.css': 'public/css/main.css'
-
-
+          'dist/public/js/kernel.js': 'public/js/kernel.js'
+          'dist/public/js/main.js':   'public/js/main.js'
+          
 
     less:
 
@@ -112,9 +122,11 @@ module.exports = (grunt) ->
       style: ["temp/style"]
       scripts: ["temp/scripts"]
       all: ["temp"]
+      dist: ["dist"]
 
 
-  grunt.registerTask("default", ["stylus", "less:fontawesome", "copy:font", "concat:style", "cssmin", 
+  grunt.registerTask("default", ["stylus", "less:fontawesome", "copy:font", "concat:style", 
       "coffee:client", "concat:kernel"])
-  grunt.registerTask("dist", ["coffee", "copy"])
+  grunt.registerTask("dist", ["coffee:server", "default", "cssmin:dist", "copy:dist"])
+  #grunt.registerTask("clean")
 
