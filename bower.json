@@ -5,16 +5,15 @@
     "jquery2": "~2.0.0",
     "js-base64": "~2.1.2",
     "lodash": "~1.2.1",
-    "bootstrap": "~2.3.1",
     "jquery": "~1.8.3",
     "backbone": "~1.0.0",
-    "fancybox": "~2.1.4",
-    "flexslider": "*",
+    "flexslider": "a4647edaf7d44a32b1d568cef570128b8d28403b",
     "font-awesome": "~3.1.1",
-    "html5-boilerplate": "~4.2.0",
     "moment": "~2.0.0",
-    "socket.io-client": "~0.9.11",
     "underscore.string": "~2.3.1"
+  },
+  "devDependencies": {
+    "html5-boilerplate": "~4.2.0"
   },
   "ignore": [
     "**/.*",
