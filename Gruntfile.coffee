@@ -119,10 +119,11 @@ module.exports = (grunt) ->
 
 
     clean:
-      style: ["temp/style"]
-      scripts: ["temp/scripts"]
+      style: ["temp/style", "public/css/base.css", "public/css/main.css"]
+      scripts: ["temp/scripts", "public/js/kernel.js", "public/js/main.js"]
       all: ["temp"]
       dist: ["dist"]
+
 
 
   grunt.registerTask("default", ["stylus", "less:fontawesome", "copy:font", "concat:style", 
