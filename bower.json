@@ -1,0 +1,29 @@
+{
+  "name": "bratstvost.by",
+  "version": "0.0.0",
+  "dependencies": {
+    "jquery2": "~2.0.0",
+    "js-base64": "~2.1.2",
+    "lodash": "~1.2.1",
+    "bootstrap": "~2.3.1",
+    "jquery": "~1.8.3",
+    "backbone": "~1.0.0",
+    "fancybox": "~2.1.4",
+    "flexslider": "*",
+    "font-awesome": "~3.1.1",
+    "html5-boilerplate": "~4.2.0",
+    "moment": "~2.0.0",
+    "socket.io-client": "~0.9.11",
+    "underscore.string": "~2.3.1"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components",
+    "bower_components",
+    "test",
+    "tests",
+    "temp",
+    "dist"
+  ]
+}
