@@ -163,7 +163,8 @@
           {{/thumb}}
 
           <div class="news-body">
-            {{{body}}}
+            <h5 class="news-title">{{ title }}</h5>
+            <p>{{{ body }}}</p>
           </div>
 
         </article>
