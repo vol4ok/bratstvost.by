@@ -45,14 +45,9 @@ module.exports = (grunt) ->
 
 
 
-    stylus:
 
-      base:
-        options:
-          compress: yes
-          paths: ["styles/config", "styles/core"]
-        files:
-          "temp/style/base.css": "styles/core/base.styl"
+
+    stylus:
 
       main:
         options:
