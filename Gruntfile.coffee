@@ -34,13 +34,7 @@ module.exports = (grunt) ->
           src: ["public/**", "views/**"]
           dest: "dist/"
         ]
-      fancybox:
-        files: [
-          expand: yes 
-          cwd: "components/fancybox/source"
-          src: ["*.png", "*.gif"]
-          dest: "public/css"
-        ]      
+           
       font:
         files: [
           expand: yes 
