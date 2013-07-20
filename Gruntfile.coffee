@@ -104,6 +104,8 @@ module.exports = (grunt) ->
 
     uglify:
       dist: 
+        options:
+          mangle: off
         files:
           'dist/public/js/kernel.js': 'public/js/kernel.js'
           'dist/public/js/main.js':   'public/js/main.js'
