@@ -2,7 +2,6 @@ node_modules
 components
 dist
 __*
-public/img
 temp
-public/css/main*public/css
+public/css
 public/js
