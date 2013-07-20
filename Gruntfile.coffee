@@ -50,6 +50,10 @@ module.exports = (grunt) ->
           expand: yes 
           src: ["public/img/**", "public/css/images/**", "views/**", "public/font/**", "public/favicon.ico"]
           dest: "dist"
+        ,
+          expand: yes 
+          src: ["nginx.conf"]
+          dest: "dist"
         ]
 
 
