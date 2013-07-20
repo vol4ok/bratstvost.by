@@ -128,6 +128,5 @@ module.exports = (grunt) ->
 
   grunt.registerTask("default", ["stylus", "less:fontawesome", "copy:font", "concat:style", 
       "coffee:client", "concat:kernel"])
-  grunt.registerTask("dist", ["coffee:server", "default", "cssmin:dist", "copy:dist"])
-  #grunt.registerTask("clean")
+  grunt.registerTask("dist", ["default", "coffee:server", "default", "cssmin:dist", "copy:dist"])
 
