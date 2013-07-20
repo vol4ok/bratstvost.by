@@ -4,4 +4,5 @@ dist
 __*
 public/img
 temp
-public/css/main*
+public/css/main*public/css
+public/js
