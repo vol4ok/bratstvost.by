@@ -1,0 +1,47 @@
+{{ extend 'layout' }}
+
+<a class="btn btn-primary" href="/create">New post</a>
+
+{{ for post in @posts : }}
+  <article class="row">
+    <div class="span6">
+      <hr>
+      <h3><a href="/post/{{- post._id }}">{{= post.title }}</a></h3>
+      <h6><i class="fui-time"></i> {{= @formatDate(post.created) }}</h6>
+      <p>{{- post.content }}</p>
+
+      <div class="btn-toolbar">
+        <div class="btn-group">
+          <a class="btn btn-primary" href="/post/{{- post._id }}"><i class="fui-eye"></i></a>
+          <a class="btn btn-primary" href="/post/{{- post._id }}/update"><i class="fui-new"></i></a>
+          <a class="btn btn-primary" href="/post/{{- post._id }}/delete"><i class="fui-cross"></i></a>
+        </div>
+      </div>
+    </div>
+  </article>
+{{ end }}
+
+<div class="pagination">
+  <ul>
+    <li class="previous">
+      {{ if @page > 1 : }}
+        <a href="{{= @page - 1 }}" class="fui-arrow-left"></a>
+      {{ end }}
+    </li>
+
+    {{ for i in [1..@count] : }}
+      {{ if @page == i : }}
+        <li class="active"><a href="/{{= i }}">{{= i }}</a></li>
+      {{ else : }}
+        <li><a href="/{{= i }}">{{= i }}</a></li>
+      {{ end }}
+    {{ end }}
+
+    <li class="next">
+      {{ if @page < @count : }}
+        <a href="/{{= @page + 1 }}" class="fui-arrow-right"></a>
+      {{ end }}
+    </li>
+    
+    </ul>
+</div>
