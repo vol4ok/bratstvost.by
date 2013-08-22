@@ -1,10 +1,12 @@
+#!/usr/bin/env coffee
+
 require "colors"
 exs = require "express"
 ect = require "ect"
 mg  = require "mongoose"
 moment = require "moment"
 
-mg.connect('mongodb://localhost/sample-blog')
+mg.connect('mongodb://localhost/bratstvost-3')
 {Post} = require "./models/post"
 
 _ = require "lodash"
@@ -13,6 +15,7 @@ require("uasync")(_)
 app = exs()
 
 app
+  .disable("x-powered-by")
   .set("view engine", "ect")
   .engine('ect', ect(
       open: "{{"
@@ -24,22 +27,23 @@ app
   
 app 
   .use(exs.bodyParser())
-  .use(exs.logger("tiny"))
+  .use(exs.logger("short"))
   .use(exs.favicon())
   .use(app.router)
   .use(exs.static("public"))
 
+
 app.locals =
   formatDate: (date) -> moment(date).fromNow()
 
-POST_PER_PAGE = 3
+POST_PER_PAGE = 10
 
 app.get /^\/(\d*)$/, (req, res) ->
   page = if req.params[0] then parseInt(req.params[0], 10) else 1
   query = Post.find()
   _.parallel [
     (cb) -> query.count(cb)
-    (cb) -> query.find().skip((page-1)*POST_PER_PAGE).limit(3).sort("-created").exec(cb)
+    (cb) -> query.find().skip((page-1)*POST_PER_PAGE).limit(POST_PER_PAGE).sort("-publish_date").exec(cb)
   ], (err, results) ->
     count = Math.ceil(results[0]/POST_PER_PAGE)
     count = 10 if count > 10
