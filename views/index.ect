@@ -8,7 +8,14 @@
       <hr>
       <h3><a href="/post/{{- post._id }}">{{= post.title }}</a></h3>
       <h6><i class="fui-time"></i> {{= @formatDate(post.created) }}</h6>
-      <p>{{- post.content }}</p>
+
+      <p><a href="/post/{{- post._id }}">
+        {{ if post.type is 'video' : }}
+          {{- include '_video-thumb', post.video }}
+        {{ end }}
+      </a></p>    
+  
+      <p>{{- post.excert }}</p>
 
       <div class="btn-toolbar">
         <div class="btn-group">
