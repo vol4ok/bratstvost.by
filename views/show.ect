@@ -4,6 +4,13 @@
   <div class="span6">
     <h3>{{= @post.title }}</h3>
     <h6>{{= @formatDate @post.created }}</h6>
+
+    <p>
+      {{ if @post.type is 'video' : }}
+        {{- include '_video', @post.video }}
+      {{ end }}
+    </p>
+
     <p>{{- @post.content }}</p>
     <p><a href="/">Back to main</a> | <a href="/post/{{- @post._id }}/update">Edit</a> | <a href="/post/{{- @post._id }}/delete">Delete</a></p>
   </div>
