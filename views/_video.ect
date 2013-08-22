@@ -1,0 +1,23 @@
+{{ if @provider is 'youtube' : }}
+  <div class="video-holder" id="youtube-{{- @id }}" style="width:{{- @width }};height:{{- @height }};">
+    <iframe 
+      width="{{- @width }}" 
+      height="{{- @height }}" 
+      src="//www.youtube.com/embed/{{- @id }}"
+      frameborder="0" 
+      allowfullscreen>
+    </iframe>
+  </div>
+{{ else if @provider is 'vimeo' : }}
+  <div id="vimeo-{{- @id }}" style="width: {{- @width }}; height:{{- @height }};color:#eee;">
+    <iframe 
+      src="http://player.vimeo.com/video/{{- @id }}?byline=0&amp;portrait=0&amp;color=ff9933" 
+      width="{{- @width }}" 
+      height="{{- @height }}" 
+      frameborder="0" 
+      webkitAllowFullScreen 
+      mozallowfullscreen 
+      allowFullScreen>
+    </iframe>
+  </div>
+{{ end }}
