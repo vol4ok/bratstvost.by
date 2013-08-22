@@ -18,6 +18,7 @@ module.exports = (grunt) ->
       default: 
         options:
           compress: yes
+          paths: ["styles/config", "styles/core"]
         files:
           "public/css/main.css": "styles/pages/main.styl"
 
@@ -43,6 +44,7 @@ module.exports = (grunt) ->
       scripts:
         src: [
           "bower_components/jquery2/jquery.js"
+          "bower_components/angular/angular.js"
         ]
         dest: "public/js/core.js"
       styles:
@@ -52,4 +54,4 @@ module.exports = (grunt) ->
         ]
         dest: "public/css/core.css"
 
-  grunt.registerTask "default", ["less", "concat:styles"]
+  grunt.registerTask "default", ["less", "concat", "stylus", "coffee"]
