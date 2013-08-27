@@ -1,54 +1,35 @@
 {{ extend 'layout' }}
 
-<a class="btn btn-primary" href="/create">New post</a>
+<div class="row">
+  <div class="span4 offset4">
+    <div class="logo"></div>
+  </div>
+</div>
 
-{{ for post in @posts : }}
-  <article class="row">
-    <div class="span6">
-      <hr>
-      <h3><a href="/post/{{- post._id }}">{{= post.title }}</a></h3>
-      <h6><i class="fui-time"></i> {{= @formatDate(post.created) }}</h6>
+<div class="row">
+  <div class="sapn12">
+    <h1 class="title">Братство святителя Спиридона</h1>
+  </div>
+</div>
 
-      <p><a href="/post/{{- post._id }}">
-        {{ if post.type is 'video' : }}
-          {{- include '_video-thumb', post.video }}
-        {{ end }}
-      </a></p>    
-  
-      <p>{{- post.excert }}</p>
-
-      <div class="btn-toolbar">
-        <div class="btn-group">
-          <a class="btn btn-primary" href="/post/{{- post._id }}"><i class="fui-eye"></i></a>
-          <a class="btn btn-primary" href="/post/{{- post._id }}/update"><i class="fui-new"></i></a>
-          <a class="btn btn-primary" href="/post/{{- post._id }}/delete"><i class="fui-cross"></i></a>
-        </div>
-      </div>
+<div class="row">
+  <div class="span4 offset4">
+    <div class="tile">
+      <p>Сайт в процессе резработки, поэтому часть информации будет недоступна, но она должна скоро появиться в обновленном формате, помолитесь за нас чтобы у нас все получилось...</p>
     </div>
-  </article>
-{{ end }}
+  </div>
+</div>
 
-<div class="pagination">
-  <ul>
-    <li class="previous">
-      {{ if @page > 1 : }}
-        <a href="{{= @page - 1 }}" class="fui-arrow-left"></a>
-      {{ end }}
-    </li>
+<div class="row">
+  <div class="span4 offset4">
+    <article class="events">
+      Тут будут события
+    </article>
+  </div>
+</div>
 
-    {{ for i in [1..@count] : }}
-      {{ if @page == i : }}
-        <li class="active"><a href="/{{= i }}">{{= i }}</a></li>
-      {{ else : }}
-        <li><a href="/{{= i }}">{{= i }}</a></li>
-      {{ end }}
-    {{ end }}
-
-    <li class="next">
-      {{ if @page < @count : }}
-        <a href="/{{= @page + 1 }}" class="fui-arrow-right"></a>
-      {{ end }}
-    </li>
-    
-    </ul>
+<div class="row">
+  <div class="span4 offset4">
+    <a href="http://bratstvost.by" class="btn btn-info">Верните меня на старую версию сайта</a>
+  </div>
 </div>
