@@ -9,7 +9,7 @@ mongoose.connect('mongodb://localhost/bratstvost')
 eventData0 = 
   date: "2013-05-27T00:00:00.000Z",
   title: "Выезд в ПНИ г.Молодечно",
-  head: "Выезд в <abbr titmain.style=\"Психоневрологический интернат\">ПНИ</abbr> г.Молодечно",
+  head: "Выезд в <abbr title=\"Психоневрологический интернат\">ПНИ</abbr> г.Молодечно",
   meeting_time: "2013-05-27T10:00:00.000Z",
   organizer: "брат Сергий",
   phone: "00375293737250"
@@ -45,7 +45,7 @@ parse = (e) ->
     console.log err, result
   return JSON.stringify(e, null, "  ")
 
-console.log parse(eventData2)
+console.log parse(eventData1)
 
 mongoose.disconnect()
 
