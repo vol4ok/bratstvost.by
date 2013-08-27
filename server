@@ -38,6 +38,9 @@ app.locals =
 
 POST_PER_PAGE = 10
 
+app.get "/new-index", (req, res) ->
+  res.render("new-index")
+
 app.get /^\/(\d*)$/, (req, res) ->
   page = if req.params[0] then parseInt(req.params[0], 10) else 1
   query = Post.find()

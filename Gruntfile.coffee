@@ -20,7 +20,9 @@ module.exports = (grunt) ->
           compress: yes
           paths: ["styles/config", "styles/core"]
         files:
-          "public/css/main.css": "styles/pages/main.styl"
+          "temp/css/base.css": "styles/core/base.styl"
+          "temp/css/layout.css": "styles/pages/layout.styl"
+          "temp/css/index.css": "styles/pages/index.styl"
 
     less: 
       bootstrap:
@@ -46,12 +48,17 @@ module.exports = (grunt) ->
           "bower_components/jquery2/jquery.js"
           "bower_components/angular/angular.js"
         ]
-        dest: "public/js/core.js"
+        dest: "public/js/scripts.js"
       styles:
         src: [
+          "styles/core/bratstvost-icon-font.css"
           "temp/css/bootstap.css"
           "temp/css/flat-ui.css"
+          "temp/css/base.css"
+          "temp/css/layout.css"
+          "temp/css/index.css"
         ]
-        dest: "public/css/core.css"
+        dest: "public/css/styles.css"
 
-  grunt.registerTask "default", ["less", "concat", "stylus", "coffee"]
+  #grunt.registerTask "default", ["less", "concat", "stylus", "coffee"]
+  grunt.registerTask "default", ["less", "stylus", "concat:styles"]
