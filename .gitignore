@@ -1,3 +1,7 @@
 __*
 components
 node_modules
+temp
+dist
+public/css/
+public/js/
