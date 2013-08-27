@@ -4,7 +4,7 @@
 
 {{ for post in @posts : }}
   <article class="row">
-    <div class="span6">
+    <div class="span9">
       <hr>
       <h3><a href="/post/{{- post._id }}">{{= post.title }}</a></h3>
       <h6><i class="fui-time"></i> {{= @formatDate(post.created) }}</h6>
@@ -15,7 +15,7 @@
         {{ end }}
       </a></p>    
   
-      <p>{{- post.excert }}</p>
+      <p>{{- post.excerpt }}</p>
 
       <div class="btn-toolbar">
         <div class="btn-group">
