@@ -1,15 +1,15 @@
 mg = require "mongoose"
 {Schema} = mg
 
-VideoDesc = new Schema
-
+POST_TYPES = ['text', 'video', 'photo']
 
 PostSchema = new Schema
   publish_date: { type: Date, default: Date.now }
   title: { type: String, trim: true }
   excerpt: String
   content: String
-  type: { type: String, lowercase: true }
+  type: { type: String, lowercase: true, default: "post" }
+  post_type: { type: String, lowercase: true, default: 'text', enum: POST_TYPES }
   video: 
     provider: { type: String }
     id: String
