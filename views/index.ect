@@ -5,8 +5,8 @@
     {
       "day": 30,
       "month": "авг",
-      "title": "Выезд в ПНИ г. Молодечно",
-      "body": "Выезд в ПНИ г. Молодечно, с Дмитрием Каминским (поэт и исполнитель, финалист проекта \"Фабрика звезд\")",
+      "title": "Выезд в <abbr title=\"Психоневрологический интернат\">ПНИ</abbr> г. Молодечно",
+      "body": "Выезд в <abbr title=\"Психоневрологический интернат\">ПНИ</abbr> г. Молодечно, с Дмитрием Каминским (поэт и исполнитель, финалист проекта \"Фабрика звезд\")",
       "meeting_time": "13:00",
       "meeting_place": "ст. м. Каменная Горка",
       "organizer": "брат Сергий",
@@ -15,9 +15,17 @@
     {
       "day": 31,
       "month": "авг",
-      "title": "Поездка в ПНИ д. Тарасики",
+      "title": "Поездка в <abbr title=\"Психоневрологический интернат\">ПНИ</abbr> д. Тарасики",
       "meeting_time": "12:00",
       "meeting_place": "ст. м. Уручье",
+      "organizer": "брат Сергий",
+      "phone": "8 (029) 373-72-50"
+    },
+    {
+      "day": 6,
+      "month": "сен",
+      "title": "Поездка в Лавришиво",
+      "body": "С 6 по 8 сентября паломническая поездка с послушанием в Свято-Елисеевский мужской монастырь в Лавришиво<br><em>Старших в группах подать списки желающих поехать в Лавришиво <strong>до 30 августа</strong></em>.",
       "organizer": "брат Сергий",
       "phone": "8 (029) 373-72-50"
     }
@@ -79,7 +87,7 @@
             <dd ng-show="event.organizer.length>0">{{event.organizer}}</dd>
       
             <dt ng-show="event.phone.length>0"><i class="icon-phone"></i> Телефон</dt>
-            <dd ng-show="event.phone.length>0" ng-bind-html-unsafe="event.phone">{{formatPhone(event.phone)}}</dd>
+            <dd ng-show="event.phone.length>0" ng-bind-html-unsafe="event.phone">{{event.phone}}</dd>
           </dl>
         </div> 
       </article>

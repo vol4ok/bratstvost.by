@@ -2,7 +2,6 @@ window.app = angular.module("bratstvost-app", [])
 
 class EventListCtrl
   $scope = 
-    hello: "workd"
 
   parse_phone = (phone) ->
     res = ""
@@ -24,17 +23,15 @@ class EventListCtrl
 
   $scope.formatPhone = (p) ->
     p = parse_phone(p)
+    console.log "<a href=\"phone:#{format_phone_raw(p)}\">#{format_phone_nice(p)}</a>"
     return "<a href=\"phone:#{format_phone_raw(p)}\">#{format_phone_nice(p)}</a>"
 
   constructor: (scope) ->    
     $scope = scope extends $scope
     json = $('#events-data').text()
-    console.log json
     $scope.events = JSON.parse(json)
-    console.log "create EventListCtrl", $scope
-
-  $scope.getHello = ->
-    return "Hello, #{$scope.hello}!"
+    for ev in $scope.events when ev.phone
+      ev.phone = $scope.formatPhone(ev.phone)
 
 app.controller "EventListCtrl", ["$scope", EventListCtrl]
 
