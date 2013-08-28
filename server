@@ -8,6 +8,7 @@ moment = require "moment"
 
 mg.connect('mongodb://localhost/bratstvost-3')
 {Post} = require "./models/post"
+{Event} = require "./models/post"
 
 _ = require "lodash"
 require("uasync")(_)
@@ -18,8 +19,6 @@ app
   .disable("x-powered-by")
   .set("view engine", "ect")
   .engine('ect', ect(
-      open: "{{"
-      close: "}}"
       root : __dirname + '/views'
       ext : '.ect'
       cache: no
@@ -39,6 +38,9 @@ POST_PER_PAGE = 10
 
 app.get "/", (req, res) ->
   res.render("index")
+
+app.get "/events", (req, res) ->
+  res.render("events")
 
 app.listen(3001)
 console.log "start server on port 3001".green

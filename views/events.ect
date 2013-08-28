@@ -1,0 +1,69 @@
+<% extend 'layout' %>
+
+<% block 'head' : %>
+  <script src="/js/events.js"></script>
+<% end %>
+
+<div class="page-header col-sm-9">
+  <h1>Создание событий</h1>
+</div>
+
+<div class="row" ng-controller="EventFormCtrl" ng-init="expanded=true">
+  <div class="col-sm-4">
+    <form class="event-form">
+      <h4>Short</h4>
+      <fieldset>
+        <p>
+          <input class="form-control" type="text" placeholder="Date '12 май' or '12-05' or '12.05'" ng-model="form._date">
+        </p>
+        <p>
+          <input class="form-control" type="text" ng-model="form._title" placeholder="Title">
+        </p>
+      </fieldset>
+
+      <h4>More</h4>
+      <fieldset>
+        <p>
+          <textarea class="form-control" rows="3" ng-model="form._body" placeholder="Body"></textarea>  
+        </p>
+
+        <p>
+          <input class="form-control" type="text" placeholder="Meeting time" ng-model="form._meeting_time">
+        </p> 
+
+        <p>
+          <input class="form-control" type="text" placeholder="Meeting place" ng-model="form._meeting_place">
+        </p>
+      </fieldset>
+    </form>
+  </div>
+
+  <div class="col-sm-5">
+    <article class="well well-events event-view">
+      <div class="event-short" ng-click="expanded=!expanded">
+        <div class="event-state"></div>
+        
+        <div class="event-date">
+          <div class="day">{{form._day}}</div>
+          <div class="month">{{form._month}}</div>
+        </div>
+        
+        <div class="event-head" ng-bind-html-unsafe="form.title">{{form.title}}</div>
+      </div>
+
+      <div class="event-more" ng-class="{true: 'active'}[expanded]">
+        <div class="event-body" ng-if="form._body" ng-bind-html-unsafe="form._body">
+          {{form._body}}
+        </div>
+
+        <dl>
+          <dt ng-show="form._meeting_time.length>0"><i class="icon-time"></i> Место проведения</dt>
+          <dd ng-show="form._meeting_time.length>0">{{form._meeting_time}}</dd>
+
+          <dt ng-show="form._meeting_time.length>0"><i class="icon-place"></i> Место проведения</dt>
+          <dd ng-show="form._meeting_time.length>0">{{form._meeting_place}}</dd>
+        </dl>
+      </div> 
+    </article>
+  </div>
+</div>
