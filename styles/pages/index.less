@@ -1,13 +1,23 @@
-@import "_variables.less";
+@import "_variables";
+
+.well {
+  color: @well-color;
+}
 
 .logo {
-  width: 300px;
   height: 295px;
-  background: url(/img/logo.png) no-repeat;
+  background: url(/img/logo.png) no-repeat center;
 }
 
 h1.title {
   text-align: center;
-  color: white;
-  font: 300 42px @font-family-narrow;
+  font: 400 42px @font-family-narrow;
 }
+
+.well-events {
+  color: @clouds;
+  background: @belize-hole;
+  border: none;
+}
+
+@import "_events";
