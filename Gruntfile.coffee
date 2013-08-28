@@ -14,6 +14,8 @@ module.exports = (grunt) ->
         files:
           "public/js/main.js": "scripts/main.coffee"
 
+
+
     stylus: 
       default: 
         options:
@@ -24,6 +26,8 @@ module.exports = (grunt) ->
           "temp/css/layout.css": "styles/pages/layout.styl"
           "temp/css/index.css": "styles/pages/index.styl"
 
+
+
     less: 
       bootstrap:
         options:
@@ -33,6 +37,7 @@ module.exports = (grunt) ->
           ]
         files:
           "temp/css/bootstap.css": "styles/core/bootstrap.less"
+
       flatui:
         options:
           paths: [
@@ -42,13 +47,26 @@ module.exports = (grunt) ->
         files:
           "temp/css/flat-ui.css": "styles/core/flat-ui.less"
 
+      styles: 
+        options:
+          paths: [
+            "styles/config"
+            "bower_components/bootstrap/less"
+          ]
+        files:
+          "temp/css/layout.css": "styles/pages/layout.less"
+          "temp/css/index.css": "styles/pages/index.less"
+
+
+
     concat:
       scripts:
         src: [
           "bower_components/jquery2/jquery.js"
           "bower_components/angular/angular.js"
         ]
-        dest: "public/js/scripts.js"
+        dest: "public/js/core.js"
+
       styles:
         src: [
           "styles/core/bratstvost-icon-font.css"
@@ -61,4 +79,7 @@ module.exports = (grunt) ->
         dest: "public/css/styles.css"
 
   #grunt.registerTask "default", ["less", "concat", "stylus", "coffee"]
-  grunt.registerTask "default", ["less", "stylus", "concat:styles"]
+  grunt.registerTask "bootstrap", ["less:bootstrap"]
+  grunt.registerTask "flatui", ["less:flatui"]
+  grunt.registerTask "styles", ["less:bootstrap", "less:flatui", "stylus", "concat:styles"]
+  grunt.registerTask "default", ["styles"]

@@ -28,7 +28,6 @@ app
 app 
   .use(exs.bodyParser())
   .use(exs.logger("short"))
-  .use(exs.favicon())
   .use(app.router)
   .use(exs.static("public"))
 

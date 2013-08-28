@@ -2,5 +2,195 @@
 @import "_vendors"
 @import "_mixins"
 
-// p
-//   color: white
+html, body
+  min-height: 100%
+
+body
+  font: DEFAULT_FONT_SIZE/DEFAULT_LINE_HEIGHT DEFAULT_FONT
+  min-height: 100% !important
+
+
+.text
+  p
+    color: TEXT_COLOR
+    font: normal .875em/DEFAULT_LINE_HEIGHT SANS_FONT
+    margin: 0 0 1em
+
+  a
+    color: LINK_COLOR
+    text-decoration: none
+    border-bottom: 1px solid rgba(LINK_COLOR, .1)
+    transition: border .4s ease-in-out
+    text-shadow: 0 1px 0 white
+    &:hover
+      color: LINK_COLOR
+      text-decoration: none
+      border-bottom: 1px solid LINK_COLOR
+    &:active
+      color: LINK_COLOR
+      text-decoration: none
+    &:visited
+      color: VISITED_LINK_COLOR
+      text-decoration: none
+      &:hover
+        border-bottom: 1px solid VISITED_LINK_COLOR
+
+  a.dotted
+    border-bottom: 1px dotted rgba(LINK_COLOR, .3)
+    transition: border .4s ease-in-out
+    &:hover
+      color: LINK_COLOR
+      text-decoration: none
+      border-bottom: 1px dotted LINK_COLOR
+    &:visited
+      color: LINK_COLOR
+      text-decoration: none
+      &:hover
+        border-bottom: 1px dotted LINK_COLOR
+
+  h1
+    color: HEAD_COLOR
+    font: bold 3em NARROW_FONT
+    margin: 0 0 1em
+
+  h2
+    color: HEAD_COLOR
+    font: bold 2em NARROW_FONT
+    margin: 1em 0 1em
+
+  h3
+    color: HEAD_COLOR
+    font: bold 1.75em HEAD_FONT
+    margin: 1.75em 0 .75em
+
+  h4
+    color: TEXT_COLOR
+    font: bold 1.25em DEFAULT_FONT
+    margin: 1.25em 0 .75em
+    text-transform: uppercase
+
+
+  h5
+    color: TEXT_COLOR
+    font: bold 1.25em DEFAULT_FONT
+    margin: 1.25em 0 .75em
+
+  h1,h2,h3,h4,h5
+    a
+      color: inherit
+      border-color: transparent
+      &:visited
+        color: inherit
+        border-color: transparent
+      &:hover
+        color: inherit
+        border-color: HEAD_COLOR
+      &:active
+        color: inherit
+        border-color: HEAD_COLOR
+
+  ul, ol
+    margin: 0 1em 1em
+
+  ul
+    list-style: outside disc
+  ol
+    list-style: outside decimal
+
+  li
+    margin: 0.5em 0
+    text-shadow: 0 1px 0 white
+
+  .center
+    text-align: center
+  .right
+    text-align: right
+  .left
+    text-align: left
+
+  .red
+    color: red
+
+  small
+    font-size: 75%
+
+  .table
+    font: normal 1em NARROW_FONT
+    border-collapse: collapse
+    width: 100%
+    th
+      color: TEXT_COLOR
+      border-bottom: 2px solid TEXT_COLOR
+      font: bold 1em NARROW_FONT
+      text-transform: uppercase
+      padding: 0.5em 1em
+    td
+      color: TEXT_COLOR
+      border-bottom: 1px solid TEXT_COLOR
+      padding: 0.5em 1em
+  .bordered
+    th
+      border: 1px solid TEXT_COLOR
+    td
+      border: 1px solid TEXT_COLOR
+
+  .striped-light
+    tr:nth-child(even)
+      background: rgba(white, .4)
+
+.vnav
+  li
+    font-size: 1em
+    color: black
+    width: 100%
+    overflow: hidden
+    ul
+      margin: 0 0 1.5em
+    a
+      text-decoration: none
+      color: inherit
+      display: block
+      padding: 0.5em 0.75em
+      cursor: pointer
+      user-select: none
+      &:hover
+        color: white
+        background: black
+    li
+      font-size: 0.875em
+      margin: 0
+      a
+        border-bottom: none
+        padding: 0.125em 1em
+
+.hnav
+  margin: 0
+  padding: 0
+  li
+    display: inline-block
+    font-size: 1em
+    color: black
+    overflow: hidden
+    cursor: pointer
+    user-select: none
+    ul
+      margin: 0 0 1.5em
+    a
+      text-decoration: none
+      color: inherit
+      display: block
+      padding: 0.5em 0.75em
+      cursor: pointer
+      user-select: none
+      &:hover
+        color: white
+        background: black
+    li
+      font-size: 0.875em
+      margin: 0
+      a
+        border-bottom: none
+        padding: 0.125em 1em
+
+.hidden
+  display: none
