@@ -1,16 +1,20 @@
 <!doctype html>
-<html lang="en">
+<html lang="en"  ng-app="bratstvost-app">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Братство Спиридона Тримифунтского</title>
-  {{- include '_google-fonts' }}
+  <%- include '_google-fonts' %>
   <link rel="stylesheet" href="/css/styles.css">
+  <script src="/js/core.js"></script>
+  <script src="/js/main.js"></script>
+  <% content 'head' %>
 </head>
 <body>
   
   <div class="container">
   
-    {{ content }}
+    <% content %>
 
   </div>
 
