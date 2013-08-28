@@ -1,5 +1,5 @@
-mongoose = require "mongoose"
-{Schema} = mongoose
+mg = require "mongoose"
+{Schema} = mg
 
 EventSchema = new Schema
   _id: String
@@ -25,4 +25,4 @@ EventSchema = new Schema
   updated: { type: Date, default: Date.now }
   , _id: false
 
-exports.Event = mongoose.model('Event', EventSchema)
+exports.Event = mg.model('Event', EventSchema)
