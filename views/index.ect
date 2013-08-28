@@ -1,35 +1,92 @@
-{{ extend 'layout' }}
+<% extend 'layout' %>
+
+<script typt="text/json" id="events-data">
+  [
+    {
+      "day": 30,
+      "month": "авг",
+      "title": "Выезд в ПНИ г. Молодечно",
+      "body": "Выезд в ПНИ г. Молодечно, с Дмитрием Каминским (поэт и исполнитель, финалист проекта \"Фабрика звезд\")",
+      "meeting_time": "13:00",
+      "meeting_place": "ст. м. Каменная Горка",
+      "organizer": "брат Сергий",
+      "phone": "8 (029) 373-72-50"
+    },
+    {
+      "day": 31,
+      "month": "авг",
+      "title": "Поездка в ПНИ д. Тарасики",
+      "meeting_time": "12:00",
+      "meeting_place": "ст. м. Уручье",
+      "organizer": "брат Сергий",
+      "phone": "8 (029) 373-72-50"
+    }
+  ]
+</script>
 
 <div class="row">
-  <div class="span4 offset4">
+  <div class="col-md-6 col-md-offset-3">
     <div class="logo"></div>
   </div>
 </div>
 
 <div class="row">
-  <div class="sapn12">
+  <div class="col-md-12">
     <h1 class="title">Братство святителя Спиридона</h1>
   </div>
 </div>
 
 <div class="row">
-  <div class="span4 offset4">
-    <div class="tile">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="well">
       <p>Сайт в процессе резработки, поэтому часть информации будет недоступна, но она должна скоро появиться в обновленном формате, помолитесь за нас чтобы у нас все получилось...</p>
     </div>
   </div>
 </div>
 
 <div class="row">
-  <div class="span4 offset4">
-    <article class="events">
-      Тут будут события
-    </article>
+  <div class="col-md-6 col-md-offset-3" ng-controller="EventListCtrl">
+
+    <div class="well well-events event-list">
+      <article class="event-view" ng-repeat="event in events">
+        <div class="event-short" ng-click="expanded=!expanded">
+          <div class="event-state"></div>
+          
+          <div class="event-date">
+            <div class="day">{{event.day}}</div>
+            <div class="month">{{event.month}}</div>
+          </div>
+          
+          <div class="event-head" ng-bind-html-unsafe="event.title">{{event.title}}</div>
+        </div>
+      
+        <div class="event-more" ng-class="{true: 'active'}[expanded]">
+          <div class="event-body" ng-if="event.body" ng-bind-html-unsafe="event.body">
+            {{event.body}}
+          </div>
+      
+          <dl>
+            <dt ng-show="event.meeting_time.length>0"><i class="icon-time"></i> Место проведения</dt>
+            <dd ng-show="event.meeting_time.length>0">{{event.meeting_time}}</dd>
+      
+            <dt ng-show="event.meeting_place.length>0"><i class="icon-place"></i> Место проведения</dt>
+            <dd ng-show="event.meeting_place.length>0">{{event.meeting_place}}</dd>
+      
+            <dt ng-show="event.organizer.length>0"><i class="icon-user"></i> Организатор</dt>
+            <dd ng-show="event.organizer.length>0">{{event.organizer}}</dd>
+      
+            <dt ng-show="event.phone.length>0"><i class="icon-phone"></i> Телефон</dt>
+            <dd ng-show="event.phone.length>0" ng-bind-html-unsafe="event.phone">{{formatPhone(event.phone)}}</dd>
+          </dl>
+        </div> 
+      </article>
+    </div>
+    
   </div>
 </div>
 
 <div class="row">
-  <div class="span4 offset4">
+  <div class="col-md-6 col-md-offset-3" style="text-align:center">
     <a href="http://bratstvost.by" class="btn btn-info">Верните меня на старую версию сайта</a>
   </div>
 </div>

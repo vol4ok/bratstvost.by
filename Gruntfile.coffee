@@ -9,10 +9,9 @@ module.exports = (grunt) ->
 
     coffee:
       default:
-        options:
-          bare: yes
         files:
           "public/js/main.js": "scripts/main.coffee"
+          "public/js/events.js": "scripts/events.coffee"
 
 
 
@@ -64,6 +63,8 @@ module.exports = (grunt) ->
         src: [
           "bower_components/jquery2/jquery.js"
           "bower_components/angular/angular.js"
+          "bower_components/moment/min/moment.min.js"
+          "bower_components/moment/min/langs.min.js"
         ]
         dest: "public/js/core.js"
 
@@ -71,8 +72,6 @@ module.exports = (grunt) ->
         src: [
           "styles/core/bratstvost-icon-font.css"
           "temp/css/bootstap.css"
-          "temp/css/flat-ui.css"
-          "temp/css/base.css"
           "temp/css/layout.css"
           "temp/css/index.css"
         ]
@@ -82,4 +81,4 @@ module.exports = (grunt) ->
   grunt.registerTask "bootstrap", ["less:bootstrap"]
   grunt.registerTask "flatui", ["less:flatui"]
   grunt.registerTask "styles", ["less:bootstrap", "less:styles", "concat:styles"]
-  grunt.registerTask "default", ["styles"]
+  grunt.registerTask "default", ["styles", "coffee"]
