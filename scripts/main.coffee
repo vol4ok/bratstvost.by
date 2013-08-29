@@ -1,7 +1,7 @@
 window.app = angular.module("bratstvost-app", [])
 
 class EventListCtrl
-  $scope = 
+  $scope = {}
 
   parse_phone = (phone) ->
     res = ""
