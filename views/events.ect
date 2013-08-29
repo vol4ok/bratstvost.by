@@ -14,26 +14,51 @@
       <h4>Short</h4>
       <fieldset>
         <p>
-          <input class="form-control" type="text" placeholder="Date '12 май' or '12-05' or '12.05'" ng-model="form._date">
+          <input class="form-control" type="text" placeholder="Date '12 май' or '12-05' or '12.05'" ng-model="form.date">
         </p>
         <p>
-          <input class="form-control" type="text" ng-model="form._title" placeholder="Title">
+          <input class="form-control" type="text" ng-model="form.title" placeholder="Title">
         </p>
       </fieldset>
 
       <h4>More</h4>
       <fieldset>
         <p>
-          <textarea class="form-control" rows="3" ng-model="form._body" placeholder="Body"></textarea>  
+          <textarea class="form-control" rows="3" ng-model="form.body" placeholder="Body"></textarea>  
         </p>
 
         <p>
-          <input class="form-control" type="text" placeholder="Meeting time" ng-model="form._meeting_time">
+          <input class="form-control" type="text" placeholder="Meeting time" ng-model="form.meeting_time">
         </p> 
 
         <p>
-          <input class="form-control" type="text" placeholder="Meeting place" ng-model="form._meeting_place">
+          <input class="form-control" type="text" placeholder="Meeting place" ng-model="form.meeting_place">
         </p>
+
+        <p>
+          <input class="form-control" type="text" placeholder="Meeting time" ng-model="form.event_time">
+        </p> 
+
+        <p>
+          <input class="form-control" type="text" placeholder="Meeting place" ng-model="form.event_place">
+        </p>
+
+        <p>
+          <input class="form-control" type="text" placeholder="Organizer" ng-model="form.organizer">
+        </p>
+
+        <p>
+          <input class="form-control" type="text" placeholder="Phone" ng-model="form.phone">
+        </p>
+
+      </fieldset>
+
+      <h4>Custom field</h4>
+
+      <fieldset>
+        <!-- <p><input class="form-control" type="text" placeholder="" ng-model=""></p>
+        <p><input class="form-control" type="text" placeholder="" ng-model=""></p>
+        <p><input class="form-control" type="text" placeholder="" ng-model=""></p> -->
       </fieldset>
     </form>
   </div>
@@ -44,24 +69,36 @@
         <div class="event-state"></div>
         
         <div class="event-date">
-          <div class="day">{{form._day}}</div>
-          <div class="month">{{form._month}}</div>
+          <div class="day">{{event.day}}</div>
+          <div class="month">{{event.month}}</div>
         </div>
         
-        <div class="event-head" ng-bind-html-unsafe="form.title">{{form.title}}</div>
+        <div class="event-head" ng-bind-html-unsafe="event.title">{{form.title}}</div>
       </div>
 
       <div class="event-more" ng-class="{true: 'active'}[expanded]">
-        <div class="event-body" ng-if="form._body" ng-bind-html-unsafe="form._body">
-          {{form._body}}
+        <div class="event-body" ng-if="event.body" ng-bind-html-unsafe="event.body">
+          {{event.body}}
         </div>
 
         <dl>
-          <dt ng-show="form._meeting_time.length>0"><i class="icon-time"></i> Место проведения</dt>
-          <dd ng-show="form._meeting_time.length>0">{{form._meeting_time}}</dd>
+          <dt ng-show="event.meeting_time.length>0"><i class="icon-time"></i> Место проведения</dt>
+          <dd ng-show="event.meeting_time.length>0">{{event.meeting_time}}</dd>
 
-          <dt ng-show="form._meeting_time.length>0"><i class="icon-place"></i> Место проведения</dt>
-          <dd ng-show="form._meeting_time.length>0">{{form._meeting_place}}</dd>
+          <dt ng-show="event.meeting_place.length>0"><i class="icon-place"></i> Место проведения</dt>
+          <dd ng-show="event.meeting_place.length>0">{{event.meeting_place}}</dd>
+
+          <dt ng-show="event.event_time.length>0"><i class="icon-time"></i> Место события</dt>
+          <dd ng-show="event.event_time.length>0">{{event.event_time}}</dd>
+
+          <dt ng-show="event.event_place.length>0"><i class="icon-place"></i> Место события</dt>
+          <dd ng-show="event.event_place.length>0">{{event.event_place}}</dd>
+
+          <dt ng-show="event.organizer.length>0"><i class="icon-user"></i> Организатор</dt>
+          <dd ng-show="event.organizer.length>0">{{event.organizer}}</dd>
+          
+          <dt ng-show="event.phone.length>0"><i class="icon-phone"></i> Телефон</dt>
+          <dd ng-show="event.phone.length>0" ng-bind-html-unsafe="event.phone">{{event.phone}}</dd>
         </dl>
       </div> 
     </article>
