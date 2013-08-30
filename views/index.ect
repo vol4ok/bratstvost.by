@@ -76,10 +76,16 @@
           </div>
       
           <dl>
-            <dt ng-show="event.meeting_time.length>0"><i class="icon-time"></i> Место проведения</dt>
-            <dd ng-show="event.meeting_time.length>0"  ng-bind-html-unsafe="event.meeting_time">{{event.meeting_time}}</dd>
+            <dt ng-show="event.event_time.length>0"><i class="icon-time"></i> Время проведения</dt>
+            <dd ng-show="event.event_time.length>0"  ng-bind-html-unsafe="event.event_time">{{event.event_time}}</dd>
       
-            <dt ng-show="event.meeting_place.length>0"><i class="icon-place"></i> Место проведения</dt>
+            <dt ng-show="event.event_place.length>0"><i class="icon-place"></i> Место проведения</dt>
+            <dd ng-show="event.event_place.length>0" ng-bind-html-unsafe="event.event_place">{{event.event_place}}</dd>
+
+            <dt ng-show="event.meeting_time.length>0"><i class="icon-time"></i> Время сбора</dt>
+            <dd ng-show="event.meeting_time.length>0"  ng-bind-html-unsafe="event.meeting_time">{{event.meeting_time}}</dd>
+            
+            <dt ng-show="event.meeting_place.length>0"><i class="icon-place"></i> Место сбора</dt>
             <dd ng-show="event.meeting_place.length>0" ng-bind-html-unsafe="event.meeting_place">{{event.meeting_place}}</dd>
       
             <dt ng-show="event.organizer.length>0"><i class="icon-user"></i> Организатор</dt>
