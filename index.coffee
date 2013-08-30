@@ -40,5 +40,6 @@ app.get "/", (req, res) ->
 app.get "/events", (req, res) ->
   res.render("events")
 
-app.listen(3001)
-console.log "start server on port 3001".green
+port = process.env.PORT || 5000
+app.listen(port)
+console.log "start server on port #{port}".green
