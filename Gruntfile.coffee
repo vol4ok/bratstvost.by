@@ -142,4 +142,4 @@ module.exports = (grunt) ->
   grunt.registerTask "flatui", ["less:flatui"]
   grunt.registerTask "styles", ["less:bootstrap", "less:styles", "concat:styles"]
   grunt.registerTask "default", ["styles", "coffee:client"]
-  grunt.registerTask "dist", ["styles", "coffee", "concat:dist", "cssmin", "uglify", "bump", "copy"]
+  grunt.registerTask "dist", ["styles", "coffee", "concat:dist", "cssmin", "uglify", "copy"]
