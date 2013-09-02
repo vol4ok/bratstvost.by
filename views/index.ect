@@ -3,19 +3,28 @@
 <script typt="text/json" id="events-data">
   [
     {
-      "day": 31,
-      "month": "авг",
-      "title": "Поездка в <abbr title=\"Психоневрологический интернат\">ПНИ</abbr> д. Тарасики",
+      "day": 4,
+      "month": "сен",
+      "title": "Поездка в Столбцовский <abbr title=\"Психоневрологический интернат\">ПНИ</abbr>",
       "meeting_time": "12:00",
-      "meeting_place": "<i>уточнять по телефону у брата Сергия</i>",
       "organizer": "брат Сергий",
       "phone": "8 (029) 373-72-50"
     },
     {
       "day": 6,
       "month": "сен",
+      "title": "Молебен в храме Преображения",
+      "body": "В храме Преображения Господня в Заславле состоится молебен для паломников из Заславля. Просьба быть всем, без опозданий.",
+      "event_time": "17:00",
+      "event_place": "храм Преображения Господня в г. Заславле"
+    },
+    {
+      "day": 6,
+      "month": "сен",
       "title": "Поездка в Лавришево",
-      "body": "С 6 по 8 сентября паломническая поездка с послушанием в Свято-Елисеевский мужской монастырь в Лавришево<br><em>Старших в группах подать списки желающих поехать в Лавришево <strong>до 30 августа</strong></em>.",
+      "body": "С 6 по 8 сентября паломническая поездка с послушанием в Свято-Елисеевский мужской монастырь в Лавришево<br>Постельные принадлежности выдадут! Кормить будут! Взять теплые вещи — осень на дворе! Старшим в группах взять по чайнику! Стоимость поездки — 70 000 рублей",
+      "meeting_time": "18:00 — <b>Минск</b>, 17:00 — <b>Заславль</b>, ",
+      "meeting_place": "ст.м Петровщина <i>(стоянка Макдональдс) — <b>Минск</b>, храм Преображения Господня — <b>Заславль</b></i>",
       "organizer": "брат Сергий",
       "phone": "8 (029) 373-72-50"
     }
@@ -76,10 +85,10 @@
           </div>
       
           <dl>
-            <dt ng-show="event.event_time.length>0"><i class="icon-time"></i> Время проведения</dt>
+            <dt ng-show="event.event_time.length>0"><i class="icon-time"></i> Время мероприятия</dt>
             <dd ng-show="event.event_time.length>0"  ng-bind-html-unsafe="event.event_time">{{event.event_time}}</dd>
       
-            <dt ng-show="event.event_place.length>0"><i class="icon-place"></i> Место проведения</dt>
+            <dt ng-show="event.event_place.length>0"><i class="icon-place"></i> Место мероприятия</dt>
             <dd ng-show="event.event_place.length>0" ng-bind-html-unsafe="event.event_place">{{event.event_place}}</dd>
 
             <dt ng-show="event.meeting_time.length>0"><i class="icon-time"></i> Время сбора</dt>
