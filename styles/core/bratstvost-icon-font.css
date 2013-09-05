@@ -10,6 +10,7 @@
     url("../fonts/bratstvost-icon-font.woff") format("woff");
   font-weight: normal;
   font-style: normal;
+
 }
 
 [data-icon]:before {
@@ -61,5 +62,13 @@
 
 .icon-phone:before {
   content: "e";
+}
+
+.icon-money:before {
+  content: "1";
+}
+
+.icon-wallet:before {
+  content: "w";
 }
 
