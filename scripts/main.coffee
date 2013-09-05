@@ -1,4 +1,5 @@
 window.app = angular.module("bratstvost-app", [])
+window.app = angular.module("bratstvost-app", ['ngSanitize'])
 
 class EventListCtrl
   $scope = {}
