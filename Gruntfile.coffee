@@ -11,6 +11,14 @@ module.exports = (grunt) ->
   
   grunt.initConfig
 
+    watch: 
+      less:
+        files: 'styles/**/*.less'
+        tasks: ['less']
+      coffee:
+        files: 'scripts/**/*.coffee'
+        tasks: ['coffee:client']
+
     coffee:
       client:
         files:
