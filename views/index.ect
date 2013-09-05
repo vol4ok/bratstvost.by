@@ -1,54 +1,5 @@
 <% extend 'layout' %>
 
-<script typt="text/json" id="events-data">
-  [
-    {
-      "day": 4,
-      "month": "сен",
-      "title": "Поездка в Столбцовский <abbr title=\"Психоневрологический интернат\">ПНИ</abbr>",
-      "meeting_time": "12:00",
-      "organizer": "брат Сергий",
-      "phone": "8 (029) 373-72-50"
-    },
-    {
-      "day": 5,
-      "month": "сен",
-      "title": "Фестиваль «Чулае сэрца»",
-      "body": "Принимаем участие в фестивале «Чулае сэрца» для детей с особенностями психофизического развития, детей инвалидов, онкобольных.",
-      "event_place": "Агроусадьба «Велюна», д. Бровки",
-      "meeting_time": "10:30",
-      "meeting_place": "Свято-Елисаветинский монастырь",
-      "organizer": "брат Сергий",
-      "phone": "8 (029) 373-72-50"
-    },
-    {
-      "day": 6,
-      "month": "сен",
-      "title": "Выезд с <abbr title=\"Психоневрологический интернат\">ПНИ</abbr> Семашко в Логойск",
-      "body": "Везем проживающих <abbr title=\"Психоневрологический интернат\">ПНИ</abbr> Семашко в Логойск на святой источник",
-      "organizer": "брат Сергий, отец Родион"
-    },
-    {
-      "day": 6,
-      "month": "сен",
-      "title": "Молебен в храме Преображения",
-      "body": "В храме Преображения Господня в Заславле состоится молебен для паломников из Заславля. Просьба быть всем, без опозданий.",
-      "event_time": "17:00",
-      "event_place": "храм Преображения Господня в г. Заславле"
-    },
-    {
-      "day": 6,
-      "month": "сен",
-      "title": "Поездка в Лавришево",
-      "body": "С 6 по 8 сентября паломническая поездка с послушанием в Свято-Елисеевский мужской монастырь в Лавришево<br>Постельные принадлежности выдадут! Кормить будут! Взять теплые вещи — осень на дворе! Старшим в группах взять по чайнику! Стоимость поездки — 70 000 рублей",
-      "meeting_time": "18:00 — <b>Минск</b>, 17:00 — <b>Заславль</b>, ",
-      "meeting_place": "ст.м Петровщина <i>(стоянка Макдональдс) — <b>Минск</b>, храм Преображения Господня — <b>Заславль</b></i>",
-      "organizer": "брат Сергий",
-      "phone": "8 (029) 373-72-50"
-    }
-  ]
-</script>
-
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <div class="logo"></div>
@@ -75,8 +26,15 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3" ng-controller="EventListCtrl">
 
+
+
     <div class="well well-events event-list">
-      <article class="event-view" ng-repeat="event in events">
+
+      <h2 class="next-event-title">Ближайшие мероприятия</h2>
+
+      <h6>обновлено {{data.lastUpdate}}</h6>
+
+      <article class="event-view" ng-repeat="event in data.nextEvents">
         <div class="event-short" ng-click="expanded=!expanded">
           <div class="event-state"></div>
           
@@ -85,32 +43,85 @@
             <div class="month">{{event.month}}</div>
           </div>
           
-          <div class="event-head" ng-bind-html-unsafe="event.title">{{event.title}}</div>
+          <div class="event-head" ng-bind-html="event.title">{{event.title}}</div>
         </div>
       
         <div class="event-more" ng-class="{true: 'active'}[expanded]">
-          <div class="event-body" ng-if="event.body" ng-bind-html-unsafe="event.body">
+          <div class="event-body" ng-if="event.body" ng-bind-html="event.body">
             {{event.body}}
           </div>
       
           <dl>
-            <dt ng-show="event.event_time.length>0"><i class="icon-time"></i> Время мероприятия</dt>
-            <dd ng-show="event.event_time.length>0"  ng-bind-html-unsafe="event.event_time">{{event.event_time}}</dd>
+            <dt ng-if="event.event_time.length>0"><i class="icon-time"></i> Время мероприятия</dt>
+            <dd ng-if="event.event_time.length>0"  ng-bind-html="event.event_time">{{event.event_time}}</dd>
       
-            <dt ng-show="event.event_place.length>0"><i class="icon-place"></i> Место мероприятия</dt>
-            <dd ng-show="event.event_place.length>0" ng-bind-html-unsafe="event.event_place">{{event.event_place}}</dd>
+            <dt ng-if="event.event_place.length>0"><i class="icon-place"></i> Место мероприятия</dt>
+            <dd ng-if="event.event_place.length>0" ng-bind-html="event.event_place">{{event.event_place}}</dd>
 
-            <dt ng-show="event.meeting_time.length>0"><i class="icon-time"></i> Время сбора</dt>
-            <dd ng-show="event.meeting_time.length>0"  ng-bind-html-unsafe="event.meeting_time">{{event.meeting_time}}</dd>
+            <dt ng-if="event.meeting_time.length>0"><i class="icon-time"></i> Время сбора</dt>
+            <dd ng-if="event.meeting_time.length>0"  ng-bind-html="event.meeting_time">{{event.meeting_time}}</dd>
             
-            <dt ng-show="event.meeting_place.length>0"><i class="icon-place"></i> Место сбора</dt>
-            <dd ng-show="event.meeting_place.length>0" ng-bind-html-unsafe="event.meeting_place">{{event.meeting_place}}</dd>
+            <dt ng-if="event.meeting_place.length>0"><i class="icon-place"></i> Место сбора</dt>
+            <dd ng-if="event.meeting_place.length>0" ng-bind-html="event.meeting_place">{{event.meeting_place}}</dd>
       
-            <dt ng-show="event.organizer.length>0"><i class="icon-user"></i> Организатор</dt>
-            <dd ng-show="event.organizer.length>0">{{event.organizer}}</dd>
+            <dt ng-if="event.organizer.length>0"><i class="icon-user"></i> Организатор</dt>
+            <dd ng-if="event.organizer.length>0">{{event.organizer}}</dd>
       
-            <dt ng-show="event.phone.length>0"><i class="icon-phone"></i> Телефон</dt>
-            <dd ng-show="event.phone.length>0" ng-bind-html-unsafe="event.phone">{{event.phone}}</dd>
+            <dt ng-if="event.phone.length>0"><i class="icon-phone"></i> Телефон</dt>
+            <dd ng-if="event.phone.length>0" ng-bind-html="event.phone">{{event.phone}}</dd>
+
+            <dt ng-if="event.cost.length>0"><i class="icon-wallet"></i> Стоимость</dt>
+            <dd ng-if="event.cost.length>0" ng-bind-html="event.cost">{{event.cost}}</dd>
+
+            <dt ng-repeat-start="field in event.custom_field"><i ng-class="'icon-' + field.icon"></i> {{field.term}}</dt>
+            <dd ng-repeat-end ng-bind-html="field.desc">{{field.desc}}</dd>
+          </dl>
+        </div> 
+      </article>
+
+
+      <h2 class="past-event-title">Архив событий</h2>
+      <article class="event-view archive" ng-repeat="event in data.pastEvents">
+        <div class="event-short" ng-click="expanded=!expanded">
+          <div class="event-state"></div>
+          
+          <div class="event-date">
+            <div class="day">{{event.day}}</div>
+            <div class="month">{{event.month}}</div>
+          </div>
+          
+          <div class="event-head" ng-bind-html="event.title">{{event.title}}</div>
+        </div>
+      
+        <div class="event-more" ng-class="{true: 'active'}[expanded]">
+          <div class="event-body" ng-if="event.body" ng-bind-html="event.body">
+            {{event.body}}
+          </div>
+      
+          <dl>
+            <dt ng-if="event.event_time.length>0"><i class="icon-time"></i> Время мероприятия</dt>
+            <dd ng-if="event.event_time.length>0"  ng-bind-html="event.event_time">{{event.event_time}}</dd>
+      
+            <dt ng-if="event.event_place.length>0"><i class="icon-place"></i> Место мероприятия</dt>
+            <dd ng-if="event.event_place.length>0" ng-bind-html="event.event_place">{{event.event_place}}</dd>
+
+            <dt ng-if="event.meeting_time.length>0"><i class="icon-time"></i> Время сбора</dt>
+            <dd ng-if="event.meeting_time.length>0"  ng-bind-html="event.meeting_time">{{event.meeting_time}}</dd>
+            
+            <dt ng-if="event.meeting_place.length>0"><i class="icon-place"></i> Место сбора</dt>
+            <dd ng-if="event.meeting_place.length>0" ng-bind-html="event.meeting_place">{{event.meeting_place}}</dd>
+      
+            <dt ng-if="event.organizer.length>0"><i class="icon-user"></i> Организатор</dt>
+            <dd ng-if="event.organizer.length>0">{{event.organizer}}</dd>
+      
+            <dt ng-if="event.phone.length>0"><i class="icon-phone"></i> Телефон</dt>
+            <dd ng-if="event.phone.length>0" ng-bind-html="event.phone">{{event.phone}}</dd>
+
+            <dt ng-if="event.cost.length>0"><i class="icon-wallet"></i> Стоимость</dt>
+            <dd ng-if="event.cost.length>0" ng-bind-html="event.cost">{{event.cost}}</dd>
+
+            <dt ng-repeat-start="field in event.custom_field"><i ng-class="'icon-' + field.icon"></i> {{field.term}}</dt>
+            <dd ng-repeat-end ng-bind-html="field.desc">{{field.desc}}</dd>
           </dl>
         </div> 
       </article>
