@@ -1,4 +1,3 @@
-window.app = angular.module("bratstvost-app", [])
 window.app = angular.module("bratstvost-app", ['ngSanitize'])
 
 moment.lang('ru')
@@ -26,7 +25,6 @@ class EventListCtrl
 
   $scope.formatPhone = (p) ->
     p = parse_phone(p)
-    console.log "<a href=\"phone:#{format_phone_raw(p)}\">#{format_phone_nice(p)}</a>"
     return "<a href=\"phone:#{format_phone_raw(p)}\">#{format_phone_nice(p)}</a>"
 
   constructor: (scope) ->    
