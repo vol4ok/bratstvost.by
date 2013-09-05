@@ -15,6 +15,7 @@ EventSchema = new Schema
   organizer: String
   priest: String
   phone: String
+  cost: String
   custom_field: [
     icon: String
     term: String
