@@ -34,6 +34,17 @@
   }
 }
 
+.next-event-title {
+  color: @sun-flower;
+  font: bold 24px @font-family-narrow;
+  margin-top: 0;
+}
+
+.past-event-title {
+  color: desaturate(@sun-flower, 50%);
+  font: bold 24px @font-family-narrow;
+}
+
 .event-short {
   position: relative;
   display: table;
@@ -92,6 +103,7 @@
     height: auto;
   }
   padding-left: 20px;
+  font: 15px/19px @font-family-sans-serif;
 
   ul {
     padding: 0;
@@ -100,6 +112,7 @@
   }
 
   li {
+    font: 15px/19px @font-family-sans-serif;
     padding: 0;
     margin: 0;
   }
@@ -139,13 +152,13 @@
 
 .event-body
   p {
-    font: 13px/18px @font-family-sans-serif;
+    font: 15px/19px @font-family-sans-serif;
     margin: .25em 0;
-    text-indent: 1em;
-    text-align: left;
-    strong {
-      font-style: italic;
-    }
+    //text-indent: 1em;
+    // text-align: left;
+    // strong {
+    //   font-style: italic;
+    // }
   }
 
 .archive {
