@@ -1,4 +1,3 @@
-
 @charset "UTF-8";
 
 @font-face {
@@ -12,6 +11,7 @@
   font-style: normal;
 
 }
+
 
 [data-icon]:before {
   font-family: "bratstvost-icon-font";
@@ -64,11 +64,18 @@
   content: "e";
 }
 
-.icon-money:before {
-  content: "1";
-}
-
 .icon-wallet:before {
   content: "w";
 }
 
+.icon-archive:before {
+  content: "a";
+}
+
+.icon-news:before {
+  content: "n";
+}
+
+.icon-news2:before {
+  content: "N";
+}
