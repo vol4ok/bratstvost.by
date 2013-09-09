@@ -13,27 +13,41 @@
 </div>
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <div class="well">
-      <p>Сайт в процессе разработки, поэтому часть информации будет недоступна, но она должна скоро появиться в обновленном формате, помолитесь за нас чтобы у нас все получилось...</p>
-      <p>
-        <a href="http://old.bratstvost.by" class="btn btn-info">Верните меня на старую версию сайта</a>
-      </p>
+
+  <div class="col-md-7">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="well well-oldsite">
+          <p>Сайт в процессе разработки, поэтому часть информации будет недоступна, но она должна скоро появиться в обновленном формате, помолитесь за нас чтобы у нас все получилось...</p>
+          <p>
+            <a href="http://old.bratstvost.by" class="btn btn-info">Верните меня на старую версию сайта</a>
+          </p>
+        </div>
+      </div>
     </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        
+        <div class="well">
+          <h2>Новости</h2>
+          <ul class="news-list" ng-controller="NewsListCtrl">
+            <li class="news" ng-repeat="news in data.news">
+              <div class="time"><i class="icon-time"></i> {{news.timeAgo}}</div>
+              <div class="text" ng-bind-html="news.text">{{news.text}}</div>
+            </li>
+        </div>
+        
+      </div>
+    </div>
+    
   </div>
-</div>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3" ng-controller="EventListCtrl">
-
-
-
+  <div class="col-md-5" ng-controller="EventListCtrl">
     <div class="well well-events event-list">
-
       <h2 class="next-event-title">Ближайшие мероприятия</h2>
-
       <h6>обновлено {{data.lastUpdate}}</h6>
-
       <article class="event-view" ng-repeat="event in data.nextEvents">
         <div class="event-short" ng-click="expanded=!expanded">
           <div class="event-state"></div>
@@ -78,7 +92,6 @@
           </dl>
         </div> 
       </article>
-
 
       <h2 class="past-event-title">Архив событий</h2>
       <article class="event-view archive" ng-repeat="event in data.pastEvents">
