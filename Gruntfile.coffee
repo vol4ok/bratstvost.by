@@ -57,7 +57,7 @@ module.exports = (grunt) ->
 
 
     concat:
-      scripts:
+      core:
         src: [
           "bower_components/jquery2/jquery.js"
           "bower_components/angular/angular.js"
@@ -66,6 +66,18 @@ module.exports = (grunt) ->
           "bower_components/moment/min/langs.min.js"
         ]
         dest: "public/js/core.js"
+
+      data:
+        src: [
+          "scripts/data.js"
+        ]
+        dest: "public/js/data.js"
+
+      data_dist:
+        src: [
+          "scripts/data.js"
+        ]
+        dest: "dist/public/js/data.js"
 
       dist:
         src: [
