@@ -31,7 +31,7 @@
       <div class="col-md-12">
         
         <div class="well">
-          <h2>Новости</h2>
+          <h2><i class="icon-news2"></i> Новости</h2>
           <ul class="news-list" ng-controller="NewsListCtrl">
             <li class="news" ng-repeat="news in data.news">
               <div class="time"><i class="icon-time"></i> {{news.timeAgo}}</div>
@@ -46,8 +46,8 @@
 
   <div class="col-md-6" ng-controller="EventListCtrl">
     <div class="well well-events event-list">
-      <h2 class="next-event-title">Ближайшие мероприятия</h2>
-      <h6>обновлено {{data.lastUpdate}}</h6>
+      <h2 class="next-event-title"><i class="icon-cal"></i> Ближайшие мероприятия</h2>
+      <h6><i class="icon-time"></i> обновлено {{data.lastUpdate}}</h6>
       <article class="event-view" ng-repeat="event in data.nextEvents">
         <div class="event-short" ng-click="expanded=!expanded">
           <div class="event-state"></div>
@@ -93,7 +93,7 @@
         </div> 
       </article>
 
-      <h2 class="past-event-title">Архив событий</h2>
+      <h2 class="past-event-title"><i class="icon-archive"></i> Архив событий</h2>
       <article class="event-view archive" ng-repeat="event in data.pastEvents">
         <div class="event-short" ng-click="expanded=!expanded">
           <div class="event-state"></div>
