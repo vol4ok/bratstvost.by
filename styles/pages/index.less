@@ -15,15 +15,13 @@ h1.title {
   font: 400 42px @font-family-narrow;
 }
 
-h2.next-event-title {
-  color: @sun-flower;
-  font: bold 24px @font-family-narrow;
-  margin-top: 0;
-}
-
-h2.past-event-title {
-  color: desaturate(@sun-flower, 50%);
-  font: bold 24px @font-family-narrow;
+.well {
+  h2 {
+    font: bold 24px @font-family-narrow;
+    &:first-child {
+      margin-top: 0;
+    }
+  }
 }
 
 .well-events {
