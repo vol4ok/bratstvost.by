@@ -6,14 +6,12 @@ EventSchema = new Schema
   type: { type: String, default: "event" }
   date: Date
   title: String
-  head: String
   body: String
   event_place: String
   event_time: Date
   meeting_place: String
   meeting_time: Date
   organizer: String
-  priest: String
   phone: String
   cost: String
   custom_field: [
@@ -21,7 +19,7 @@ EventSchema = new Schema
     term: String
     desc: String
   ]
-  published: { type: Boolean, default: no }
+  published: { type: Boolean, default: yes }
   created: { type: Date, default: Date.now }
   updated: { type: Date, default: Date.now }
   , _id: false
