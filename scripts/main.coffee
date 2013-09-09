@@ -3,10 +3,10 @@ window.app = angular.module("bratstvost-app", ['ngSanitize'])
 moment.lang('ru')
 
 DATA = {
-  "last_update": "2013-09-05T08:01:49.571Z",
+  "last_update": "2013-09-09T18:33:49.771Z",
   "news": [
     {
-      "date": "2013-09-09T17:23:02.995Z",
+      "date": "2013-09-09T18:33:49.771Z",
       "text": "<p>Возможность помогать больным людям — это дар Божий — Сергей Довгаль о служении в психоневрологических интернатах.</p><p><a class=\"btn btn-info btn-sm more\" href=\"http://www.youtube.com/watch?v=p5k_0m0wEy8&feature=player_embedded&list=UU-Vlk4PCO82-yKzt6zxkN0g\">Смотреть видео →</a></p>"
     }
   ],
@@ -85,6 +85,42 @@ DATA = {
       "organizer": "брат Сергий",
       "phone": "8 (029) 373-72-50",
       "cost": "<b>70 000</b> бел. рублей"
+    },
+    {
+      "day": 11,
+      "month": "сен",
+      "title": "Выезд <abbr title=\"Психоневрологический интернат\">ПНИ</abbr> Молодечно в г.Логойск",
+      "body": "<ul><li>Молебен в храме святителя Николая</li><li>Купание в святом источнике</li><li>Трапеза</li></ul>"
+      "event_place": "храм св. Николая в г. Логойск"
+      "organizer": "брат Сергий",
+      "phone": "8 (029) 373-72-50"
+    },
+    {
+      "day": 12,
+      "month": "сен",
+      "title": "Концерт Д.Каминского в <abbr title=\"Психоневрологический интернат\">ПНИ</abbr> Новинках",
+      "body": "<p>Cольный концерт Дмитрия Каминского в детском <abbr title=\"Психоневрологический интернат\">ПНИ</abbr> в Новинках</p>"
+      "event_time": "11:00",
+      "event_place": "ул. Выготского, д. 16",
+      "organizer": "брат Сергий",
+      "phone": "8 (029) 373-72-50"
+    },
+    {
+      "day": 13,
+      "month": "сен",
+      "title": "Экскурсия для <abbr title=\"Психоневрологический интернат\">ПНИ</abbr> в Дражне по г.Минску",
+      "body": "Обзорная экскурсия насельников <abbr title=\"Психоневрологический интернат\">ПНИ</abbr> в Дражне по г.Минску</p>",
+      "organizer": "брат Сергий",
+      "phone": "8 (029) 373-72-50"
+    },
+    {
+      "day": 14,
+      "month": "сен",
+      "title": "Выезд <abbr title=\"Психоневрологический интернат\">ПНИ</abbr> Тарасики в г.Логойск",
+      "body": "<ul><li>Молебен в храме святителя Николая</li><li>Купание в святом источнике</li><li>Трапеза</li></ul>"
+      "event_place": "храм св. Николая в г. Логойск"
+      "organizer": "брат Сергий",
+      "phone": "8 (029) 373-72-50"
     }
   ]
 }
@@ -101,7 +137,7 @@ class NewsListCtrl
     $scope.data.news = DATA.news
 
     for news in $scope.data.news
-      news.timeAgo = moment(news.data).fromNow()
+      news.timeAgo = moment(news.date).fromNow()
 
 class EventListCtrl
   $scope = {}
