@@ -3,7 +3,7 @@ window.app = angular.module("bratstvost-app", ['ngSanitize'])
 moment.lang('ru')
 
 DATA = {
-  "last_update": "2013-09-09T18:33:49.771Z",
+  "last_update": "2013-09-10T16:56:17.677Z",
   "news": [
     {
       "date": "2013-09-09T18:33:49.771Z",
