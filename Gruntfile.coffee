@@ -54,6 +54,7 @@ module.exports = (grunt) ->
         files:
           "temp/css/layout.css": "styles/pages/layout.less"
           "temp/css/index.css": "styles/pages/index.less"
+          "public/css/events.css": "styles/pages/events.less"
 
 
 
