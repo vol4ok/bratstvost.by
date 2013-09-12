@@ -22,8 +22,9 @@ module.exports = (grunt) ->
     coffee:
       client:
         files:
-          "public/js/main.js": "scripts/main.coffee"
-          "public/js/events.js": "scripts/events.coffee"
+          "temp/js/main.js": "scripts/main.coffee"
+          "temp/js/events.js": "scripts/events.coffee"
+          "temp/js/directives/event-view.js": "scripts/directives/event-view.coffee"
 
       server:
         options:
@@ -66,6 +67,13 @@ module.exports = (grunt) ->
           "bower_components/moment/min/langs.min.js"
         ]
         dest: "public/js/core.js"
+
+      main:
+        src: [
+          "temp/js/main.js"
+          "temp/js/directives/event-view.js"
+        ]
+        dest: "public/js/main.js"
 
       data:
         src: [
@@ -164,5 +172,5 @@ module.exports = (grunt) ->
   grunt.registerTask "bootstrap", ["less:bootstrap"]
   grunt.registerTask "flatui", ["less:flatui"]
   grunt.registerTask "styles", ["less:bootstrap", "less:styles", "concat:styles"]
-  grunt.registerTask "default", ["styles", "coffee:client"]
+  grunt.registerTask "default", ["styles", "coffee:client", "concat:main"]
   grunt.registerTask "dist", ["styles", "coffee", "concat:dist", "cssmin", "uglify", "copy"]
