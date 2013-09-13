@@ -23,7 +23,7 @@ module.exports = (grunt) ->
       client:
         files:
           "temp/js/main.js": "scripts/main.coffee"
-          "temp/js/events.js": "scripts/events.coffee"
+          "public/js/events.js": "scripts/events.coffee"
           "temp/js/directives/event-view.js": "scripts/directives/event-view.coffee"
 
       server:

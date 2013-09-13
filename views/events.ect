@@ -5,13 +5,18 @@
   <link rel="stylesheet" href="/css/events.css">
 <% end %>
 
-<div class="page-header col-sm-9">
+<%- include 'templates/_eventview-template' %>
+
+<div class="page-header col-sm-12">
   <h1>Создание событий</h1>
 </div>
 
 <div class="row" ng-controller="EventFormCtrl" ng-init="expanded=true">
-  <div class="col-sm-4">
-    <form class="event-form">
+  <div class="col-sm-6">
+    <textarea class="json-edit form-control" ng-class="{true: 'red', false: 'green'}[invalidJson==true]" ng-model="json">
+      
+    </textarea>
+    <!-- <form class="event-form">
       <h4>Short</h4>
       <fieldset>
         <p>
@@ -57,51 +62,62 @@
       <h4>Custom field</h4>
 
       <fieldset>
-        <!-- <p><input class="form-control" type="text" placeholder="" ng-model=""></p>
         <p><input class="form-control" type="text" placeholder="" ng-model=""></p>
-        <p><input class="form-control" type="text" placeholder="" ng-model=""></p> -->
+        <p><input class="form-control" type="text" placeholder="" ng-model=""></p>
+        <p><input class="form-control" type="text" placeholder="" ng-model=""></p>
       </fieldset>
-    </form>
+    </form> -->
   </div>
 
-  <div class="col-sm-5">
-    <article class="well well-events event-view">
-      <div class="event-short" ng-click="expanded=!expanded">
-        <div class="event-state"></div>
-        
-        <div class="event-date">
-          <div class="day">{{event.day}}</div>
-          <div class="month">{{event.month}}</div>
-        </div>
-        
-        <div class="event-head" ng-bind-html-unsafe="event.title">{{form.title}}</div>
+  <div class="col-sm-6">
+    <div class="well well-events">
+        <eventview ng-init="expanded=true" event="event"></eventview>
+        <!-- <article class="well well-events event-view">
+          <div class="event-short" ng-click="expanded=!expanded">
+            <div class="event-state"></div>
+            
+            <div class="event-date">
+              <div class="day">{{event.day}}</div>
+              <div class="month">{{event.month}}</div>
+            </div>
+            
+            <div class="event-head" ng-bind-html-unsafe="event.title">{{event.title}}</div>
+          </div>
+
+          <div class="event-more" ng-class="{true: 'active'}[expanded]">
+            <div class="event-body" ng-if="event.body" ng-bind-html-unsafe="event.body">
+              {{event.body}}
+            </div>
+
+            <dl>
+              <dt ng-show="event.meeting_time.length>0"><i class="icon-time"></i> Место проведения</dt>
+              <dd ng-show="event.meeting_time.length>0">{{event.meeting_time}}</dd>
+
+              <dt ng-show="event.meeting_place.length>0"><i class="icon-place"></i> Место проведения</dt>
+              <dd ng-show="event.meeting_place.length>0">{{event.meeting_place}}</dd>
+
+              <dt ng-show="event.event_time.length>0"><i class="icon-time"></i> Место события</dt>
+              <dd ng-show="event.event_time.length>0">{{event.event_time}}</dd>
+
+              <dt ng-show="event.event_place.length>0"><i class="icon-place"></i> Место события</dt>
+              <dd ng-show="event.event_place.length>0">{{event.event_place}}</dd>
+
+              <dt ng-show="event.organizer.length>0"><i class="icon-user"></i> Организатор</dt>
+              <dd ng-show="event.organizer.length>0">{{event.organizer}}</dd>
+              
+              <dt ng-show="event.phone.length>0"><i class="icon-phone"></i> Телефон</dt>
+              <dd ng-show="event.phone.length>0" ng-bind-html-unsafe="event.phone">{{event.phone}}</dd>
+            </dl>
+          </div> 
+        </article> -->
       </div>
-
-      <div class="event-more" ng-class="{true: 'active'}[expanded]">
-        <div class="event-body" ng-if="event.body" ng-bind-html-unsafe="event.body">
-          {{event.body}}
-        </div>
-
-        <dl>
-          <dt ng-show="event.meeting_time.length>0"><i class="icon-time"></i> Место проведения</dt>
-          <dd ng-show="event.meeting_time.length>0">{{event.meeting_time}}</dd>
-
-          <dt ng-show="event.meeting_place.length>0"><i class="icon-place"></i> Место проведения</dt>
-          <dd ng-show="event.meeting_place.length>0">{{event.meeting_place}}</dd>
-
-          <dt ng-show="event.event_time.length>0"><i class="icon-time"></i> Место события</dt>
-          <dd ng-show="event.event_time.length>0">{{event.event_time}}</dd>
-
-          <dt ng-show="event.event_place.length>0"><i class="icon-place"></i> Место события</dt>
-          <dd ng-show="event.event_place.length>0">{{event.event_place}}</dd>
-
-          <dt ng-show="event.organizer.length>0"><i class="icon-user"></i> Организатор</dt>
-          <dd ng-show="event.organizer.length>0">{{event.organizer}}</dd>
-          
-          <dt ng-show="event.phone.length>0"><i class="icon-phone"></i> Телефон</dt>
-          <dd ng-show="event.phone.length>0" ng-bind-html-unsafe="event.phone">{{event.phone}}</dd>
-        </dl>
-      </div> 
-    </article>
+    </div>
+    <!-- <div class="row">
+      <div class="col-sm-12">
+        <pre>
+          {{json}}
+        </pre>
+      </div>
+    </div> -->
   </div>
 </div>
