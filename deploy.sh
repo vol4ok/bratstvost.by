@@ -1,3 +1,4 @@
+grunt dist
 cd dist
 git add .
 git ci -a -m "up "`date +"%d.%m.%Y-%H:%M:%S"`
@@ -7,3 +8,4 @@ cd /var/www/bratstvost
 git pull
 forever restartall
 ENDSSH%
+cd ..
