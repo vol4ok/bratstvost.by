@@ -6,4 +6,3 @@ app.directive "eventview", () ->
   }
   templateUrl: "eventview-template"
   link: (scope, element, attrs) ->
-    console.log scope, element, attrs
