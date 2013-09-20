@@ -2,9 +2,15 @@ window.app = angular.module("bratstvost-app", ['ngSanitize'])
 
 moment.lang('ru')
 
+
 DATA = {
-  "last_update": "2013-09-16T11:08:00+0300",
+  "last_update": "2013-09-20T10:15:00.000+0300",
   "news": [
+    {
+      "date": "2013-09-19",
+      "hot": true,
+      "text": "<p>Братчики с отоцом Николаем <i>(духовником Братства святителя Спиридона)</i> по милости Божией приняли в дар от брата Константина для храма Преображения Господня в г.Заславль частичку святых мощей преподобного Сергия Радонежского. Святыня будет находиться в храме, а также по благословению отца настоятеля будет вывозиться для поклонения в инернаты. <b>Слава Богу за чудный дар!</b></p>"
+    },
     {
       "date": "2013-09-09T18:33:49.771Z",
       "text": "<p>Возможность помогать больным людям — это дар Божий — Сергей Довгаль о служении в психоневрологических интернатах.</p><p><a class=\"btn btn-info btn-sm more\" href=\"http://www.youtube.com/watch?v=p5k_0m0wEy8&feature=player_embedded&list=UU-Vlk4PCO82-yKzt6zxkN0g\">Смотреть видео →</a></p>"
@@ -159,7 +165,18 @@ DATA = {
       "event_place": "храм св. Николая в г. Логойск",
       "organizer": "брат Сергий",
       "phone": "<a href=\"phone:+375293737250\">8 (029) 373-72-50</a>"
+    },
+    {
+      "date": "2013-09-21",
+      "title": "Престольный Праздник в храме Рождества Пресвятой Богородицы",
+      "body": "В нашем Благочинии, в храме Рождества Пресвятой Богородицы, в Старом селе, состоится праздничная Литургия",
+      "event_time": "10.00 <i>(начало Литургии)</i>",
+      "event_place": "п. Старое село",
+      "meeting_place": "ст. м. Каменная горка",
+      "organizer": "брат Сергий",
+      "phone": "<a href=\"phone:+375293737250\">8 (029) 373-72-50</a>"
     }
+
   ] 
 }
 
@@ -174,8 +191,13 @@ class NewsListCtrl
     $scope.data = {}
     $scope.data.news = DATA.news
 
+    $scope.data.news.sort (a,b) -> 
+      moment(b.date).valueOf() - moment(a.date).valueOf()
+
     for news in $scope.data.news
       news.timeAgo = moment(news.date).fromNow()
+
+
 
 class EventListCtrl
   $scope = {}
