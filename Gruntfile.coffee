@@ -165,6 +165,6 @@ module.exports = (grunt) ->
 
   grunt.registerTask "bootstrap", ["less:bootstrap"]
   grunt.registerTask "styles", ["less:bootstrap", "less:styles", "concat:styles"]
-  grunt.registerTask "core", ["concat.core"]
+  grunt.registerTask "core", ["concat:core"]
   grunt.registerTask "default", ["styles", "coffee:client", "concat:main"]
   grunt.registerTask "dist", ["styles", "coffee", "concat:dist", "cssmin", "uglify", "copy"]
