@@ -1,0 +1,36 @@
+configure = ($routeProvider, $locationProvider) ->
+  moment.lang('ru')
+
+  $locationProvider
+    .html5Mode(yes)
+
+  $routeProvider
+    .when "/",
+      templateUrl: "index-view"
+
+main = (DATA) ->
+  window.DATA = DATA
+
+angular.module('app.ctrl', [
+  'NewsListCtrl'
+  'EventListCtrl'
+])
+
+angular.module('app.div', [
+  'EventViewDiv'
+])
+
+angular.module('app.svc', [
+  'EventsSvc'
+])
+
+angular.module('app', [
+    'ngSanitize'
+    'ngRoute'
+    'app.ctrl'
+    'app.div'
+    'app.svc'
+    'app.data'
+  ])
+  .config([ '$routeProvider', '$locationProvider', configure ])
+  .run(["DATA", main])

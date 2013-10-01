@@ -1,4 +1,4 @@
-app.directive "eventview", () ->
+angular.module("EventViewDiv", []).directive "eventview", () ->
   restrict: "E"
   replace: yes
   scope: {

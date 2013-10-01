@@ -15,6 +15,10 @@
     "jquery2": "git://github.com/iki/jquery2.git#~2.0.0",
     "normalize-css": "git://github.com/necolas/normalize.css.git#~2.1.2",
     "angular-sanitize": "~1.0.8",
+<<<<<<< HEAD
     "moment": "~2.2.1"
+=======
+    "angular-route": "1.2"
+>>>>>>> br4
   }
 }
