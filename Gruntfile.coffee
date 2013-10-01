@@ -22,9 +22,11 @@ module.exports = (grunt) ->
     coffee:
       client:
         files:
-          "temp/js/main.js": "scripts/main.coffee"
-          "public/js/events.js": "scripts/events.coffee"
-          "temp/js/directives/event-view.js": "scripts/directives/event-view.coffee"
+          "temp/js/app.js":                         "scripts/app.coffee"
+          "temp/js/controllers/ctrl-event-list.js": "scripts/controllers/ctrl-event-list.coffee"
+          "temp/js/controllers/ctrl-news-list.js":  "scripts/controllers/ctrl-news-list.coffee"
+          "temp/js/services/svc-events.js":         "scripts/services/svc-events.coffee"
+          "temp/js/directives/div-event-view.js":   "scripts/directives/div-event-view.coffee"
 
       server:
         options:
@@ -54,7 +56,6 @@ module.exports = (grunt) ->
         files:
           "temp/css/layout.css": "styles/pages/layout.less"
           "temp/css/index.css": "styles/pages/index.less"
-          "public/css/events.css": "styles/pages/events.less"
 
 
 
@@ -63,6 +64,7 @@ module.exports = (grunt) ->
         src: [
           "bower_components/jquery2/jquery.js"
           "bower_components/angular/angular.js"
+          "bower_components/angular-route/angular-route.js"
           "bower_components/angular-sanitize/angular-sanitize.js"
           "bower_components/moment/min/moment.min.js"
           "bower_components/moment/min/langs.min.js"
@@ -71,27 +73,20 @@ module.exports = (grunt) ->
 
       main:
         src: [
-          "temp/js/main.js"
-          "temp/js/directives/event-view.js"
-        ]
-        dest: "public/js/main.js"
-
-      data:
-        src: [
+          "temp/js/controllers/ctrl-event-list.js" 
+          "temp/js/controllers/ctrl-news-list.js" 
+          "temp/js/services/svc-events.js"
+          "temp/js/directives/div-event-view.js"
           "scripts/data.js"
+          "temp/js/app.js"
         ]
-        dest: "public/js/data.js"
-
-      data_dist:
-        src: [
-          "scripts/data.js"
-        ]
-        dest: "dist/public/js/data.js"
+        dest: "public/js/app.js"
 
       dist:
         src: [
           "bower_components/jquery2/jquery.min.js"
           "bower_components/angular/angular.min.js"
+          "bower_components/angular-route/angular-route.min.js"
           "bower_components/angular-sanitize/angular-sanitize.min.js"
           "bower_components/moment/min/moment.min.js"
           "bower_components/moment/min/langs.min.js"
@@ -148,8 +143,7 @@ module.exports = (grunt) ->
         options:
           mangle: false
         files:
-          'dist/public/js/main.js': ['public/js/main.js']
-          'dist/public/js/events.js': ['public/js/events.js']
+          'dist/public/js/app.js': ["public/js/app.js"]
 
 
     clean:
@@ -169,9 +163,8 @@ module.exports = (grunt) ->
         pushTo: 'upstream'
         gitDescribeOptions: '--tags --always --abbrev=1 --dirty=-d'
 
-  #grunt.registerTask "default", ["less", "concat", "stylus", "coffee"]
   grunt.registerTask "bootstrap", ["less:bootstrap"]
-  grunt.registerTask "flatui", ["less:flatui"]
   grunt.registerTask "styles", ["less:bootstrap", "less:styles", "concat:styles"]
+  grunt.registerTask "core", ["concat.core"]
   grunt.registerTask "default", ["styles", "coffee:client", "concat:main"]
   grunt.registerTask "dist", ["styles", "coffee", "concat:dist", "cssmin", "uglify", "copy"]
