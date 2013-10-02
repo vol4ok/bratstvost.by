@@ -1,0 +1,14 @@
+<script type="text/ng-template" id="archive-collapse-template">
+  <div class="archive-collapse">
+    <h4>
+      <a href class="plain" ng-click="expanded=!expanded">
+        <i ng-class="{true: 'icon-expanded', false: 'icon-collapsed'}[expanded]"></i>
+        <span class="dotted">{{title}}</span>
+      </a>
+    </h4>
+    <div class="content"
+      ng-init="expanded=expanded || false" 
+      ng-show="expanded" 
+      ng-transclude></div>
+  </div>
+</script>

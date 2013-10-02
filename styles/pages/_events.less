@@ -167,3 +167,33 @@
     background: #cab659;
   }
 }
+
+.archive-collapse {
+  h4 {
+    color: #cab659;
+    text-transform: capitalize;
+    font: bold 20px @font-family-narrow;
+    i {
+      font-size: 14px;
+      margin-right: 5px;
+    }
+  }
+  a.plain {
+    color: inherit;
+    text-decoration: inherit;
+    cursor: pointer;
+    &:hover, &:active, &:visited {
+      color: inherit;
+      text-decoration: inherit;
+    }
+  }
+  .dotted {
+    border-bottom: 1px dotted #cab659;
+    &:hover, &:active {
+      border: none;
+    }
+  }
+  .content {
+    margin-left: 15px;
+  }
+}

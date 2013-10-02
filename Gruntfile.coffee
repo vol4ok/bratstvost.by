@@ -27,6 +27,7 @@ module.exports = (grunt) ->
           "temp/js/controllers/ctrl-news-list.js":  "scripts/controllers/ctrl-news-list.coffee"
           "temp/js/services/svc-events.js":         "scripts/services/svc-events.coffee"
           "temp/js/directives/div-event-view.js":   "scripts/directives/div-event-view.coffee"
+          "temp/js/directives/div-archive-collapse.js":   "scripts/directives/div-archive-collapse.coffee"
 
       server:
         options:
@@ -63,6 +64,7 @@ module.exports = (grunt) ->
       core:
         src: [
           "bower_components/jquery2/jquery.js"
+          "bower_components/bootstrap/js/collapse.js"
           "bower_components/angular/angular.js"
           "bower_components/angular-route/angular-route.js"
           "bower_components/angular-sanitize/angular-sanitize.js"
@@ -77,6 +79,7 @@ module.exports = (grunt) ->
           "temp/js/controllers/ctrl-news-list.js" 
           "temp/js/services/svc-events.js"
           "temp/js/directives/div-event-view.js"
+          "temp/js/directives/div-archive-collapse.js"
           "scripts/data.js"
           "temp/js/app.js"
         ]
@@ -95,10 +98,10 @@ module.exports = (grunt) ->
 
       styles:
         src: [
-          "styles/core/bratstvost-icon-font.css"
           "temp/css/bootstap.css"
           "temp/css/layout.css"
           "temp/css/index.css"
+          "styles/core/bratstvost-icon-font.css"
         ]
         dest: "public/css/styles.css"
 

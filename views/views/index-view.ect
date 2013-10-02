@@ -55,12 +55,13 @@
         <h2 class="next-event-title"><i class="icon-cal"></i> Ближайшие мероприятия</h2>
         <h6><i class="icon-time"></i> обновлено {{data.lastUpdate}}</h6>
         <eventview ng-repeat="event in data.nextEvents" event="event"></eventview>
+
+        <h2 class="past-event-title"><i class="icon-archive"></i> Архив событий</h2>
+        <archiveitem ng-repeat="mevents in data.pastEventsByMonth" title="mevents.month">
+          <eventview class="archive" ng-repeat="event in mevents.events" event="event"></eventview>
+        </archiveitem>
       </div>
 
-      <div class="well well-events event-list">
-        <h2 class="past-event-title"><i class="icon-archive"></i> Архив событий</h2>
-        <eventview class="archive" ng-repeat="event in data.pastEvents" event="event"></eventview>
-      </div>
     </div>
   </div>
 </script>

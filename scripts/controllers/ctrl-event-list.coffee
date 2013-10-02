@@ -54,6 +54,14 @@ class EventListCtrl
 
     @$scope.data.nextEvents = @$scope.data.nextEvents.sort (a,b) -> a._date.valueOf() - b._date.valueOf()
     @$scope.data.pastEvents = @$scope.data.pastEvents.sort (a,b) -> b._date.valueOf() - a._date.valueOf()
+
+    @$scope.data.pastEventsByMonth = {}
+    for ev in @$scope.data.pastEvents
+      #m = moment(ev.date).format("MMMM")
+      @$scope.data.pastEventsByMonth[12 - moment(ev.date).month()] ?= month: moment(ev.date).format("MMMM"), events: []
+      @$scope.data.pastEventsByMonth[12 - moment(ev.date).month()].events.push(ev)
+
+    window.test = @$scope
     
 
 angular.module("EventListCtrl", []).controller("EventListCtrl", ["$scope", EventListCtrl])

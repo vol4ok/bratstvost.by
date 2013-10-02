@@ -18,6 +18,7 @@ angular.module('app.ctrl', [
 
 angular.module('app.div', [
   'EventViewDiv'
+  'ArchiveCollapsDiv'
 ])
 
 angular.module('app.svc', [

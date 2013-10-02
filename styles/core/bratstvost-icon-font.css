@@ -79,3 +79,12 @@
 .icon-news2:before {
   content: "N";
 }
+
+.icon-collapsed:before {
+  content: "x";
+}
+
+.icon-expanded:before {
+  content: "p";
+}
+
