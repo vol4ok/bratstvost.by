@@ -1,0 +1,18 @@
+<script type="text/ng-template" id="events-view">
+  
+  <div ng-controller="EventEditorCtrl">
+    <div class="row">
+      <div class="col-sm-4">
+        <ul>
+          <li ng-repeat="ev in data.events" >
+            <a href ng-click="selectEvent(ev)" ng-bind-html="ev.title">{{ev.title}}</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-sm-4">
+        <textarea ng-model="data.currentEventJSON"></textarea>
+      </div>
+    </div>
+  </div>
+
+</script>
