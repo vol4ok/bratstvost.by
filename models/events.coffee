@@ -8,9 +8,9 @@ EventSchema = new Schema
   title: String
   body: String
   event_place: String
-  event_time: Date
+  event_time: String
   meeting_place: String
-  meeting_time: Date
+  meeting_time: String
   organizer: String
   phone: String
   cost: String
