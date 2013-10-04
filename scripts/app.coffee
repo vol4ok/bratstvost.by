@@ -14,6 +14,7 @@ main = (DATA) ->
 angular.module('app.ctrl', [
   'NewsListCtrl'
   'EventListCtrl'
+  'AdsListCtrl'
 ])
 
 angular.module('app.div', [

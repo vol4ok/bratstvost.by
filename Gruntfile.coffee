@@ -25,6 +25,7 @@ module.exports = (grunt) ->
           "temp/js/app.js":                         "scripts/app.coffee"
           "temp/js/controllers/ctrl-event-list.js": "scripts/controllers/ctrl-event-list.coffee"
           "temp/js/controllers/ctrl-news-list.js":  "scripts/controllers/ctrl-news-list.coffee"
+          "temp/js/controllers/ctrl-ads-list.js":  "scripts/controllers/ctrl-ads-list.coffee"
           "temp/js/services/svc-events.js":         "scripts/services/svc-events.coffee"
           "temp/js/directives/div-event-view.js":   "scripts/directives/div-event-view.coffee"
           "temp/js/directives/div-archive-collapse.js":   "scripts/directives/div-archive-collapse.coffee"
@@ -77,6 +78,7 @@ module.exports = (grunt) ->
         src: [
           "temp/js/controllers/ctrl-event-list.js" 
           "temp/js/controllers/ctrl-news-list.js" 
+          "temp/js/controllers/ctrl-ads-list.js"
           "temp/js/services/svc-events.js"
           "temp/js/directives/div-event-view.js"
           "temp/js/directives/div-archive-collapse.js"
