@@ -1,6 +1,15 @@
 @import "_variables";
 @import "mixins";
 
+input, button, textarea {
+  &:focus {
+    outline: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    -webkit-appearance: none !important;
+  }
+}
+
 .page {
   padding: 0 20px 40px;
 }

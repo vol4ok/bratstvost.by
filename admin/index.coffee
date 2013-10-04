@@ -43,18 +43,25 @@ app.get "/api/events", (req, res) ->
 
 
 app.post "/api/events", (req, res) ->
-  Event.create(req.body).exec (err, result) ->
+  console.log "POST /api/events".magenta, req.body
+  Event.create req.body, (err, result) ->
+    console.log "********************************".red
+    console.log err, result
     return res.json(status: "ERR", message: err) if err
     res.json(status: "OK")
 
 app.put "/api/events", (req, res) ->
-  id = req.body.id
-  Event.findByIdAndUpdate(id, req.body).exec (err, result) ->
+  id = req.body._id
+  delete req.body._id
+  console.log "PUT /api/events".magenta, req.body
+  Event.findByIdAndUpdate id, req.body, upsert: yes, (err, result) ->
+    console.log "********************************".cyan
+    console.log err, result
     return res.json(status: "ERR", message: err) if err
     res.json(status: "OK")
 
 app.del "/api/events", (req, res) ->
-  Event.findByIdAndRemove(req.body.id).exec (err, result) ->
+  Event.findByIdAndRemove req.body._id, (err, result) ->
     return res.json(status: "ERR", message: err) if err
     res.json(status: "OK")
 

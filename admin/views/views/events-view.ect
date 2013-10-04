@@ -2,15 +2,27 @@
   
   <div ng-controller="EventEditorCtrl">
     <div class="row">
-      <div class="col-sm-4">
-        <ul>
-          <li ng-repeat="ev in data.events" >
-            <a href ng-click="selectEvent(ev)" ng-bind-html="ev.title">{{ev.title}}</a>
+      <div class="col-sm-5">
+        <button type="button" class="btn btn-default" ng-click="createEvent()">Новое событие</button>
+      </div>
+      <div class="col-sm-7">
+        <button type="button" class="btn btn-default" ng-click="saveCurrentEvent()">Сохранить</button>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-5">
+        <ul class="list-group event-list">
+          <li class="list-group-item" ng-class="{active: ev._id == data.currentEvent._id}" ng-repeat="(id,ev) in data.events" ng-click="selectEvent(ev)" >
+            <div class="row">
+              <div class="col-sm-3">{{ev.date | date:'dd MMM'}}</div>
+              <div class="col-sm-9" ng-bind-html="ev.title">{{ev.title}}</div>
+            </div>
           </li>
         </ul>
       </div>
-      <div class="col-sm-4">
-        <textarea ng-model="data.currentEventJSON"></textarea>
+      <div class="col-sm-7">
+        <textarea class="form-control jsonedit" rows="32" ng-model="data.currentEventJSON"></textarea>
       </div>
     </div>
   </div>
