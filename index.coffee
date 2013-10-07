@@ -45,7 +45,7 @@ app.get "/events", (req, res) ->
 
 
 app.get "/api/events", (req, res) ->
-  Event.find({}).exec (err, results) ->
+  Event.find {published: yes}, (err, results) ->
     return res.json(status: "ERR", message: err) if err
     res.json(results)
 
