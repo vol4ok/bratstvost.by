@@ -125,12 +125,13 @@ app.put "/api/events", restrict, (req, res) ->
     return res.json(status: "ERR", message: err) if err
     res.json(status: "OK")
 
-app.del "/api/events", (req, res) ->
-  Event.findByIdAndRemove req.body._id, (err, result) ->
+app.del "/api/events/:id", restrict, (req, res) ->
+  console.log "DELETE".red, "/api/events", req.params
+  Event.findByIdAndRemove req.params.id, (err, result) ->
     return res.json(status: "ERR", message: err) if err
     res.json(status: "OK")
 
-app.all "*", (req, res) ->
+app.all "*", restrict, (req, res) ->
   console.log "GET all *"
   res.render("index")
 

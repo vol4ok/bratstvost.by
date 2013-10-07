@@ -31,7 +31,7 @@ class EventsSvc
 
   delete: (id) ->
     deffered = @$q.defer()
-    @$http.delete('/api/events', id)
+    @$http.delete('/api/events/'+id)
       .success (data, status, headers, config) => 
         deffered.resolve(data)
       .error (data, status, headers, config) => 
