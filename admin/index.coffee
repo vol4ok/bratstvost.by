@@ -46,6 +46,11 @@ users =
     salt: 'TaRaSiKi'
     hash: 'vzk6xxSHKMcwoTpF6Ojht7KPLgMUMYU1ONbPHyWOKjctFS0iyEBOvIS0WpIvfLWp1/vb9oBzThIAt8iRumELLczs2CYf3BQo7NE9TcsWxtMvWLT3KYIK7QPbRSHldHypeM/UKVd29DNh9RmQ3t/17A9lhSFvOOg360Rx3CpV5Mw='
 
+  nastena:
+    login: 'nastena'
+    salt: 'TaRaSiKi2013'
+    hash: 'dHj7wHvFYX/RupWr5zRbtPKIWOUGge1jGJldlraZ1sJ+b2ANK7KWYNYpL5PZ2Tol6aGBUMEE+4LtR3CLviZiEvxczLQ5lZEyEFGb1gsNHhEfPv50rbSa0Micie+u0mF5kzKyyzn1fnvf3YEmyM19TSL8cPvtUVriv6RiuAA59iw='
+
 PASS_SALT = "TaRaSiKi"
 PASS_ITER = 5000
 HASH_LEN  = 128
