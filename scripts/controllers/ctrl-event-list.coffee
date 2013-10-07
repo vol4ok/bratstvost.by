@@ -21,44 +21,44 @@ class EventListCtrl
     p = parse_phone(p)
     return "<a href=\"phone:#{format_phone_raw(p)}\">#{format_phone_nice(p)}</a>"
 
-  constructor: (@$scope) ->
-    data   = angular.copy(DATA)
-    events = data.events
+  constructor: (@$scope, @$eventsSvc) ->
+    @$eventsSvc.all().then (events) =>
 
-    @$scope.formatPhone = formatPhone
+      console.log events
 
-    @$scope.data = {}
-    @$scope.data.lastUpdate = moment(data.last_update).fromNow()
-    
+      @$scope.formatPhone = formatPhone
 
-    for ev in events when ev.phone
-      ev.phone = @$scope.formatPhone(ev.phone)
+      @$scope.data = {}
+      @$scope.data.lastUpdate = moment(DATA.last_update).fromNow()
+      
 
-    for ev in events
-      ev._date = moment(ev.date).toDate()
-      ev.month = moment(ev.date).format("MMM")
-      ev.day = moment(ev.date).format("D")
-          
-    @$scope.data.events = events
-    @$scope.data.pastEvents = []
-    @$scope.data.nextEvents = []
+      for ev in events when ev.phone
+        ev.phone = @$scope.formatPhone(ev.phone)
 
-    today = moment().startOf('day').toDate()
+      for ev in events
+        ev._date = moment(ev.date).toDate()
+        ev.month = moment(ev.date).format("MMM")
+        ev.day = moment(ev.date).format("D")
+            
+      @$scope.data.events = events
+      @$scope.data.pastEvents = []
+      @$scope.data.nextEvents = []
+
+      today = moment().startOf('day').toDate()
 
 
-    for ev in events
-      if ev._date < today
-        @$scope.data.pastEvents.push(ev)
-      else
-        @$scope.data.nextEvents.push(ev)
+      for ev in events
+        if ev._date < today
+          @$scope.data.pastEvents.push(ev)
+        else
+          @$scope.data.nextEvents.push(ev)
 
-    @$scope.data.nextEvents = @$scope.data.nextEvents.sort (a,b) -> a._date.valueOf() - b._date.valueOf()
-    @$scope.data.pastEvents = @$scope.data.pastEvents.sort (a,b) -> b._date.valueOf() - a._date.valueOf()
+      @$scope.data.nextEvents = @$scope.data.nextEvents.sort (a,b) -> a._date.valueOf() - b._date.valueOf()
+      @$scope.data.pastEvents = @$scope.data.pastEvents.sort (a,b) -> b._date.valueOf() - a._date.valueOf()
 
-    @$scope.data.pastEventsByMonth = {}
-    for ev in @$scope.data.pastEvents
-      #m = moment(ev.date).format("MMMM")
-      @$scope.data.pastEventsByMonth[12 - moment(ev.date).month()] ?= month: moment(ev.date).format("MMMM"), events: []
-      @$scope.data.pastEventsByMonth[12 - moment(ev.date).month()].events.push(ev)
+      @$scope.data.pastEventsByMonth = {}
+      for ev in @$scope.data.pastEvents
+        @$scope.data.pastEventsByMonth[12 - moment(ev.date).month()] ?= month: moment(ev.date).format("MMMM"), events: []
+        @$scope.data.pastEventsByMonth[12 - moment(ev.date).month()].events.push(ev)    
 
-angular.module("EventListCtrl", []).controller("EventListCtrl", ["$scope", EventListCtrl])
+angular.module("EventListCtrl", ["EventsSvc"]).controller("EventListCtrl", ["$scope", "EventsSvc", EventListCtrl])

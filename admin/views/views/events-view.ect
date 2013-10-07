@@ -1,0 +1,31 @@
+<script type="text/ng-template" id="events-view">
+  
+  <div ng-controller="EventEditorCtrl">
+    <div class="row">
+      <div class="col-sm-5">
+        <button type="button" class="btn btn-default" ng-click="createEvent()">Новое событие</button>
+      </div>
+      <div class="col-sm-7">
+        <button type="button" class="btn btn-default" ng-click="saveCurrentEvent()">Сохранить</button>
+        <button type="button" class="btn btn-danger" ng-click="deleteCurrentEvent()">Удалить</button>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-sm-5">
+        <ul class="list-group event-list">
+          <li class="list-group-item" ng-class="{active: ev._id == data.currentEvent._id}" ng-repeat="ev in data.eventsArr" ng-click="selectEvent(ev)" >
+            <div class="row">
+              <div class="col-sm-3">{{ev.date | date:'dd MMM'}}</div>
+              <div class="col-sm-9" ng-bind-html="ev.title">{{ev.title}}</div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="col-sm-7">
+        <textarea class="form-control jsonedit" rows="32" ng-model="data.currentEventJSON"></textarea>
+      </div>
+    </div>
+  </div>
+
+</script>

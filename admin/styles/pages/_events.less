@@ -1,0 +1,28 @@
+.jsonedit {
+  font: 12px/16px @font-family-monospace;
+  padding: 5px;
+  background: #444;
+  color: lime;
+}
+
+.event-list {
+  li {
+    -webkir-user-select: none;
+    user-select: none;
+    cursor: pointer;
+
+    &:hover {
+      background: @asbestos;
+      color: white;
+      a {
+        color: white;
+      }
+    }
+    &.active, &:active {
+      background: @wisteria;
+      color: white;
+      border-color: @wisteria;
+    }
+
+  }
+}
