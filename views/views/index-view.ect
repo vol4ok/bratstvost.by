@@ -1,39 +1,18 @@
 <script type="text/ng-template" id="index-view">
+  
   <div class="row">
 
     <div class="col-md-6">
 
-      <!-- <div class="row">
+      <div class="row" ng-controller="AdsListCtrl">
         <div class="col-md-12">
-          <div class="well red">
-            У нашей сестры Елены, отец р.Б. Вячеслав после инсульта впал в кому. Братчики просим ваших молитв за болящего.
-          </div>
-        </div>
-      </div> -->
-
-  <!--     <div class="row">
-        <div class="col-md-12">
-          <div class="well">
-            <a style="float:left; padding: 16px 20px 10px 0" href="https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-ash3/p480x480/529167_507211549364362_1594327722_n.jpg"><img width="120" src="https://fbcdn-sphotos-b-a.akamaihd.net/hphotos-ak-ash3/p480x480/529167_507211549364362_1594327722_n.jpg" alt="Рождество Пресвятой Богородицы"></a>
-            <h4>21 сентября – Рождество Пресвятой Богородицы.</h4>
-            <p>Митрополит Антоний Сурожский:<br>
-              Сегодня — праздник Божией Матери, Ее Рождество. Это время, когда родилась Та, Которая сумела за нас за всех, за весь человеческий род так поверить, так уверовать, так отдаться Богу, что Бог смог стать Человеком через Нее и дать нам эти бесчисленные, непостижимые для нас дары. Слава Ее смирению, слава Ее вере, слава Ее любви, слава Богу, воплотившемуся в Деве Богородице, слава достойному сосуду воплощения Сына Божия, Христа Бога нашего!</p>
-          </div>
-        </div>
-      </div> -->
-
-      <div class="row">
-        <div class="col-md-12">
-          <div class="well well-oldsite">
-            <p>Сайт в процессе разработки, поэтому часть информации будет недоступна, но она должна скоро появиться в обновленном формате, помолитесь за нас чтобы у нас все получилось...</p>
-            <p>
-              <a href="http://old.bratstvost.by" class="btn btn-info">Старый сайт →</a>
-            </p>
+          <div class="well" ng-repeat="ad in data.ads" ng-class="ad.style" ng-bind-html="ad.body">
+            {{ad.body}}
           </div>
         </div>
       </div>
 
-      <div class="row">
+      <div class="row" ng-controller="NewsListCtrl">
         <div class="col-md-12">
           
           <div class="well">
