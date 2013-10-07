@@ -22,6 +22,7 @@ class EventsSvc
 
   save: (doc) ->
     deffered = @$q.defer()
+    doc.updated = moment().toISOString()
     @$http.put('/api/events', doc)
       .success (data, status, headers, config) => 
         deffered.resolve(data)
