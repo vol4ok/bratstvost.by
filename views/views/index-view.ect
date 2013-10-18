@@ -4,10 +4,10 @@
 
     <div class="col-md-6">
 
-      <div class="row" ng-controller="AdsListCtrl">
+      <div class="row" ng-controller="NoticeListCtrl">
         <div class="col-md-12">
-          <div class="well" ng-repeat="ad in data.ads" ng-class="ad.style" ng-bind-html="ad.body">
-            {{ad.body}}
+          <div class="well" ng-repeat="notice in data.notices" ng-class="notice.style" ng-bind-html="notice.body">
+            {{notice.body}}
           </div>
         </div>
       </div>

@@ -1,11 +1,11 @@
-class EventsSvc
+class NoticeSvc
 
   constructor: (@$q, @$http) ->
 
   all: () ->
     deffered = @$q.defer()
 
-    @$http.get('/api/events')
+    @$http.get('/api/notice')
       .success (data, status, headers, config) => 
         deffered.resolve(data)
       .error (data, status, headers, config) => 
@@ -14,4 +14,4 @@ class EventsSvc
     return deffered.promise
 
 
-angular.module("EventsSvc", []).service("EventsSvc", ["$q", "$http", EventsSvc])
+angular.module("NoticeSvc", []).service("NoticeSvc", ["$q", "$http", NoticeSvc])
