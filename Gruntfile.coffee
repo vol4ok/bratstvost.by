@@ -37,7 +37,8 @@ module.exports = (grunt) ->
         files:
           "dist/web.js": "index.coffee"
           "dist/models/post.js": "models/post.coffee"
-          "dist/models/events.js": "models/events.coffee"
+          "dist/models/event.js": "models/event.coffee"
+          "dist/models/notice.js": "models/notice.coffee"
 
 
     less: 
