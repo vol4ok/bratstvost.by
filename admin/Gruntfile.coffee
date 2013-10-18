@@ -24,7 +24,9 @@ module.exports = (grunt) ->
         files:
           "temp/js/admin-app.js":                      "scripts/admin-app.coffee"
           "temp/js/services/svc-events.js":            "scripts/services/svc-events.coffee"
+          "temp/js/services/svc-notice.js":            "scripts/services/svc-notice.coffee"
           "temp/js/controllers/ctrl-events-editor.js": "scripts/controllers/ctrl-events-editor.coffee"
+          "temp/js/controllers/ctrl-notice-editor.js": "scripts/controllers/ctrl-notice-editor.coffee"
 
 
     less: 
@@ -65,7 +67,9 @@ module.exports = (grunt) ->
       app:
         src: [
           "temp/js/services/svc-events.js"
-          "temp/js/controllers/ctrl-events-editor.js"
+          "temp/js/services/svc-notice.js"
+          "temp/js/controllers/ctrl-events-editor.js" 
+          "temp/js/controllers/ctrl-notice-editor.js"
           "temp/js/admin-app.js"
         ]
         dest: "public/js/app.js"

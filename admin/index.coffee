@@ -6,8 +6,8 @@ moment = require "moment"
 crypto = require "crypto"
 
 mg.connect('mongodb://localhost/bratstvost-3')
-{Post} = require "./models/post"
 {Event} = require "./models/event"
+{Notice} = require "./models/notice"
 
 _ = require "lodash"
 require("uasync")(_)
@@ -83,6 +83,7 @@ restrict = (req, res, next) ->
   if (req.session.user)
     next()
   else
+    console.log "restricted!".red
     res.redirect('/login')
 
     
@@ -104,29 +105,25 @@ app.get '/logout', (req, res) ->
     res.redirect('/login')
     return
 
+### EVENTS ###
+
 app.get "/api/events", (req, res) ->
   console.log "GET /api/events"
   Event.find {}, (err, results) ->
-    # console.log "find completion", err, results
     return res.json(status: "ERR", message: err) if err
     res.json(results)
-
 
 app.post "/api/events", restrict, (req, res) ->
   console.log "POST".green, "/api/events", req.body
   Event.create req.body, (err, result) ->
-    # console.log "********************************".red
-    # console.log err, result
     return res.json(status: "ERR", message: err) if err
     res.json(status: "OK")
 
-app.put "/api/events", restrict, (req, res) ->
-  id = req.body._id
+app.put "/api/events/:id", restrict, (req, res) ->
+  # id = req.body._id
   delete req.body._id
   console.log "PUT".cyan, "/api/events", req.body
-  Event.findByIdAndUpdate id, req.body, upsert: yes, (err, result) ->
-    # console.log "********************************".cyan
-    # console.log err, result
+  Event.findByIdAndUpdate req.params.id, req.body, upsert: yes, (err, result) ->
     return res.json(status: "ERR", message: err) if err
     res.json(status: "OK")
 
@@ -136,8 +133,38 @@ app.del "/api/events/:id", restrict, (req, res) ->
     return res.json(status: "ERR", message: err) if err
     res.json(status: "OK")
 
+
+### ADS ###
+
+app.get "/api/notice", (req, res) ->
+  console.log "GET".green, "/api/notice"
+  Notice.find {}, (err, results) ->
+    return res.json(status: "ERR", message: err) if err
+    res.json(results)
+
+app.post "/api/notice", restrict, (req, res) ->
+  console.log "POST".cyan, "/api/notice", req.body
+  Notice.create req.body, (err, result) ->
+    return res.json(status: "ERR", message: err) if err
+    res.json(status: "OK")
+
+app.put "/api/notice/:id", restrict, (req, res) ->
+  console.log "PUT".magenta, "/api/notice/:id", req.params, req.body
+  delete req.body._id
+  Notice.findByIdAndUpdate req.params.id, req.body, upsert: yes, (err, result) ->
+    return res.json(status: "ERR", message: err) if err
+    res.json(status: "OK")
+
+app.del "/api/notice/:id", restrict, (req, res) ->
+  console.log "DELETE".red, "/api/notice/:id", req.params
+  Notice.findByIdAndRemove req.params.id, (err, result) ->
+    return res.json(status: "ERR", message: err) if err
+    res.json(status: "OK")
+
+### NEWS ###
+
 app.all "*", restrict, (req, res) ->
-  console.log "GET all *"
+  console.log "GET all *", req.path
   res.render("index")
 
 port = process.env.PORT || 5001

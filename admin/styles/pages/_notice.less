@@ -1,8 +1,17 @@
-.event-list {
+.notices-list {
   li {
     -webkir-user-select: none;
     user-select: none;
     cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #999;
+
+    &.showed {
+      color: black;
+      font-weight: bold;
+    }
 
     &:hover {
       background: @asbestos;
@@ -16,6 +25,5 @@
       color: white;
       border-color: @wisteria;
     }
-
   }
 }

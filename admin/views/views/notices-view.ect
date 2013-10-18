@@ -1,0 +1,30 @@
+<script type="text/ng-template" id="notices-view">
+  
+  <div ng-controller="NoticeEditorCtrl">
+    <div class="row">
+      <div class="col-sm-5">
+        <button type="button" class="btn btn-default" ng-click="create()">Новое объявление</button>
+      </div>
+      <div class="col-sm-7">
+        <button type="button" class="btn btn-default" ng-click="saveCurrent()">Сохранить</button>
+        <button type="button" class="btn btn-danger" ng-click="deleteCurrent()">Удалить</button>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+      <div class="col-sm-5">
+        <ul class="list-group notices-list">
+          <li class="list-group-item" ng-class="{active: notice._id == data.current._id, showed: notice.isShowed == true}"  ng-repeat="notice in data.noticesArr" ng-click="select(notice)">
+            {{notice.body}}
+          </li>
+        </ul>
+      </div>
+      <div class="col-sm-7">
+        <textarea class="form-control jsonedit" rows="32" ng-model="data.currentJSON"></textarea>
+      </div>
+    </div>
+  </div>
+
+</script>

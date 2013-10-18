@@ -1,4 +1,4 @@
-configure = ($routeProvider, $locationProvider) ->
+configure = ($routeProvider, $locationProvider, $httpProvider) ->
   moment.lang('ru')
 
   $locationProvider
@@ -11,14 +11,15 @@ configure = ($routeProvider, $locationProvider) ->
       templateUrl: "events-view"
     .when "/news",
       templateUrl: "news-view"
-    .when "/ads",
-      templateUrl: "ads-view"
+    .when "/notices",
+      templateUrl: "notices-view"
 
 main = () ->
   console.log "initialize adminApp"
 
 angular.module('adminApp.ctrl', [
   "EventEditorCtrl"
+  "NoticeEditorCtrl"
 ])
 angular.module('adminApp.div', [
 
@@ -26,15 +27,14 @@ angular.module('adminApp.div', [
 
 angular.module('adminApp.svc', [
   "EventsSvc"
+  "NoticeSvc"
 ])
 
 angular.module('adminApp', [
     'ngSanitize'
     'ngRoute'
     'adminApp.ctrl'
-    # 'app.div'
     'adminApp.svc'
-    # 'app.data'
   ])
-  .config([ '$routeProvider', '$locationProvider', configure ])
+  .config([ '$routeProvider', '$locationProvider', '$httpProvider', configure ])
   .run([main])

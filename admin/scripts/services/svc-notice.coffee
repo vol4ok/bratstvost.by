@@ -1,10 +1,10 @@
-class EventsSvc
+class NoticeSvc
 
   constructor: (@$q, @$http) ->
 
   all: () ->
     deffered = @$q.defer()
-    @$http.get('/api/events')
+    @$http.get('/api/notice')
       .success (data, status, headers, config) => 
         deffered.resolve(data)
       .error (data, status, headers, config) => 
@@ -13,17 +13,21 @@ class EventsSvc
 
   create: (doc) ->
     deffered = @$q.defer()
-    @$http.post('/api/events', doc)
+    @$http.post('/api/notice', doc)
       .success (data, status, headers, config) => 
         deffered.resolve(data)
       .error (data, status, headers, config) => 
         deffered.reject()
     return deffered.promise;
 
-  save: (doc) ->
+  save: (id, doc) ->
+    if arguments.length is 1
+      doc = id
+      id = doc._id
+    console.log "AD_SVC: save", id, doc
     deffered = @$q.defer()
     doc.updated = moment().toISOString()
-    @$http.put("/api/events/#{doc._id}", doc)
+    @$http.put("/api/notice/#{id}", "")
       .success (data, status, headers, config) => 
         deffered.resolve(data)
       .error (data, status, headers, config) => 
@@ -32,7 +36,7 @@ class EventsSvc
 
   delete: (id) ->
     deffered = @$q.defer()
-    @$http.delete("/api/events/#{id}")
+    @$http.delete("/api/notice/#{id}")
       .success (data, status, headers, config) => 
         deffered.resolve(data)
       .error (data, status, headers, config) => 
@@ -40,4 +44,4 @@ class EventsSvc
     return deffered.promise;
 
 
-angular.module("EventsSvc", []).service("EventsSvc", ["$q", "$http", EventsSvc])
+angular.module("NoticeSvc", []).service("NoticeSvc", ["$q", "$http", NoticeSvc])
