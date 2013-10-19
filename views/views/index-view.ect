@@ -1,9 +1,20 @@
 <script type="text/ng-template" id="index-view">
   
   <div class="row">
-
+    <div class="col-sm-12">
+      <nav class="navbar navbar-default" role="navigation">
+        <ul class="nav navbar-nav">
+          <li class="active"><a>Главная</a></li>
+          <li><a href="/about">О братстве</a></li>
+          <li><a href="/contacts">Контакты</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  
+  <div class="row">
     <div class="col-md-6">
-
+  
       <div class="row" ng-controller="NoticeListCtrl">
         <div class="col-md-12">
           <div class="well" ng-repeat="notice in data.notices" ng-class="notice.style" ng-bind-html="notice.body">

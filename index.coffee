@@ -37,12 +37,11 @@ POST_PER_PAGE = 10
 app.get "/", (req, res) ->
   res.render("index")
 
-app.get "/test", (req, res) ->
+app.get "/contacts", (req, res) ->
   res.render("index")
 
-app.get "/events", (req, res) ->
-  res.render("events")
-
+app.get "/about", (req, res) ->
+  res.render("index")
 
 app.get "/api/events", (req, res) ->
   Event.find {published: yes}, (err, results) ->

@@ -7,6 +7,10 @@ configure = ($routeProvider, $locationProvider) ->
   $routeProvider
     .when "/",
       templateUrl: "index-view"
+    .when "/contacts",
+      templateUrl: "contact-view"
+    .when "/about",
+      templateUrl: "about-view"
 
 main = (DATA) ->
   window.DATA = DATA
