@@ -26,6 +26,7 @@ module.exports = (grunt) ->
           "temp/js/controllers/ctrl-event-list.js": "scripts/controllers/ctrl-event-list.coffee"
           "temp/js/controllers/ctrl-news-list.js":  "scripts/controllers/ctrl-news-list.coffee"
           "temp/js/controllers/ctrl-notice-list.js":  "scripts/controllers/ctrl-notice-list.coffee"
+          "temp/js/controllers/ctrl-index-page.js": "scripts/controllers/ctrl-index-page.coffee"
           "temp/js/services/svc-events.js":         "scripts/services/svc-events.coffee"
           "temp/js/services/svc-notice.js":         "scripts/services/svc-notice.coffee"
           "temp/js/directives/div-event-view.js":   "scripts/directives/div-event-view.coffee"
@@ -67,7 +68,8 @@ module.exports = (grunt) ->
       core:
         src: [
           "bower_components/jquery2/jquery.js"
-          "bower_components/bootstrap/js/collapse.js"
+          "bower_components/bootstrap/js/carousel.js"
+          "bower_components/bootstrap/js/transition.js"
           "bower_components/angular/angular.js"
           "bower_components/angular-route/angular-route.js"
           "bower_components/angular-sanitize/angular-sanitize.js"
@@ -81,6 +83,7 @@ module.exports = (grunt) ->
           "temp/js/controllers/ctrl-event-list.js" 
           "temp/js/controllers/ctrl-news-list.js" 
           "temp/js/controllers/ctrl-notice-list.js"
+          "temp/js/controllers/ctrl-index-page.js"
           "temp/js/services/svc-events.js"
           "temp/js/services/svc-notice.js"
           "temp/js/directives/div-event-view.js"
@@ -93,6 +96,8 @@ module.exports = (grunt) ->
       dist:
         src: [
           "bower_components/jquery2/jquery.min.js"
+          "bower_components/bootstrap/js/carousel.js"
+          "bower_components/bootstrap/js/transition.js"
           "bower_components/angular/angular.min.js"
           "bower_components/angular-route/angular-route.min.js"
           "bower_components/angular-sanitize/angular-sanitize.min.js"

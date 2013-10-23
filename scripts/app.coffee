@@ -7,6 +7,7 @@ configure = ($routeProvider, $locationProvider) ->
   $routeProvider
     .when "/",
       templateUrl: "index-view"
+      controller: "IndexPageCtrl"
     .when "/contacts",
       templateUrl: "contact-view"
     .when "/about",
@@ -19,6 +20,7 @@ angular.module('app.ctrl', [
   'NewsListCtrl'
   'EventListCtrl'
   'NoticeListCtrl'
+  'IndexPageCtrl'
 ])
 
 angular.module('app.div', [
