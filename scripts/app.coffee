@@ -12,6 +12,7 @@ configure = ($routeProvider, $locationProvider) ->
       templateUrl: "contact-view"
     .when "/about",
       templateUrl: "about-view"
+      controller: "AboutPageCtrl"
 
 main = (DATA) ->
   window.DATA = DATA
@@ -21,6 +22,7 @@ angular.module('app.ctrl', [
   'EventListCtrl'
   'NoticeListCtrl'
   'IndexPageCtrl'
+  'AboutPageCtrl'
 ])
 
 angular.module('app.div', [
