@@ -74,11 +74,12 @@ class NoticeEditorCtrl
     @$scope.deleteCurrent = @deleteCurrent
 
     @$noticeSvc.all().then (notices) => 
-      console.log notices
+      currentDate = moment() 
       @$scope.data.notices = {}
       for notice in notices
         notice.isShowed = yes
-        if notice.show_ends and moment().isAfter(notice.show_ends)
+
+        if notice.show_ends and currentDate.isAfter(notice.show_ends)
           notice.isShowed = no
         @$scope.data.notices[notice._id] = notice
       @_updateNoticeArray()
