@@ -6,14 +6,14 @@ class NoticeEditorCtrl
     notice.updated ?= moment().toISOString()
     notice.created ?= moment().toISOString()
     notice.type ?= "notice"
-    console.log "_save", notice
+    # console.log "_save", notice
     if @$scope.data.isNew
       @$noticeSvc.create(notice).then (resp) =>
-        console.log resp
+        # console.log resp
       @$scope.data.isNew = no
     else
       @$noticeSvc.save(notice._id, notice).then (resp) =>
-        console.log resp
+        # console.log resp
     @$scope.data.notices[notice._id] = notice;
     @_updateNoticeArray()
 
@@ -40,7 +40,7 @@ class NoticeEditorCtrl
   deleteCurrent: =>
     if confirm("Точно удалить?")
       @$noticeSvc.delete(@$scope.data.current._id).then (resp) =>
-        console.log resp
+        # console.log resp
       delete @$scope.data.notices[@$scope.data.current._id]
       @_updateNoticeArray()
       @$scope.data.current = @$scope.data.noticesArr[0]
@@ -85,18 +85,18 @@ class NoticeEditorCtrl
       @_updateNoticeArray()
 
     @$scope.$watch "data.current._id", (value) =>
-      console.log 'NOTICE: $watch "data.current._id"'
+      # console.log 'NOTICE: $watch "data.current._id"'
       return if angular.isArray(@$scope.data.current)
       @$scope.data.currentJSON = JSON.stringify(@$scope.data.current, null, "  ")
 
     @$scope.$watch "data.currentJSON", =>
       return unless @$scope.data.currentJSON
-      console.log 'NOTICE: $watch "data.currentJSON"'
+      # console.log 'NOTICE: $watch "data.currentJSON"'
       try
         @$scope.data.current = JSON.parse(@$scope.data.currentJSON)
       catch e
         @$scope.data.jsonErrorMessage = e.message
-        console.log ">> jsonErrorMessage", @$scope.data.jsonErrorMessage
+        # console.log ">> jsonErrorMessage", @$scope.data.jsonErrorMessage
 
 angular.module("NoticeEditorCtrl", ["NoticeSvc"])
   .controller("NoticeEditorCtrl", ["$scope", "NoticeSvc", "$http", NoticeEditorCtrl])
