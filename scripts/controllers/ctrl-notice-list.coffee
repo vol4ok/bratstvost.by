@@ -5,7 +5,8 @@ class NoticeListCtrl
       @$scope.data = {}
       @$scope.data.notices = []
 
-      for notice in notices when moment().isBefore(notice.show_ends)
+      currentDate = moment()
+      for notice in notices when currentDate.isBefore(notice.show_ends)
         @$scope.data.notices.push(notice)
 
       @$scope.data.notices.sort (a,b) -> b.priority - a.priority
