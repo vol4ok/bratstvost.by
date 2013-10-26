@@ -27,7 +27,7 @@ class NoticeSvc
     console.log "AD_SVC: save", id, doc
     deffered = @$q.defer()
     doc.updated = moment().toISOString()
-    @$http.put("/api/notice/#{id}", "")
+    @$http.put("/api/notice/#{id}", doc)
       .success (data, status, headers, config) => 
         deffered.resolve(data)
       .error (data, status, headers, config) => 
