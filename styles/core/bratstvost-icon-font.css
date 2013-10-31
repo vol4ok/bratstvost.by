@@ -11,36 +11,30 @@
   font-style: normal;
 
 }
-
-
 [data-icon]:before {
-  font-family: "bratstvost-icon-font";
+  font-family: "bratstvost-icon-font" !important;
   content: attr(data-icon);
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
   text-transform: none !important;
   speak: none;
-  display: inline-block;
-  text-decoration: none;
-  width: 1em;
-  line-height: 1em;
+  line-height: 1;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 [class^="icon-"]:before,
 [class*=" icon-"]:before {
-  font-family: "bratstvost-icon-font";
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
+  font-family: "bratstvost-icon-font" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
   text-transform: none !important;
   speak: none;
-  display: inline-block;
-  text-decoration: none;
-  width: 1em;
-  line-height: 1em;
+  line-height: 1;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 
@@ -88,3 +82,6 @@
   content: "p";
 }
 
+.icon-video-play:before {
+  content: "v";
+}

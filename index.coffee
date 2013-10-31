@@ -27,21 +27,14 @@ app
   .use(exs.logger("short"))
   .use(app.router)
   .use(exs.static("public"))
+  .use (req, res) ->
+    res.render("index")
 
 
 app.locals =
   formatDate: (date) -> moment(date).fromNow()
 
 POST_PER_PAGE = 10
-
-app.get "/", (req, res) ->
-  res.render("index")
-
-app.get "/contacts", (req, res) ->
-  res.render("index")
-
-app.get "/about", (req, res) ->
-  res.render("index")
 
 app.get "/api/events", (req, res) ->
   Event.find {published: yes}, (err, results) ->

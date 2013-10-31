@@ -1,8 +1,10 @@
-configure = ($routeProvider, $locationProvider) ->
+configure = ($routeProvider, $locationProvider, $sceDelegateProvider) ->
   moment.lang('ru')
 
   $locationProvider
     .html5Mode(yes)
+
+  $sceDelegateProvider.resourceUrlWhitelist(['^(?:http(?:s)?:\/\/)?(?:[^\.]+\.)?\(vimeo|youtube)\.com(/.*)?$', 'self'])
 
   $routeProvider
     .when "/",
@@ -13,6 +15,9 @@ configure = ($routeProvider, $locationProvider) ->
     .when "/about",
       templateUrl: "about-view"
       controller: "AboutPageCtrl"
+    .when "/video",
+      templateUrl: "video-view"
+      controller: "VideoPageCtrl"
 
 main = (DATA) ->
   window.DATA = DATA
@@ -23,6 +28,7 @@ angular.module('app.ctrl', [
   'NoticeListCtrl'
   'IndexPageCtrl'
   'AboutPageCtrl'
+  'VideoPageCtrl'
 ])
 
 angular.module('app.div', [
@@ -43,5 +49,5 @@ angular.module('app', [
     'app.svc'
     'app.data'
   ])
-  .config([ '$routeProvider', '$locationProvider', configure ])
+  .config([ '$routeProvider', '$locationProvider', '$sceDelegateProvider', configure ])
   .run(["DATA", main])

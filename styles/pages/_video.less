@@ -1,0 +1,41 @@
+.video-list {
+
+  .video-player, .video-preview {
+    background: black;
+    min-height: 360px;
+    padding: 0;
+    color: white;
+  }
+  .video-info {
+    background: gold;
+  }
+
+
+
+}
+
+.video-well {
+  background: black;
+  color: white;
+  padding: 0;
+  height: 360px;
+  border: none;
+  overflow: hidden;
+  .video-preview {
+    img {
+      opacity: .8;
+    }
+    position: relative;
+    &:after {
+      color: white;
+      opacity: .7;
+      position: absolute;
+      content: "v";
+      top: 50%;
+      left: 50%;
+      margin-top: -48px;
+      margin-left: -40px;
+      font: 96px "bratstvost-icon-font";
+    }
+  }
+}
