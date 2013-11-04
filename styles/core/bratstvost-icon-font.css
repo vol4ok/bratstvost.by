@@ -11,6 +11,10 @@
   font-style: normal;
 
 }
+
+
+
+
 [data-icon]:before {
   font-family: "bratstvost-icon-font" !important;
   content: attr(data-icon);
@@ -85,3 +89,12 @@
 .icon-video-play:before {
   content: "v";
 }
+
+.icon-announce:before {
+  content: "A";
+}
+
+.icon-contact:before {
+  content: "C";
+}
+
