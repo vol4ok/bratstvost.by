@@ -31,6 +31,7 @@ module.exports = (grunt) ->
           "temp/js/controllers/ctrl-video-page.js": "scripts/controllers/ctrl-video-page.coffee"
           "temp/js/services/svc-events.js":         "scripts/services/svc-events.coffee"
           "temp/js/services/svc-notice.js":         "scripts/services/svc-notice.coffee"
+          "temp/js/services/svc-news.js":         "scripts/services/svc-news.coffee"
           "temp/js/directives/div-event-view.js":   "scripts/directives/div-event-view.coffee"
           "temp/js/directives/div-archive-collapse.js":   "scripts/directives/div-archive-collapse.coffee"
 
@@ -42,6 +43,7 @@ module.exports = (grunt) ->
           "dist/models/post.js": "models/post.coffee"
           "dist/models/event.js": "models/event.coffee"
           "dist/models/notice.js": "models/notice.coffee"
+          "dist/models/news.js": "models/news.coffee"
 
 
     less: 
@@ -91,6 +93,7 @@ module.exports = (grunt) ->
           "temp/js/controllers/ctrl-video-page.js"
           "temp/js/services/svc-events.js"
           "temp/js/services/svc-notice.js"
+          "temp/js/services/svc-news.js"
           "temp/js/directives/div-event-view.js"
           "temp/js/directives/div-archive-collapse.js"
           "scripts/data.js"

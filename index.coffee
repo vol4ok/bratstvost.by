@@ -7,6 +7,7 @@ moment = require "moment"
 mg.connect('mongodb://localhost/bratstvost-3')
 {Notice} = require "./models/notice"
 {Event} = require "./models/event"
+{News} = require "./models/news"
 
 _ = require "lodash"
 require("uasync")(_)
@@ -51,6 +52,11 @@ app.get "/api/events", (req, res) ->
 
 app.get "/api/notice", (req, res) ->
   Notice.find {published: yes}, (err, results) ->
+    return res.json(status: "ERR", message: err) if err
+    res.json(results)
+
+app.get "/api/news", (req, res) ->
+  News.find {published: yes}, (err, results) ->
     return res.json(status: "ERR", message: err) if err
     res.json(results)
 

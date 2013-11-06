@@ -8,6 +8,7 @@ crypto = require "crypto"
 mg.connect('mongodb://localhost/bratstvost-3')
 {Event} = require "./models/event"
 {Notice} = require "./models/notice"
+{News} = require "./models/news"
 
 _ = require "lodash"
 require("uasync")(_)
@@ -135,7 +136,7 @@ app.del "/api/events/:id", restrict, (req, res) ->
     res.json(status: "OK")
 
 
-### ADS ###
+### NOTICE ###
 
 app.get "/api/notice", (req, res) ->
   console.log "GET".green, "/api/notice"
@@ -163,6 +164,33 @@ app.del "/api/notice/:id", restrict, (req, res) ->
     res.json(status: "OK")
 
 ### NEWS ###
+
+app.get "/api/news", (req, res) ->
+  console.log "GET".green, "/api/news"
+  News.find {}, (err, results) ->
+    return res.json(status: "ERR", message: err) if err
+    res.json(results)
+
+app.post "/api/news", restrict, (req, res) ->
+  console.log "POST".cyan, "/api/news", req.body
+  News.create req.body, (err, result) ->
+    return res.json(status: "ERR", message: err) if err
+    res.json(status: "OK")
+
+app.put "/api/news/:id", restrict, (req, res) ->
+  console.log "PUT".magenta, "/api/news/:id", req.params, req.body
+  delete req.body._id
+  News.findByIdAndUpdate req.params.id, req.body, upsert: yes, (err, result) ->
+    return res.json(status: "ERR", message: err) if err
+    res.json(status: "OK")
+
+app.del "/api/news/:id", restrict, (req, res) ->
+  console.log "DELETE".red, "/api/news/:id", req.params
+  News.findByIdAndRemove req.params.id, (err, result) ->
+    return res.json(status: "ERR", message: err) if err
+    res.json(status: "OK")
+
+### ALL ###
 
 app.all "*", restrict, (req, res) ->
   console.log "GET all *", req.path

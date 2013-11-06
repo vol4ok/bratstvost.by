@@ -1,8 +1,29 @@
 <script type="text/ng-template" id="news-view">
   
-  <div class="row">
-    <div class="col-sm-6">
-      news
+  <div ng-controller="NewsEditorCtrl">
+    <div class="row">
+      <div class="col-sm-5">
+        <button type="button" class="btn btn-default" ng-click="create()">Добавить новость</button>
+      </div>
+      <div class="col-sm-7">
+        <button type="button" class="btn btn-default" ng-click="saveCurrent()">Сохранить</button>
+        <button type="button" class="btn btn-danger" ng-click="deleteCurrent()">Удалить</button>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+      <div class="col-sm-5">
+        <ul class="list-group news-list">
+          <li class="list-group-item" ng-class="{active: news._id == data.current._id, showed: news.isShowed == true}"  ng-repeat="news in data.newsArr" ng-click="select(news)">
+            <time>{{news.date | date:'yyyy-MM-dd'}}</time> {{news.body}}
+          </li>
+        </ul>
+      </div>
+      <div class="col-sm-7">
+        <textarea class="form-control jsonedit" rows="32" ng-model="data.currentJSON"></textarea>
+      </div>
     </div>
   </div>
 

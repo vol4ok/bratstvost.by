@@ -20,6 +20,7 @@ main = () ->
 angular.module('adminApp.ctrl', [
   "EventEditorCtrl"
   "NoticeEditorCtrl"
+  "NewsEditorCtrl"
 ])
 angular.module('adminApp.div', [
 
@@ -28,6 +29,7 @@ angular.module('adminApp.div', [
 angular.module('adminApp.svc', [
   "EventsSvc"
   "NoticeSvc"
+  "NewsSvc"
 ])
 
 angular.module('adminApp', [

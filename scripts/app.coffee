@@ -39,6 +39,7 @@ angular.module('app.div', [
 angular.module('app.svc', [
   'EventsSvc'
   'NoticeSvc'
+  'NewsSvc'
 ])
 
 angular.module('app', [
