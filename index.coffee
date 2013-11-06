@@ -21,16 +21,23 @@ app
       ext : '.ect'
       cache: no
     ).render)
+
+COOKIE_SECRET = 'tarasiki-2013'
   
 app 
   .use(exs.urlencoded())
   .use(exs.json())
+  .use(exs.cookieParser(COOKIE_SECRET))
+  .use(exs.session(key: 'sid'))
   .use(exs.logger("short"))
   .use(app.router)
   .use(exs.static("public"))
   .use (req, res) ->
-    res.render("index")
-
+    if req.session
+      res.render("index")
+    else
+      req.session.regenerate ->
+        res.render("index")
 
 app.locals =
   formatDate: (date) -> moment(date).fromNow()
