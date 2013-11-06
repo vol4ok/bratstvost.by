@@ -37,10 +37,15 @@
   background-color: black;
   background-position: center center;
   -webkit-background-size: cover; 
-  background-size: cover; 
+  background-size: cover;
+  cursor: pointer; 
+  -webkit-transition: opacity .1s ease-in-out;
+  -moz-transition: opacity .1s ease-in-out;
+  -o-transition: opacity .1s ease-in-out;
+  transition: opacity .1s ease-in-out;
   &:after {
     color: white;
-    opacity: .7;
+    opacity: .6;
     position: absolute;
     content: "v";
     top: 50%;
@@ -48,12 +53,30 @@
     margin-top: -48px;
     margin-left: -40px;
     font: 96px "bratstvost-icon-font";
-    -webkit-transition: opacity .2s ease;
-    -moz-transition: opacity .2s ease;
-    -o-transition: opacity .2s ease;
-    transition: opacity .2s ease;
+    -webkit-transition: opacity .1s ease-in-out;
+    -moz-transition: opacity .1s ease-in-out;
+    -o-transition: opacity .1s ease-in-out;
+    transition: opacity .1s ease-in-out;
   }
-  &:hover:after {
-    opacity: .95;
+  &:hover{
+    opacity: 1;
+    &:after {
+      opacity: .95;
+    }
+  }
+  
+  .video-title {
+    position: absolute;
+    left: 0;
+    bottom: 20px;
+    padding: 8px 20px;
+    font: 400 20px @font-family-narrow;
+    color: white;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+    background: rgba(0,0,0,.5);
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: pointer;
   }
 }
+
