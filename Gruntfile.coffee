@@ -77,6 +77,7 @@ module.exports = (grunt) ->
           "bower_components/angular-sanitize/angular-sanitize.js"
           "bower_components/moment/min/moment.min.js"
           "bower_components/moment/min/langs.min.js"
+          #"vendor/fotorama/fotorama.js"
         ]
         dest: "public/js/core.js"
 
@@ -107,12 +108,14 @@ module.exports = (grunt) ->
           "bower_components/angular-sanitize/angular-sanitize.min.js"
           "bower_components/moment/min/moment.min.js"
           "bower_components/moment/min/langs.min.js"
+          #"vendor/fotorama/fotorama.js"
         ]
         dest: "dist/public/js/core.js"
 
       styles:
         src: [
           "temp/css/bootstap.css"
+          #"vendor/fotorama/fotorama.css"
           "temp/css/layout.css"
           "temp/css/index.css"
           "styles/core/bratstvost-icon-font.css"
@@ -131,6 +134,11 @@ module.exports = (grunt) ->
             cwd: "public/fonts/"
             src: "**"
             dest: "dist/public/fonts/"
+          ,
+            expand: yes
+            cwd: "public/css/"
+            src: "*.png"
+            dest: "dist/public/css/"
           ,
             expand: yes
             cwd: "public/"
