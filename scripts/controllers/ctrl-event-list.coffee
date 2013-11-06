@@ -63,10 +63,11 @@ class EventListCtrl
       @$scope.data.pastEvents = @$scope.data.pastEvents.sort (a,b) -> b._date.valueOf() - a._date.valueOf()
 
       lastVisit = moment(localStorage.getItem("lastVisit"))
-      console.log @$scope.data.nextEvents
       for ev,i in @$scope.data.nextEvents
-        console.log moment(ev.updated).isAfter(lastVisit), moment(ev.updated).toISOString(), lastVisit.toISOString()
-        ev.isNew = moment(ev.updated).isAfter(lastVisit)
+        if (lastVisit)
+          ev.isNew = moment(ev.updated).isAfter(lastVisit)
+        else
+          ev.isNew = true
       localStorage.setItem("lastVisit", moment().toISOString())
 
       @$scope.data.pastEventsByMonth = {}
