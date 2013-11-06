@@ -23,7 +23,8 @@ app
     ).render)
   
 app 
-  .use(exs.bodyParser())
+  .use(exs.urlencoded())
+  .use(exs.json())
   .use(exs.logger("short"))
   .use(app.router)
   .use(exs.static("public"))
