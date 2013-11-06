@@ -34,10 +34,11 @@ class EventListCtrl
 
       @$scope.data = {}
       @$scope.data.lastUpdate = _last_update.fromNow()
-      
 
       for ev in events when ev.phone
         ev.phone = @$scope.formatPhone(ev.phone)
+
+      
 
       for ev in events
         ev._date = moment(ev.date).toDate()
@@ -60,6 +61,13 @@ class EventListCtrl
 
       @$scope.data.nextEvents = @$scope.data.nextEvents.sort (a,b) -> a._date.valueOf() - b._date.valueOf()
       @$scope.data.pastEvents = @$scope.data.pastEvents.sort (a,b) -> b._date.valueOf() - a._date.valueOf()
+
+      lastVisit = moment(localStorage.getItem("lastVisit"))
+      console.log @$scope.data.nextEvents
+      for ev,i in @$scope.data.nextEvents
+        console.log moment(ev.updated).isAfter(lastVisit), moment(ev.updated).toISOString(), lastVisit.toISOString()
+        ev.isNew = moment(ev.updated).isAfter(lastVisit)
+      localStorage.setItem("lastVisit", moment().toISOString())
 
       @$scope.data.pastEventsByMonth = {}
       for ev in @$scope.data.pastEvents

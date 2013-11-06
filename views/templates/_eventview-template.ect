@@ -1,7 +1,7 @@
 <script type="text/ng-template" id="eventview-template">
   <article class="event-view">
-    <div class="event-short" ng-click="expanded=!expanded">
-      <div class="event-state"></div>
+    <div class="event-short" ng-click="expanded=!expanded; event.isNew=false">
+      <div class="event-state" ng-class="{'new': event.isNew}"></div>
       
       <div class="event-date">
         <div class="day">{{event.day}}</div>
