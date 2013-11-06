@@ -96,7 +96,6 @@ module.exports = (grunt) ->
           "temp/js/services/svc-news.js"
           "temp/js/directives/div-event-view.js"
           "temp/js/directives/div-archive-collapse.js"
-          "scripts/data.js"
           "temp/js/app.js"
         ]
         dest: "public/js/app.js"

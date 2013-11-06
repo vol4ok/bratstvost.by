@@ -19,8 +19,7 @@ configure = ($routeProvider, $locationProvider, $sceDelegateProvider) ->
       templateUrl: "video-view"
       controller: "VideoPageCtrl"
 
-main = (DATA) ->
-  window.DATA = DATA
+main = () ->
 
 angular.module('app.ctrl', [
   'NewsListCtrl'
@@ -48,7 +47,6 @@ angular.module('app', [
     'app.ctrl'
     'app.div'
     'app.svc'
-    'app.data'
   ])
   .config([ '$routeProvider', '$locationProvider', '$sceDelegateProvider', configure ])
-  .run(["DATA", main])
+  .run()
