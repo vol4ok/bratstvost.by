@@ -168,6 +168,7 @@ class VideoPageCtrl
 
     @videos.sort (a,b) -> moment(b.publish_date).valueOf() - moment(a.publish_date).valueOf()
 
+    @$scope.videos = @videos
     @$scope.videosLeft = []
     @$scope.videosRight = []
 
@@ -176,6 +177,8 @@ class VideoPageCtrl
         @$scope.videosRight.push(video)
       else
         @$scope.videosLeft.push(video)
+
+
 
 
     # @$scope.videosLeft = [ 

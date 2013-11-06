@@ -1,41 +1,59 @@
-.video-list {
-
-  .video-player, .video-preview {
-    background: black;
-    min-height: 360px;
-    padding: 0;
-    color: white;
-  }
-  .video-info {
-    background: gold;
-  }
-
-
-
+.video-player, .video-preview {
+  position: absolute;
+  top:    0;
+  bottom: 0;
+  left:   0;
+  right:  0;
+  padding: 0;
+  color: white;
 }
 
 .video-well {
-  background: black;
-  color: white;
-  padding: 0;
-  height: 360px;
-  border: none;
+  position: relative;
+  height: 0;
+  padding: 75% 0 0;
   overflow: hidden;
-  .video-preview {
-    img {
-      opacity: .8;
-    }
-    position: relative;
-    &:after {
-      color: white;
-      opacity: .7;
-      position: absolute;
-      content: "v";
-      top: 50%;
-      left: 50%;
-      margin-top: -48px;
-      margin-left: -40px;
-      font: 96px "bratstvost-icon-font";
-    }
+  border: none;
+}
+
+.video-wrap {
+  color: white;
+  position: absolute;
+  top:    0;
+  bottom: 0;
+  left:   0;
+  right:  0;
+  overflow: hidden;
+  background-color: black;
+}
+
+.video-preview {
+  position: absolute;
+  top:    0;
+  bottom: 0;
+  left:   0;
+  right:  0;
+  opacity: .8;
+  background-color: black;
+  background-position: center center;
+  -webkit-background-size: cover; 
+  background-size: cover; 
+  &:after {
+    color: white;
+    opacity: .7;
+    position: absolute;
+    content: "v";
+    top: 50%;
+    left: 50%;
+    margin-top: -48px;
+    margin-left: -40px;
+    font: 96px "bratstvost-icon-font";
+    -webkit-transition: opacity .2s ease;
+    -moz-transition: opacity .2s ease;
+    -o-transition: opacity .2s ease;
+    transition: opacity .2s ease;
+  }
+  &:hover:after {
+    opacity: .95;
   }
 }

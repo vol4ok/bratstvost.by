@@ -14,27 +14,28 @@
 
     </div>
   </div>
+  
 
   <div class="row">
 
-    <div class="col-sm-6">
-      <div class="well video-well" ng-repeat="video in videosLeft" ng-init="video.preview=true" ng-switch="video.preview">
-        <div  ng-switch-when="false" class="video-player">
-          <iframe width="100%" height="345" src="{{video.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>  
-        </div>
-        <div ng-switch-when="true" class="video-preview" ng-click="video.preview=false">
-          <img wisth="100%" height="345" src="{{video.thumb_url}}" alt="">
+    <div class="col-sm-6" >
+      <div class="well video-well" ng-repeat="video in videosLeft" ng-init="video.preview=true" >
+        <div class="video-wrap" ng-switch="video.preview">
+          <div  ng-switch-when="false" class="video-player">
+            <iframe width="100%" height="100%" src="{{video.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+          </div>
+          <div ng-switch-when="true" class="video-preview img" style="background-image: url('{{video.thumb_url}}')" ng-click="video.preview=false"></div>
         </div>
       </div>        
     </div>
 
     <div class="col-sm-6">
-      <div class="well video-well" ng-repeat="video in videosRight" ng-init="video.preview=true" ng-switch="video.preview">
-        <div ng-switch-when="false" class="video-player">
-          <iframe width="100%" height="345" src="{{video.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-        </div>
-        <div ng-switch-when="true" class="video-preview" ng-click="video.preview=false" >
-          <img width="100%" height="345" src="{{video.thumb_url}}" alt="">
+      <div class="well video-well" ng-repeat="video in videosRight" ng-init="video.preview=true" >
+        <div class="video-wrap" ng-switch="video.preview">
+          <div ng-switch-when="false" class="video-player">
+            <iframe width="100%" height="100%" src="{{video.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+          </div>
+          <div ng-switch-when="true" class="video-preview img" style="background-image: url('{{video.thumb_url}}')" ng-click="video.preview=false"></div>
         </div>
       </div>        
     </div>
