@@ -32,15 +32,14 @@ h1.title {
   }
 }
 
-.with-carousel {
-
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+.navbar li.active > a {
+  pointer-events: none;
+  cursor: default;
+  user-select: none;
 }
 
-.carousel img {
-  border-top-left-radius: @border-radius-base;
-  border-top-right-radius: @border-radius-base;
+.carousel {
+  margin-bottom: 20px;
 }
 
 @import "_events";

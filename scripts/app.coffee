@@ -12,6 +12,7 @@ configure = ($routeProvider, $locationProvider, $sceDelegateProvider) ->
       controller: "IndexPageCtrl"
     .when "/contacts",
       templateUrl: "contact-view"
+      controller: "ContactPageCtrl"
     .when "/about",
       templateUrl: "about-view"
       controller: "AboutPageCtrl"
@@ -28,11 +29,13 @@ angular.module('app.ctrl', [
   'IndexPageCtrl'
   'AboutPageCtrl'
   'VideoPageCtrl'
+  'ContactPageCtrl'
 ])
 
 angular.module('app.div', [
   'EventViewDiv'
   'ArchiveCollapsDiv'
+  'NavigationDivs'
 ])
 
 angular.module('app.svc', [
@@ -41,9 +44,12 @@ angular.module('app.svc', [
   'NewsSvc'
 ])
 
+angular.module('app.ftr', [])
+
 angular.module('app', [
     'ngSanitize'
     'ngRoute'
+    'app.ftr'
     'app.ctrl'
     'app.div'
     'app.svc'

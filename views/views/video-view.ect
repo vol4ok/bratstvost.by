@@ -1,22 +1,6 @@
 <script type="text/ng-template" id="video-view">
 
   <div class="row">
-    <div class="col-sm-12">
-
-      <nav class="navbar navbar-default" role="navigation">
-        <ul class="nav navbar-nav">
-          <li><a href="/">Главная</a></li>
-          <li><a href="/about">О братстве</a></li>
-          <li class="active"><a>Видео</a></li>
-          <li><a href="/contacts">Контакты</a></li>
-        </ul>
-      </nav>
-
-    </div>
-  </div>
-  
-
-  <div class="row">
 
     <div class="col-sm-6" >
       <div class="well video-well" ng-repeat="video in videosLeft" ng-init="video.preview=true" >
