@@ -22,18 +22,11 @@ module.exports = (grunt) ->
     coffee:
       client:
         files:
-          "temp/js/app.js":                         "scripts/app.coffee"
-          "temp/js/controllers/ctrl-event-list.js": "scripts/controllers/ctrl-event-list.coffee"
-          "temp/js/controllers/ctrl-news-list.js":  "scripts/controllers/ctrl-news-list.coffee"
-          "temp/js/controllers/ctrl-notice-list.js":  "scripts/controllers/ctrl-notice-list.coffee"
-          "temp/js/controllers/ctrl-index-page.js": "scripts/controllers/ctrl-index-page.coffee"
-          "temp/js/controllers/ctrl-about-page.js": "scripts/controllers/ctrl-about-page.coffee"
-          "temp/js/controllers/ctrl-video-page.js": "scripts/controllers/ctrl-video-page.coffee"
-          "temp/js/services/svc-events.js":         "scripts/services/svc-events.coffee"
-          "temp/js/services/svc-notice.js":         "scripts/services/svc-notice.coffee"
-          "temp/js/services/svc-news.js":         "scripts/services/svc-news.coffee"
-          "temp/js/directives/div-event-view.js":   "scripts/directives/div-event-view.coffee"
-          "temp/js/directives/div-archive-collapse.js":   "scripts/directives/div-archive-collapse.coffee"
+          "temp/js/app.js":          "scripts/app.coffee"
+          #"temp/js/factories.js":    "scripts/factories/*.coffee"
+          "temp/js/controllers.js":  "scripts/controllers/*.coffee"
+          "temp/js/services.js":     "scripts/services/*.coffee"
+          "temp/js/directives.js":   "scripts/directives/*.coffee"
 
       server:
         options:
@@ -79,24 +72,12 @@ module.exports = (grunt) ->
           "bower_components/angular-sanitize/angular-sanitize.js"
           "bower_components/moment/min/moment.min.js"
           "bower_components/moment/min/langs.min.js"
-          #"vendor/fotorama/fotorama.js"
         ]
         dest: "public/js/core.js"
 
       main:
         src: [
-          "temp/js/controllers/ctrl-event-list.js" 
-          "temp/js/controllers/ctrl-news-list.js" 
-          "temp/js/controllers/ctrl-notice-list.js"
-          "temp/js/controllers/ctrl-index-page.js"
-          "temp/js/controllers/ctrl-about-page.js"
-          "temp/js/controllers/ctrl-video-page.js"
-          "temp/js/services/svc-events.js"
-          "temp/js/services/svc-notice.js"
-          "temp/js/services/svc-news.js"
-          "temp/js/directives/div-event-view.js"
-          "temp/js/directives/div-archive-collapse.js"
-          "temp/js/app.js"
+          "temp/js/*.js"
         ]
         dest: "public/js/app.js"
 
@@ -110,14 +91,12 @@ module.exports = (grunt) ->
           "bower_components/angular-sanitize/angular-sanitize.min.js"
           "bower_components/moment/min/moment.min.js"
           "bower_components/moment/min/langs.min.js"
-          #"vendor/fotorama/fotorama.js"
         ]
-        dest: "dist/public/js/core.js"
+        dest: "temp/js/core.js"
 
       styles:
         src: [
           "temp/css/bootstap.css"
-          #"vendor/fotorama/fotorama.css"
           "temp/css/layout.css"
           "temp/css/index.css"
           "styles/core/bratstvost-icon-font.css"
@@ -170,11 +149,22 @@ module.exports = (grunt) ->
         options:
           mangle: false
         files:
-          'dist/public/js/app.js': ["public/js/app.js"]
+          'dist/public/js/core.js': ["temp/js/core.js"]
+          'dist/public/js/app.js':  ["public/js/app.js"]
 
 
     clean:
-      dist: ["dist"]
+      dist: [
+        "dist/models"
+        "dist/public"
+        "dist/views"
+        "dist/package.json"
+        "dist/Procfile"
+        "dist/web.js"
+        "dist/nginx.conf"
+      ]
+      temp: ["temp"]
+      pub: ["public/js/*.js", "public/css/*.css"]
 
     bump:
       options:
@@ -195,3 +185,5 @@ module.exports = (grunt) ->
   grunt.registerTask "core", ["concat:core"]
   grunt.registerTask "default", ["styles", "coffee:client", "concat:main"]
   grunt.registerTask "dist", ["styles", "coffee", "concat:dist", "cssmin", "uglify", "copy"]
+  grunt.registerTask "rebuild", ["core", "default", "dist"]
+  grunt.registerTask "rebuild", ["clean", "core", "default", "dist"]
