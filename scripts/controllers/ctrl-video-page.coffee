@@ -181,6 +181,15 @@ class VideoPageCtrl
             "url": "http://www.youtube.com/embed/TO1qBF2Jdbk?feature=player_embeded&autoplay=1",
             "thumb_url": "http://img.youtube.com/vi/TO1qBF2Jdbk/0.jpg",
             "source_url": ""
+        },
+        {
+            "id": "G0NjxsaiMao",
+            "publish_date": "2013-04-18",
+            "title": "о.Кофру. Праздник Св Спиридона (Керкира, Греция)",
+            "content": "",
+            "url": "http://www.youtube.com/embed/G0NjxsaiMao?feature=player_embeded&autoplay=1",
+            "thumb_url": "http://img.youtube.com/vi/G0NjxsaiMao/0.jpg",
+            "source_url": ""
         }
     ]
 
