@@ -11,6 +11,12 @@ module.exports = (grunt) ->
   
   grunt.initConfig
 
+
+
+    ### ----------------------- ###
+    ### ******** WATCH ******** ###
+    ### ----------------------- ###
+
     watch: 
       less:
         files: 'styles/**/*.less'
@@ -18,6 +24,16 @@ module.exports = (grunt) ->
       coffee:
         files: 'scripts/**/*.coffee'
         tasks: ['coffee:client']
+
+
+
+
+
+
+    ### ------------------------ ###
+    ### ******** COFFEE ******** ###
+    ### ------------------------ ###
+
 
     coffee:
       client:
@@ -39,6 +55,13 @@ module.exports = (grunt) ->
           "dist/models/news.js": "models/news.coffee"
 
 
+
+
+
+    ### ---------------------- ###
+    ### ******** LESS ******** ###
+    ### ---------------------- ###
+
     less: 
       bootstrap:
         options:
@@ -48,6 +71,7 @@ module.exports = (grunt) ->
           ]
         files:
           "temp/css/bootstap.css": "styles/core/bootstrap.less"
+
 
       styles: 
         options:
@@ -61,7 +85,14 @@ module.exports = (grunt) ->
 
 
 
+
+
+    ### ------------------------ ###
+    ### ******** CONCAT ******** ###
+    ### ------------------------ ###
+
     concat:
+
       core:
         src: [
           "bower_components/jquery2/jquery.js"
@@ -75,11 +106,17 @@ module.exports = (grunt) ->
         ]
         dest: "public/js/core.js"
 
+
       main:
         src: [
-          "temp/js/*.js"
+          #"temp/js/factories.js"
+          "temp/js/controllers.js"
+          "temp/js/services.js"
+          "temp/js/directives.js"
+          "temp/js/app.js"
         ]
         dest: "public/js/app.js"
+
 
       dist:
         src: [
@@ -97,11 +134,19 @@ module.exports = (grunt) ->
       styles:
         src: [
           "temp/css/bootstap.css"
+          "styles/core/bratstvost-icon-font.css"
           "temp/css/layout.css"
           "temp/css/index.css"
-          "styles/core/bratstvost-icon-font.css"
         ]
         dest: "public/css/styles.css"
+
+
+
+
+
+    ### ---------------------- ###
+    ### ******** COPY ******** ###
+    ### ---------------------- ###
 
     copy:
       dist:
@@ -139,10 +184,27 @@ module.exports = (grunt) ->
             dest: "dist/views"
         ]
 
+
+
+
+
+    ### ------------------------ ###
+    ### ******** CSSMIN ******** ###
+    ### ------------------------ ###
+
     cssmin:
       dist:
         files:
           "dist/public/css/styles.css": "public/css/styles.css"
+
+
+
+
+
+
+    ### ------------------------ ###
+    ### ******** UGLIFY ******** ###
+    ### ------------------------ ###
 
     uglify:
       dist:
@@ -152,6 +214,13 @@ module.exports = (grunt) ->
           'dist/public/js/core.js': ["temp/js/core.js"]
           'dist/public/js/app.js':  ["public/js/app.js"]
 
+
+
+
+
+    ### ----------------------- ###
+    ### ******** CLEAN ******** ###
+    ### ----------------------- ###
 
     clean:
       dist: [
@@ -165,6 +234,14 @@ module.exports = (grunt) ->
       ]
       temp: ["temp"]
       pub: ["public/js/*.js", "public/css/*.css"]
+
+
+
+
+    ### ---------------------- ###
+    ### ******** BUMP ******** ###
+    ### ---------------------- ###
+
 
     bump:
       options:
