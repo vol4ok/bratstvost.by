@@ -190,6 +190,15 @@ class VideoPageCtrl
             "url": "http://www.youtube.com/embed/G0NjxsaiMao?feature=player_embeded&autoplay=1",
             "thumb_url": "http://img.youtube.com/vi/G0NjxsaiMao/0.jpg",
             "source_url": ""
+        },
+        {
+            "id": "T9YCoFU8G8M",
+            "publish_date": "2013-11-09",
+            "title": "Фильм «Святитель Спиридон в Беларуси»",
+            "content": "Фильм о пребывании Десницы Святителя Спиридона Тримифунтского в Беларуси в мае 2013 года.",
+            "url": "http://www.youtube.com/embed/T9YCoFU8G8M?feature=player_embeded&autoplay=1",
+            "thumb_url": "http://img.youtube.com/vi/T9YCoFU8G8M/0.jpg",
+            "source_url": ""
         }
     ]
 
