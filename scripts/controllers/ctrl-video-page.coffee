@@ -163,6 +163,42 @@ class VideoPageCtrl
             "url": "http://player.vimeo.com/video/65376123?byline=0&amp;portrait=0&amp;color=ff9933&autoplay=1",
             "thumb_url": "http://b.vimeocdn.com/ts/436/376/436376030_640.jpg",
             "source_url": ""
+        },
+        {
+            "id": "5zKPJO-3NB8",
+            "publish_date": "2013-06-13",
+            "title": "Фокусник из Лондона выступил в Борисовском психоневрологическом интернате",
+            "content": "Лондонский фокусник Эдвард Хилсон в рамках своего второго тура по Беларуси, организованного компанией «Blue sky talent» по просьбе братства Святителя Спиридона Тримифунтского, дал благотворительное выступление в Борисовском психоневрологическом интернате, расположенном в деревне Тарасики.",
+            "url": "http://www.youtube.com/embed/5zKPJO-3NB8?feature=player_embeded&autoplay=1",
+            "thumb_url": "http://img.youtube.com/vi/5zKPJO-3NB8/0.jpg",
+            "source_url": ""
+        },
+        {
+            "id": "TO1qBF2Jdbk",
+            "publish_date": "2013-04-18",
+            "title": "Посещение психоневрологических интернатов меняет жизнь",
+            "content": "Беседа с Сергеем Довгалем, председателем братства Святителя Спиридона Тримифунтского, действующее при Свято-Преображенском храме города Заславля.",
+            "url": "http://www.youtube.com/embed/TO1qBF2Jdbk?feature=player_embeded&autoplay=1",
+            "thumb_url": "http://img.youtube.com/vi/TO1qBF2Jdbk/0.jpg",
+            "source_url": ""
+        },
+        {
+            "id": "G0NjxsaiMao",
+            "publish_date": "2013-04-18",
+            "title": "о.Кофру. Праздник Св Спиридона (Керкира, Греция)",
+            "content": "",
+            "url": "http://www.youtube.com/embed/G0NjxsaiMao?feature=player_embeded&autoplay=1",
+            "thumb_url": "http://img.youtube.com/vi/G0NjxsaiMao/0.jpg",
+            "source_url": ""
+        },
+        {
+            "id": "T9YCoFU8G8M",
+            "publish_date": "2013-11-09",
+            "title": "Фильм «Святитель Спиридон в Беларуси»",
+            "content": "Фильм о пребывании Десницы Святителя Спиридона Тримифунтского в Беларуси в мае 2013 года.",
+            "url": "http://www.youtube.com/embed/T9YCoFU8G8M?feature=player_embeded&autoplay=1",
+            "thumb_url": "http://img.youtube.com/vi/T9YCoFU8G8M/0.jpg",
+            "source_url": ""
         }
     ]
 
