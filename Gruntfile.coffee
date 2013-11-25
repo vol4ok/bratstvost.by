@@ -53,6 +53,7 @@ module.exports = (grunt) ->
           "dist/models/event.js": "models/event.coffee"
           "dist/models/notice.js": "models/notice.coffee"
           "dist/models/news.js": "models/news.coffee"
+          "dist/models/article.js": "models/article.coffee"
 
 
 
