@@ -37,12 +37,14 @@ angular.module('app.ctrl', [
   'VideoPageCtrl'
   'ContactPageCtrl'
   'ArticlePageCtrl'
+  'StoryPageCtrl'
 ])
 
 angular.module('app.div', [
   'EventViewDiv'
   'ArchiveCollapsDiv'
   'NavigationDivs'
+  'TabDivs'
 ])
 
 angular.module('app.svc', [
