@@ -69,6 +69,12 @@ class NewsEditorCtrl
     @$scope.create = @create
     @$scope.saveCurrent = @saveCurrent
     @$scope.deleteCurrent = @deleteCurrent
+    @$scope.cmOptions = 
+      lineNumbers: yes
+      lineWrapping: yes
+      mode: "application/json"
+      theme: "tomorrow-night-eighties"
+      tabSize: 2
 
     @$newsSvc.all().then (newsList) => 
       currentDate = moment() 

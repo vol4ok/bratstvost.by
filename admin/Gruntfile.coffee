@@ -60,6 +60,9 @@ module.exports = (grunt) ->
           "bower_components/angular/angular.js"
           "bower_components/angular-route/angular-route.js"
           "bower_components/angular-sanitize/angular-sanitize.js"
+          "bower_components/codemirror/lib/codemirror.js"
+          "bower_components/codemirror/mode/javascript/javascript.js"
+          "bower_components/angular-ui-codemirror/ui-codemirror.js"
           "bower_components/moment/min/moment.min.js"
           "bower_components/moment/min/langs.min.js"
           "bower_components/node-uuid/uuid.js"
@@ -80,10 +83,14 @@ module.exports = (grunt) ->
 
       styles:
         src: [
+          "styles/core/bratstvost-icon-font.css"
+          "bower_components/codemirror/lib/codemirror.css"
+          #"bower_components/codemirror/theme/the-matrix.css"
+          "bower_components/codemirror/theme/tomorrow-night-eighties.css"
           "temp/css/bootstap.css"
           "temp/css/layout.css"
           "temp/css/index.css"
-          "styles/core/bratstvost-icon-font.css"
+          
         ]
         dest: "public/css/styles.css"
 

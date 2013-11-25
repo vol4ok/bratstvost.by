@@ -73,6 +73,14 @@ class EventEditorCtrl
     @$scope.createEvent = @createEvent
     @$scope.saveCurrentEvent = @saveCurrentEvent
     @$scope.deleteCurrentEvent = @deleteCurrentEvent
+    @$scope.cmOptions = 
+      lineNumbers: yes
+      lineWrapping: yes
+      mode: "application/json"
+      theme: "tomorrow-night-eighties"
+      tabSize: 2
+
+    @$scope.cmModel = "Hello"
 
 
     @$eventsSvc.all().then (events) =>
@@ -82,14 +90,12 @@ class EventEditorCtrl
       @updateEventsArray()
 
     @$scope.$watch "data.currentEvent._id", (value) =>
-      console.log '$watch "data.currentEvent._id"'
       return if angular.isArray(@$scope.data.currentEvent)
       @$scope.data.currentEventJSON = JSON.stringify(@$scope.data.currentEvent , null, "  ")
 
 
 
     @$scope.$watch "data.currentEventJSON", =>
-      console.log '$watch "data.currentEventJSON"'
       try
         @$scope.data.currentEvent = JSON.parse(@$scope.data.currentEventJSON)
       catch

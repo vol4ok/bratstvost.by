@@ -73,6 +73,13 @@ class NoticeEditorCtrl
     @$scope.saveCurrent = @saveCurrent
     @$scope.deleteCurrent = @deleteCurrent
 
+    @$scope.cmOptions = 
+      lineNumbers: yes
+      lineWrapping: yes
+      mode: "application/json"
+      theme: "tomorrow-night-eighties"
+      tabSize: 2
+
     @$noticeSvc.all().then (notices) => 
       currentDate = moment() 
       @$scope.data.notices = {}
