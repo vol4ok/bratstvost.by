@@ -35,6 +35,7 @@ angular.module('adminApp.svc', [
 angular.module('adminApp', [
     'ngSanitize'
     'ngRoute'
+    'ui.codemirror'
     'adminApp.ctrl'
     'adminApp.svc'
   ])

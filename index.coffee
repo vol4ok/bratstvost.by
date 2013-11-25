@@ -8,6 +8,7 @@ mg.connect('mongodb://localhost/bratstvost-3')
 {Notice} = require "./models/notice"
 {Event} = require "./models/event"
 {News} = require "./models/news"
+{Article} = require "./models/article"
 
 _ = require "lodash"
 require("uasync")(_)
@@ -57,6 +58,11 @@ app.get "/api/notice", (req, res) ->
 
 app.get "/api/news", (req, res) ->
   News.find {published: yes}, (err, results) ->
+    return res.json(status: "ERR", message: err) if err
+    res.json(results)
+
+app.get "/api/article", (req, res) ->
+  Article.find {published: yes}, (err, results) ->
     return res.json(status: "ERR", message: err) if err
     res.json(results)
 
