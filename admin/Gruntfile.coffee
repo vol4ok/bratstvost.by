@@ -25,10 +25,10 @@ module.exports = (grunt) ->
           "temp/js/admin-app.js":                      "scripts/admin-app.coffee"
           "temp/js/services/svc-events.js":            "scripts/services/svc-events.coffee"
           "temp/js/services/svc-notice.js":            "scripts/services/svc-notice.coffee"
-          "temp/js/services/svc-news.js":            "scripts/services/svc-news.coffee"
+          "temp/js/services/svc-news.js":              "scripts/services/svc-news.coffee"
           "temp/js/controllers/ctrl-events-editor.js": "scripts/controllers/ctrl-events-editor.coffee"
           "temp/js/controllers/ctrl-notice-editor.js": "scripts/controllers/ctrl-notice-editor.coffee"
-          "temp/js/controllers/ctrl-news-editor.js": "scripts/controllers/ctrl-news-editor.coffee"
+          "temp/js/controllers/ctrl-news-editor.js":   "scripts/controllers/ctrl-news-editor.coffee"
 
 
     less: 
