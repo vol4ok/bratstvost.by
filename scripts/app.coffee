@@ -23,6 +23,7 @@ configure = ($routeProvider, $locationProvider, $sceDelegateProvider) ->
       templateUrl: "article-view"
       controller: "ArticlePageCtrl"
     .when "/life-of-saint-Spyridon",
+      reloadOnSearch: off
       templateUrl: "story-view"
       controller: "StoryPageCtrl"
 

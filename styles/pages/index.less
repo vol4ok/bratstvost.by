@@ -49,26 +49,32 @@ h1.title {
 @import "_about";
 @import "_video";
 
+.story {
+  margin-bottom: 40px;
+}
+
 .tab-list {
   list-style: none;
   padding: 0;
   margin: 0 -10px 0 -10px;
   li {
+    position: relative;
     width: 100%;
     padding: 12px 20px;
     cursor: pointer;
-    &.active, &:active {
-        background: skyblue;
-    }
+    .transition(background .4s ease);
     &:hover {
       background: @belize-hole;
+    }
+    &.active, &:active {
+        background: skyblue;
     }
   }
 }
 
 .page-list {
   list-style: none;
-  padding: 0;
+  padding: 0 10px 0 0;
   margin: 0;
   li {
     display: none;
@@ -77,8 +83,26 @@ h1.title {
     display: block;
   }
   p {
-    text-indent: 42px;
-    font: 16px/24px @font-family-sans-serif;
+    color: black;
+    text-align: justify;
+    text-indent: 30px;
+    font: 300 18px/25px @font-family-sans-serif;
+    -webkit-font-smoothing: subpixel-antialiased;
+    //letter-spacing: -0.02em;
+    -webkit-hyphens: auto;
+    -webkit-hyphenate-character: "\2010";
+    -webkit-hyphenate-limit-after: 1;
+    -webkit-hyphenate-limit-before: 3;
+    -moz-hyphens: auto;
+    hyphens: auto;
+    text-shadow: 0 1px 0 #fafafa;
+  }
+  h2 {
+    text-align: center;
+    font: 400 28px @font-family-narrow;
+    margin-bottom: 32px;
+    -webkit-font-smoothing: antialiased;
+    text-shadow: 0 1px 0 #fafafa;
   }
 }
 

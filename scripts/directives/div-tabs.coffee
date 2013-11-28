@@ -1,17 +1,27 @@
 module = angular.module("TabDivs", [])
 
-module.directive "tabList", () ->
+module.directive "tabList", [ "$location", ($location) ->
   restrict: "A"
   scope:
     pageListName: "@tabList"
+  link: 
+    post: (scope, elem, attr, ctrl) ->
+      ctrl.currentTab = ctrl.findActiveTab()
+      hash = $location.hash()
+      if hash and tab = ctrl.getTabByName(hash)
+        ctrl.switchTab(tab)
+      else if ctrl.currentTab
+        ctrl.switchTab(ctrl.currentTab)
+
   controller: class
 
-    switchTab: (tab) ->
+    switchTab: (tab, emit = true) =>
       return unless tab
       @currentTab?.deactiveate()
       @currentTab = tab
       @currentTab.activate()
-      @pageListScope?.$emit("select-page", @currentTab.name)
+      if emit
+        @pageListScope?.$emit("select-page", @currentTab.name)
 
     on_tabClick: (ev, tab) =>
       @switchTab(tab)
@@ -21,13 +31,21 @@ module.directive "tabList", () ->
         @pageListScope = pageListScope
         @pageListScope?.$emit("select-page", @currentTab.name)
 
+    getTabByName: (name) ->
+      for tab in @tabs
+        return tab if tab.name is name
+
+    findActiveTab: ->
+      for tab in @tabs
+        return tab if tab.isActive()
+      
+
     constructor: (@$scope) ->
       @tabs = []
       @pageListScope = null
       @$scope.$on('tab-click', @on_tabClick)
       @$scope.$on('hello-tab-list', @on_hello)
-
-
+]
 
 
 module.directive "tab", [ "$timeout", ($timeout) ->
@@ -40,19 +58,19 @@ module.directive "tab", [ "$timeout", ($timeout) ->
       element.addClass("active")
     scope.deactiveate = ->
       element.removeClass("active")
+    scope.isActive = -> 
+      element.hasClass("active")
     ctrl.tabs.push(scope)
     element.click ->
       scope.$parent.$broadcast("tab-click", scope)
-    if element.hasClass("active")
-      $timeout -> 
-        ctrl.switchTab(scope) 
 ]
 
 
-module.directive "pageList", ["$timeout", ($timeout) ->
+module.directive "pageList", ["$timeout", "$location", ($timeout, $location) ->
   restrict: "A"
   scope: 
     name: "@pageList"
+    index: "@"
   controller: class
 
     switchPage: (pageName) ->
@@ -60,6 +78,9 @@ module.directive "pageList", ["$timeout", ($timeout) ->
       @currentPage?.deactiveate()
       @currentPage = @pages[pageName]
       @currentPage.activate()
+      $timeout ->
+        $location.hash(pageName)
+          
 
 
     on_selectPage: (ev, pageName) =>
