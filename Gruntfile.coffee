@@ -71,7 +71,7 @@ module.exports = (grunt) ->
             "bower_components/bootstrap/less"
           ]
         files:
-          "temp/css/bootstap.css": "styles/core/bootstrap.less"
+          "temp/css/bootstap.css": "styles/bootstrap.less"
 
 
       styles: 
@@ -81,8 +81,7 @@ module.exports = (grunt) ->
             "bower_components/bootstrap/less"
           ]
         files:
-          "temp/css/layout.css": "styles/pages/layout.less"
-          "temp/css/index.css": "styles/pages/index.less"
+          "temp/css/app.css": "styles/app.less"
 
 
 
@@ -134,10 +133,9 @@ module.exports = (grunt) ->
 
       styles:
         src: [
+          "styles/fonts/*"
           "temp/css/bootstap.css"
-          "styles/core/bratstvost-icon-font.css"
-          "temp/css/layout.css"
-          "temp/css/index.css"
+          "temp/css/app.css"
         ]
         dest: "public/css/styles.css"
 
