@@ -13,8 +13,6 @@
 }
 
 
-
-
 [data-icon]:before {
   font-family: "bratstvost-icon-font" !important;
   content: attr(data-icon);
@@ -96,5 +94,25 @@
 
 .icon-contact:before {
   content: "C";
+}
+
+.icon-vk-1:before {
+  content: "B";
+}
+
+.icon-facebook:before {
+  content: "f";
+}
+
+.icon-twitter:before {
+  content: "T";
+}
+
+.icon-gplus:before {
+  content: "g";
+}
+
+.icon-vk-2:before {
+  content: "V";
 }
 

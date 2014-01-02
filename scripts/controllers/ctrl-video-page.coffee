@@ -199,16 +199,16 @@ class VideoPageCtrl
             "url": "http://www.youtube.com/embed/T9YCoFU8G8M?feature=player_embeded&autoplay=1",
             "thumb_url": "http://img.youtube.com/vi/T9YCoFU8G8M/0.jpg",
             "source_url": ""
-        },
-        {
-            "id": "gd9vr_XfScc",
-            "publish_date": "2013-11-20",
-            "title": "Братство святителя Спиридона Тримифунтского с Димой Каминским. Благотворительные концерты.",
-            "content": "Братство святителя Спиридона (храм Преображения Господня,г. Заславль, Минская обл., РБ) оказывает помощь детям и взрослым, проживающим в психоневрологических интернатах г.Минска и Минской обл. Добровольцы братства занимаются духовно-нравственным и культурным просвещением насельников интернатов, миссионерской, социальной и благотворительной деятельностью.",
-            "url": "http://www.youtube.com/embed/gd9vr_XfScc?feature=player_embeded&autoplay=1",
-            "thumb_url": "http://img.youtube.com/vi/gd9vr_XfScc/0.jpg",
-            "source_url": ""
         }
+        # {
+        #     "id": "gd9vr_XfScc",
+        #     "publish_date": "2013-11-20",
+        #     "title": "Братство святителя Спиридона Тримифунтского с Димой Каминским. Благотворительные концерты.",
+        #     "content": "Братство святителя Спиридона (храм Преображения Господня,г. Заславль, Минская обл., РБ) оказывает помощь детям и взрослым, проживающим в психоневрологических интернатах г.Минска и Минской обл. Добровольцы братства занимаются духовно-нравственным и культурным просвещением насельников интернатов, миссионерской, социальной и благотворительной деятельностью.",
+        #     "url": "http://www.youtube.com/embed/gd9vr_XfScc?feature=player_embeded&autoplay=1",
+        #     "thumb_url": "http://img.youtube.com/vi/gd9vr_XfScc/0.jpg",
+        #     "source_url": ""
+        # }
     ]
 
     @videos.sort (a,b) -> moment(b.publish_date).valueOf() - moment(a.publish_date).valueOf()

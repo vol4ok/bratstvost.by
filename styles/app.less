@@ -1,0 +1,86 @@
+@import "_variables";
+@import "mixins";
+
+html {
+  min-height: 100%;
+}
+
+body {
+  min-height: 100%;
+  background: #5b2275;
+  margin-top: 42px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.footer {
+  min-height: 42px;
+}
+
+*:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.well {
+  color: @well-color;
+}
+
+.logo {
+  height: 197px;
+  background: url(/img/logo-200.png) no-repeat center;
+}
+
+h1.title {
+  text-align: center;
+  font: 400 42px @font-family-narrow;
+}
+
+.hot {
+  position: relative;
+  background: #eedb8c;
+}
+
+.well {
+  h2 {
+    font: bold 24px @font-family-narrow;
+    &:first-child {
+      margin-top: 0;
+    }
+    i {
+      font-size: 20px;
+    }
+  }
+}
+
+.navbar li.active > a {
+  pointer-events: none;
+  cursor: default;
+  user-select: none;
+}
+
+.social-nav {
+  overflow: hidden;
+  max-height: 50px;
+  padding-right: 5px;
+  i {
+    font-size: 28px;
+    line-height: 28px;
+    color: #ccc;
+  }
+  li > a {
+    padding: 11px 5px 8px;
+    &:hover i {
+      color: #888;
+    }
+  }
+}
+
+.carousel {
+  margin-bottom: 20px;
+}
+
+@import "pages/_index";
+@import "pages/_about";
+@import "pages/_story";
+@import "pages/_video";
+@import "pages/_contacts";
