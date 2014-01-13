@@ -38,18 +38,11 @@
         <img src="/img/carousel/slide-8.jpg" alt="alt">
       </div>
     </div>
-  </div>
+  </div> 
   
   <div class="row">
 
     <div class="col-sm-7">
-        
-<!--       <div class="well well-notes" ng-controller="NoticeListCtrl">
-        <h2><i class="icon-announce"></i> Объявления</h2>
-        <section class="note" ng-repeat="notice in data.notices" ng-class="notice.style" ng-bind-html="notice.body">
-          {{notice.body}}
-        </section>
-      </div> -->
 
       <div class="well" ng-controller="NewsListCtrl">
 
@@ -80,6 +73,7 @@
       <div class="well well-events event-list">
         <h2 class="next-event-title"><i class="icon-cal"></i> Мероприятия</h2>
         <h6><i class="icon-time"></i> обновлено {{data.lastUpdate}}</h6>
+        <p class="hint">Кликните на событие, чтобы посмотреть детали</p>
         <eventview ng-repeat="event in data.nextEvents" event="event"></eventview>
 
         <h2 class="past-event-title"><i class="icon-archive"></i> Архив событий</h2>
