@@ -77,8 +77,10 @@
         <eventview ng-repeat="event in data.nextEvents" event="event"></eventview>
 
         <h2 class="past-event-title"><i class="icon-archive"></i> Архив событий</h2>
-        <archiveitem ng-repeat="mevents in data.pastEventsByMonth" title="mevents.month">
-          <eventview class="archive" ng-repeat="event in mevents.events" event="event"></eventview>
+        <archiveitem ng-repeat="yevents in data.pastEventsByYear" title="yevents.year">
+          <archiveitem ng-repeat="mevents in yevents.pastEventsByMonth" title="mevents.month">
+            <eventview class="archive" ng-repeat="event in mevents.events" event="event"></eventview>
+          </archiveitem>
         </archiveitem>
       </div>
 

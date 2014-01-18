@@ -244,7 +244,18 @@ class VideoPageCtrl
             "url": "http://www.youtube.com/embed/hmRZFQXuPfk?feature=player_embeded&autoplay=1",
             "thumb_url": "http://img.youtube.com/vi/hmRZFQXuPfk/0.jpg",
             "source_url": ""
+        },
+        {
+            "id": "s60neacJyjs",
+            "publish_date": "2013-12-25",
+            "title": "Lorenzo Iannotti Cherven boarding home visit",
+            "content": "Lorenzo Iannotti from Melbourne Australia visiting Cherven boarding home for the disabled as a result of Michelle Schembri-lipscombe's ideas and effort to self fund raise with her Bloom by Design Entertainment company and the inspiration of Sergey Dougal's boarding home activities.",
+            "url": "http://www.youtube.com/embed/s60neacJyjs?feature=player_embeded&autoplay=1",
+            "thumb_url": "http://img.youtube.com/vi/s60neacJyjs/0.jpg",
+            "source_url": ""
         }
+
+
     ]
     @videos.sort (a,b) -> moment(b.publish_date).valueOf() - moment(a.publish_date).valueOf()
 

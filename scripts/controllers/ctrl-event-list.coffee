@@ -71,8 +71,15 @@ class EventListCtrl
       localStorage.setItem("lastVisit", moment().toISOString())
 
       @$scope.data.pastEventsByMonth = {}
+      @$scope.data.pastEventsByYear = {}
+
       for ev in @$scope.data.pastEvents
-        @$scope.data.pastEventsByMonth[12 - moment(ev.date).month()] ?= month: moment(ev.date).format("MMMM"), events: []
-        @$scope.data.pastEventsByMonth[12 - moment(ev.date).month()].events.push(ev)    
+        @$scope.data.pastEventsByYear[2100 - moment(ev.date).year()] ?= 
+          year: moment(ev.date).format("YYYY")
+          pastEventsByMonth: {}
+        @$scope.data.pastEventsByYear[2100 - moment(ev.date).year()].pastEventsByMonth[12 - moment(ev.date).month()] ?= 
+          month: moment(ev.date).format("MMMM"), 
+          events: []
+        @$scope.data.pastEventsByYear[2100 - moment(ev.date).year()].pastEventsByMonth[12 - moment(ev.date).month()].events.push(ev)            
 
 angular.module("EventListCtrl", ["EventsSvc"]).controller("EventListCtrl", ["$scope", "EventsSvc", EventListCtrl])

@@ -1,0 +1,16 @@
+<script type="text/ng-template" id="photo-view">
+
+  <div class="row">
+    <div class="col-sm-12">
+        <div class="photo-album">
+          <figure ng-repeat="album in albums">
+            <img src="{{ album.url }}" alt="{{ album.caption }}">
+            <figcaption>
+              {{ album.caption }}
+            </figcaption>
+          </figure>
+        </div>
+    </div>
+  </div>
+
+</script>
