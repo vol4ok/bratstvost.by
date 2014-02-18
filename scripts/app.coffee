@@ -29,6 +29,9 @@ configure = ($routeProvider, $locationProvider, $sceDelegateProvider, $sceProvid
     .when "/life-of-saint-Spyridon",
       templateUrl: "story-view"
       controller: "StoryPageCtrl"
+    .when "/news",
+      templateUrl: "news-view"
+      controller: "NewsPageCtrl"
 
 main = () ->
 
@@ -42,6 +45,7 @@ angular.module('app.ctrl', [
   'ContactPageCtrl'
   'ArticlePageCtrl'
   'StoryPageCtrl'
+  'NewsPageCtrl'
 ])
 
 angular.module('app.div', [

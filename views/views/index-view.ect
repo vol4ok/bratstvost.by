@@ -44,25 +44,13 @@
 
     <div class="col-sm-7">
 
-      <div class="well" ng-controller="NewsListCtrl">
+      <div class="well">
 
         <section class="well-notes" ng-controller="NoticeListCtrl">
           <h2><i class="icon-announce"></i> Объявления</h2>
           <section class="note" ng-repeat="notice in data.notices" ng-class="notice.style" ng-bind-html="notice.body">
             {{notice.body}}
           </section>
-        </section>
-  
-        <br>
-    
-        <section>
-          <h2><i class="icon-news2"></i> Новости</h2>
-          <ul class="news-list" ng-controller="NewsListCtrl">
-            <li class="news" ng-repeat="news in data.news" ng-class="{hot: news.hot}">
-              <div class="time"><i class="icon-time"></i> {{news.timeAgo}}</div>
-              <div class="text" ng-bind-html="news.body">{{news.body}}</div>
-            </li>
-          </ul>
         </section>
         
       </div>
