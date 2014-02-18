@@ -261,5 +261,5 @@ module.exports = (grunt) ->
   grunt.registerTask "core", ["concat:core"]
   grunt.registerTask "default", ["styles", "coffee:client", "concat:main"]
   grunt.registerTask "dist", ["styles", "coffee", "concat:dist", "cssmin", "uglify", "copy"]
-  grunt.registerTask "rebuild", ["core", "default", "dist"]
+  grunt.registerTask "build", ["core", "default", "dist"]
   grunt.registerTask "rebuild", ["clean", "core", "default", "dist"]
