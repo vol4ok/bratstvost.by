@@ -199,18 +199,63 @@ class VideoPageCtrl
             "url": "http://www.youtube.com/embed/T9YCoFU8G8M?feature=player_embeded&autoplay=1",
             "thumb_url": "http://img.youtube.com/vi/T9YCoFU8G8M/0.jpg",
             "source_url": ""
+        },
+        {
+            "id": "wyejRixOprQ",
+            "publish_date": "2013-12-02",
+            "title": "Мы там, где нас ждут: накануне Международного дня инвалидов прошёл благотворительный концерт",
+            "content": "В зале нет свободных мест. Идейным вдохновителем концерта стало Братство святителя Спиридона Тримифунтского, а особые гости приехали из психоневрологических диспансеров со всей страны.",
+            "url": "http://www.youtube.com/embed/wyejRixOprQ?feature=player_embeded&autoplay=1",
+            "thumb_url": "http://img.youtube.com/vi/wyejRixOprQ/0.jpg",
+            "source_url": "http://ont.by/news/our_news/0111606/"
+        },
+        {
+            "id": "rOuqb8PA670",
+            "publish_date": "2013-12-02",
+            "title": "Концерт звезд Белорусской эстрады",
+            "content": "Благотворительный концерт звезд Белорусской эстрады в Международный День инвалида в д/к - \"МАЗ\" организованный продюсерским центром А.Тихановича и Я.Поплавской и братством Св.Спиридона (председатель С.Довгаль).",
+            "url": "http://www.youtube.com/embed/rOuqb8PA670?feature=player_embeded&autoplay=1",
+            "thumb_url": "http://img.youtube.com/vi/rOuqb8PA670/0.jpg",
+            "source_url": ""
+        },
+        {
+            "id": "aZjE2S2l3Qw",
+            "publish_date": "2013-12-09",
+            "title": "Благотворительный концерт в Минске",
+            "content": "Особенный день для особенных людей. Ведущие артисты белоруской эстрады дали благотворительный концерт для людей с особенностями развития. В одном из крупнейших концертных залов Минска собрались более тысячи детей и взрослых: это проживающие в психоневрологических интернатах, пациенты хосписов, опекающие их социальные работники и добровольцы. Для всех них артисты пели вживую, и особенные зрители не скрывали восторга.",
+            "url": "http://www.youtube.com/embed/aZjE2S2l3Qw?feature=player_embeded&autoplay=1",
+            "thumb_url": "http://img.youtube.com/vi/aZjE2S2l3Qw/0.jpg",
+            "source_url": "http://tv-soyuz.ru/news/artisty-beloruskoy-estrady-dali-blagotvoritelnyy-kontsert-dlya-lyudey-s-osobennostyami-razvitiya"
+        },
+        {
+            "id": "p5k_0m0wEy8",
+            "publish_date": "2013-09-02",
+            "title": "Передача СРЕТЕНЬЕ с участием Сергея Довгаля",
+            "content": "Участник очередной программы СРЕТЕНЬЕ руководитель братства в честь Святителя Спиридона Тримифунтского (г.Заславль, Минская обл.). Его свидетельство о том, как от встречи с Божьей любовью преображаются человеческие души их сердца.",
+            "url": "http://www.youtube.com/embed/p5k_0m0wEy8?feature=player_embeded&autoplay=1",
+            "thumb_url": "http://img.youtube.com/vi/p5k_0m0wEy8/0.jpg",
+            "source_url": ""
+        },
+        {
+            "id": "hmRZFQXuPfk",
+            "publish_date": "2013-12-25",
+            "title": "Епископ Вениамин возглавил встречу башмачка святителя Спиридона в Заславле",
+            "content": "Это уже 4-й башмачек от мощей Святителя Спиридона Тримифунтского, доставленный в Беларусь.",
+            "url": "http://www.youtube.com/embed/hmRZFQXuPfk?feature=player_embeded&autoplay=1",
+            "thumb_url": "http://img.youtube.com/vi/hmRZFQXuPfk/0.jpg",
+            "source_url": ""
+        },
+        {
+            "id": "s60neacJyjs",
+            "publish_date": "2013-12-25",
+            "title": "Lorenzo Iannotti Cherven boarding home visit",
+            "content": "Lorenzo Iannotti from Melbourne Australia visiting Cherven boarding home for the disabled as a result of Michelle Schembri-lipscombe's ideas and effort to self fund raise with her Bloom by Design Entertainment company and the inspiration of Sergey Dougal's boarding home activities.",
+            "url": "http://www.youtube.com/embed/s60neacJyjs?feature=player_embeded&autoplay=1&start=176",
+            "thumb_url": "http://img.youtube.com/vi/s60neacJyjs/0.jpg",
+            "source_url": ""
         }
-        # {
-        #     "id": "gd9vr_XfScc",
-        #     "publish_date": "2013-11-20",
-        #     "title": "Братство святителя Спиридона Тримифунтского с Димой Каминским. Благотворительные концерты.",
-        #     "content": "Братство святителя Спиридона (храм Преображения Господня,г. Заславль, Минская обл., РБ) оказывает помощь детям и взрослым, проживающим в психоневрологических интернатах г.Минска и Минской обл. Добровольцы братства занимаются духовно-нравственным и культурным просвещением насельников интернатов, миссионерской, социальной и благотворительной деятельностью.",
-        #     "url": "http://www.youtube.com/embed/gd9vr_XfScc?feature=player_embeded&autoplay=1",
-        #     "thumb_url": "http://img.youtube.com/vi/gd9vr_XfScc/0.jpg",
-        #     "source_url": ""
-        # }
-    ]
 
+    ]
     @videos.sort (a,b) -> moment(b.publish_date).valueOf() - moment(a.publish_date).valueOf()
 
     @$scope.videos = @videos
@@ -222,34 +267,6 @@ class VideoPageCtrl
         @$scope.videosRight.push(video)
       else
         @$scope.videosLeft.push(video)
-
-
-
-
-    # @$scope.videosLeft = [ 
-    #   id: 'CSYV9Ve4GGE'     
-    #   url: "http://www.youtube.com/embed/CSYV9Ve4GGE?feature=player_embedde&autoplay=1d"
-    #   title: "Белорусские артисты выступят с концертами в интернатах для людей с ограниченными возможностям"
-    #   desc: "Donec ullamcorper nulla non metus auctor fringilla. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Nullam quis risus eget urna mollis ornare vel eu leo."
-    # ,
-    #   id: 'OGNPccyloo8'
-    #   url: "http://www.youtube.com/embed/OGNPccyloo8?feature=player_embedde&autoplay=1d"
-    #   title: "Фестиваль молодежи минской епархии в городе Заславль"
-    #   desc: "Aenean lacinia bibendum nulla sed consectetur. Nullam quis risus eget urna mollis ornare vel eu leo. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a pharetra augue."
-    # ]
-
-    # @$scope.videosRight = [  
-    #   id: 'OGNPccyloo8'
-    #   url: "http://www.youtube.com/embed/OGNPccyloo8?feature=player_embedde&autoplay=1d"
-    #   title: "Фестиваль молодежи минской епархии в городе Заславль"
-    #   desc: "Aenean lacinia bibendum nulla sed consectetur. Nullam quis risus eget urna mollis ornare vel eu leo. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nulla vitae elit libero, a pharetra augue."
-    # ,
-    #   id: 'CSYV9Ve4GGE'
-    #   url: "http://www.youtube.com/embed/CSYV9Ve4GGE?feature=player_embedde&autoplay=1d"
-    #   title: "Белорусские артисты выступят с концертами в интернатах для людей с ограниченными возможностям"
-    #   desc: "Donec ullamcorper nulla non metus auctor fringilla. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Nullam quis risus eget urna mollis ornare vel eu leo."
-    # ]
-
     
 
 angular.module("VideoPageCtrl",[]).controller("VideoPageCtrl", ["$scope", VideoPageCtrl])

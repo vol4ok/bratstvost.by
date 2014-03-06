@@ -1,0 +1,21 @@
+<script type="text/ng-template" id="news-view">
+
+  <section class="well">
+    <h2><i class="icon-news2"></i> Новости</h2>
+    <div class="row">
+      <div class="col-sm-12">
+
+        <ul class="news-list" ng-controller="NewsListCtrl">
+          <li class="news" ng-repeat="news in data.news" ng-class="{hot: news.hot}">
+            <div class="time"><i class="icon-time"></i> {{news.timeAgo}}</div>
+            <div class="text" ng-bind-html="news.body">{{news.body}}</div>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+
+    
+  </section>
+
+</script>

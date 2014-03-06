@@ -1,10 +1,11 @@
-configure = ($routeProvider, $locationProvider, $sceDelegateProvider) ->
+configure = ($routeProvider, $locationProvider, $sceDelegateProvider, $sceProvider) ->
   moment.lang('ru')
 
   $locationProvider
     .html5Mode(yes)
 
-  $sceDelegateProvider.resourceUrlWhitelist(['^(?:http(?:s)?:\/\/)?(?:[^\.]+\.)?\(vimeo|youtube)\.com(/.*)?$', 'self'])
+  #$sceDelegateProvider.resourceUrlWhitelist(['self','^(?:http(?:s)?:\/\/)?(?:[^\.]+\.)?\(vimeo|youtube)\.com(/.*)?$'])
+  $sceProvider.enabled(false)
 
   $routeProvider
     .when "/",
@@ -16,6 +17,9 @@ configure = ($routeProvider, $locationProvider, $sceDelegateProvider) ->
     .when "/about",
       templateUrl: "about-view"
       controller: "AboutPageCtrl"
+    .when "/members",
+      templateUrl: "members-view"
+      controller: "AboutPageCtrl"
     .when "/video",
       templateUrl: "video-view"
       controller: "VideoPageCtrl"
@@ -23,9 +27,11 @@ configure = ($routeProvider, $locationProvider, $sceDelegateProvider) ->
       templateUrl: "article-view"
       controller: "ArticlePageCtrl"
     .when "/life-of-saint-Spyridon",
-      reloadOnSearch: off
       templateUrl: "story-view"
       controller: "StoryPageCtrl"
+    .when "/news",
+      templateUrl: "news-view"
+      controller: "NewsPageCtrl"
 
 main = () ->
 
@@ -39,6 +45,7 @@ angular.module('app.ctrl', [
   'ContactPageCtrl'
   'ArticlePageCtrl'
   'StoryPageCtrl'
+  'NewsPageCtrl'
 ])
 
 angular.module('app.div', [
@@ -65,5 +72,5 @@ angular.module('app', [
     'app.div'
     'app.svc'
   ])
-  .config([ '$routeProvider', '$locationProvider', '$sceDelegateProvider', configure ])
+  .config([ '$routeProvider', '$locationProvider', '$sceDelegateProvider', '$sceProvider', configure ])
   .run()
