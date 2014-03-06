@@ -67,18 +67,18 @@ module.exports = (grunt) ->
       bootstrap:
         options:
           paths: [
-            "styles/config"
-            "bower_components/bootstrap/less"
+            "styles"
+            "bower_components"
           ]
         files:
-          "temp/css/bootstap.css": "styles/bootstrap.less"
+          "temp/css/bootstrap.css": "styles/shared.less"
 
 
       styles: 
         options:
           paths: [
-            "styles/config"
-            "bower_components/bootstrap/less"
+            "styles"
+            "bower_components"
           ]
         files:
           "temp/css/app.css": "styles/app.less"
