@@ -1,7 +1,6 @@
 $coreEvents = ($q, $http) ->
   $coreEvents.$inject = ["$q", "$http"]
 
-  console.log "init $coreEvents"
   currentCollection = []
   currentItem = null
 

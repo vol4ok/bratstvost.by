@@ -1,7 +1,6 @@
 $coreVideo = ($q, $http) ->
   $coreVideo.$inject = ["$q", "$http"]
 
-  console.log "init $coreVideo"
   currentCollection = []
   currentItem = null
 

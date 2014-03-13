@@ -9,9 +9,7 @@ $core = ($rootScope, $coreEvents, $coreVideo) ->
   
   $rootScope.$core = exports
   window.$core = exports
-
-  console.log "init $core"
-
+  
   return exports
 
 angular.module('core', ['coreLibs']).factory "$core", $core
