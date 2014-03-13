@@ -95,7 +95,7 @@ module.exports = (grunt) ->
 
       core:
         src: [
-          "bower_components/jquery/jquery.js"
+          "bower_components/jquery/dist/jquery.js"
           "bower_components/bootstrap/js/carousel.js"
           "bower_components/bootstrap/js/transition.js"
           "bower_components/angular/angular.js"
@@ -120,7 +120,7 @@ module.exports = (grunt) ->
 
       dist:
         src: [
-          "bower_components/jquery/jquery.min.js"
+          "bower_components/jquery/dist/jquery.min.js"
           "bower_components/bootstrap/js/carousel.js"
           "bower_components/bootstrap/js/transition.js"
           "bower_components/angular/angular.min.js"
@@ -134,7 +134,7 @@ module.exports = (grunt) ->
       styles:
         src: [
           "styles/fonts/*"
-          "temp/css/bootstap.css"
+          "temp/css/bootstrap.css"
           "temp/css/app.css"
         ]
         dest: "public/css/styles.css"
