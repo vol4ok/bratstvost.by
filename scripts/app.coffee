@@ -35,6 +35,8 @@ configure = ($routeProvider, $locationProvider, $sceDelegateProvider, $sceProvid
 
 main = () ->
 
+angular.module('appLibs', [])
+
 angular.module('app.ctrl', [
   'NewsListCtrl'
   'EventListCtrl'
@@ -67,10 +69,12 @@ angular.module('app.ftr', [])
 angular.module('app', [
     'ngSanitize'
     'ngRoute'
+    'core'
+    'appLibs'
     'app.ftr'
     'app.ctrl'
     'app.div'
     'app.svc'
   ])
   .config([ '$routeProvider', '$locationProvider', '$sceDelegateProvider', '$sceProvider', configure ])
-  .run()
+  .run(["$core", main])

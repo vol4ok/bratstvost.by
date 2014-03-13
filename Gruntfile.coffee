@@ -39,7 +39,8 @@ module.exports = (grunt) ->
       client:
         files:
           "temp/js/app.js":          "scripts/app.coffee"
-          #"temp/js/factories.js":    "scripts/factories/*.coffee"
+          "temp/js/core.js":         "scripts/core.coffee"
+          "temp/js/factories.js":    "scripts/factories/*.coffee"
           "temp/js/controllers.js":  "scripts/controllers/*.coffee"
           "temp/js/services.js":     "scripts/services/*.coffee"
           "temp/js/directives.js":   "scripts/directives/*.coffee"
@@ -109,11 +110,12 @@ module.exports = (grunt) ->
 
       main:
         src: [
-          #"temp/js/factories.js"
+          "temp/js/core.js"
+          "temp/js/app.js"
+          "temp/js/factories.js"
           "temp/js/controllers.js"
           "temp/js/services.js"
           "temp/js/directives.js"
-          "temp/js/app.js"
         ]
         dest: "public/js/app.js"
 
