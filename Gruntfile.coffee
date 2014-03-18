@@ -100,6 +100,12 @@ module.exports = (grunt) ->
           "bower_components/jquery/dist/jquery.js"
           "bower_components/bootstrap/js/carousel.js"
           "bower_components/bootstrap/js/transition.js"
+
+          "bower_components/eventEmitter/EventEmitter.js"
+          "bower_components/eventie/eventie.js"
+          "bower_components/imagesloaded/imagesloaded.js"
+          "bower_components/fluidbox/jquery.fluidbox.js"
+
           "bower_components/angular/angular.js"
           "bower_components/angular-route/angular-route.js"
           "bower_components/angular-sanitize/angular-sanitize.js"
@@ -126,6 +132,12 @@ module.exports = (grunt) ->
           "bower_components/jquery/dist/jquery.min.js"
           "bower_components/bootstrap/js/carousel.js"
           "bower_components/bootstrap/js/transition.js"
+          
+          "bower_components/eventEmitter/EventEmitter.js"
+          "bower_components/eventie/eventie.js"
+          "bower_components/imagesloaded/imagesloaded.js"
+          "bower_components/fluidbox/jquery.fluidbox.js"
+
           "bower_components/angular/angular.min.js"
           "bower_components/angular-route/angular-route.min.js"
           "bower_components/angular-sanitize/angular-sanitize.min.js"
@@ -138,6 +150,7 @@ module.exports = (grunt) ->
         src: [
           "styles/fonts/*"
           "temp/css/bootstrap.css"
+          "bower_components/fluidbox/css/fluidbox.css"
           "temp/css/app.css"
         ]
         dest: "public/css/styles.css"
