@@ -1,4 +1,4 @@
-angular.module("ArchiveCollapsDiv", []).directive "archiveitem", () ->
+angular.module("appLibs").directive "archiveitem", () ->
   restrict: "E"
   transclude: yes
   replace: yes

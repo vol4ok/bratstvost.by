@@ -81,29 +81,6 @@
   .small {
     font-size: 12px;
   }
-  a {
-      color: #399edf;
-      text-decoration: none;
-      border-bottom: 1px solid rgba(red(@link-color), green(@link-color), blue(@link-color), .1);
-      transition: border .4s ease-in-out;
-      &:hover {
-        color: #399edf;
-        text-decoration: none;
-        border-bottom: 1px solid #399edf;
-      }
-      &:active {
-        color: #399edf;
-        text-decoration: none;
-      }
-      &:visited {
-        color: #399edf;
-        text-decoration: none;
-
-        &:hover {
-          border-bottom: 1px solid #399edf;
-        }
-      }
-  }
 }
 
 .next-event-title {
@@ -190,6 +167,10 @@
     margin: 0;
   }
 
+  dl {
+    margin: .75em 0 0;
+  }
+
   dt {
     display: block;
     margin: 0;
@@ -219,6 +200,30 @@
     margin-left: 20px;
     a {
       cursor: pointer;
+    }
+  }
+
+  a {
+    color: @sun-flower;
+    text-decoration: none;
+    border-bottom: 1px dotted rgba(red(@sun-flower), green(@sun-flower), blue(@sun-flower), .4);
+    transition: border .2s ease-in-out;
+    &:hover {
+      color: @sun-flower;
+      text-decoration: none;
+      border-bottom: 1px dotted @sun-flower;
+    }
+    &:active {
+      color: @sun-flower;
+      text-decoration: none;
+    }
+    &:visited {
+      color: @sun-flower;
+      text-decoration: none;
+
+      &:hover {
+        border-bottom: 1px dotted @sun-flower;
+      }
     }
   }
 }

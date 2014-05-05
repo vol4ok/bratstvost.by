@@ -10,6 +10,7 @@ mg.connect('mongodb://127.0.0.1/bratstvost-3')
 {News} = require "./models/news"
 {Article} = require "./models/article"
 {Video} = require "./models/video"
+{Member} = require "./models/member"
 
 _ = require "lodash"
 require("uasync")(_)
@@ -69,6 +70,11 @@ app.get "/api/videos", (req, res) ->
 
 app.get "/api/article", (req, res) ->
   Article.find {published: yes}, (err, results) ->
+    return res.json(status: "ERR", message: err) if err
+    res.json(results)
+
+app.get "/api/members", (req, res) ->
+  Member.find {}, (err, results) ->
     return res.json(status: "ERR", message: err) if err
     res.json(results)
 

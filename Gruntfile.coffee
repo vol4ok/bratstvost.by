@@ -56,6 +56,7 @@ module.exports = (grunt) ->
           "dist/models/news.js": "models/news.coffee"
           "dist/models/article.js": "models/article.coffee"
           "dist/models/video.js": "models/video.coffee"
+          "dist/models/member.js": "models/member.coffee"
 
 
 
@@ -98,6 +99,7 @@ module.exports = (grunt) ->
       core:
         src: [
           "bower_components/jquery/dist/jquery.js"
+          "bower_components/lodash/dist/lodash.js"
           "bower_components/bootstrap/js/carousel.js"
           "bower_components/bootstrap/js/transition.js"
 
@@ -111,6 +113,9 @@ module.exports = (grunt) ->
           "bower_components/angular-sanitize/angular-sanitize.js"
           "bower_components/moment/min/moment.min.js"
           "bower_components/moment/min/langs.min.js"
+
+          "bower_components/angular-bootstrap/ui-bootstrap-tpls.js"
+          "bower_components/angular-bootstrap/ui-bootstrap.js"
         ]
         dest: "public/js/core.js"
 
@@ -130,6 +135,7 @@ module.exports = (grunt) ->
       dist:
         src: [
           "bower_components/jquery/dist/jquery.min.js"
+          "bower_components/lodash/dist/lodash.min.js"
           "bower_components/bootstrap/js/carousel.js"
           "bower_components/bootstrap/js/transition.js"
           
@@ -143,6 +149,9 @@ module.exports = (grunt) ->
           "bower_components/angular-sanitize/angular-sanitize.min.js"
           "bower_components/moment/min/moment.min.js"
           "bower_components/moment/min/langs.min.js"
+
+          "bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"
+          "bower_components/angular-bootstrap/ui-bootstrap.min.js"
         ]
         dest: "temp/js/core.js"
 

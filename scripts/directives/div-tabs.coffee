@@ -48,10 +48,10 @@ module.directive "tabList", [ "$location", ($location) ->
 ]
 
 
-module.directive "tab", [ "$timeout", ($timeout) ->
+module.directive "tabname", [ "$timeout", ($timeout) ->
   restrict: "A"
   scope: 
-    name: "@tab"
+    name: "@tabname"
   require: "^tabList"
   link: (scope, element, attrs, ctrl) ->
     scope.activate = ->
@@ -93,10 +93,10 @@ module.directive "pageList", ["$timeout", "$location", ($timeout, $location) ->
         @$scope.$root.$broadcast("hello-tab-list", @$scope)
 ]
 
-module.directive "page", () ->
+module.directive "pagename", () ->
   restrict: "A"
   scope:
-    name: "@page"
+    name: "@pagename"
   require: "^pageList"
   link: (scope, element, attrs, ctrl) ->
     @currentPage = scope if element.hasClass("active")

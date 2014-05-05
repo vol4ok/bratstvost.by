@@ -10,7 +10,9 @@ configure = ($routeProvider, $locationProvider, $sceDelegateProvider, $sceProvid
   $routeProvider
     .when "/",
       templateUrl: "index-view"
-      controller: "IndexPageCtrl"
+    .when "/2",
+      templateUrl: "index-view2"
+      controller: "IndexPage2Ctrl"
     .when "/contacts",
       templateUrl: "contact-view"
       controller: "ContactPageCtrl"
@@ -19,7 +21,7 @@ configure = ($routeProvider, $locationProvider, $sceDelegateProvider, $sceProvid
       controller: "AboutPageCtrl"
     .when "/members",
       templateUrl: "members-view"
-      controller: "AboutPageCtrl"
+      controller: "MembersPageCtrl"
     .when "/video",
       templateUrl: "video-view"
       controller: "VideoPageCtrl"
@@ -32,6 +34,14 @@ configure = ($routeProvider, $locationProvider, $sceDelegateProvider, $sceProvid
     .when "/news",
       templateUrl: "news-view"
       controller: "NewsPageCtrl"
+    .when "/become-a-volunteer",
+      templateUrl: "become-a-volunteer-view"
+    .when "/how-to-help",
+      templateUrl: "how-to-help-view"
+
+    # .when "/event/:id",
+    #   templateUrl: "event-view"
+    #   controller: "EventViewCtrl"
 
 main = () ->
 
@@ -41,9 +51,7 @@ angular.module('app.ctrl', [
   'NewsListCtrl'
   'EventListCtrl'
   'NoticeListCtrl'
-  'IndexPageCtrl'
   'AboutPageCtrl'
-  'VideoPageCtrl'
   'ContactPageCtrl'
   'ArticlePageCtrl'
   'StoryPageCtrl'
@@ -52,8 +60,6 @@ angular.module('app.ctrl', [
 
 angular.module('app.div', [
   'EventViewDiv'
-  'ArchiveCollapsDiv'
-  'NavigationDivs'
   'TabDivs'
 ])
 
@@ -64,14 +70,13 @@ angular.module('app.svc', [
   'ArticleSvc'
 ])
 
-angular.module('app.ftr', [])
-
 angular.module('app', [
     'ngSanitize'
     'ngRoute'
+    'ui.bootstrap.tpls'
+    'ui.bootstrap'
     'core'
     'appLibs'
-    'app.ftr'
     'app.ctrl'
     'app.div'
     'app.svc'

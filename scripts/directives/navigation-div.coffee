@@ -1,4 +1,4 @@
-module = angular.module("NavigationDivs", [])
+module = angular.module("appLibs")
 
 NavMenuDiv = ($location) ->
   restrict: "A"

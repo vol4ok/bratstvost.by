@@ -1,21 +1,44 @@
-<script type="text/ng-template" id="members-view">
-  
-  <div class="row members">
-    <div class="col-sm-12">
+<script type="text/ng-template" id="member-details-view-template">
+  <div class="modal-header">
+    <h4 class="modal-title"></h4>
+  </div>
+  <div class="modal-body">
+  </div>
+  <div class="modal-footer">
+  </div>
+</script>
 
+<script type="text/ng-template" id="member-view-template">
+  <div class="media">
+    <a class="pull-left" href="#">
+      <img class="media-object" width="100" src="/img/members/small-photo-{{model.photoId}}.jpg" alt="model.fullName">
+    </a>
+    <div class="media-body">
+      <h4 class="media-heading">{{model.firstName}} {{model.lastName}}</h4>
+      <h6 class="media-heading">{{model.position}}</h6>
+      <ul class="list-unstyled">
+        <li ng-if="model.phoneLink" ng-bind-html="model.phoneLink">Телефон: {{model.phoneLink}}</li>
+        <li ng-if="model.emailLink" ng-bind-html="model.emailLink">Почта: {{model.emailLink}}</li>
+        <li ng-if="skype" ng-bind-html="model.skype">Скайп: {{model.skype}}</li>
+      </ul>
+    </div>
+  </div>
+</script>
+
+
+
+<script type="text/ng-template" id="members-view">
+
+  <div class="members">
     <div class="row">
-      <div class="col-sm-6">
-        <div class="well">
-          <p>
-            <figure>
-              <img src="http://bratstvost.s3.amazonaws.com/members/sergey.jpg" alt="">
-            </figure>
-            <p><strong>Довгаль Сергей Викторович</strong> — председатель братства свтятителя Спиридона Тримифунтского. 21 июля 1968 года рождения, родился в Украине, г. Мелитополь, Запорожской обл., место жительство город Минск,  по профессии военный летчик, майор запаса, женат, трое детей. Весь смысл нашей жизни — следование за Христом и исполнение заповедей Его среди мира, быть православными христианами и прославлять Бога своей христианской жизнью. Если не мы, то кто?</p>
-          </p>
+      <div class="col-lg-4 col-md-6 col-sm-6" ng-repeat="member in members">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <member model="member"></member>
+          </div>
         </div>
       </div>
-    
-  </div>
-</div>
+    </div>
+  </div>  
   
 </script>
