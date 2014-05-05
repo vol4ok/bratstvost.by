@@ -15,11 +15,11 @@
     </a>
     <div class="media-body">
       <h4 class="media-heading">{{model.firstName}} {{model.lastName}}</h4>
-      <h6 class="media-heading">{{model.position}}</h6>
+      <h6 class="media-heading" ng-bind-html="model.position"></h6>
       <ul class="list-unstyled">
-        <li ng-if="model.phoneLink" ng-bind-html="model.phoneLink">Телефон: {{model.phoneLink}}</li>
-        <li ng-if="model.emailLink" ng-bind-html="model.emailLink">Почта: {{model.emailLink}}</li>
-        <li ng-if="skype" ng-bind-html="model.skype">Скайп: {{model.skype}}</li>
+        <li ng-if="model.phoneRaw">Телефон: <a href="tel:{{model.phoneRaw}}">{{model.phoneNice}}</a></li>
+        <li ng-if="model.email">Почта: <a href="mailto:{{model.email}}">{{model.email}}</a></li>
+        <li ng-if="skype">Скайп: {{model.skype}}</li>
       </ul>
     </div>
   </div>

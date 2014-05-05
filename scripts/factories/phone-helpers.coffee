@@ -1,4 +1,5 @@
 parsePhone = (phone) ->
+  return null unless phone
   res = ""
   for c,i in phone
     res += c if c in "+0123456789".split("")
