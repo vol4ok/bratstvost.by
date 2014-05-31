@@ -44,7 +44,8 @@ class EventListCtrl
         ev._date = moment(ev.date).toDate()
         ev.month = moment(ev.date).format("MMM")
         ev.day = moment(ev.date).format("D")
-            
+        ev.dayOfWeek = moment(ev.date).format("dd")
+
       @$scope.data.events = events
       @$scope.data.pastEvents = []
       @$scope.data.nextEvents = []

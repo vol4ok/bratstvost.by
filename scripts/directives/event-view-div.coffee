@@ -18,6 +18,7 @@ angular.module("appLibs").directive "eventview2", ["phoneHelpers", (phoneHelpers
       scope.event._date = mdate.toDate()
       scope.event.month = mdate.format("MMM")
       scope.event.day   = mdate.format("D")
+      scope.event.dayOfWeek = mdate.format("dd")
       scope.event.isNew = false
       #scope.event.phone = phoneHelpers.formatPhone(scope.event.phone)
 ]

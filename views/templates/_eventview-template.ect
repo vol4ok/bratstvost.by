@@ -4,8 +4,9 @@
       <div class="event-state" ng-class="{'new': event.isNew}"></div>
       
       <div class="event-date">
-        <div class="day">{{event.day}}</div>
         <div class="month">{{event.month}}</div>
+        <div class="day">{{event.day}}</div>
+        <div class="day-of-week">{{event.dayOfWeek}}</div>
       </div>
       
       <div class="event-head" ng-bind-html="event.title">{{event.title}}</div>
