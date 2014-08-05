@@ -18,6 +18,7 @@ MemberSchema = new Schema
   info: String
   created: { type: Date, default: Date.now }
   updated: { type: Date, default: Date.now }
+  active: { type: Boolean, default: yes }
   , _id: false
 
 exports.Member = mg.model('Member', MemberSchema)

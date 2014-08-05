@@ -74,7 +74,7 @@ app.get "/api/article", (req, res) ->
     res.json(results)
 
 app.get "/api/members", (req, res) ->
-  Member.find {}, (err, results) ->
+  Member.find {active: yes}, (err, results) ->
     return res.json(status: "ERR", message: err) if err
     res.json(results)
 
