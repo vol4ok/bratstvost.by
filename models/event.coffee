@@ -2,7 +2,6 @@ mg = require "mongoose"
 {Schema} = mg
 
 EventSchema = new Schema
-  _id: String
   type: { type: String, default: "event" }
   date: Date
   title: String
@@ -22,6 +21,5 @@ EventSchema = new Schema
   published: { type: Boolean, default: yes }
   created: { type: Date, default: Date.now }
   updated: { type: Date, default: Date.now }
-  , _id: false
 
 exports.Event = mg.model('Event', EventSchema)
