@@ -2,7 +2,6 @@ mg = require "mongoose"
 {Schema} = mg
 
 NoticeSchema = new Schema
-  _id: String
   type: { type: String, default: "notice" }
   body: String
   show_begins: { type: Date, default: Date.now }
@@ -12,6 +11,5 @@ NoticeSchema = new Schema
   published: { type: Boolean, default: yes }
   created: { type: Date, default: Date.now }
   updated: { type: Date, default: Date.now }
-  , _id: false
 
 exports.Notice = mg.model('Notice', NoticeSchema)

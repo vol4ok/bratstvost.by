@@ -2,7 +2,6 @@ mg = require "mongoose"
 {Schema} = mg
 
 VideoSchema = new Schema
-  _id: String
   video_id: { type: String, trim: true }
   publish_date: { type: Date, default: Date.now }
   title: { type: String, trim: true }
@@ -13,6 +12,5 @@ VideoSchema = new Schema
   created: { type: Date, default: Date.now }
   updated: { type: Date, default: Date.now }
   published: { type: Boolean, default: yes }
-  , _id: false
 
 exports.Video = mg.model('Video', VideoSchema)
