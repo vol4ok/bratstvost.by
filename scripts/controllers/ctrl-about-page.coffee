@@ -5,7 +5,7 @@ class AboutPageCtrl
     ymaps.ready ->
       map = new ymaps.Map "internat-map",
         center: [53.902400, 27.561892]
-        zoom: 8
+        zoom: 7
         controls: [new ymaps.control.ZoomControl(), new ymaps.control.FullscreenControl()]
 
       objects = [
@@ -52,6 +52,10 @@ class AboutPageCtrl
         # Червень
         coord: [53.707260, 28.413953]
         label: "Червенский психоневрологический дом-интернат (г. Червень)"
+      ,
+        # Червень
+        coord: [54.875914, 26.400495]
+        label: "Свирский  психоневрологический дом-интернат (д. Лущики)"
       ]
 
       for obj in objects
