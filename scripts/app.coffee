@@ -36,6 +36,8 @@ configure = ($routeProvider, $locationProvider, $sceDelegateProvider, $sceProvid
       controller: "NewsPageCtrl"
     .when "/become-a-volunteer",
       templateUrl: "become-a-volunteer-view"
+    .when "/donations",
+      templateUrl: "donations-view"
     .when "/how-to-help",
       templateUrl: "how-to-help-view"
 
