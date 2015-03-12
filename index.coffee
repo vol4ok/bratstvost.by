@@ -3,6 +3,7 @@ exs = require "express"
 ect = require "ect"
 mg  = require "mongoose"
 moment = require "moment"
+http = require "http"
 
 mg.connect('mongodb://127.0.0.1/bratstvost-3')
 {Notice} = require "./models/notice"
@@ -77,6 +78,17 @@ app.get "/api/members", (req, res) ->
   Member.find {active: yes}, null,  {sort:{orderNumber:1}}, (err, results) ->
     return res.json(status: "ERR", message: err) if err
     res.json(results)
+
+app.get "/api/calendar", (req, res) ->
+  options = { host: 'script2.pravoslavie.ru', path: '/cache/ssi=1&images=1&hrams=0&bold=1&para=1&dayicon=1&encoding=u&advanced=1.ls' }
+  callback = (response) ->
+    calendarHtml = ""
+    response.on 'data', (chunk) ->
+      calendarHtml += chunk
+    response.on 'end', () ->
+      return res.json(calendarHtml: calendarHtml)
+
+  http.request(options, callback).end();
 
 port = process.env.PORT || 5000
 app.listen(port)

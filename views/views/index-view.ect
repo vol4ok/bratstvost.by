@@ -107,6 +107,13 @@
         </archiveitem>
       </div>
 
+    <section class="well">
+        <h2><i class="icon-news2"></i> Православный календарь </h2>
+        <div ng-controller="CalendarPartCtrl">
+            <div class="text" ng-bind-html="calendarHtml"></div>
+        </div>
+    </section>
+
       <section class="well">
         <h2><i class="icon-news2"></i> Последние новости</h2>
         <ul class="news-list" ng-controller="NewsListCtrl">
