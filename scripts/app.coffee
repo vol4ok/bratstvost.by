@@ -59,6 +59,7 @@ angular.module('app.ctrl', [
   'StoryPageCtrl'
   'NewsPageCtrl'
   'CalendarPartCtrl'
+  'BirthdayPartCtrl'
 ])
 
 angular.module('app.div', [

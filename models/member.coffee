@@ -10,6 +10,7 @@ MemberSchema = new Schema
   male: Boolean
   position: { type: String, trim: true }
   birthDate: Date
+  angelDate: Date
   photoId: { type: String, trim: true }
   phone: String
   email: String

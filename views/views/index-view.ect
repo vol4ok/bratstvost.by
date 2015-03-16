@@ -57,8 +57,8 @@
       </div>
 
     </div>
-  </div> 
-  
+  </div>
+
   <div class="row">
 
     <div class="col-sm-7">
@@ -80,14 +80,14 @@
           <p>Мир вокруг нас бывает совершенно разным, счастливым, где радость разливается яркостью, постепенно набирая насыщенность, как зелень летней порой. Или болезненным, порой невыносимым.</p>
           <p>Волонтеры братства святителя Спиридона приносят счастье туда, где боль выстраивается непроходимой чащей. Они радуют тех, у кого в глубинах душ океаны, где свет яркими лучами исходит от людей, потому что каждый человек здесь - солнце.</p>
           <p>Братство окормляет 6 психоневрологических интернатов для людей с особенностями психического развития, для людей — инвалидов и для детей с особенностями зрения, общая численность проживающих около 3000 человек.</p>
-          <p>Интернат — закрытое учреждение, поэтому проживающие, которые не выходят за пределы огороженный территории годами, испытывают колоссальный недостаток внимания. Их доброта и искренность ждут теплого участия, улыбки или нежного прикосновения. Их сердца наполняются радостью при каждом посещении волонтеров.</p> 
+          <p>Интернат — закрытое учреждение, поэтому проживающие, которые не выходят за пределы огороженный территории годами, испытывают колоссальный недостаток внимания. Их доброта и искренность ждут теплого участия, улыбки или нежного прикосновения. Их сердца наполняются радостью при каждом посещении волонтеров.</p>
           <p>Волонтеры братства обеспечивают духовное окормление проживающих, при поддержке белорусских и зарубежных артистов проводят концерты, организовывают выездные мероприятия и паломнические поездки, создавая для людей с ограниченными возможностями и для всей команды братства незабываемые впечатления.</p>
           <p>Сочувствующие обеспечивают крайне необходимую материальную помощь. <a href="how-to-help">Более подробно</a>.</p>
           <p><a href="http://blog.bratstvost.by/">Блог о нашей интересной и активной работе</a></p>
           <p><a href="/become-a-volunteer">Как стать волонтером</a></p>
           <p><strong><em>Спешите творить добро!</em></strong></p>
         </section>
-        
+
       </div>
 
     </div>
@@ -111,6 +111,51 @@
         <h2><i class="icon-news2"></i> Православный календарь </h2>
         <div ng-controller="CalendarPartCtrl">
             <div class="text" ng-bind-html="calendarHtml"></div>
+        </div>
+    </section>
+
+    <section class="well">
+        <h2><i class="icon-news2"></i> Именины и дни рождения </h2>
+        <div ng-controller="BirthdayPartCtrl">
+
+            <div  ng-if="birthdayMembers">
+                <h4>Поздравляем c Днем Рождения:</h4>
+                <table ng-repeat="bMember in birthdayMembers">
+                    <tr><td>
+                            <img width="50" height="63" src="/img/members/small-photo-{{bMember.photoId}}.jpg" alt="bMember.fullName">
+                        </td><td>
+                            <h5 class="birthday-member">{{bMember.firstName}} {{bMember.lastName}}</h5>
+                            <h6 class="shift-right" ng-if="bMember.phoneRaw" >Телефон: <a href="tel:{{bMember.phoneRaw}}">{{bMember.phoneNice}}</a></h6>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <br/>
+            <div  ng-if="angeldayMembers">
+                <h4>Поздравляем c Именинами:</h4>
+                <table ng-repeat="aMember in angeldayMembers">
+                    <tr><td>
+                            <img width="50" height="63" src="/img/members/small-photo-{{aMember.photoId}}.jpg" alt="aMember.fullName">
+                        </td><td>
+                            <h5 class="birthday-member">{{aMember.firstName}} {{aMember.lastName}}</h5>
+                            <h6 class="shift-right" ng-if="aMember.phoneRaw" >Телефон: <a href="tel:{{aMember.phoneRaw}}">{{aMember.phoneNice}}</a></h6>
+                        </td></tr>
+                </table>
+            </div>
+            <br/>
+            <div  ng-if="nearBirthdayMembers">
+                <h4>Скоро День Рождения:</h4>
+                <ul ng-repeat="nbMember in nearBirthdayMembers">
+                    <li><h5>{{nbMember.firstName}} {{nbMember.lastName}}: {{nbMember.nearBirthdayRu}}</h5></li>
+                </ul>
+            </div>
+            <br/>
+            <div  ng-if="nearAngeldayMembers">
+                <h4>Скоро Именины:</h4>
+                <ul class="text" ng-repeat="naMember in nearAngeldayMembers">
+                    <li><h5>{{naMember.firstName}} {{naMember.lastName}}: {{naMember.nearAngeldayRu}}</h5></li>
+                </ul>
+            </div>
         </div>
     </section>
 
