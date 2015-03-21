@@ -22,38 +22,38 @@
         <img src="/img/carousel/slide-1.jpg" alt="alt">
       </div>
       <div class="item">
-        <img src="/img/carousel/slide-2.jpg" alt="alt">
+        <img lazy-src="/img/carousel/slide-2.jpg" alt="alt">
       </div>
       <div class="item">
-        <img src="/img/carousel/slide-3.jpg" alt="alt">
+        <img lazy-src="/img/carousel/slide-3.jpg" alt="alt">
       </div>
       <div class="item">
-        <img src="/img/carousel/slide-4.jpg" alt="alt">
+        <img lazy-src="/img/carousel/slide-4.jpg" alt="alt">
       </div>
       <div class="item">
-        <img src="/img/carousel/slide-5.jpg" alt="alt">
+        <img lazy-src="/img/carousel/slide-5.jpg" alt="alt">
       </div>
       <div class="item">
-        <img src="/img/carousel/slide-6.jpg" alt="alt">
+        <img lazy-src="/img/carousel/slide-6.jpg" alt="alt">
       </div>
       <div class="item">
-        <img src="/img/carousel/slide-7.jpg" alt="alt">
+        <img lazy-src="/img/carousel/slide-7.jpg" alt="alt">
       </div>
       <div class="item">
-        <img src="/img/carousel/slide-8.jpg" alt="alt">
+        <img lazy-src="/img/carousel/slide-8.jpg" alt="alt">
       </div>
 
       <div class="item">
-        <img src="/img/carousel/slide-9.jpg" alt="alt">
+        <img lazy-src="/img/carousel/slide-9.jpg" alt="alt">
       </div>
       <div class="item">
-        <img src="/img/carousel/slide-10.jpg" alt="alt">
+        <img lazy-src="/img/carousel/slide-10.jpg" alt="alt">
       </div>
       <div class="item">
-        <img src="/img/carousel/slide-11.jpg" alt="alt">
+        <img lazy-src="/img/carousel/slide-11.jpg" alt="alt">
       </div>
       <div class="item">
-        <img src="/img/carousel/slide-12.jpg" alt="alt">
+        <img lazy-src="/img/carousel/slide-12.jpg" alt="alt">
       </div>
 
     </div>
@@ -129,8 +129,8 @@
                         </td>
                     </tr>
                 </table>
+                <br/>
             </div>
-            <br/>
             <div  ng-if="angeldayMembers">
                 <h4>Поздравляем c Именинами:</h4>
                 <table ng-repeat="aMember in angeldayMembers">
@@ -141,15 +141,15 @@
                             <h6 class="shift-right" ng-if="aMember.phoneRaw" >Телефон: <a href="tel:{{aMember.phoneRaw}}">{{aMember.phoneNice}}</a></h6>
                         </td></tr>
                 </table>
+                <br/>
             </div>
-            <br/>
             <div  ng-if="nearBirthdayMembers">
                 <h4>Скоро День Рождения:</h4>
                 <ul ng-repeat="nbMember in nearBirthdayMembers">
                     <li><h5>{{nbMember.firstName}} {{nbMember.lastName}}: {{nbMember.nearBirthdayRu}}</h5></li>
                 </ul>
+                <br/>
             </div>
-            <br/>
             <div  ng-if="nearAngeldayMembers">
                 <h4>Скоро Именины:</h4>
                 <ul class="text" ng-repeat="naMember in nearAngeldayMembers">

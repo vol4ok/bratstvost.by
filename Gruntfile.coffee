@@ -12,7 +12,6 @@ module.exports = (grunt) ->
   grunt.initConfig
 
 
-
     ### ----------------------- ###
     ### ******** WATCH ******** ###
     ### ----------------------- ###
@@ -24,10 +23,6 @@ module.exports = (grunt) ->
       coffee:
         files: 'scripts/**/*.coffee'
         tasks: ['coffee:client']
-
-
-
-
 
 
     ### ------------------------ ###
@@ -59,9 +54,6 @@ module.exports = (grunt) ->
           "dist/models/member.js": "models/member.coffee"
 
 
-
-
-
     ### ---------------------- ###
     ### ******** LESS ******** ###
     ### ---------------------- ###
@@ -85,9 +77,6 @@ module.exports = (grunt) ->
           ]
         files:
           "temp/css/app.css": "styles/app.less"
-
-
-
 
 
     ### ------------------------ ###
@@ -116,6 +105,7 @@ module.exports = (grunt) ->
 
           "bower_components/angular-bootstrap/ui-bootstrap-tpls.js"
           "bower_components/angular-bootstrap/ui-bootstrap.js"
+          "scripts/js/lazy-bootstrap-carousel-v3.js"
         ]
         dest: "public/js/core.js"
 

@@ -4,7 +4,6 @@ configure = ($routeProvider, $locationProvider, $sceDelegateProvider, $sceProvid
   $locationProvider
     .html5Mode(yes)
 
-  #$sceDelegateProvider.resourceUrlWhitelist(['self','^(?:http(?:s)?:\/\/)?(?:[^\.]+\.)?\(vimeo|youtube)\.com(/.*)?$'])
   $sceProvider.enabled(false)
 
   $routeProvider
