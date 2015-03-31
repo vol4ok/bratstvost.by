@@ -1,7 +1,7 @@
 class EventListCtrl
   parse_phone = (phone) ->
     res = ""
-    for c,i in phone
+    for c in phone
       res += c if c in "+0123456789".split("")
     return {
       nums: res.slice(-7)
@@ -24,42 +24,32 @@ class EventListCtrl
   constructor: (@$scope, @$eventsSvc) ->
     @$eventsSvc.all().then (events) =>
 
+      @$scope.formatPhone = formatPhone
+
       _last_update = moment(events[0].updated)
+      today = moment().startOf('day').toDate()
+      @$scope.data = {}
+      @$scope.data.pastEvents = []
+      @$scope.data.nextEvents = []
+
       for ev in events
         updated = moment(ev.updated)
         if updated.toDate() > _last_update.toDate()
           _last_update = updated
+        if ev.phone
+          ev.phone = @$scope.formatPhone(ev.phone)
 
-      @$scope.formatPhone = formatPhone
-
-      @$scope.data = {}
-      @$scope.data.lastUpdate = _last_update.fromNow()
-
-      for ev in events when ev.phone
-        ev.phone = @$scope.formatPhone(ev.phone)
-
-      
-
-      for ev in events
         ev._date = moment(ev.date).toDate()
         ev.month = moment(ev.date).format("MMM")
         ev.day = moment(ev.date).format("D")
         ev.dayOfWeek = moment(ev.date).format("dd")
 
-      @$scope.data.events = events
-      @$scope.data.pastEvents = []
-      @$scope.data.nextEvents = []
-
-      today = moment().startOf('day').toDate()
-
-      for ev in @$scope.data.events
         if ev._date < today
           @$scope.data.pastEvents.push(ev)
         else
           @$scope.data.nextEvents.push(ev)
 
       @$scope.data.lastUpdate = _last_update.fromNow()
-
       @$scope.data.nextEvents = @$scope.data.nextEvents.sort (a,b) -> a._date.valueOf() - b._date.valueOf()
       @$scope.data.pastEvents = @$scope.data.pastEvents.sort (a,b) -> b._date.valueOf() - a._date.valueOf()
 

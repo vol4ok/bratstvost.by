@@ -55,7 +55,7 @@ app.get "/api/events", (req, res) ->
     res.json(results)
 
 app.get "/api/notice", (req, res) ->
-  Notice.find {published: yes}, (err, results) ->
+  Notice.find {published: yes, show_ends: { $gt: new Date()}}, (err, results) ->
     return res.json(status: "ERR", message: err) if err
     res.json(results)
 
@@ -80,7 +80,7 @@ app.get "/api/members", (req, res) ->
     res.json(results)
 
 app.get "/api/calendar", (req, res) ->
-  options = { host: 'script2.pravoslavie.ru', path: '/cache/ssi=1&images=1&hrams=0&bold=1&para=1&dayicon=1&encoding=u&advanced=1.ls' }
+  options = { host: 'script2.pravoslavie.ru', path: '/cache/ssi=1&hrams=0&bold=1&para=1&dayicon=1&encoding=u&advanced=1.ls' }
   callback = (response) ->
     calendarHtml = ""
     response.on 'data', (chunk) ->

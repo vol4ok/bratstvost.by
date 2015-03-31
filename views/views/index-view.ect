@@ -66,9 +66,9 @@
       <div class="well">
 
         <section class="well-notes" ng-controller="NoticeListCtrl">
-          <div ng-if="data.notices.length > 0">
+          <div ng-if="notices.length > 0">
             <h2><i class="icon-announce"></i> Объявления</h2>
-            <section class="note" ng-repeat="notice in data.notices" ng-class="notice.style" ng-bind-html="notice.body">
+            <section class="note" ng-repeat="notice in notices" ng-class="notice.style" ng-bind-html="notice.body">
               {{notice.body}}
             </section>
           </div>
@@ -122,7 +122,7 @@
                 <h4>Поздравляем c Днем Рождения:</h4>
                 <table ng-repeat="bMember in birthdayMembers">
                     <tr><td>
-                            <img width="50" height="63" src="/img/members/small-photo-{{bMember.photoId}}.jpg" alt="bMember.fullName">
+                            <img width="50" height="63" ng-src="{{'/img/members/small-photo-'+bMember.photoId+'.jpg'}}" alt="bMember.fullName">
                         </td><td>
                             <h5 class="birthday-member">{{bMember.firstName}} {{bMember.lastName}}</h5>
                             <h6 class="shift-right" ng-if="bMember.phoneRaw" >Телефон: <a href="tel:{{bMember.phoneRaw}}">{{bMember.phoneNice}}</a></h6>
@@ -135,7 +135,7 @@
                 <h4>Поздравляем c Именинами:</h4>
                 <table ng-repeat="aMember in angeldayMembers">
                     <tr><td>
-                            <img width="50" height="63" src="/img/members/small-photo-{{aMember.photoId}}.jpg" alt="aMember.fullName">
+                            <img width="50" height="63" ng-src="{{'/img/members/small-photo-'+aMember.photoId+'.jpg'}}" alt="aMember.fullName">
                         </td><td>
                             <h5 class="birthday-member">{{aMember.firstName}} {{aMember.lastName}}</h5>
                             <h6 class="shift-right" ng-if="aMember.phoneRaw" >Телефон: <a href="tel:{{aMember.phoneRaw}}">{{aMember.phoneNice}}</a></h6>

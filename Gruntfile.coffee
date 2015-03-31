@@ -101,7 +101,7 @@ module.exports = (grunt) ->
           "bower_components/angular-route/angular-route.js"
           "bower_components/angular-sanitize/angular-sanitize.js"
           "bower_components/moment/min/moment.min.js"
-          "bower_components/moment/min/langs.min.js"
+          "bower_components/moment/min/lang_ru.js"
 
           "bower_components/angular-bootstrap/ui-bootstrap-tpls.js"
           "bower_components/angular-bootstrap/ui-bootstrap.js"
@@ -138,7 +138,7 @@ module.exports = (grunt) ->
           "bower_components/angular-route/angular-route.min.js"
           "bower_components/angular-sanitize/angular-sanitize.min.js"
           "bower_components/moment/min/moment.min.js"
-          "bower_components/moment/min/langs.min.js"
+          "bower_components/moment/min/lang_ru.js"
 
           "bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"
           "bower_components/angular-bootstrap/ui-bootstrap.min.js"
