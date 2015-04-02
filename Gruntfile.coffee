@@ -142,6 +142,7 @@ module.exports = (grunt) ->
 
           "bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"
           "bower_components/angular-bootstrap/ui-bootstrap.min.js"
+          "scripts/js/lazy-bootstrap-carousel-v3.js"
         ]
         dest: "temp/js/core.js"
 
