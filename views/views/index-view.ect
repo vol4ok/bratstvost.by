@@ -59,13 +59,13 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row" ng-controller="MainCtrl">
 
     <div class="col-sm-7">
 
       <div class="well">
 
-        <section class="well-notes" ng-controller="NoticeListCtrl">
+        <section class="well-notes">
           <div ng-if="notices.length > 0">
             <h2><i class="icon-announce"></i> Объявления</h2>
             <section class="note" ng-repeat="notice in notices" ng-class="notice.style" ng-bind-html="notice.body">
@@ -161,8 +161,8 @@
 
       <section class="well">
         <h2><i class="icon-news2"></i> Последние новости</h2>
-        <ul class="news-list" ng-controller="NewsListCtrl">
-          <li class="news" ng-repeat="news in data.news | limitTo:3" ng-class="{hot: news.hot}">
+        <ul class="news-list">
+          <li class="news" ng-repeat="news in anews" ng-class="{hot: news.hot}">
             <div class="time"><i class="icon-time"></i> {{news.timeAgo}}</div>
             <div class="text" ng-bind-html="news.body">{{news.body}}</div>
           </li>

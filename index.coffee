@@ -79,6 +79,14 @@ app.get "/api/members", (req, res) ->
     return res.json(status: "ERR", message: err) if err
     res.json(results)
 
+app.get "/api/main", (req, res) ->
+  Notice.find {published: yes, show_ends: { $gt: new Date()}}, (err, notices) ->
+    return res.json(status: "ERR", message: err) if err
+    News.find {published: yes}, null, {sort:{date:-1}, limit: 3} , (err, news) ->
+      return res.json(status: "ERR", message: err) if err
+      res.json({"news": news, "notices": notices})
+
+
 app.get "/api/calendar", (req, res) ->
   options = { host: 'script2.pravoslavie.ru', path: '/cache/ssi=1&hrams=0&bold=1&para=1&dayicon=1&encoding=u&advanced=1.ls' }
   callback = (response) ->

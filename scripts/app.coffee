@@ -49,9 +49,9 @@ main = () ->
 angular.module('appLibs', [])
 
 angular.module('app.ctrl', [
+  'MainCtrl'
   'NewsListCtrl'
   'EventListCtrl'
-  'NoticeListCtrl'
   'AboutPageCtrl'
   'ContactPageCtrl'
   'ArticlePageCtrl'
@@ -68,7 +68,7 @@ angular.module('app.div', [
 
 angular.module('app.svc', [
   'EventsSvc'
-  'NoticeSvc'
+  'MainSvc'
   'NewsSvc'
   'ArticleSvc'
 ])
