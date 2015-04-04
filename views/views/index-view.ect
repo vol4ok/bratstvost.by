@@ -92,24 +92,26 @@
 
     </div>
 
-    <div class="col-sm-5" ng-controller="EventListCtrl">
+    <div class="col-sm-5" >
       <div class="well well-events event-list">
         <h2 class="next-event-title"><i class="icon-cal"></i> Мероприятия</h2>
-        <h6><i class="icon-time"></i> обновлено {{data.lastUpdate}}</h6>
+        <h6><i class="icon-time"></i> обновлено {{lastUpdate}}</h6>
         <p class="hint">Кликните на событие, чтобы посмотреть детали</p>
-        <eventview ng-repeat="event in data.nextEvents" event="event"></eventview>
+        <eventview ng-repeat="event in nextEvents" event="event"></eventview>
 
         <h2 class="past-event-title"><i class="icon-archive"></i> Архив событий</h2>
+          <div ng-controller="PastEventCtrl">
         <archiveitem ng-repeat="yevents in data.pastEventsByYear" title="yevents.year">
           <archiveitem ng-repeat="mevents in yevents.pastEventsByMonth" title="mevents.month">
             <eventview class="archive" ng-repeat="event in mevents.events" event="event"></eventview>
           </archiveitem>
         </archiveitem>
+          </div>
       </div>
 
     <section class="well">
         <h2><i class="icon-news2"></i> Православный календарь </h2>
-        <div ng-controller="CalendarPartCtrl">
+        <div>
             <div class="text" ng-bind-html="calendarHtml"></div>
         </div>
     </section>

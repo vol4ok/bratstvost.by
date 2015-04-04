@@ -80,23 +80,34 @@ app.get "/api/members", (req, res) ->
     res.json(results)
 
 app.get "/api/main", (req, res) ->
-  Notice.find {published: yes, show_ends: { $gt: new Date()}}, (err, notices) ->
+  today = moment(new Date()).startOf('day').toDate()
+  Notice.find {published: yes, show_ends: { $gt: today}}, null, {sort:{priority:-1}}, (err, notices) ->
     return res.json(status: "ERR", message: err) if err
     News.find {published: yes}, null, {sort:{date:-1}, limit: 3} , (err, news) ->
       return res.json(status: "ERR", message: err) if err
-      res.json({"news": news, "notices": notices})
+      Event.find {published: yes, date: { $gt: today}}, (err, events) ->
+        return res.json(status: "ERR", message: err) if err
+        responseWithTodayCalendar(res, {"news": news, "notices": notices, "events": events})
 
+dailyCalendarHtml = {html: "", date: null}
+calendarOptions = { host: 'script2.pravoslavie.ru', path: '/cache/ssi=1&hrams=0&bold=1&para=1&dayicon=1&encoding=u&advanced=1.ls' }
 
-app.get "/api/calendar", (req, res) ->
-  options = { host: 'script2.pravoslavie.ru', path: '/cache/ssi=1&hrams=0&bold=1&para=1&dayicon=1&encoding=u&advanced=1.ls' }
-  callback = (response) ->
-    calendarHtml = ""
-    response.on 'data', (chunk) ->
-      calendarHtml += chunk
-    response.on 'end', () ->
-      return res.json(calendarHtml: calendarHtml)
+responseWithTodayCalendar = (res, data) ->
+  if moment().isSame(dailyCalendarHtml.date, 'day')
+    data.calendarHtml = dailyCalendarHtml.html
+    res.json(data)
+  else
+    calendarCallback = (response) ->
+      calendarHtml = ""
+      response.on 'data', (chunk) ->
+        calendarHtml += chunk
+      response.on 'end', () ->
+        dailyCalendarHtml.html = data.calendarHtml = calendarHtml
+        dailyCalendarHtml.date = new Date()
+        return res.json(data)
 
-  http.request(options, callback).end();
+    http.request(calendarOptions, calendarCallback).end();
+
 
 port = process.env.PORT || 5000
 app.listen(port)
