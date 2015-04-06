@@ -9,9 +9,6 @@ configure = ($routeProvider, $locationProvider, $sceDelegateProvider, $sceProvid
   $routeProvider
     .when "/",
       templateUrl: "index-view"
-    .when "/2",
-      templateUrl: "index-view2"
-      controller: "IndexPage2Ctrl"
     .when "/contacts",
       templateUrl: "contact-view"
       controller: "ContactPageCtrl"

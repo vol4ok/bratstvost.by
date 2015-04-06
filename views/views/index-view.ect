@@ -99,14 +99,16 @@
         <p class="hint">Кликните на событие, чтобы посмотреть детали</p>
         <eventview ng-repeat="event in nextEvents" event="event"></eventview>
 
-        <h2 class="past-event-title"><i class="icon-archive"></i> Архив событий</h2>
-          <div ng-controller="PastEventCtrl">
-        <archiveitem ng-repeat="yevents in data.pastEventsByYear" title="yevents.year">
-          <archiveitem ng-repeat="mevents in yevents.pastEventsByMonth" title="mevents.month">
-            <eventview class="archive" ng-repeat="event in mevents.events" event="event"></eventview>
-          </archiveitem>
-        </archiveitem>
-          </div>
+        <div class="archive-collapse" >
+          <h4>
+            <a href class="plain" ng-click="expanded=!expanded;innerTemplateUrl='past-events-view'">
+              <i ng-class="{true: 'icon-expanded', false: 'icon-collapsed'}[expanded]"></i>
+              <span class="dotted"><i class="icon-archive"></i> Архив событий</span>
+            </a>
+          </h4>
+        <div class="content" ng-init="expanded=expanded || false" ng-show="expanded"
+               ng-include="innerTemplateUrl">
+        </div>
       </div>
 
     <section class="well">
