@@ -5,7 +5,7 @@
     <div class="row">
       <div class="col-sm-12">
 
-        <ul class="news-list" ng-controller="NewsListCtrl">
+        <ul class="news-list">
           <li class="news" ng-repeat="news in data.news" ng-class="{hot: news.hot}">
             <div class="time"><i class="icon-time"></i> {{news.timeAgo}}</div>
             <div class="text" ng-bind-html="news.body">{{news.body}}</div>

@@ -4,7 +4,6 @@ VideoPageCtrl = ($scope, $core) ->
   $core.$videos.all().then (videos) =>
     videos.sort (a,b) -> moment(b.publish_date).valueOf() - moment(a.publish_date).valueOf()
 
-    $scope.videos = videos
     $scope.videosLeft = []
     $scope.videosRight = []
 

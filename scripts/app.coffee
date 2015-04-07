@@ -9,9 +9,6 @@ configure = ($routeProvider, $locationProvider, $sceDelegateProvider, $sceProvid
   $routeProvider
     .when "/",
       templateUrl: "index-view"
-    .when "/2",
-      templateUrl: "index-view2"
-      controller: "IndexPage2Ctrl"
     .when "/contacts",
       templateUrl: "contact-view"
       controller: "ContactPageCtrl"
@@ -29,10 +26,9 @@ configure = ($routeProvider, $locationProvider, $sceDelegateProvider, $sceProvid
       controller: "ArticlePageCtrl"
     .when "/life-of-saint-Spyridon",
       templateUrl: "story-view"
-      controller: "StoryPageCtrl"
     .when "/news",
       templateUrl: "news-view"
-      controller: "NewsPageCtrl"
+      controller: "NewsListCtrl"
     .when "/become-a-volunteer",
       templateUrl: "become-a-volunteer-view"
     .when "/donations",
@@ -49,15 +45,12 @@ main = () ->
 angular.module('appLibs', [])
 
 angular.module('app.ctrl', [
+  'MainCtrl'
   'NewsListCtrl'
-  'EventListCtrl'
-  'NoticeListCtrl'
+  'PastEventCtrl'
   'AboutPageCtrl'
   'ContactPageCtrl'
   'ArticlePageCtrl'
-  'StoryPageCtrl'
-  'NewsPageCtrl'
-  'CalendarPartCtrl'
   'BirthdayPartCtrl'
 ])
 
@@ -68,7 +61,7 @@ angular.module('app.div', [
 
 angular.module('app.svc', [
   'EventsSvc'
-  'NoticeSvc'
+  'MainSvc'
   'NewsSvc'
   'ArticleSvc'
 ])

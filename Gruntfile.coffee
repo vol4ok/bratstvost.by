@@ -8,6 +8,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks("grunt-contrib-clean")
   grunt.loadNpmTasks("grunt-contrib-watch")
   grunt.loadNpmTasks('grunt-bump')
+  grunt.loadNpmTasks('grunt-contrib-imagemin')
   
   grunt.initConfig
 
@@ -272,10 +273,24 @@ module.exports = (grunt) ->
         pushTo: 'upstream'
         gitDescribeOptions: '--tags --always --abbrev=1 --dirty=-d'
 
+    ### ---------------------- ###
+    ### ****** imagemin ****** ###
+    ### ---------------------- ###
+
+    imagemin:
+      dist:
+        files: [{
+          expand: true,
+          cwd: 'dist/public',
+          src: '**/*.{png,jpg,jpeg,gif}',
+          dest: 'dist/public/'
+        }]
+
+
   grunt.registerTask "bootstrap", ["less:bootstrap"]
   grunt.registerTask "styles", ["less:bootstrap", "less:styles", "concat:styles"]
   grunt.registerTask "core", ["concat:core"]
   grunt.registerTask "default", ["styles", "coffee:client", "concat:main"]
-  grunt.registerTask "dist", ["styles", "coffee", "concat:dist", "cssmin", "uglify", "copy"]
+  grunt.registerTask "dist", ["styles", "coffee", "concat:dist", "cssmin", "uglify", "copy", "imagemin"]
   grunt.registerTask "build", ["core", "default", "dist"]
   grunt.registerTask "rebuild", ["clean", "core", "default", "dist"]

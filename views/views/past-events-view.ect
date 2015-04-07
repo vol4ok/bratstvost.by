@@ -1,0 +1,9 @@
+<script type="text/ng-template" id="past-events-view">
+    <div ng-controller="PastEventCtrl">
+        <archiveitem ng-repeat="yevents in data.pastEventsByYear" title="yevents.year">
+            <archiveitem ng-repeat="mevents in yevents.pastEventsByMonth" title="mevents.month">
+                <eventview class="archive" ng-repeat="event in mevents.events" event="event"></eventview>
+            </archiveitem>
+        </archiveitem>
+    </div>
+</script>
