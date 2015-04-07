@@ -1,9 +1,6 @@
 $coreVideo = ($q, $http) ->
   $coreVideo.$inject = ["$q", "$http"]
 
-  currentCollection = []
-  currentItem = null
-
   return {
     all: () ->
       deffered = $q.defer()

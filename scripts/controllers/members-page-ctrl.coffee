@@ -1,5 +1,5 @@
-MembersPageCtrl = ($scope, $core, phoneHelpers) ->
-  MembersPageCtrl.$inject = ["$scope", "$core", "phoneHelpers"]
+MembersPageCtrl = ($scope, $core) ->
+  MembersPageCtrl.$inject = ["$scope", "$core"]
 
   $scope.members = []
   $core.$members.all().then (members) ->

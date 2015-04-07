@@ -1,7 +1,7 @@
 parsePhone = (phone) ->
   return null unless phone
   res = ""
-  for c,i in phone
+  for c in phone
     res += c if c in "+0123456789".split("")
   val = {
     nums: res.slice(-7)

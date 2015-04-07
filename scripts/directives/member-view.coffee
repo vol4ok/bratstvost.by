@@ -6,10 +6,8 @@ angular.module("appLibs").directive "member", ["phoneHelpers", (phoneHelpers) ->
   }
   templateUrl: "member-view-template"
   link: (scope, element, attrs) ->
-    console.log "render", scope.model
     scope.$watch "model", () ->
       return unless scope.model
       scope.model.phoneRaw = phoneHelpers.formatPhoneRaw(scope.model.phone) 
       scope.model.phoneNice = phoneHelpers.formatPhoneNice(scope.model.phone)
-      console.log scope.model
 ]
