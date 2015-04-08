@@ -46,11 +46,9 @@ module.exports = (grunt) ->
           bare: yes
         files:
           "dist/web.js": "index.coffee"
-          "dist/models/post.js": "models/post.coffee"
           "dist/models/event.js": "models/event.coffee"
           "dist/models/notice.js": "models/notice.coffee"
           "dist/models/news.js": "models/news.coffee"
-          "dist/models/article.js": "models/article.coffee"
           "dist/models/video.js": "models/video.coffee"
           "dist/models/member.js": "models/member.coffee"
 
@@ -89,7 +87,6 @@ module.exports = (grunt) ->
       core:
         src: [
           "bower_components/jquery/dist/jquery.js"
-          "bower_components/lodash/dist/lodash.js"
           "bower_components/bootstrap/js/carousel.js"
           "bower_components/bootstrap/js/transition.js"
 
@@ -126,7 +123,6 @@ module.exports = (grunt) ->
       dist:
         src: [
           "bower_components/jquery/dist/jquery.min.js"
-          "bower_components/lodash/dist/lodash.min.js"
           "bower_components/bootstrap/js/carousel.js"
           "bower_components/bootstrap/js/transition.js"
           
@@ -155,9 +151,6 @@ module.exports = (grunt) ->
           "temp/css/app.css"
         ]
         dest: "public/css/styles.css"
-
-
-
 
 
     ### ---------------------- ###
@@ -201,9 +194,6 @@ module.exports = (grunt) ->
         ]
 
 
-
-
-
     ### ------------------------ ###
     ### ******** CSSMIN ******** ###
     ### ------------------------ ###
@@ -212,10 +202,6 @@ module.exports = (grunt) ->
       dist:
         files:
           "dist/public/css/styles.css": "public/css/styles.css"
-
-
-
-
 
 
     ### ------------------------ ###
@@ -229,9 +215,6 @@ module.exports = (grunt) ->
         files:
           'dist/public/js/core.js': ["temp/js/core.js"]
           'dist/public/js/app.js':  ["public/js/app.js"]
-
-
-
 
 
     ### ----------------------- ###
@@ -250,8 +233,6 @@ module.exports = (grunt) ->
       ]
       temp: ["temp"]
       pub: ["public/js/*.js", "public/css/*.css"]
-
-
 
 
     ### ---------------------- ###

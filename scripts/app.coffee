@@ -21,9 +21,6 @@ configure = ($routeProvider, $locationProvider, $sceDelegateProvider, $sceProvid
     .when "/video",
       templateUrl: "video-view"
       controller: "VideoPageCtrl"
-    .when "/article/:id",
-      templateUrl: "article-view"
-      controller: "ArticlePageCtrl"
     .when "/life-of-saint-Spyridon",
       templateUrl: "story-view"
     .when "/news",
@@ -50,7 +47,6 @@ angular.module('app.ctrl', [
   'PastEventCtrl'
   'AboutPageCtrl'
   'ContactPageCtrl'
-  'ArticlePageCtrl'
   'BirthdayPartCtrl'
 ])
 
@@ -63,7 +59,6 @@ angular.module('app.svc', [
   'EventsSvc'
   'MainSvc'
   'NewsSvc'
-  'ArticleSvc'
 ])
 
 angular.module('app', [
