@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Братство Спиридона Тримифунтского</title>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic|Roboto+Condensed:300italic,400italic,400,300&subset=cyrillic,latin' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/styles.css">
+
+</head>
+<body>
+
+<div class="container" ng-app="app">
+<!--
+    ** see "htmlbuild" grunt task for full index.html build
+-->
+
+    <!-- build:section recursive templates -->
+    <!-- /build -->
+    <!-- build:section recursive views -->
+    <!-- /build -->
+
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <a href="/"><div class="logo"></div></a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="title">Братство святителя Спиридона Тримифунтского</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+
+            <!-- build:section layout.navigation -->
+            <!-- /build -->
+
+        </div>
+    </div>
+
+    <ng-view></ng-view>
+
+    <footer class="row footer">
+    </footer>
+</div>
+
+<!-- build:section layout.metrika -->
+<!-- /build -->
+
+<script src="/js/core.js"></script>
+<script src="/js/app.js"></script>
+<script src="http://api-maps.yandex.ru/2.1-dev/?load=package.map&lang=ru-RU"></script>
+</body>
+</html>

@@ -1,6 +1,9 @@
 require "colors"
 exs = require "express"
-ect = require "ect"
+bodyParser = require('body-parser')
+cookieParser = require('cookie-parser')
+session = require('express-session')
+morgan = require('morgan')
 mg  = require "mongoose"
 moment = require "moment"
 http = require "http"
@@ -17,36 +20,20 @@ require("uasync")(_)
 
 app = exs()
 
-app
-  .disable("x-powered-by")
-  .set("view engine", "ect")
-  .engine('ect', ect(
-      root : __dirname + '/views'
-      ext : '.ect'
-      cache: no
-    ).render)
+app.disable("x-powered-by")
 
 COOKIE_SECRET = 'tarasiki-2013'
   
 app 
-  .use(exs.urlencoded())
-  .use(exs.json())
-  .use(exs.cookieParser(COOKIE_SECRET))
-  .use(exs.session(key: 'sid'))
-  .use(exs.logger("short"))
-  .use(app.router)
+  .use(bodyParser.urlencoded({extended: true}))
+  .use(bodyParser.json())
+  .use(cookieParser(COOKIE_SECRET))
+  .use(session({ resave: true, saveUninitialized: true, secret: 'uwotm8' }))
+  .use(morgan('short'))
   .use(exs.static("public"))
-  .use (req, res) ->
-    if req.session
-      res.render("index")
-    else
-      req.session.regenerate ->
-        res.render("index")
 
 app.locals =
   formatDate: (date) -> moment(date).fromNow()
-
-POST_PER_PAGE = 10
 
 app.get "/api/events", (req, res) ->
   Event.find {published: yes}, (err, results) ->
@@ -102,6 +89,9 @@ responseWithTodayCalendar = (res, data) ->
 
     http.request(calendarOptions, calendarCallback).end();
 
+#  res.send('what???', 404)
+app.get '*', (req, res) ->
+  res.sendFile(__dirname+'/public/index.html');
 
 port = process.env.PORT || 5000
 app.listen(port)

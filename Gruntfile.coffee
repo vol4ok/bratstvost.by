@@ -9,6 +9,8 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks("grunt-contrib-watch")
   grunt.loadNpmTasks('grunt-bump')
   grunt.loadNpmTasks('grunt-contrib-imagemin')
+  grunt.loadNpmTasks('grunt-html-build')
+  grunt.loadNpmTasks('grunt-contrib-htmlmin')
   
   grunt.initConfig
 
@@ -87,7 +89,6 @@ module.exports = (grunt) ->
       core:
         src: [
           "bower_components/jquery/dist/jquery.js"
-          "bower_components/bootstrap/js/carousel.js"
           "bower_components/bootstrap/js/transition.js"
 
           "bower_components/eventEmitter/EventEmitter.js"
@@ -102,7 +103,6 @@ module.exports = (grunt) ->
           "bower_components/moment/min/lang_ru.js"
 
           "bower_components/angular-bootstrap/ui-bootstrap-tpls.js"
-          "bower_components/angular-bootstrap/ui-bootstrap.js"
           "scripts/js/lazy-bootstrap-carousel-v3.js"
         ]
         dest: "public/js/core.js"
@@ -123,7 +123,6 @@ module.exports = (grunt) ->
       dist:
         src: [
           "bower_components/jquery/dist/jquery.min.js"
-          "bower_components/bootstrap/js/carousel.js"
           "bower_components/bootstrap/js/transition.js"
           
           "bower_components/eventEmitter/EventEmitter.js"
@@ -138,7 +137,6 @@ module.exports = (grunt) ->
           "bower_components/moment/min/lang_ru.js"
 
           "bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"
-          "bower_components/angular-bootstrap/ui-bootstrap.min.js"
           "scripts/js/lazy-bootstrap-carousel-v3.js"
         ]
         dest: "temp/js/core.js"
@@ -191,6 +189,11 @@ module.exports = (grunt) ->
             cwd: "views/"
             src: "**"
             dest: "dist/views"
+          ,
+          expand: yes
+          cwd: "dist/public/"
+          src: "index.html"
+          dest: "public/"
         ]
 
 
@@ -267,11 +270,45 @@ module.exports = (grunt) ->
           dest: 'dist/public/'
         }]
 
+    ### ****** htmlbuild ****** ###
+    ### ******    see https://github.com/spatools/grunt-html-build ****** ###
+
+    htmlbuild:
+      dist:
+        src: 'public/build_index.html',
+        dest: 'dist/public/index.html',
+        options:
+          beautify: true,
+          relative: true,
+          sections:
+            views: 'views/views/**/*.html',
+            templates: 'views/templates/**/*.html',
+            layout:
+              metrika: 'views/_yandex-metrika.html'
+              navigation: 'views/_navigation.html'
+          data:
+            version: "0.1.0",
+
+    ### ****** htmlmin ****** ###
+    ### ******    see https://github.com/gruntjs/grunt-contrib-htmlmin ****** ###
+    htmlmin:
+      dist:
+        options:
+          removeComments: true,
+          collapseWhitespace: true,
+          minifyJS: true,
+          processScripts: ['text/ng-template']
+        files:
+          'dist/public/index.html': 'dist/public/index.html'
+
 
   grunt.registerTask "bootstrap", ["less:bootstrap"]
   grunt.registerTask "styles", ["less:bootstrap", "less:styles", "concat:styles"]
   grunt.registerTask "core", ["concat:core"]
   grunt.registerTask "default", ["styles", "coffee:client", "concat:main"]
-  grunt.registerTask "dist", ["styles", "coffee", "concat:dist", "cssmin", "uglify", "copy", "imagemin"]
+  grunt.registerTask "dist", ["styles", "coffee", "concat:dist", "cssmin", "uglify", "htmlbuild", "copy", "htmlmin", "imagemin"]
+
+  grunt.registerTask "dev", ["styles", "coffee", "concat:core", "concat:main","htmlbuild", "copy" ]
+
   grunt.registerTask "build", ["core", "default", "dist"]
   grunt.registerTask "rebuild", ["clean", "core", "default", "dist"]
