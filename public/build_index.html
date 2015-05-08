@@ -13,7 +13,7 @@
 
 <div class="container" ng-app="app">
 <!--
-    ** see "htmlbuild" grunt task for full index.html build
+    *** see "htmlbuild" grunt task for full index.html build ***
 -->
 
     <!-- build:section recursive templates -->
@@ -51,8 +51,20 @@
 <!-- build:section layout.metrika -->
 <!-- /build -->
 
-<script src="/js/core.js"></script>
 <script src="/js/app.js"></script>
-<script src="http://api-maps.yandex.ru/2.1-dev/?load=package.map&lang=ru-RU"></script>
+<script type="text/javascript">
+    function downloadJSAtOnload() {
+        var element = document.createElement("script");
+        element.src = "http://api-maps.yandex.ru/2.1-dev/?load=package.map&lang=ru-RU";
+        element.async = true;
+        document.body.appendChild(element);
+    }
+
+    if (window.addEventListener)
+        window.addEventListener("load", downloadJSAtOnload, false);
+    else if (window.attachEvent)
+        window.attachEvent("onload", downloadJSAtOnload);
+    else window.onload = downloadJSAtOnload;
+</script>
 </body>
 </html>

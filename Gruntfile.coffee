@@ -36,7 +36,7 @@ module.exports = (grunt) ->
     coffee:
       client:
         files:
-          "temp/js/app.js":          "scripts/app.coffee"
+          "temp/js/appInit.js":      "scripts/appInit.coffee"
           "temp/js/core.js":         "scripts/core.coffee"
           "temp/js/factories.js":    "scripts/factories/*.coffee"
           "temp/js/controllers.js":  "scripts/controllers/*.coffee"
@@ -86,7 +86,7 @@ module.exports = (grunt) ->
 
     concat:
 
-      core:
+      dev:
         src: [
           "bower_components/jquery/dist/jquery.js"
           "bower_components/bootstrap/js/transition.js"
@@ -104,14 +104,9 @@ module.exports = (grunt) ->
 
           "bower_components/angular-bootstrap/ui-bootstrap-tpls.js"
           "scripts/js/lazy-bootstrap-carousel-v3.js"
-        ]
-        dest: "public/js/core.js"
 
-
-      main:
-        src: [
           "temp/js/core.js"
-          "temp/js/app.js"
+          "temp/js/appInit.js"
           "temp/js/factories.js"
           "temp/js/controllers.js"
           "temp/js/services.js"
@@ -124,7 +119,7 @@ module.exports = (grunt) ->
         src: [
           "bower_components/jquery/dist/jquery.min.js"
           "bower_components/bootstrap/js/transition.js"
-          
+
           "bower_components/eventEmitter/EventEmitter.js"
           "bower_components/eventie/eventie.js"
           "bower_components/imagesloaded/imagesloaded.js"
@@ -138,8 +133,15 @@ module.exports = (grunt) ->
 
           "bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"
           "scripts/js/lazy-bootstrap-carousel-v3.js"
+
+          "temp/js/core.js"
+          "temp/js/appInit.js"
+          "temp/js/factories.js"
+          "temp/js/controllers.js"
+          "temp/js/services.js"
+          "temp/js/directives.js"
         ]
-        dest: "temp/js/core.js"
+        dest: "temp/js/app.js"
 
       styles:
         src: [
@@ -183,7 +185,6 @@ module.exports = (grunt) ->
             src: ["package.json", "Procfile", "nginx.conf"]
             dest: "dist"
             filter: 'isFile' 
-
           ,
             expand: yes
             cwd: "views/"
@@ -216,8 +217,7 @@ module.exports = (grunt) ->
         options:
           mangle: false
         files:
-          'dist/public/js/core.js': ["temp/js/core.js"]
-          'dist/public/js/app.js':  ["public/js/app.js"]
+          'dist/public/js/app.js':  ["temp/js/app.js"]
 
 
     ### ----------------------- ###
@@ -304,11 +304,10 @@ module.exports = (grunt) ->
 
   grunt.registerTask "bootstrap", ["less:bootstrap"]
   grunt.registerTask "styles", ["less:bootstrap", "less:styles", "concat:styles"]
-  grunt.registerTask "core", ["concat:core"]
-  grunt.registerTask "default", ["styles", "coffee:client", "concat:main"]
+  grunt.registerTask "default", ["styles", "coffee:client", "concat:dev"]
+
   grunt.registerTask "dist", ["styles", "coffee", "concat:dist", "cssmin", "uglify", "htmlbuild", "copy", "htmlmin", "imagemin"]
+  grunt.registerTask "dev", ["styles", "coffee", "concat:dev", "htmlbuild", "copy" ]
 
-  grunt.registerTask "dev", ["styles", "coffee", "concat:core", "concat:main","htmlbuild", "copy" ]
-
-  grunt.registerTask "build", ["core", "default", "dist"]
-  grunt.registerTask "rebuild", ["clean", "core", "default", "dist"]
+  grunt.registerTask "build", ["dist"]
+  grunt.registerTask "rebuild", ["clean", "dist"]
