@@ -186,11 +186,6 @@ module.exports = (grunt) ->
             dest: "dist"
             filter: 'isFile' 
           ,
-            expand: yes
-            cwd: "views/"
-            src: "**"
-            dest: "dist/views"
-          ,
           expand: yes
           cwd: "dist/public/"
           src: "index.html"
@@ -228,7 +223,6 @@ module.exports = (grunt) ->
       dist: [
         "dist/models"
         "dist/public"
-        "dist/views"
         "dist/package.json"
         "dist/Procfile"
         "dist/web.js"
