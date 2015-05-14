@@ -151,14 +151,17 @@
             <div  ng-if="nearBirthdayMembers">
                 <h4>Скоро День Рождения:</h4>
                 <ul ng-repeat="nbMember in nearBirthdayMembers">
-                    <li><h5>{{nbMember.firstName}} {{nbMember.lastName}}: {{nbMember.nearBirthdayRu}}</h5></li>
+                    <li>
+                        <h5><img width="50" height="63" ng-src="{{'/img/members/small-photo-'+nbMember.photoId+'.jpg'}}" alt="nbMember.fullName">
+                            {{nbMember.firstName}} {{nbMember.lastName}}: {{nbMember.nearBirthdayRu}}</h5></li>
                 </ul>
                 <br/>
             </div>
             <div  ng-if="nearAngeldayMembers">
                 <h4>Скоро Именины:</h4>
                 <ul class="text" ng-repeat="naMember in nearAngeldayMembers">
-                    <li><h5>{{naMember.firstName}} {{naMember.lastName}}: {{naMember.nearAngeldayRu}}</h5></li>
+                    <li><h5><img width="50" height="63" ng-src="{{'/img/members/small-photo-'+naMember.photoId+'.jpg'}}" alt="naMember.fullName">
+                        {{naMember.firstName}} {{naMember.lastName}}: {{naMember.nearAngeldayRu}}</h5></li>
                 </ul>
             </div>
         </div>
