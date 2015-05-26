@@ -131,6 +131,7 @@
                         </td><td>
                             <h5 class="birthday-member">{{bMember.firstName}} {{bMember.lastName}}</h5>
                             <h6 class="shift-right" ng-if="bMember.phoneRaw" >Телефон: <a href="tel:{{bMember.phoneRaw}}">{{bMember.phoneNice}}</a></h6>
+                            <h6 class="shift-right" ng-if="bMember.email" >Почта: <a href="tel:{{bMember.email}}">{{bMember.email}}</a></h6>
                         </td>
                     </tr>
                 </table>
@@ -144,6 +145,7 @@
                         </td><td>
                             <h5 class="birthday-member">{{aMember.firstName}} {{aMember.lastName}}</h5>
                             <h6 class="shift-right" ng-if="aMember.phoneRaw" >Телефон: <a href="tel:{{aMember.phoneRaw}}">{{aMember.phoneNice}}</a></h6>
+                            <h6 class="shift-right" ng-if="aMember.email" >Почта: <a href="tel:{{aMember.email}}">{{aMember.email}}</a></h6>
                         </td></tr>
                 </table>
                 <br/>
