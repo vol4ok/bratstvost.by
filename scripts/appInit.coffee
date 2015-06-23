@@ -30,6 +30,8 @@ configure = ($routeProvider, $locationProvider, $sceDelegateProvider, $sceProvid
       templateUrl: "become-a-volunteer-view"
     .when "/donations",
       templateUrl: "donations-view"
+    .when "/memory-book",
+      templateUrl: "memory-book-view"
     .when "/how-to-help",
       templateUrl: "how-to-help-view"
 
