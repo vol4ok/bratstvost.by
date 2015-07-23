@@ -278,7 +278,7 @@ module.exports = (grunt) ->
             views: 'views/views/**/*.html',
             templates: 'views/templates/**/*.html',
             layout:
-              metrika: 'views/_yandex-metrika.html'
+              metrika: 'views/_metrika.html'
               navigation: 'views/_navigation.html'
           data:
             version: "0.1.0",
