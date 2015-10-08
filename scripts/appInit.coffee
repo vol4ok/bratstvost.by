@@ -34,8 +34,12 @@ configure = ($routeProvider, $locationProvider, $sceDelegateProvider, $sceProvid
       templateUrl: "memory-book-view"
     .when "/how-to-help",
       templateUrl: "how-to-help-view"
+    .when "/honorable",
+        templateUrl: "honorable-view"
+        controller: "HonorablePageCtrl"
 
-    # .when "/event/:id",
+
+# .when "/event/:id",
     #   templateUrl: "event-view"
     #   controller: "EventViewCtrl"
 
@@ -50,6 +54,7 @@ angular.module('app.ctrl', [
   'AboutPageCtrl'
   'ContactPageCtrl'
   'BirthdayPartCtrl'
+  'HonorablePageCtrl'
 ])
 
 angular.module('app.div', [
