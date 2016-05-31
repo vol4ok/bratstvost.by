@@ -2,7 +2,8 @@ require "colors"
 exs = require "express"
 bodyParser = require('body-parser')
 cookieParser = require('cookie-parser')
-session = require('express-session')
+cookieSession = require('cookie-session')
+compression = require('compression');
 morgan = require('morgan')
 mg  = require "mongoose"
 moment = require "moment"
@@ -24,11 +25,12 @@ app.disable("x-powered-by")
 
 COOKIE_SECRET = 'tarasiki-2013'
   
-app 
+app
+  .use(compression())
   .use(bodyParser.urlencoded({extended: true}))
   .use(bodyParser.json())
   .use(cookieParser(COOKIE_SECRET))
-  .use(session({ resave: true, saveUninitialized: true, secret: 'uwotm8' }))
+  .use(cookieSession({ secret: 'uwotm8', cookie: { maxAge: 60 * 60 * 1000 } }))
   .use(morgan('short'))
   .use(exs.static("public"))
 
