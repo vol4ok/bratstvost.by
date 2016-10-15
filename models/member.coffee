@@ -19,6 +19,7 @@ MemberSchema = new Schema
   created: { type: Date, default: Date.now }
   updated: { type: Date, default: Date.now }
   active: { type: Boolean, default: yes }
+  reserved: { type: Boolean, default: no }
   orderNumber: { type: Number, default: 10 }
 
 exports.Member = mg.model('Member', MemberSchema)
