@@ -8,7 +8,7 @@ Sample blog using:
 
 #To run:
 grunt dev
-node server
 
+node server
 
 And open http://localhost:5000
