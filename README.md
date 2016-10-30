@@ -12,3 +12,8 @@ grunt dev
 node server
 
 And open http://localhost:5000
+
+#Update font icons:
+1. Fontastic.me (http://app.fontastic.me/#select/2jLdY7a9jE298DWyuZeCuZ)
+2. Click "ADD MORE ICONS"
+3. Add icons by name and download

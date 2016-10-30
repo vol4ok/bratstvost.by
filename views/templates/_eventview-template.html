@@ -18,25 +18,25 @@
             </div>
 
             <dl>
-                <dt ng-if="event.event_time.length>0"><i class="icon-time"></i> Время мероприятия</dt>
+                <dt ng-if="event.event_time.length>0"><i class="icon-clock"></i> Время мероприятия</dt>
                 <dd ng-if="event.event_time.length>0"  ng-bind-html="event.event_time">{{event.event_time}}</dd>
 
-                <dt ng-if="event.event_place.length>0"><i class="icon-place"></i> Место мероприятия</dt>
+                <dt ng-if="event.event_place.length>0"><i class="icon-map-marker"></i> Место мероприятия</dt>
                 <dd ng-if="event.event_place.length>0" ng-bind-html="event.event_place">{{event.event_place}}</dd>
 
-                <dt ng-if="event.meeting_time.length>0"><i class="icon-time"></i> Время сбора</dt>
+                <dt ng-if="event.meeting_time.length>0"><i class="icon-clock"></i> Время сбора</dt>
                 <dd ng-if="event.meeting_time.length>0"  ng-bind-html="event.meeting_time">{{event.meeting_time}}</dd>
 
-                <dt ng-if="event.meeting_place.length>0"><i class="icon-place"></i> Место сбора</dt>
+                <dt ng-if="event.meeting_place.length>0"><i class="icon-map-marker"></i> Место сбора</dt>
                 <dd ng-if="event.meeting_place.length>0" ng-bind-html="event.meeting_place">{{event.meeting_place}}</dd>
 
                 <dt ng-if="event.organizer.length>0"><i class="icon-user"></i> Организатор</dt>
                 <dd ng-if="event.organizer.length>0">{{event.organizer}}</dd>
 
-                <dt ng-if="event.phone.length>0"><i class="icon-phone"></i> Телефон</dt>
+                <dt ng-if="event.phone.length>0"><i class="icon-telephone"></i> Телефон</dt>
                 <dd ng-if="event.phone.length>0" ng-bind-html="event.phone">{{event.phone}}</dd>
 
-                <dt ng-if="event.cost.length>0"><i class="icon-wallet"></i> Стоимость</dt>
+                <dt ng-if="event.cost.length>0"><i class="icon-vallet"></i> Стоимость</dt>
                 <dd ng-if="event.cost.length>0" ng-bind-html="event.cost">{{event.cost}}</dd>
 
                 <dt ng-repeat-start="field in event.custom_field"><i ng-class="'icon-' + field.icon"></i> {{field.term}}</dt>

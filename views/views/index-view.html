@@ -67,7 +67,7 @@
 
         <section class="well-notes">
           <div ng-if="notices.length > 0">
-            <h2><i class="icon-announce"></i> Объявления</h2>
+            <h2><i class="icon-bullhorn"></i> Объявления</h2>
             <section class="note" ng-repeat="notice in notices" ng-class="notice.style" ng-bind-html="notice.body">
               {{notice.body}}
             </section>
@@ -94,15 +94,15 @@
 
     <div class="col-sm-5" >
       <div class="well well-events event-list">
-        <h2 class="next-event-title"><i class="icon-cal"></i> Мероприятия</h2>
-        <h6><i class="icon-time"></i> обновлено {{lastUpdate}}</h6>
+        <h2 class="next-event-title"><i class="icon-calendar"></i> Мероприятия</h2>
+        <h6><i class="icon-clock"></i> обновлено {{lastUpdate}}</h6>
         <p class="hint">Кликните на событие, чтобы посмотреть детали</p>
         <eventview ng-repeat="event in nextEvents" event="event"></eventview>
 
         <div class="archive-collapse" >
           <h4>
             <a href class="plain" ng-click="expanded=!expanded;innerTemplateUrl='past-events-view'">
-              <i ng-class="{true: 'icon-expanded', false: 'icon-collapsed'}[expanded]"></i>
+              <i ng-class="{true: 'icon-minus-square', false: 'icon-plus-square'}[expanded]"></i>
               <span class="dotted"><i class="icon-archive"></i> Архив событий</span>
             </a>
           </h4>
@@ -113,14 +113,14 @@
     </div>
 
     <section class="well">
-        <h2><i class="icon-news2"></i> Православный календарь </h2>
+        <h2><i class="icon-book"></i> Православный календарь </h2>
         <div>
             <div class="text" ng-bind-html="calendarHtml"></div>
         </div>
     </section>
 
     <section class="well">
-        <h2><i class="icon-news2"></i> Именины и дни рождения </h2>
+        <h2><i class="icon-birthday-cake"></i> Именины и дни рождения </h2>
         <div ng-controller="BirthdayPartCtrl">
 
             <div  ng-if="birthdayMembers">
@@ -170,10 +170,10 @@
     </section>
 
       <section class="well">
-        <h2><i class="icon-news2"></i> Последние новости</h2>
+        <h2><i class="icon-newspaper"></i> Последние новости</h2>
         <ul class="news-list">
           <li class="news" ng-repeat="news in anews" ng-class="{hot: news.hot}">
-            <div class="time"><i class="icon-time"></i> {{news.timeAgo}}</div>
+            <div class="time"><i class="icon-clock"></i> {{news.timeAgo}}</div>
             <div class="text" ng-bind-html="news.body">{{news.body}}</div>
           </li>
         </ul>
