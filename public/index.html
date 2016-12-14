@@ -1,0 +1,1734 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ ogDesc }}">
+    <!--<meta name="description" content="Волонтеры братства занимаются духовной, благотворительной деятельностью и социальным служением. Спешите творить добро!">-->
+    <meta name="keywords" content="православное братство, волонтеры, помощь инвалидам">
+
+    <!--<meta property="og:type"        content="article" />-->
+    <meta property="og:url" content="http://178.124.167.62:5000/the-news/580a83aae60a21092b07b69c {{ ogUrl }}" />
+    <meta property="og:title" content="qweqwe {{ ogTitle }}" />
+    <meta property="og:image" content="http://bratstvost.by/img/logo-100.png" />
+    <meta property="og:description" content="Споры насчет преимуществ и недостатков Scala перед Java напоминают мне споры о C против С++. Плюсы, конечно же, на порядок более сложный язык с огромным..." />
+
+
+    <title>Православное братство Спиридона Тримифунтского</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <!--
+    *** see "htmlbuild" grunt task for full index.html build ***
+-->
+
+        <script type="text/ng-template" id="archive-collapse-template">
+            <div class="archive-collapse">
+                <h4>
+            <a href class="plain" ng-click="expanded=!expanded">
+                <i ng-class="{true: 'icon-minus-square', false: 'icon-plus-square'}[expanded]"></i>
+                <span class="dotted">{{title}}</span>
+            </a>
+        </h4>
+                <div class="content" ng-init="expanded=expanded || false" ng-show="expanded" ng-transclude></div>
+            </div>
+        </script>
+        <script type="text/ng-template" id="eventview-template">
+            <article class="event-view">
+                <div class="event-short" ng-click="expanded=!expanded; event.isNew=false">
+                    <div class="event-state" ng-class="{'new': event.isNew}"></div>
+
+                    <div class="event-date">
+                        <div class="month">{{event.month}}</div>
+                        <div class="day">{{event.day}}</div>
+                        <div class="day-of-week">{{event.dayOfWeek}}</div>
+                    </div>
+
+                    <div class="event-head" ng-bind-html="event.title">{{event.title}}</div>
+                </div>
+
+                <div class="event-more" ng-class="{true: 'active'}[expanded]">
+                    <div class="event-body" ng-if="event.body" ng-bind-html="event.body">
+                        {{event.body}}
+                    </div>
+
+                    <dl>
+                        <dt ng-if="event.event_time.length>0"><i class="icon-clock"></i> Время мероприятия</dt>
+                        <dd ng-if="event.event_time.length>0" ng-bind-html="event.event_time">{{event.event_time}}</dd>
+
+                        <dt ng-if="event.event_place.length>0"><i class="icon-map-marker"></i> Место мероприятия</dt>
+                        <dd ng-if="event.event_place.length>0" ng-bind-html="event.event_place">{{event.event_place}}</dd>
+
+                        <dt ng-if="event.meeting_time.length>0"><i class="icon-clock"></i> Время сбора</dt>
+                        <dd ng-if="event.meeting_time.length>0" ng-bind-html="event.meeting_time">{{event.meeting_time}}</dd>
+
+                        <dt ng-if="event.meeting_place.length>0"><i class="icon-map-marker"></i> Место сбора</dt>
+                        <dd ng-if="event.meeting_place.length>0" ng-bind-html="event.meeting_place">{{event.meeting_place}}</dd>
+
+                        <dt ng-if="event.organizer.length>0"><i class="icon-user"></i> Организатор</dt>
+                        <dd ng-if="event.organizer.length>0">{{event.organizer}}</dd>
+
+                        <dt ng-if="event.phone.length>0"><i class="icon-telephone"></i> Телефон</dt>
+                        <dd ng-if="event.phone.length>0" ng-bind-html="event.phone">{{event.phone}}</dd>
+
+                        <dt ng-if="event.cost.length>0"><i class="icon-vallet"></i> Стоимость</dt>
+                        <dd ng-if="event.cost.length>0" ng-bind-html="event.cost">{{event.cost}}</dd>
+
+                        <dt ng-repeat-start="field in event.custom_field"><i ng-class="'icon-' + field.icon"></i> {{field.term}}</dt>
+                        <dd ng-repeat-end ng-bind-html="field.desc">{{field.desc}}</dd>
+                    </dl>
+                </div>
+            </article>
+        </script>
+        <script type="text/ng-template" id="about-view">
+
+            <div class="row hidden-xs hidden-print">
+                <div class="col-sm-12">
+                    <div class="well well-map">
+                        <div class="map" id="internat-map"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row about">
+                <div class="col-sm-12">
+
+                    <div class="well">
+
+                        <div class="row">
+                            <div class="col-sm-12">
+
+                                <article class="article">
+                                    <header>
+                                        <h2>О братстве</h2>
+                                    </header>
+                                    <section class="content">
+                                        <p>Братство в честь святителя Спиридона Тримифунтского образовано при храме Преображения Господня в городе Заславль.</p>
+                                        <p>Братство занимается миссионерской, духовной, просветительской, благотворительной деятельностью, социальным служением, оказанием помощи психоневрологическим интернатам, больницам, детским интернатам, духовным просвещением
+                                            молодежи и детей.</p>
+                                        <p>Братством окормляются насельники психоневрологических интернатов г. Минска и Минской области:
+                                            <ul>
+                                                <li>«Минский психоневрологический дом-интернат № 2» на ул. Ваупшасова 35</li>
+                                                <li>Филиал Минского психоневрологического дома-интерната № 2 на ул.Ангарская, 46</li>
+                                                <li>«Минский психоневрологический дом-интернат № 3» на ул. Выготского 14</li>
+                                                <li>«Молодечненский психоневрологический дом-интернат» г. Молодечно</li>
+                                                <li>«Борисовский психоневрологический дом-интернат» д. Тарасики</li>
+                                                <li>«Столбцовский психоневрологический дом-интернат» д. Куль</li>
+                                                <li>«Червенский дом-интернат для детей-инвалидов и молодых инвалидов с ОПФР» г. Червень</li>
+                                                <li>«Школа-интернат № 2 для детей с нарушением зрения» г. Молодечно.</li>
+                                                <li>«Свирский психоневрологический дом-интернат» д. Лущики.</li>
+                                                <li>«Грозовский психоневрологический дом-интернат» д. Конюхи.</li>
+                                                <li>«Клецкий психоневрологический дом-интернат» д. Домоткановичи.</li>
+                                            </ul>
+                                        </p>
+
+                                        <p>Братство активно занимается духовным, нравственным и культурным просвещением проживающих в интернатах людей. Благодаря трудам священников, братьев и сестер крестились 215 человек из числа проживающих. Таинства Исповеди,
+                                            Причастия и Соборования стали доступны на территории окормляемых интернатов. Постоянно проводится работа в виде лекций, семинаров, бесед и других практических занятий по основам православной веры. Братчики помогают
+                                            организовывать совместные службы в храмах города и области, паломнические поездки по святыням Белой Руси.</p>
+                                        <p>В настоящий момент в составе братства более 70 человек. Они находят силы и время для помощи и общения с нуждающимися, помогают организовать чаепитие с домашней выпечкой, импровизированные концерты, поэтические вечера,
+                                            теннисные и шахматные турниры. Братья и сестры стремятся подарить насельникам интернатов то, чего эти люди лишены в силу тяжелых жизненных обстоятельств.</p>
+                                        <p>Братчики проводят работу по поиску людей, желающих потрудиться во славу Божью на благо нуждающихся, потенциальных спонсоров и жертвователей, финансовых ресурсов, гуманитарной помощи.</p>
+
+                                        <p>
+                                            <br>
+                                            <b>Реквизиты</b>:
+                                            <br> Приход храма Преображения Господня в г.Заславль, Минская Епархия
+                                            <br> Белорусская Православная Церковь РБ
+                                            <br>
+                                            <b>Адрес:</b> 223036 г.Заславль ул.Замковая 6
+                                            <br>
+                                            <b>р/с</b> 3015006593715
+                                            <br>
+                                            <b>Банк:</b> ЦБУ №537 ОАО "Белинвестбанк", г. Минск, Могилевская, 5 код 739
+                                            <br>
+                                            <b>УНП:</b> 600411131, <b>ОКПО</b> 26952624
+                                            <br> с пометкой <b>(ДЛЯ БРАТСТВА)</b>
+                                            <br>
+                                            <em>«Блаженны милостивые, ибо они помилованы будут»</em> (Мф.5:7)
+                                        </p>
+                                    </section>
+                                </article>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </script>
+        <script type="text/ng-template" id="become-a-volunteer-view">
+
+            <div class="row article-view">
+                <div class="col-sm-12">
+                    <div class="well">
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <article class="article">
+                                    <header>
+                                        <h2>Как стать волонтером?</h2>
+                                    </header>
+                                    <section class="content">
+                                        <p>
+                                            <strong>Добро — это действие!</strong>
+                                        </p>
+                                        <p>
+
+                                            <div class="row">
+                                                <div class="col-sm-offset-2 col-sm-8">
+                                                    <carousel interval="4000" class="hidden-xs hidden-print">
+                                                        <slide><img src="/img/articles/become-a-volunteer/p01.jpg" alt="братство Спиридона"></slide>
+                                                        <slide><img src="/img/articles/become-a-volunteer/p02.jpg" alt="присоединяйся к волонтерам"></slide>
+                                                        <slide><img src="/img/articles/become-a-volunteer/p03.jpg" alt="обними ближнего"></slide>
+                                                        <slide><img src="/img/articles/become-a-volunteer/p04.jpg" alt="порадуй ближнего"></slide>
+                                                        <slide><img src="/img/articles/become-a-volunteer/p05.jpg" alt="обними ближнего"></slide>
+                                                        <slide><img src="/img/articles/become-a-volunteer/p06.jpg" alt="обними ближнего"></slide>
+                                                        <slide><img src="/img/articles/become-a-volunteer/p08.jpg" alt="волонтерим вместе"></slide>
+                                                        <slide><img src="/img/articles/become-a-volunteer/p10.jpg" alt="с волонтерами в ПНИ"></slide>
+                                                        <slide><img src="/img/articles/become-a-volunteer/p12.jpg" alt="с волонтерами"></slide>
+                                                        <slide><img src="/img/articles/become-a-volunteer/p14.jpg" alt="просто радость"></slide>
+                                                        <slide><img src="/img/articles/become-a-volunteer/p15.jpg" alt="вместе веселее"></slide>
+                                                        <slide><img src="/img/articles/become-a-volunteer/p17.jpg" alt="концерт"></slide>
+                                                        <slide><img src="/img/articles/become-a-volunteer/p18.jpg" alt="рядом"></slide>
+                                                        <slide><img src="/img/articles/become-a-volunteer/p19.jpg" alt="Do.Be.Live"></slide>
+                                                        <slide><img src="/img/articles/become-a-volunteer/p20.jpg" alt="some tricks"></slide>
+                                                        <slide><img src="/img/articles/become-a-volunteer/p21.jpg" alt="концерт"></slide>
+                                                        <slide><img src="/img/articles/become-a-volunteer/p22.jpg" alt="притяжение рук"></slide>
+                                                        <slide><img src="/img/articles/become-a-volunteer/p23.jpg" alt="концерт"></slide>
+                                                        <slide><img src="/img/articles/become-a-volunteer/p24.jpg" alt="стань волонтером"></slide>
+                                                    </carousel>
+                                                </div>
+                                            </div>
+
+                                        </p>
+                                        <p>Дорогие друзья, братство святителя Спиридона Тримифунтского приглашает к сотрудничеству активных и неравнодушных!
+                                            <br />Если вы интересуетесь саморазвитием, стремитесь к совершенству и хотите менять мир к лучшему, присоединяйтесь к команде братства, которое за время своей 3-х летней деятельности силами каждого отдельного участника
+                                            организовало ряд уникальных мероприятий и регулярный сбор очень нужных средств для жителей 10-ти психоневрологических интернатов! Участие каждого волонтера очень важно для проживающих интернатов, ваша улыбка
+                                            может стат ярким светом не только для ваших близких, но и для обделенных вниманием жителей закрытых от общества учреждений.
+                                            <br />Если вы хотите прикоснуться к миру искренности, тепла и любви, присоединяйтесь!</p>
+                                        <p>
+                                            <strong>Деятельность:</strong>
+                                        </p>
+                                        <ul>
+                                            <li>регулярные поездки в интернаты, общение с жителями</li>
+                                            <li>духовно-нравственное воспитание жителей, просмотр фильмов, чтение книг, общие собрания</li>
+                                            <li>организация концертов с участием белорусских и зарубежных звезд</li>
+                                            <li>акции по сбору средств для проживающих</li>
+                                            <li>чаепития с домашними пирогами и выпечка пирогов</li>
+                                            <li>поэтические вечера</li>
+                                            <li>шахматные и теннисные турниры</li>
+                                            <li>паломнические поездки по выдающимся местам Беларуси</li>
+                                            <li>выездные мероприятия (поездки в дельфинарий, театр, цирк)</li>
+                                            <li>экскурсии по городам и достопримечательностям</li>
+                                        </ul>
+                                        <p>
+                                            <strong>Мы предлагаем вам:</strong>
+                                        </p>
+                                        <ul>
+                                            <li>работу в отличной команде единомышленников</li>
+                                            <li>организацию работы согласно вашим интересам и пожеланиям</li>
+                                            <li>возможность реализовать ваш потенциал</li>
+                                            <li>обучение</li>
+                                            <li>поддержку и заботу всей нашей команды</li>
+                                        </ul>
+                                        <p>Мы меняем мир к лучшему вместе! Присоединяйтесь!</p>
+                                        <p>Мы рады принять в наши ряды волонтеров, свободных в своих религиозных взглядах и уважительно относящихся к православной вере, которую исповедует братство святителя Спиридона.</p>
+                                        <p>На все ваши вопросы ответит Сергей Довгаль, председатель братства:</p>
+
+                                        <address>8 (029) 373-72-50
+                  <br />sergey@bratstvost.by
+                </address>
+                                        <p>
+                                            <strong>Ждем вас!</strong>
+                                        </p>
+
+                                    </section>
+                                </article>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </script>
+        <script type="text/ng-template" id="contact-view">
+
+            <div class="row contacts">
+                <div class="col-sm-6">
+
+                    <div class="well">
+                        <h2>Контакты</h2>
+
+                        <section class="contact clearfix">
+                            <figure class="photo">
+                                <a href="/img/members/photo-1.jpg" class="img">
+                                    <img src="/img/members/small-photo-1.jpg" height="120" alt="Сергей Довгаль">
+                                </a>
+                            </figure>
+
+                            <div class="info">
+                                <h4>Сергий Довгаль</h4>
+                                <h6>Председатель братства</h6>
+
+                                <ul>
+                                    <li>Телефон: <a href="tel:00375293737250">8 (029) 373-72-50</a></li>
+                                    <li>Почта: <a href="mailto:sergey@bratstvost.by">sergey@bratstvost.by</a></li>
+                                </ul>
+                            </div>
+                        </section>
+
+                    </div>
+
+                </div>
+
+                <div class="col-sm-6">
+
+                    <div class="well">
+                        <h2>Интернет ресурсы</h2>
+
+                        <ul>
+                            <li>Почта: <a href="mailto:mail@bratstvost.by">mail@bratstvost.by</a></li>
+                            <li>Facebook: <a href="https://www.facebook.com/bratstvost">facebook.com/bratstvost</a></li>
+                            <li>Вконтакте: <a href="http://vk.com/bratstvost">vk.com/bratstvost</a></li>
+                            <li>Twitter: <a href="http://twitter.com/bratstvost">twitter.com/bratstvost</a></li>
+                        </ul>
+
+                    </div>
+
+                    <div class="well">
+                        <h2>Платежные реквизиты</h2>
+                        <p>
+                            Приход храма Преображения Господня в г.Заславль
+                            <br> Минская Епархия
+                            <br> Белорусская Православная Церковь РБ
+                            <br>
+                            <b>Адрес:</b> 223036 г.Заславль ул.Замковая 6
+                            <br>
+                            <b>р/с</b> 3015006593715
+                            <br>
+                            <b>Банк:</b> ЦБУ №537 ОАО "Белинвестбанк", г. Минск, Могилевская, 5 код 739
+                            <br>
+                            <b>УНП:</b> 600411131, <b>ОКПО</b> 26952624
+                            <br> с пометкой <b>(ДЛЯ БРАТСТВА)</b></p>
+                    </div>
+
+                </div>
+            </div>
+
+        </script>
+        <script type="text/ng-template" id="donations-view">
+            <table class="table well">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Дата поступления</th>
+                        <th>Описание</th>
+                        <th>Документ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>январь 2016 г.</td>
+                        <td>Покупка продуктов для Грозовского ПНИ</td>
+                        <td>
+                            <a href="/img/donations/Грозово_продукты_01.2016.jpg" target="_blank" class="img">
+                    Товарный чек
+                </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>январь 2016 г.</td>
+                        <td>Покупка продуктов для Борисовского ПНИ д.Тарасики</td>
+                        <td>
+                            <a href="/img/donations/Тарасики_продукты_01.2016.jpg" target="_blank" class="img">
+                    Товарный чек
+                </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>январь 2016 г.</td>
+                        <td>Покупка продуктов для Столбцовского ПНИ д.Куль</td>
+                        <td>
+                            <a href="/img/donations/Куль_продукты_01.2016.jpg" target="_blank" class="img">
+                    Товарный чек
+                </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>январь 2016 г.</td>
+                        <td>Подарки ПНИ-2 г.Минск</td>
+                        <td>
+                            <a href="/img/donations/2016.01_подарки_ПНИ-2.jpg" target="_blank" class="img">
+                    Товарный чек
+                </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">5</th>
+                        <td>19 января 2016 г.</td>
+                        <td>Подгузники для ПНИ-2 г.Червень</td>
+                        <td>
+                            <a href="/img/donations/2016.01.19_подгузники_Червень.jpg" target="_blank" class="img">
+                    продажа
+                </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">6</th>
+                        <td>январь 2016 г.</td>
+                        <td>Подарки для ПНИ-2 г.Клецк</td>
+                        <td>
+                            <a href="/img/donations/2016.01_подарки_Клецк.jpg" target="_blank" class="img">
+                    Товарный чек
+                </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">7</th>
+                        <td>16 января 2016 г.</td>
+                        <td>Доставка ребят из ПНИ Грозово на благотворительный концерт.</td>
+                        <td>
+                            <a href="/img/donations/2016.01.16_доставка_Грозово.jpg" target="_blank" class="img">
+                    расписка
+                </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">8</th>
+                        <td>январь 2016 г.</td>
+                        <td>Чай для ПНИ Тарасики.</td>
+                        <td>
+                            <a href="/img/donations/2016.01_чай_Тарасики.jpg" target="_blank" class="img">
+                    Товарный чек
+                </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">9</th>
+                        <td>26 января 2016 г.</td>
+                        <td>Подгузники для ПНИ Тарасики.</td>
+                        <td>
+                            <a href="/img/donations/2016.01.26_подгузники_Тарасики.jpg" target="_blank" class="img">
+                    Договор пожертвования
+                </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">10</th>
+                        <td>27 января 2016 г.</td>
+                        <td>Заказ на молитвенную комнату в Столбцовский ПНИ.</td>
+                        <td>
+                            <a href="/img/donations/2016.01.27_молитв_комната_Свирь.jpg" target="_blank" class="img">
+                    Накладная
+                </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">11</th>
+                        <td>28 января 2016 г.</td>
+                        <td>20 подносов в столовую ПНИ д.Куль.</td>
+                        <td>
+                            <a href="/img/donations/2016.01.28_подносы_Куль.jpg" target="_blank" class="img">
+                    Товарный чек
+                </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">12</th>
+                        <td>13 января 2016 г.</td>
+                        <td>Доставка детей из Червенского ПНИ на "Рождественский турнир".</td>
+                        <td>
+                            <a href="/img/donations/2016.01.13_доставка_детей_Червень.jpg" target="_blank" class="img">
+                    Счет
+                </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">13</th>
+                        <td>январь 2016 г.</td>
+                        <td>Подгузники на Столбовский ПНИ.</td>
+                        <td>
+                            <a href="/img/donations/2016.01_подгузники_Столбцовский_ПНИ.jpg" target="_blank" class="img">
+                    Счет-фактура
+                </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">14</th>
+                        <td>16 января 2016 г.</td>
+                        <td>Доставка детей из Червенского интерната на "Рождественский турнир".</td>
+                        <td>
+                            <a href="/img/donations/2016.01.16_доставка_Червень.jpg" target="_blank" class="img">
+                    Квитанция
+                </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">15</th>
+                        <td>25 января 2016 г.</td>
+                        <td>Подгузники на Свирь.</td>
+                        <td>
+                            <a href="/img/donations/2016.01.25_подгузники_Свирь.jpg" target="_blank" class="img">
+                    Акт
+                </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">16</th>
+                        <td>8 февраля 2016 г.</td>
+                        <td>Торты подарочные в детский интернат г. Молодечно.</td>
+                        <td>
+                            <a href="/img/donations/2016.02.08_торты_интернат.jpg" target="_blank" class="img">
+                    Чек
+                </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">17</th>
+                        <td>февраль 2016 г.</td>
+                        <td>Подарки ПНИ-2 г.Минск.</td>
+                        <td>
+                            <a href="/img/donations/2016.02_подарки_ПНИ-2.jpg" target="_blank" class="img">
+                    Чек
+                </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">18</th>
+                        <td>февраль 2016 г.</td>
+                        <td>Подарки ПНИ д.Тарасики.</td>
+                        <td>
+                            <a href="/img/donations/2016.02_покупки_Тарасики.jpg" target="_blank" class="img">
+                    Чек
+                </a>
+                        </td>
+                    </tr>
+                    <!--
+        <tr>
+            <th scope="row">1</th>
+            <td>14 января 2015 г.</td>
+            <td>Покупка подгузников</td>
+            <td>
+                <a href="/img/donations/подгузники_14.01.2015.jpg" target="_blank" class="img">
+                    Товарный чек
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td>5 февраля 2015 г.</td>
+            <td>Покупка медицинской клеенки</td>
+            <td>
+                <a href="/img/donations/клеенка_медицинская_05.02.2015.jpg" target="_blank" class="img">
+                    Квитанция
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td>10-13 февраля 2015 г.</td>
+            <td>Покупка товаров для ПНИ</td>
+            <td>
+                <a href="/img/donations/товары_ПНИ_10-13.02.2015.jpg" target="_blank" class="img">
+                    Товарные чеки
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">4</th>
+            <td>февраль 2015 г.</td>
+            <td>Чай для ПНИ д.Тарасики</td>
+            <td>
+                <a href="/img/donations/Чай_ПНИ_Тарасики.jpg" target="_blank" class="img">
+                    Товарный чек
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">5</th>
+            <td>3, 5 и 11 марта 2015 г.</td>
+            <td>Чай для ПНИ в д.Тарасики, Молодечно и Грозовского ПНИ</td>
+            <td>
+                <a href="/img/donations/3,5,11.03.2015_Тар,Молод,Гроз.jpg" target="_blank" class="img">
+                    Товарные чеки
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">6</th>
+            <td>14 марта 2015 г.</td>
+            <td>Организация концерта</td>
+            <td>
+                <a href="/img/donations/14.03.2015_орг.концерта.jpg" target="_blank" class="img">
+                    Товарный чек
+                </a>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">7</th>
+            <td>14 апреля 2015 г.</td>
+            <td>Пасхальные куличи</td>
+            <td>
+                <a href="/img/donations/Куличи 14.04.15.jpg" target="_blank" class="img">
+                    Товарный чек
+                </a>
+            </td>
+        </tr>
+-->
+                </tbody>
+            </table>
+        </script>
+        <script type="text/ng-template" id="honorable-view">
+
+            <div class="row contacts">
+                <div class="col-sm-12 text-center">
+
+                    <div class="well">
+                        <h2>Почетные братчики</h2>
+
+                        <section class="honorable clearfix">
+                            <figure class="photo">
+                                <a href="/img/members/photo-shavel.jpg" class="img">
+                                    <img src="/img/members/small-photo-shavel.jpg" height="120" alt="Константин Шавель">
+                                </a>
+                            </figure>
+
+                            <div class="info">
+                                <h4>Константин Шавель</h4>
+                                <h6>Ктитор Полоцкого Спасо-Ефросиниевского женского монастыря</h6>
+                                <h6>Ктитор прихода храма святителя Спиридона Тримифунтского на о.Корфу</h6>
+                            </div>
+                        </section>
+
+                        <section class="honorable clearfix">
+                            <figure class="photo">
+                                <a href="/img/members/photo-tihanovich.jpg" class="img">
+                                    <img src="/img/members/small-photo-tihanovich.jpg" height="120" alt="Александр Тиханович и Ядвига Поплавская">
+                                </a>
+                            </figure>
+
+                            <div class="info">
+                                <h4>Александр Тиханович и Ядвига Поплавская</h4>
+                                <h6>народные артисты Беларуси</h6>
+                            </div>
+                        </section>
+
+                        <section class="honorable clearfix">
+                            <figure class="photo">
+                                <a href="/img/members/photo-kaminski.jpg" class="img">
+                                    <img src="/img/members/small-photo-kaminski.jpg" height="120" alt="Дмитрий Каминский">
+                                </a>
+                            </figure>
+
+                            <div class="info">
+                                <h4>Дмитрий Каминский</h4>
+                                <h6>певец</h6>
+                            </div>
+                        </section>
+
+                        <section class="honorable clearfix">
+                            <figure class="photo">
+                                <a href="/img/members/photo-rodov.jpg" class="img">
+                                    <img src="/img/members/small-photo-rodov.jpg" height="120" alt="Матвей Родов">
+                                </a>
+                            </figure>
+
+                            <div class="info">
+                                <h4>Матвей Родов</h4>
+                                <h6>оператор православного информационного портала <a href="http://sobor.by" target="_blank">sobor.by</a></h6>
+                            </div>
+                        </section>
+
+
+                    </div>
+
+                </div>
+            </div>
+
+        </script>
+        <script type="text/ng-template" id="how-to-help-view">
+            <div class="panel pannel-default">
+                <div class="panel-body">
+                    <div class="row article-view">
+                        <article class="col-sm-12 article">
+                            <header>
+                                <h2>Как нам помочь?</h2>
+                            </header>
+                            <section class="content">
+                                <p>Психоневрологический интернат – закрытое учреждение. Инвалиды, лишенные дееспособности не выходят за огороженную территорию годами. Они безгранично рады и благодарны любому проявлению внимания и заботы.</p>
+                                <p>Что бы сделать доброе для отзывчивых и искренних проживающих интернатов, достаточно выбрать одно из подходящих вам направлений. Здесь каждый найдет для себе занятие по душе. Мы всегда рады поддержать вашу инициативу и ваши
+                                    творческие идеи!
+                                </p>
+                                <div class="row">
+                                    <div class="col-sm-12 col-sm-offset-0 col-md-8 col-md-offset-2">
+                                        <p>
+                                            <a class="thumbnail" href="http://wp.bratstvost.by.s3.amazonaws.com/2014/04/IMG_4918.jpg" title="" data-fluidbox>
+                                                <img src="http://wp.bratstvost.by.s3.amazonaws.com/2014/04/IMG_4918-768x512.jpg" alt="Посещение интернатов">
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+                                <p></p>
+                                <ul>
+                                    <li>Посещение интернатов ( планируемые посещения можно посмотреть в разделе "Мероприятия" на главной странице)</li>
+                                    <li><a href="#help">Материальное содействие</a></li>
+                                    <li><a href="http://bratstvost.by/contacts" target="_blank"> Помощь в организации работы братства </a></li>
+                                    <li>Организация праздников, развлекательных и обучающих мероприятий для проживающих интернатов</li>
+                                    <li>Организация выездных мероприятий для проживающих</li>
+                                    <li>Организация паломнических поездок</li>
+                                    <li>Участие в акциях</li>
+                                    <li>
+                                        <em>Транспортная поддержка!</em>
+                                    </li>
+                                    <li>Мастер-классы творчества и hand-made</li>
+                                    <li>Обмен открытками с проживающими</li>
+                                    <li>Выпечка пирогов</li>
+                                    <li>Фото и видео поддержка</li>
+                                    <li>Информационная поддержка — вы можете разметить информацию о братстве на вашем сайте</li>
+                                </ul>
+                                <h2><a name="help">Материальная помощь.</a></h2>
+                                <p>Государство не может в полной мере обеспечить проживающих интернатов. Речь не идет о достаточном количестве средств, им крайне не хватает <i>необходимого</i>. Особенно остро вопрос стоит с обеспечением проживающих памперсами.
+                                    В этом направлении братством проводится огромная работа, уже заключен договор с компанией «Sеni», которая продает памперсы для проживающих дешевле.</p>
+                                <div class="row">
+                                    <div class="col-sm-12 col-sm-offset-0 col-md-8 col-md-offset-2">
+                                        <p>
+                                            <a class="thumbnail" href="http://wp.bratstvost.by.s3.amazonaws.com/2014/04/1.jpg" title="" data-fluidbox>
+                                                <img src="http://wp.bratstvost.by.s3.amazonaws.com/2014/04/1-768x510.jpg" alt="материальная помощь">
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+                                <p></p>
+                                <p>
+                                    <strong>Необходимы:</strong>
+                                </p>
+                                <ul>
+                                    <li>
+                                        <strong>подгузники</strong>
+                                        <ul>
+                                            <li>детские и взрослые (seni 1, seni 3, от 15 до 20 кг)</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>предметы личной гигиены</strong>
+                                        <ul>
+                                            <li>зубные пасты, шампуни, туалетная бумага, влажные салфетки, одноразовые станки для бритья, ватные палочки, прокладки, мыло туалетное</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>бакалея</strong>
+                                        <ul>
+                                            <li>сахар, чай, кофе, печенье, конфеты</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>игрушки</strong>
+                                        <ul>
+                                            <li>все виды кроме мягких</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>предметы для творчества</strong>
+                                        <ul>
+                                            <li>мозаики, пазлы, развивающие игры, краски, карандаши, фломастеры, материалы для Hand Made, цветная бумага, альбомы для рисования, раскраски</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>
+                        <span style="line-height: 1.5;">бытовая химия</span>
+                    </strong>
+                                        <ul>
+                                            <li>порошок стиральный, чистящее средство, хоз. мыло</li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <strong>
+                        <span style="line-height: 1.5;">лампочки с большим цоколем- 60 вт</span>
+                    </strong>
+                                    </li>
+                                    <li>
+                                        <strong>
+                        <span style="line-height: 1.5;">медицинская клеенка, пеленка (фланель)</span>
+                    </strong>
+                                    </li>
+                                </ul>
+                                <p>Вещи и подгузники можно принести по адресу:</p>
+                                <ul>
+                                    <li>г. Заславль, улица Замковая 6 — храм Преображения Господня</li>
+                                    <li>г. Минск, улица Раковская 4 — приходской домик Свято-Петра-Павловского собора
+                                        <em>(для братства святителя Спиридона)</em>
+                                    </li>
+                                </ul>
+                                <p>По вопросам оказания помощи и участия в работе братства святителя Спиридона – Сергей Довгаль, председатель братства</p>
+                                <p style="padding-left: 30px;">
+                                    <strong>Телефон:</strong> <a href="file://localhost/tel/00375293737250">8 (029) 373-72-50<br>
+            </a>
+                                    <strong>Почта:</strong> <a href="mailto:sergey@bratstvost.by">sergey@bratstvost.by</a>
+                                </p>
+                            </section>
+
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </script>
+        <script type="text/ng-template" id="index-view">
+
+            <div id="main-carousel" class="carousel slide hidden-xs hidden-print">
+                <ol class="carousel-indicators">
+                    <li data-target="#main-carousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#main-carousel" data-slide-to="1"></li>
+                    <li data-target="#main-carousel" data-slide-to="2"></li>
+                    <li data-target="#main-carousel" data-slide-to="3"></li>
+                    <li data-target="#main-carousel" data-slide-to="4"></li>
+                    <li data-target="#main-carousel" data-slide-to="5"></li>
+                    <li data-target="#main-carousel" data-slide-to="6"></li>
+                    <li data-target="#main-carousel" data-slide-to="7"></li>
+                    <li data-target="#main-carousel" data-slide-to="8"></li>
+                    <li data-target="#main-carousel" data-slide-to="9"></li>
+                    <li data-target="#main-carousel" data-slide-to="10"></li>
+                    <li data-target="#main-carousel" data-slide-to="11"></li>
+                    <li data-target="#main-carousel" data-slide-to="12"></li>
+                </ol>
+
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <img src="/img/carousel/slide-1.jpg" alt="храм братства Спиридона Тримифунтского">
+                    </div>
+                    <div class="item">
+                        <img lazy-src="/img/carousel/slide-2.jpg" alt="братство Спиридона Тримифунтского">
+                    </div>
+                    <div class="item">
+                        <img lazy-src="/img/carousel/slide-3.jpg" alt="батюшка с насельниками ПНИ">
+                    </div>
+                    <div class="item">
+                        <img lazy-src="/img/carousel/slide-4.jpg" alt="братство Спиридона Тримифунтского в Столбцовском ПНИ">
+                    </div>
+                    <div class="item">
+                        <img lazy-src="/img/carousel/slide-5.jpg" alt="в ПНИ г.Червень">
+                    </div>
+                    <div class="item">
+                        <img lazy-src="/img/carousel/slide-6.jpg" alt="в ПНИ в Дражне">
+                    </div>
+                    <div class="item">
+                        <img lazy-src="/img/carousel/slide-7.jpg" alt="Крестный ход к 1025-летию Крещения Руси">
+                    </div>
+                    <div class="item">
+                        <img lazy-src="/img/carousel/slide-8.jpg" alt="концерт в Дражне">
+                    </div>
+
+                    <div class="item">
+                        <img lazy-src="/img/carousel/slide-9.jpg" alt="помощь подгузниками">
+                    </div>
+                    <div class="item">
+                        <img lazy-src="/img/carousel/slide-10.jpg" alt="сестры">
+                    </div>
+                    <div class="item">
+                        <img lazy-src="/img/carousel/slide-11.jpg" alt="концерт">
+                    </div>
+                    <div class="item">
+                        <img lazy-src="/img/carousel/slide-12.jpg" alt="собрание братства">
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row" ng-controller="MainCtrl">
+
+                <div class="col-sm-7">
+
+                    <div class="well">
+
+                        <section class="well-notes">
+                            <div ng-if="notices.length > 0">
+                                <h2><i class="icon-bullhorn"></i> Объявления</h2>
+                                <section class="note" ng-repeat="notice in notices" ng-class="notice.style" ng-bind-html="notice.body">
+                                    {{notice.body}}
+                                </section>
+                            </div>
+                        </section>
+
+                        <section>
+                            <h2><i class="icon-info"></i> О Братстве</h2>
+                            <p>Братство святителя Спиридона — это объединение неравнодушных людей.</p>
+                            <p>Мир вокруг нас бывает совершенно разным, счастливым, где радость разливается яркостью, постепенно набирая насыщенность, как зелень летней порой. Или болезненным, порой невыносимым.</p>
+                            <p>Волонтеры братства святителя Спиридона приносят счастье туда, где боль выстраивается непроходимой чащей. Они радуют тех, у кого в глубинах душ океаны, где свет яркими лучами исходит от людей, потому что каждый человек здесь
+                                - солнце.</p>
+                            <p>Братство окормляет 10 психоневрологических интернатов для людей с особенностями психического развития, для людей — инвалидов и для детей с особенностями зрения, общая численность проживающих около 3000 человек.</p>
+                            <p>Интернат — закрытое учреждение, поэтому проживающие, которые не выходят за пределы огороженной территории годами, испытывают колоссальный недостаток внимания. Их доброта и искренность ждут теплого участия, улыбки или нежного
+                                прикосновения. Их сердца наполняются радостью при каждом посещении волонтеров.</p>
+                            <p>Волонтеры братства обеспечивают духовное окормление проживающих, при поддержке белорусских и зарубежных артистов проводят концерты, организовывают выездные мероприятия и паломнические поездки, создавая для людей с ограниченными
+                                возможностями и для всей команды братства незабываемые впечатления.</p>
+                            <p>Сочувствующие обеспечивают крайне необходимую материальную помощь. <a href="how-to-help">Более подробно</a>.</p>
+                            <p><a href="http://blog.bratstvost.by/">Блог о нашей интересной и активной работе</a></p>
+                            <p><a href="/become-a-volunteer">Как стать волонтером</a></p>
+                            <p><strong><em>Спешите творить добро!</em></strong></p>
+                        </section>
+
+                    </div>
+
+                </div>
+
+                <div class="col-sm-5">
+                    <div class="well well-events event-list">
+                        <h2 class="next-event-title"><i class="icon-calendar"></i> Мероприятия</h2>
+                        <h6><i class="icon-clock"></i> обновлено {{lastUpdate}}</h6>
+                        <p class="hint">Кликните на событие, чтобы посмотреть детали</p>
+                        <eventview ng-repeat="event in nextEvents" event="event"></eventview>
+
+                        <div class="archive-collapse">
+                            <h4>
+            <a href class="plain" ng-click="expanded=!expanded;innerTemplateUrl='past-events-view'">
+              <i ng-class="{true: 'icon-minus-square', false: 'icon-plus-square'}[expanded]"></i>
+              <span class="dotted"><i class="icon-archive"></i> Архив событий</span>
+            </a>
+          </h4>
+                            <div class="content" ng-init="expanded=expanded || false" ng-show="expanded" ng-include="innerTemplateUrl">
+                            </div>
+                        </div>
+                    </div>
+
+                    <section class="well">
+                        <h2><i class="icon-book"></i> Православный календарь </h2>
+                        <div>
+                            <div class="text" ng-bind-html="calendarHtml"></div>
+                        </div>
+                    </section>
+
+                    <section class="well">
+                        <h2><i class="icon-birthday-cake"></i> Именины и дни рождения </h2>
+                        <div ng-controller="BirthdayPartCtrl">
+
+                            <div ng-if="birthdayMembers">
+                                <h4>Поздравляем c Днем Рождения:</h4>
+                                <table ng-repeat="bMember in birthdayMembers">
+                                    <tr>
+                                        <td>
+                                            <img width="50" height="63" ng-src="{{'/img/members/small-photo-'+bMember.photoId+'.jpg'}}" alt="bMember.fullName">
+                                        </td>
+                                        <td>
+                                            <h5 class="birthday-member">{{bMember.firstName}} {{bMember.lastName}}</h5>
+                                            <h6 class="shift-right" ng-if="bMember.phoneRaw">Телефон: <a href="tel:{{bMember.phoneRaw}}">{{bMember.phoneNice}}</a></h6>
+                                            <h6 class="shift-right" ng-if="bMember.email">Почта: <a href="tel:{{bMember.email}}">{{bMember.email}}</a></h6>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br/>
+                            </div>
+                            <div ng-if="angeldayMembers">
+                                <h4>Поздравляем c Именинами:</h4>
+                                <table ng-repeat="aMember in angeldayMembers">
+                                    <tr>
+                                        <td>
+                                            <img width="50" height="63" ng-src="{{'/img/members/small-photo-'+aMember.photoId+'.jpg'}}" alt="aMember.fullName">
+                                        </td>
+                                        <td>
+                                            <h5 class="birthday-member">{{aMember.firstName}} {{aMember.lastName}}</h5>
+                                            <h6 class="shift-right" ng-if="aMember.phoneRaw">Телефон: <a href="tel:{{aMember.phoneRaw}}">{{aMember.phoneNice}}</a></h6>
+                                            <h6 class="shift-right" ng-if="aMember.email">Почта: <a href="tel:{{aMember.email}}">{{aMember.email}}</a></h6>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br/>
+                            </div>
+                            <div ng-if="nearBirthdayMembers">
+                                <h4>Скоро День Рождения:</h4>
+                                <ul ng-repeat="nbMember in nearBirthdayMembers">
+                                    <li>
+                                        <h5><img width="50" height="63" ng-src="{{'/img/members/small-photo-'+nbMember.photoId+'.jpg'}}" alt="nbMember.fullName">
+                            {{nbMember.firstName}} {{nbMember.lastName}}: {{nbMember.nearBirthdayRu}}</h5></li>
+                                </ul>
+                                <br/>
+                            </div>
+                            <div ng-if="nearAngeldayMembers">
+                                <h4>Скоро Именины:</h4>
+                                <ul class="text" ng-repeat="naMember in nearAngeldayMembers">
+                                    <li>
+                                        <h5><img width="50" height="63" ng-src="{{'/img/members/small-photo-'+naMember.photoId+'.jpg'}}" alt="naMember.fullName">
+                        {{naMember.firstName}} {{naMember.lastName}}: {{naMember.nearAngeldayRu}}</h5></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="well">
+                        <h2><i class="icon-newspaper"></i> Последние новости</h2>
+                        <ul class="news-list">
+                            <li class="news" ng-repeat="news in anews" ng-class="{hot: news.hot}">
+                                <div class="time"><i class="icon-clock"></i> {{news.timeAgo}}</div>
+                                <div class="text" ng-bind-html="news.body">{{news.body}}</div>
+                            </li>
+                        </ul>
+                    </section>
+
+                </div>
+
+            </div>
+        </script>
+        <script type="text/ng-template" id="member-details-view-template">
+            <div class="modal-header">
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+            </div>
+        </script>
+
+        <script type="text/ng-template" id="member-view-template">
+            <div class="media">
+                <a class="pull-left" href="#">
+                    <img class="media-object" width="100" height="125" src="/img/members/small-photo-{{model.photoId}}.jpg" alt="{{model.fullName}}">
+                </a>
+                <div class="media-body">
+                    <h4 class="media-heading">{{model.firstName}} {{model.middleName}} {{model.lastName}}</h4>
+                    <h6 class="media-heading" ng-bind-html="model.position"></h6>
+                    <ul class="list-unstyled">
+                        <li ng-if="model.phoneRaw">Телефон: <a href="tel:{{model.phoneRaw}}">{{model.phoneNice}}</a></li>
+                        <li ng-if="model.email">Почта: <a href="mailto:{{model.email}}">{{model.email}}</a></li>
+                        <li ng-if="model.skype">Скайп: {{model.skype}}</li>
+                    </ul>
+                </div>
+            </div>
+        </script>
+
+        <script type="text/ng-template" id="members-view">
+
+            <div class="members">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-6" ng-repeat="member in members">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <member model="member"></member>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body honorable clearfix">
+                                <h2><i class="icon-results-demographics"></i> Резерв братства</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6" ng-repeat="rmember in rmembers">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <member model="rmember"></member>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </script>
+        <script type="text/ng-template" id="memory-book-view">
+            <table class="table well memory">
+                <thead>
+                    <tr>
+                        <th>
+                            <h2>Книга памяти</h2></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-center">
+                            <a href="/img/members/photo-46.jpg" class="img">
+                                <img src="/img/members/small-photo-46.jpg" height="120" alt="Елена Кутепова">
+                            </a>
+                        </td>
+                        <td>
+                            <div class="info">
+                                <h4>Елена Кутепова</h4>
+                                <ul>
+                                    <li>Преставилась 13.05.2015г. Онкология.</li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center"></td>
+                        <td>
+                            <div class="info">
+                                <h4>Елена Станкевич</h4>
+                                <ul>
+                                    <li>Преставилась 04.12.2013г. Жила в ПНИ в Дражне.</li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+        </script>
+        <script type="text/ng-template" id="news-view">
+
+            <section class="well">
+                <h2><i class="icon-newspaper"></i> Новости</h2>
+                <div class="row">
+                    <div class="col-sm-12">
+
+                        <ul class="news-list">
+                            <li class="news" ng-repeat="news in data.news" ng-class="{hot: news.hot}">
+                                <div class="time"><i class="icon-clock"></i> {{news.timeAgo}} <a href="the-news/{{news._id}}" target="_blank"><b class="icon-link-1"></b></a></div>
+                                <div class="text" ng-bind-html="news.body">{{news.body}}</div>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+
+
+            </section>
+
+        </script>
+        <script type="text/ng-template" id="past-events-view">
+            <div ng-controller="PastEventCtrl">
+                <archiveitem ng-repeat="yevents in data.pastEventsByYear" title="yevents.year">
+                    <archiveitem ng-repeat="mevents in yevents.pastEventsByMonth" title="mevents.month">
+                        <eventview class="archive" ng-repeat="event in mevents.events" event="event"></eventview>
+                    </archiveitem>
+                </archiveitem>
+            </div>
+        </script>
+        <script type="text/ng-template" id="story-view">
+
+            <article class="story">
+                <div class="well">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h2>Житие cвятителя Спиридона Тримифунтского</h2>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-4 table-of-content">
+                            <h4>Содержание</h4>
+                            <ul class="tab-list" tab-list="story">
+                                <li tabname="p1" class="active">Встуление</li>
+                                <li tabname="p2">Спасение людей о.Кипра от голода</li>
+                                <li tabname="p3">Поучение богатому хлеботорговцу</li>
+                                <li tabname="p4">Чудо превращения золота в змею</li>
+                                <li tabname="p5">Чудо остановления водного потока</li>
+                                <li tabname="p6">Спасение грешницы</li>
+                                <li tabname="p7">Победа философа-еретика</li>
+                                <li tabname="p8">Смерть дочери святителя Спиридона</li>
+                                <li tabname="p9">Болезнь Констанция, сына правителя</li>
+                                <li tabname="p10">Чудо воскресения младенца и матери его</li>
+                                <li tabname="p11">Случай с козой</li>
+                                <li tabname="p12">Поучения диакона</li>
+                                <li tabname="p13">Небесное Пение в церкви</li>
+                                <li tabname="p14">Появление «вещественного елея»</li>
+                                <li tabname="p15">Поучение ученику Трифиллию о суетности</li>
+                                <li tabname="p16">Случай с женщиной, согрешившей прелюбодеянием</li>
+                                <li tabname="p17">Обращение в христианскую веру язычника</li>
+                                <li tabname="p18">О смирении блаженного Спиридона</li>
+                                <li tabname="p19">Гостеприимство св. Спиридона и поучение страннику</li>
+                                <li tabname="p20">Поучение корыстолюбивому купцу</li>
+                                <li tabname="p21">Сокрушение языческого идола</li>
+                                <li tabname="p22">Поучение Трифиллия о смирении и кротости</li>
+                                <li tabname="p23">Предвидение кончины, смерть св. Спиридона</li>
+
+                            </ul>
+                        </div>
+                        <div class="col-sm-8">
+                            <ul class="page-list" page-list="story">
+                                <li pagename="p1">
+                                    <h3>Встуление</h3>
+                                    <p>Родиною дивного Спиридона был остров Кипр. Сын простых родителей и сам простодушный, смиренный и добродетельный, он с детства был пастырем овец, а пришедши в возраст, сочетался законным браком и имел детей. Он вел чистую
+                                        и богоугодную жизнь. Подражая — Давиду в кротости, Иакову — в сердечной простоте и Аврааму — в любви к странникам. Прожив немного лет в супружестве, жена его умерла, и он еще безпрепятственнее и усерднее стал служить
+                                        Богу добрыми делами, тратя весь свой достаток на принятие странников и пропитание нищих; этим он, живя в миру, так благоугодил Богу, что удостоился от Него дара чудотворения: он исцелял неизлечимые болезни и одним
+                                        словом изгонял бесов. За это Спиридон был поставлен епископом города Тримифунта в царствование Императора Константина Великого и сына его Констанция. И на епископской кафедре он продолжал творить великие и дивные
+                                        чудеса.</p>
+                                </li>
+                                <li pagename="p2">
+                                    <h3>Спасение людей о.Кипра от голода</h3>
+                                    <p>Однажды на о. Кипре было бездождие и страшная засуха, за которою последовал голод, а за голодом мор, и множество людей гибло от этого голода. Небо заключилось, и нужен был второй Илия, или подобный ему, который бы отверз
+                                        небо своею молитвою <em>(3 Цар. гл.17)</em>: таким оказался святой Спиридон, который, видя бедствие, постигшее народ, и отечески жалея погибающих от голода, обратился с усердною молитвою к Богу, и тотчас небо покрылось
+                                        со всех сторон облаками и пролился обильный дождь на землю, не прекращавшийся несколько дней; святой помолился опять, и настало вёдро. Земля обильно напоена была влагою и дала обильный плод: дали богатой урожай
+                                        нивы, покрылись плодами сады и виноградники и, после голода, было во всем великое изобилие, по молитвам угодника Божия Спиридона.</p>
+                                </li>
+                                <li pagename="p3">
+                                    <h3>Поучение богатому хлеботорговцу</h3>
+                                    <p>Но через несколько лет за грехи людские, по попущению Божию, опять постиг страну ту голод, и богатые хлеботорговцы радовались дороговизне, имея хлеб, собранный за несколько урожайных лет, и, открыв свои житницы, начали
+                                        продавать его по высоким ценам. Был тогда в Тримифунте один хлеботорговец, страдавший ненасытною жадностью к деньгам и неутолимою страстью к наслаждениям. Закупив в разных местах множества хлеба и привезши его на
+                                        кораблях в Тримифунт, он не захотел, однако, продавать его по той цене, какая в то время стояла в городе, но ссыпал её в склады, чтобы дождаться усиления голода и тогда, продав подороже, получить больший барыш.
+                                        Когда голод сделался почти всеобщим и усиливался со дня на день, он стал продавать свой хлеб по самой дорогой цене. И вот, пришел к нему один бедный человек и, униженно кланяясь, со слезами умолял его оказать милость
+                                        — подать немного хлеба, чтобы ему, бедняку, не умереть с голоду вместе с женою и детьми. Но немилосердный и жадный богач не захотел оказать милость нищему и сказал:</p>
+                                    <p>— Ступай, принеси деньги, и у тебя будет всё, что только купишь.</p>
+                                    <p>Бедняк, изнемогая от голода, пошел к святому Спиридону и, с плачем, поведал ему о своей бедности и о бессердечии богатого.</p>
+                                    <p>— Не плачь, — сказал ему святой, — иди домой, ибо Дух Святой говорит мне, что завтра дом твой будет полон хлеба, а богатый будет умолять тебя и отдавать тебе хлеб даром.</p>
+                                    <p>Бедный вздохнул и пошел домой. Едва настала ночь, как, по повелению Божию, пошёл сильнейший дождь, которым подмыло житницы немилосердного сребролюбца, и водою унесло весь его хлеб. Хлеботорговец с своими домашними бегал
+                                        по всему городу и умолял всех помочь ему и не дать ему из богача сделаться нищим, а тем временем бедные люди, видя хлеб, разнесённый потоками по дорогам, начали подбирать его. Набрал себе с избытком хлеба и тот
+                                        бедняк, который вчера просил его у богача. Видя над собою явное наказание Божие, богач стал умолять бедного брать у него задаром столько хлеба, сколько он пожелает.</p>
+                                    <p>Так Бог наказал богатого за немилосердие и, по пророчеству святого, избавил бедного от нищеты и голода.</p>
+                                </li>
+                                <li pagename="p4">
+                                    <h3>Чудо превращения золота в змею</h3>
+                                    <p>Один известный святому земледелец пришел к тому же самому богачу и во время того же голода с просьбою дать ему взаймы хлеба на прокорм и обещался с лихвою возвратить данное ему, когда настанет жатва. У богача, кроме
+                                        размытых дождем, были еще и другие житницы, полные хлеба; но он, недостаточно наученный первою своею потерею и не излечившись от скупости, — и к этому бедняку оказался таким же немилосердным, так что не хотел даже
+                                        и слушать его.</p>
+                                    <p>— Без денег, — сказал он, — ты не получишь от меня ни одного зерна.</p>
+                                    <p>Тогда бедный земледелец заплакал и отправился к святителю Божию Спиридону, которому и рассказал о своей беде. Святитель утешил его и отпустил домой, а на утро сам пришел к нему и принес целую груду золота (откуда взял
+                                        он золото, — об этом речь после). Он отдал это золото земледельцу и сказал:</p>
+                                    <p>— Отнеси, брат, это золото тому торговцу хлебом и отдай его в залог, а торговец пусть даст тебе столько хлеба взаймы, сколько тебе сейчас нужно для пропитания; когда же настанет урожай и у тебя будет излишек хлеба,
+                                        ты выкупи этот залог и принеси его опять ко мне.</p>
+                                    <p>Бедный земледелец взял из рук святительских золото и поспешно пошел к богатому. Корыстолюбивый богач обрадовался золоту и тотчас же отпустил бедному хлеба, сколько ему было нужно. Потом голод миновал, был хороший урожай,
+                                        и, после жатвы, земледелец тот отдал с лихвою богачу взятый хлеб и, взяв от него назад залог, отнес его с благодарностью к святому Спиридону. Святой взял золото и направился к своему саду, захватив с собою и земледельца.</p>
+                                    <p>— Пойдем, сказал он со мною, брат, и вместе отдадим это Тому, Кто так щедро дал нам взаймы.</p>
+                                    <p>Вошедши в сад, он положил золото у ограды, возвел очи к небу и воскликнул:</p>
+                                    <p>— Господи мой, Иисусе Христе, Своею волею всё созидающий и претворяющий! Ты, некогда Моисеев жезл на глазах у царя Египетского превратил в змия <em>(Исх.7:10)</em>, — повели и этому золоту, ранее превращенному Тобою
+                                        из животного, опять принять первоначальный вид свой: тогда и сей человек узнает, какое попечение имеешь Ты о нас и самым делом научится тому, что сказано в Св. Писании, — что "Господь творит всё, что хочет" <em>(Пс. 134,6)</em>!</p>
+                                    <p>Когда он так молился, кусок золота вдруг зашевелился и обратился в змею, которая стала извиваться и ползать. Таким образом, сначала змея, по молитве святого, обратилась в золото, а потом также чудесно из золота опять
+                                        стала змеею. При виде сего чуда, земледелец затрепетал от страха, пал на землю и называл себя недостойным оказанного ему чудесного благодеяния. Затем змея уползла в свою нору, а земледелец, полный благодарности,
+                                        возвратился к себе домой и изумлялся величию чуда, сотворенного Богом по молитвам святого.</p>
+                                </li>
+                                <li pagename="p5">
+                                    <h3>Чудо остановления водного потока</h3>
+                                    <p>Один добродетельный муж, друг святого, по зависти злых людей, был оклеветан пред городским судьею и заключен в темницу, а потом и осужден на смерть без всякой вины. Узнав об этом, блаженный Спиридон пошел избавить друга
+                                        от незаслуженной казни.</p>
+                                    <p>В то время в стране было наводнение и ручей, бывший на пути святого, переполнился водою, вышел из берегов и сделался непереходимым. Чудотворец припомнил, как Иисус Навин с ковчегом завета посуху перешел разлившийся
+                                        Иордан <em>(Иис. Нав. 3,14—17)</em> и, веруя во всемогущество Божие, приказал потоку, как слуге:</p>
+                                    <p>— Стань! так повелевает тебе Владыка всего мира, дабы я мог перейти и спасен был муж, ради которого я спешу.</p>
+                                    <p>Лишь только он сказал эго, тотчас поток остановился в своем течении и открыл сухой путь — не только для святого, но и для всех, шедших вместе с ним. Свидетели чуда поспешили к судии и известили его о приближении святого
+                                        и о том, что совершил он на пути, и судия тотчас же освободил осужденного и возвратил его святому невредимым.</p>
+                                </li>
+                                <li pagename="p6">
+                                    <h3>Спасение грешницы</h3>
+                                    <p>Провидел также преподобный и тайные грехи людские. Так, однажды, когда он отдыхал от пути у одного странноприимца, женщина, находившаяся в незаконном сожительстве, пожелала умыть по тамошнему обычаю, ноги святому. Но
+                                        он, зная ее грех, сказал ей, чтобы она к нему не прикасалась. И это он сказал не потому, что гнушался грешницею и отвергал ее: разве может гнушаться грешниками ученик Господа, евшего и пившего с мытарями и грешниками?
+                                        <em>(Мф. 9,11)</em> Нет, он желал заставить женщину вспомнить о своих прегрешениях и устыдиться своих нечистых помыслов и дел. И когда та женщина настойчиво продолжала стараться прикоснуться к ногам святого и умыть
+                                        их, тогда святой, желая избавить ее от погибели, обличил ее с любовью и кротостью, напомнил ей о ее грехах и побуждал ее покаяться. Женщина удивлялась и ужасалась тому, что самые, по видимому, тайные деяние и помыслы
+                                        ее не скрыты от прозорливых очей человека Божия. Стыд охватил ее и с сокрушенным сердцем упала она к ногам святого и обмывала их уже не водою, а слезами, и сама открыто созналась в тех грехах, в которых была обличена.
+                                        Она поступила также, как некогда блудница, упоминаемая в Евангелии, а святой, подражая Господу, милостиво сказал ей: "прощаются тебе грехи" <em>(Лк. 7,48)</em>, и еще: "вот, ты выздоровел; не греши больше" <em>(Иоан. 5,14)</em>.
+                                        И с того времени женщина та совершенно исправилась и для многих послужила полезным примером.</p>
+                                </li>
+                                <li pagename="p7">
+                                    <h3>Победа философа-еретика</h3>
+                                    <p>До сих пор говорилось только о чудесах, какие совершил святой Спиридон при жизни; теперь должно сказать и о ревности его по вере православной.</p>
+                                    <p>В царствование Константина Великого, первого Императора—христианина, в 325 году по Р. Хр., в Никее собрался 1—й Вселенский собор, для низложения еретика Ария, нечестиво называвшего Сына Божия тварью, а не творцом всего,
+                                        и для исповедания Его Единосущным с Богом Отцом. Ария в его богохульстве поддерживали епископы значительных тогда церквей: Евсевий Никомидийский, Марис Халкидонский, Феогний Никейский и др. </p>
+                                    <p>Поборниками же православия были украшенные жизнью и учением мужи: великий между святыми Александр, который в то время был еще пресвитером и вместе заместителем святого Митрофана, патриарха Цареградского, находившегося
+                                        на одре болезни и потому не бывшего на соборе, и славный Афанасий, который еще не был украшен и пресвитерским саном и проходил диаконское служение в церкви александрийской; эти двое возбуждали в еретиках особое
+                                        негодование и зависть именно тем, что многих превосходили в уразумении истин веры, не будучи еще почтены епископскою честью; с ними вместе был и святой Спиридон, и обитавшая в нем благодать была полезнее и сильнее
+                                        в деле увещания еретиков, чем речи иных, их доказательства и красноречие. С соизволения Царя, на соборе присутствовали и греческие мудрецы, называвшиеся перипатетиками; мудрейший из них выступил на помощь Арию и
+                                        гордился своею особенно искусною речью, стараясь высмеять учение православных. Блаженный Спиридон, человек неученый, знавший только Иисуса Христа, "притом распятого" <em>(1Кор. 2,2)</em>, просил отцов позволить
+                                        ему вступить в состязание с этим мудрецом, но святые отцы, зная, что он человек простой, совсем незнакомый с греческою мудростью, запрещали ему это.</p>
+                                    <p>Однако, святой Спиридон, зная какую силу имеет премудрость свыше и как немощна пред нею мудрость человеческая, обратился к мудрецу и сказал:</p>
+                                    <p>— Философ! Во имя Иисуса Христа, выслушай, что я тебе скажу.</p>
+                                    <p>Когда же философ согласился выслушать его, святой начал беседовать.</p>
+                                    <p>— Един есть Бог, — сказал он, — сотворивший небо и землю и создавший из земли человека и устроивший все прочее, видимое и невидимое, Словом Своим и Духом; и мы веруем, что Слово это есть Сын Божий и Бог, Который умилосердившись
+                                        над нами заблудшими, родился от Девы, жил с людьми, пострадал и умер ради нашего спасение и воскрес и с Собою совоскресил весь род человеческий; мы ожидаем, что Он же придет судить всех нас праведным судом и каждому
+                                        воздаст по делам его; веруем, что Он одного существа с Отцом, равной с Ним власти и чести... Так исповедуем мы и не стараемся исследовать эти тайны любопытствующим умом, и ты — не осмеливайся исследовать, как всё
+                                        это может быть, ибо тайны эти выше твоего ума и далеко превышают всякое человеческое знание.</p>
+                                    <p>Затем, немного помолчав, святой спросил:</p>
+                                    <p>— Не так ли и тебе всё это представляется, философ?</p>
+                                    <p>Но философ молчал, как будто ему никогда не приходилось состязаться. Он не мог ничего сказать против слов святого, в которых видна была какая—то Божественная сила, во исполнение сказанного в Св. Писании: "ибо Царство
+                                        Божие не в слове, а в силе" (1Кор. 4,20). Наконец, он сказал:</p>
+                                    <p>— И я думаю, что всё действительно так, как говоришь ты.</p>
+                                    <p>Тогда старец сказал:</p>
+                                    <p>— Итак, иди и прими сторону святой веры.</p>
+                                    <p>Философ, обратившись к своим друзьям и ученикам, заявил:</p>
+                                    <p>— Слушайте! Пока состязание со мною велось посредством доказательств, я выставлял против одних доказательств другие и своим искусством спорить отражал всё, что мне представляли. Но когда, вместо доказательств от разума,
+                                        из уст этого старца начала исходить какая—то особая сила, — доказательства бессильны против нее, так как человек не может противиться Богу. Если кто—нибудь из вас может мыслить так же, как я, то да уверует во Христа
+                                        и вместе со мною да последует за сим старцем, устами которого говорил Сам Бог".</p>
+                                    <p>И философ, приняв православную христианскую веру, радовался, что был побежден в состязании святым на свою же собственную пользу. Радовались и все православные, а еретики потерпели великое посрамление.</p>
+                                </li>
+                                <li pagename="p8">
+                                    <h3>Смерть дочери святителя Спиридона</h3>
+                                    <p>По окончании собора, после осуждения и отлучения Ария, все бывшие на соборе, а равно и святой Спиридон, разошлись по домам. В это время умерла дочь его Ирина; время своей цветущей юности она в чистом девстве провела
+                                        так, что удостоилась Царства Небесного. Между тем к святому пришла одна женщина и, с плачем, рассказала, что она отдала его дочери Ирине некоторые золотые украшения для сохранения, а так как та в скором времени
+                                        умерла, то отданное пропало без вести. Спиридон искал по всему дому, не спрятаны ли где украшения, но не нашел их.</p>
+                                    <p>Тронутый слезами женщины, святой Спиридон вместе с своими домашними подошел к гробу дочери своей и, обращаясь к ней, как к живой, воскликнул:</p>
+                                    <p>— Дочь моя Ирина! Где находятся украшения, вверенные тебе на хранение?</p>
+                                    <p>Ирина, как бы пробудившись от крепкого сна, отвечала:</p>
+                                    <p>— Господин мой! Я спрятала их в этом месте дома.</p>
+                                    <p>И она указала место. Тогда святой сказал ей:</p>
+                                    <p>— Теперь спи, дочь моя, пока не пробудит тебя Господь всех во время всеобщего воскресения.</p>
+                                    <p>На всех присутствовавших, при виде такого дивного чуда, напал страх. А святой нашел в указанном умершею месте спрятанное и отдал той женщине.</p>
+                                </li>
+                                <li pagename="p9">
+                                    <h3>Болезнь Констанция, сына правителя</h3>
+                                    <p>По смерти Константина Великого, Империя его разделилась на две части. Восточная половина досталась старшему сыну его Констанцию. Находясь в Антиохии, Констанций впал в тяжкую болезнь, которую врачи не могли исцелить.
+                                        Тогда Царь оставил врачей и обратился ко Всемогущему целителю душ и телес — Богу с усердною молитвою о своем исцелении. И вот в видении ночью Император увидел Ангела, который показал Ему целый сонм епископов и среди
+                                        них особенно — двоих, которые, по—видимому, были вождями и начальниками остальных; Ангел поведал при этом Царю, что только эти двое могут исцелить его болезнь. </p>
+                                    <p>Пробудившись и размышляя о виденном, он не мог догадаться, кто были виденные им два епископа: имена и род их остались ему неизвестными, а один из них тогда, кроме того, не был еще и епископом.</p>
+                                    <p>Долгое время Царь был в недоумении и, наконец, по чьему—то доброму совету собрал к себе епископов из всех окрестных городов и искал между ними виденных Им в видении двоих, но не нашел. Тогда он собрал епископов во второй
+                                        раз и теперь уже в большем числе и из более отдаленных областей, но и среди них не нашел виденных Им. Наконец, Он велел собраться к Нему епископам всей Его Империи. Царское приказание, лучше сказать, прошение достигло
+                                        и острова Кипра и города Тримифунта, где епископствовал святой Спиридон, которому все уже было открыто Богом относительно Царя. Тотчас же святой Спиридон отправился к Императору, взяв с собою ученика своего Трифиллия,
+                                        вместе с которым он являлся Царю в видении и который в то время, как сказано было, не был еще епископом. Прибыв в Антиохию, они пошли во дворец к Царю. Спиридон был одет в бедные одежды и имел в руках финиковый
+                                        посох, на голове — митру, а на груди у него привешен был глиняный сосудец, как это было в обычае у жителей Иерусалима, которые носили обыкновенно в этом сосуде елей от святого Креста. Когда святой в таком виде входил
+                                        во дворец, один из дворцовых служителей, богато одетый, счел его за нищего, посмеялся над ним и, не позволяя ему войти, ударил его по щеке; но преподобный, по своему незлобию и памятуя слова Господа <em>(Мф. 5,39)</em>,
+                                        подставил ему другую щеку; служитель понял, что пред ним стоит епископ и, сознав свой грех, смиренно просил у него прощения, которое и получил.</p>
+                                    <p>Едва только святой вошел к Царю, последний тотчас узнал его, так как в таком именно образе он явился Царю в видении. Констанций встал, подошел к святому и поклонился ему, со слезами прося его молитв к Богу и умоляя
+                                        об уврачевании своей болезни. Лишь только святой прикоснулся к голове Царя, последний тотчас же выздоровел и чрезвычайно радовался своему исцелению, полученному по молитвам святого. Царь оказал ему великие почести
+                                        и в радости провел с ним весь тот день, оказывая великое уважение к своему доброму врачу.</p>
+                                    <p>Трифиллий тем временем был крайне поражен всей царской пышностью, красотой дворца, множеством вельмож, стоящих перед Царем, сидящим на троне, — причем всё имело чудный вид и блистало золотом, — и искусной службе слуг,
+                                        одетых в светлые одежды. Спиридон сказал ему:</p>
+                                    <p>— Чему ты так дивишься, брат? Неужели царское величие и слава делают Царя более праведным, чем другие? Разве Царь не умирает так же, как и последний нищий, и не предается погребению? Разве не предстанет Он одинаково
+                                        с другими Страшному Судии? Зачем то, что разрушается, ты предпочитаешь неизменному и дивишься ничтожеству, когда должно прежде всего искать того, что невещественно и вечно, и любить нетленную небесную славу?</p>
+                                    <p>Много поучал преподобный и самого даря, чтобы памятовал о благодеянии Божием и сам был бы благ к подданным, милосерд к согрешающим, благосклонен к умоляющим о чем—либо, щедр к просящим и всем был бы отцом — любящим
+                                        и добрым, ибо кто царствует не так, тот должен быть назван не царем, а скорее мучителем. В заключение святой заповедал Царю строго держать и хранить правила благочестия, отнюдь не принимая ничего противного Церкви
+                                        Божией.</p>
+                                    <p>Царь хотел возблагодарить святого за свое исцеление по его молитвам и предлагал ему множество золота, но он отказывался принять, говоря:</p>
+                                    <p>— Нехорошо, Царь, платить ненавистью за любовь, ибо то, что я сделал для тебя, есть любовь: в самом деле, оставить дом, переплыть такое пространство морем, перенести жестокие холода и ветры — разве это не любовь? И
+                                        за всё это мне взять в отплату золото, которое есть причина всякого зла и так легко губит всякую правду?</p>
+                                    <p>Так говорил святой, не желая брать ничего, и только самыми усиленными просьбами Царя был убежден — но только принять от Царя золото, а не держать его у себя, ибо тотчас же роздал всё полученное просившим.</p>
+                                    <p>Кроме того, согласно увещаниям сего святого, Император Констанций освободил от податей священников, диаконов и всех клириков и служителей церковных, рассудив, что неприлично служителям Царя Бессмертного платить дань
+                                        Царю смертному.</p>
+                                </li>
+                                <li pagename="p10">
+                                    <h3>Чудо воскресения младенца и матери его</h3>
+                                    <p>Расставшись с Царем и возвращаясь к себе, святой был принят на дороге одним христолюбцем в дом. Здесь к нему пришла одна женщина—язычница, не умевшая говорить по—гречески. Она принесла на руках своего мёртвого сына
+                                        и, горько плача, положила его у нот святого. Никто не знал ее языка, но самые слёзы ее ясно свидетельствовали о том, что она умоляет святого воскресить ее мёртвого ребенка. Но святой, избегая тщетной славы, сначала
+                                        отказывался совершить это чудо; и всё—таки, по своему милосердию, был побежден горькими рыданиями матери и спросил своего диакона Артемидота:</p>
+                                    <p>— Что нам сделать, брат?</p>
+                                    <p>— Зачем ты спрашиваешь меня, отче? — отвечал диакон. — Что другое сделать тебе, как не призвать Христа — Подателя жизни, столь много раз исполнявшего твои молитвы? Если ты исцелил Царя, то неужели отвергнешь нищих и
+                                        убогих?</p>
+                                    <p>Еще более побуждаемый этим добрым советом к милосердию, святитель прослезился и, преклонив колена, обратился к Господу с теплою молитвою.</p>
+                                    <p>И Господь, чрез Илию и Елисея возвративший жизнь сыновьям вдовы сарептской и соманитяныни <em>(3Цар. 17,21; 4Цар. 4,35)</em>, услышал и молитву Спиридона и возвратил дух жизни языческому младенцу, который, оживши, тотчас
+                                        же заплакал.
+                                    </p>
+                                    <p>Мать, увидев свое дитя живым, от радости упала мёртвою: не только сильная болезнь и сердечная печаль умерщвляют человека, но иногда тоже самое производит и чрезмерная радость. Итак, женщина та умерла от радости, а зрителей
+                                        ее смерть повергла, — после неожиданной радости, по случаю воскрешения младенца, — в неожиданную печаль и слёзы. Тогда святой опять спросил диакона:</p>
+                                    <p>— Что нам делать?</p>
+                                    <p>Диакон повторил свой прежний совет, и святой опять прибег к молитве. Возведя очи к небу и вознеся ум к Богу, он молился Вдыхающему дух жизни в мертвых и Изменяющему всё единым хотением Своим. Затем он сказал умершей,
+                                        лежавшей на земле:</p>
+                                    <p>— Воскресни и встань на ноги!</p>
+                                    <p>И она встала, как пробудившаяся от сна, и взяла своего живого сына на руки.</p>
+                                    <p>Святой запретил женщине и всем присутствовавшим там рассказывать о чуде кому бы то ни было; но диакон Артемидот, после кончины святого, не желая умолчать о величии и силе Божиих, явленных чрез великого угодника Божие
+                                        Спиридона, поведал верующим обо всем происшедшем.</p>
+                                </li>
+                                <li pagename="p11">
+                                    <h3>Случай с козой</h3>
+                                    <p>Когда святой возвратился домой, к нему пришел один человек, желавший купить из его стада сто коз. Святой велел ему оставить установленную цену и потом взять купленное. Но он оставил стоимость девяноста девяти коз и
+                                        утаил стоимость одной, думая, что это не будет известно святому, который, по своей сердечной простоте, совершенно чужд был всяких житейских забот. Когда оба они находились в загоне для скота, святой велел покупателю
+                                        взять столько коз, за сколько он уплатил, и покупатель, отделив сто коз, выгнал их за ограду. Но одна из них, как бы умная и добрая раба, знающая, что она не была продана своим господином, скоро вернулась и опять
+                                        вбежала в ограду.</p>
+                                    <p>Покупатель опять взял ее и потащил за собою, но она вырвалась и опять прибежала в загон. Таким образом до трех раз вырывалась она у него из рук и прибегала к ограде, а он силою уводил ее, и, наконец, взвалил ее на плечи
+                                        и понес к себе, при чем она громко блеяла, бодала его рогами в голову, билась и вырывалась, так что все видевшие это удивлялись. Тогда святой Спиридон, уразумев, в чем дело и не желая в то же время при всех обличить
+                                        нечестного покупателя, сказал ему тихо:</p>
+                                    <p>— Смотри, сын мой, должно быть, не напрасно животное это так делает, не желая быть отведенным к тебе: не утаил ли должной цены за него? Не потому ли оно и вырывается у тебя из рук и бежит к ограде?</p>
+                                    <p>Покупатель устыдился, открыл свой грех и просил прощения, а затем отдал деньги и взял козу, — и она сама кротко и смирно пошла в дом купившего ее впереди своего нового хозяина.</p>
+
+                                </li>
+                                <li pagename="12">
+                                    <h3>Поучения диакона</h3>
+                                    <p>На острове Кипре было одно селение, называвшееся Фриера. Пришедши туда по одному делу, святой Спиридон вошел в церковь и велел одному из бывших там, диакону, сотворить краткую молитву: святой утомился от долгого пути
+                                        тем более, что тогда было время жатвы и стояли сильные жары. Но диакон начал медленно исполнять приказанное ему и нарочно растягивал молитву, как бы с некоею гордостью произносил возгласы и пел, и явно похвалялся
+                                        своим голосом. Гневно посмотрел на него святой, хотя и добр был от природы и, порицая его, сказал: "замолчи"! И тотчас же диакон онемел: он лишился не только голоса, но и самого дара слова, и стоял, как совершенно
+                                        не имеющий языка. </p>
+                                    <p>На всех присутствовавших напал страх. Весть о случившемся быстро разнеслась по всему селению, и все жители сбежались посмотреть на чудо и пришли и ужас. Диакон упал к ногам святого, знаками умоляя разрешить ему язык,
+                                        а вместе с тем умоляли о том же епископа друзья и родственники диакона. Но не сразу святой снизошел на просьбу, ибо суров был он с гордыми и тщеславными, и, наконец, простил провинившегося, разрешил ему язык и возвратил
+                                        дар слова; при этом он, однако же, запечатлел на нем след наказания, не возвратив его языку полной ясности, и на всю жизнь оставил его слабоголосым, косноязычным и заикающимся, чтобы он не гордился своим голосом
+                                        и не хвалился отчетливостью речи.
+                                    </p>
+                                </li>
+                                <li pagename="p13">
+                                    <h3>Небесное Пение в церкви</h3>
+                                    <p>Однажды святой Спиридон вошел в своем городе в церковь к вечерне. Случилось так, что в церкви не было никого, кроме церковнослужителей. Но, несмотря на то, он велел возжечь множество свечей и лампад и сам стал пред
+                                        алтарем в духовном умилении. И когда он в положенное время возгласил: "Мир всем!" — и не было народа, который бы на возглашаемое святителем благожелание мира дал обычный ответ, внезапно послышалось сверху великое
+                                        множество голосов, возглашающих: "И духу твоему".</p>
+                                    <p>Хор этот был велик и строен и сладкогласнее всякого пения человеческого. Диакон, произносивший ектении, пришел в ужас, слыша после каждой ектении какое—то дивное пение сверху: "Господи, помилуй!". Пение это было услышано
+                                        даже находившимися далеко от церкви, из коих многие поспешно пошли на него, и, по мере того, как они приближались к церкви, чудесное пение всё более и более наполняло их слух и услаждало сердца. Но когда они вошли
+                                        в церковь, то не увидали никого, кроме святителя с немногими церковными служителями и не слыхали уже более небесного пения, от чего пришли в великое изумление.</p>
+                                </li>
+                                <li pagename="p14">
+                                    <h3>Появление «вещественного елея»</h3>
+                                    <p>В другое время, когда святой также стоял в церкви на вечернем пении, в лампаде не хватило елея и огонь стал уже гаснуть. Святой скорбел об этом, боясь, что, когда погаснет лампада, прервется и церковное пение, и не
+                                        будет, таким образом, выполнено обычное церковное правило. Но Бог, исполняющий желание боящихся Его, повелел лампаде переполниться елеем чрез края, как некогда сосуду вдовицы во дни пророка Елисея <em>(4Цар. 4,2—6)</em>.
+                                        Служители церковные принесли сосуды, подставили их под лампаду и наполнили их чудесно елеем. — Этот вещественный елей явно служил указанием на преизобильную благодать Божию, коей был преисполнен святой Спиридон
+                                        и напояемо было им его словесное стадо.
+                                    </p>
+
+                                </li>
+                                <li pagename="p15">
+                                    <h3>Поучение ученику Трифиллию о суетности</h3>
+                                    <p>На о. Кипре есть город Кирина. Однажды сюда прибыл из Тримифунта святой Спиридон по своим делам вместе с учеником своим, Трифиллием, который был тогда уже епископом Левкусийским, на о. Кипре. Когда они переходили через
+                                        гору Пентадактил и находились на месте, называемом Паримна (отличающемся красотою и богатою растительностью), то Трифиллий прельстился этим местом и пожелал и сам, для своей церкви, приобрести какое—либо поместье
+                                        в этой местности.</p>
+                                    <p>Долго он размышлял об этом про себя; но мысли его не утаились от прозорливых духовных очей великого отца, который сказал ему:</p>
+                                    <p>— Зачем, Трифиллий, ты постоянно думаешь о суетном и желаешь поместьев и садов, которые на самом деле не имеют никакой цены и только кажутся чем—то существенным, и своей призрачною ценностью возбуждают в сердцах людей
+                                        желание обладать ими? Наше сокровище неотъемлемое — на небесах <em>(1Пет. 1,4)</em>, у нас есть храмина нерукотворенная <em>(2Кор. 5,4)</em>, — к ним стремись и ими заранее (чрез богомыслие) наслаждайся: они не
+                                        могут переходить из одного состояния в другое, и кто однажды сделается обладателем их, тот получает наследие, которого уже никогда не лишится.</p>
+                                    <p>Эти слова принесли Трифиллию великую пользу, и впоследствии он своею истинно христианскою жизнью достиг того, что сделался избранным сосудом Христовым, подобно Апостолу Павлу, и сподобился бесчисленных дарований от
+                                        Бога.</p>
+                                    <p>Так святой Спиридон, сам будучи добродетельным, направлял к добродетели и других, и тем, кто следовал его увещаниям и наставлениям, они служили на пользу, а отвергавших их постигал худой конец, как это видно из следующего.</p>
+                                </li>
+                                <li pagename="p16">
+                                    <h3>Случай с женщиной, согрешившей прелюбодеянием</h3>
+                                    <p>Один купец, житель того же Тримифунта, отплыл в чужую страну торговать и пробыл там двенадцать месяцев. В это время жена его впала в прелюбодеяние и зачала. Вернувшись домой, купец увидел жену свою беременною и понял,
+                                        что она без него прелюбодействовала. Он пришел в ярость, стал бить ее и, не желая с нею жить, гнал ее из своего дома, а потом пошел и рассказал обо всем святителю Божию Спиридону и просил у него совета. Святитель,
+                                        сокрушаясь душевно о грехе женщины и о великой скорби мужа, призвал жену и, не спрашивая ее, действительно ли она согрешила, так как о грехе свидетельствовали уже самая беременность ее и плод, зачатой ею от беззакония,
+                                        прямо сказал ей:</p>
+                                    <p>— Зачем осквернила ты ложе мужа своего и обесчестила его дом?</p>
+                                    <p>Но женщина, потеряв всякий стыд, осмелилась явно солгать, что она зачала не от кого другого, а именно от мужа. Присутствовавшие вознегодовали на нее еще более за эту ложь, чем за самое прелюбодеяние, и говорили ей:</p>
+                                    <p>— Как же ты говоришь, что зачала от мужа, когда его двенадцать месяцев не было дома? Разве может зачатый плод двенадцать месяцев и даже более оставаться в чреве?</p>
+                                    <p>Но она стояла на своем и утверждала, что зачатое ею дожидалось возвращения своего отца, чтобы родиться при нем. Отстаивая эту и подобную ложь и споря со всеми, она подняла шум и кричала, что ее оклеветали и обидели.
+                                        Тогда святой Спиридон, желая довести ее до раскаяния, кротко сказал ей:</p>
+                                    <p>— Женщина! В великий грех впала ты, — велико должно быть и покаяние твое, ибо для тебя всё—таки осталась надежда на спасение: нет греха, превышающего милосердие Божие. Но я вижу, что в тебе прелюбодеянием произведено
+                                        отчаяние, а отчаянием — бесстыдство, и было бы справедливо понести тебе достойное и скорое наказание; и всё—таки, оставляя тебе место и время для покаяния, мы во всеуслышание объявляем тебе: плод не выйдет из чрева
+                                        твоего, пока ты не скажешь истины, не прикрывая ложью того, что и слепой, как говорится, видеть может.</p>
+                                    <p>Слова святого в скором времени сбылись. Когда женщине наступило время родить, ее постигла лютая болезнь, причинявшая ей великие мучения удерживавшая плод в ее чреве. Но она, ожесточившись, не захотела признаться в своем
+                                        грехе, в котором и умерла, не родивши, мучительною смертью. Узнав об этом, святитель Божий прослезился, пожалев, что он судил грешницу таким судом, и сказал:</p>
+                                    <p>— Не буду я больше произносить суда над людьми, если сказанное много так скоро сбывается над ними на деле.</p>
+                                </li>
+                                <li pagename="p17">
+                                    <h3>Обращение в христианскую веру язычника</h3>
+                                    <p>Одна женщина, по имени Софрония, благонравная и благочестивая, имела мужа — язычника. Она не раз обращалась к святителю Божию Спиридону и усердно умоляла его постараться обратить ее мужа к истинной вере. Муж ее был
+                                        соседом святителя Божия Спиридона и уважал его, а иногда они, как соседи, бывали даже друг у друга в домах. Однажды собралось много соседей святого и язычника; были и они сами. </p>
+                                    <p>И вот, вдруг святой говорит одному из слуг во всеуслышание:</p>
+                                    <p>— Вон у ворот стоит вестник, присланный от работника, пасущего мое стадо, с вестью, что весь скот, когда работник заснул, пропал, заблудившись в горах: ступай, скажи ему, что пославший его работник уже нашел весь скот
+                                        в целости в одной пещере.</p>
+                                    <p>Слуга пошел и передал посланному слова святого. Вскоре затем, когда не успели еще собравшиеся встать из за стола, пришел от пастуха другой вестник — с известием, что всё стадо найдено. Слыша это, язычник был несказанно
+                                        удивлен тем, что святой Спиридон знает происходящее за глазами, как совершающееся вблизи; он вообразил, что святой есть один из богов, и хотел сделать ему то, что и некогда жители Ликаонии сделали Апостолам Варнаве
+                                        и Павлу, то есть, привести жертвенных животных, приготовить венцы и совершить жертвоприношение. Но святой сказал ему:</p>
+                                    <p>— Я — не Бог, а только слуга Божий и человек, во всем подобный тебе. А что я знаю то, что совершается за глазами, — это дает мне мой Бог, и если и ты уверуешь в Него, то познаешь величие Его всемогущества и силы.</p>
+                                    <p>С своей стороны и жена язычника Софрония, улучив время, стала убеждать мужа отречься от языческих заблуждений и познать Единого Истинного Бога и уверовать в Него. Наконец, силою благодати Христовой, язычник был обращен
+                                        к истинной вере и просвещен святым крещением. Так спасся "неверующий муж" <em>(1Кор. 7,14)</em>, как говорит св. Апостол Павел.</p>
+
+                                </li>
+                                <li pagename="p18">
+                                    <h3>О смирении блаженного Спиридона</h3>
+                                    <p>Рассказывают также о смирении блаженного Спиридона, как он, будучи святителем и великим чудотворцем, не гнушался пасти овец бессловесных и сам ходил за ними. Однажды воры ночью проникли в загон, похитили несколько овец
+                                        и хотели уйти. Но Бог, любя угодника Своего и охраняя его скудное имущество, невидимыми узами крепко связал воров, так что они не могли выйти из ограды, где и оставались в таком положении, против воли, до утра.
+                                        На рассвете святой пришел к овцам и, увидев воров, связанных силою Божиею по рукам и по ногам, своею молитвою развязал их и дал им наставление о том, чтобы не желали чужого, а питались трудом рук своих; потом он
+                                        дал им одного барана, чтобы, как он сам сказал, "не пропал даром их труд и бессонная ночь", и отпустил их с миром.</p>
+
+                                </li>
+                                <li pagename="p19">
+                                    <h3>Гостеприимство св. Спиридона и поучение страннику</h3>
+                                    <p>Святой Симеон Метафраст, описатель его жития. уподоблял святого Спиридона патриарху Аврааму в добродетели гостеприимства. «Надобно знать и то, как он принимал странников»,— писал близкий к монашеским кругам Созомен,
+                                        приводя в своей «Церковной истории» удивительный пример из жизни святителя.</p>
+                                    <p>Однажды по наступлении Четыредесятницы в его дом постучался странник. Видя, что путник очень утомлен, святой Спиридон сказал дочери: «Обмой—ка ноги этому человеку, да предложи ему поесть». Но ввиду поста не было сделано
+                                        нужных запасов, ибо святитель «вкушал пищу только в определенный день, а в прочие оставался без пищи». Поэтому дочь ответила, что в доме нет ни хлеба, ни муки. Тогда святой Спиридон, извинившись перед гостем, приказал
+                                        дочери поджарить бывшее в запасе соленое свиное мясо и. усадив за стол странника, принялся за трапезу, «убеждая того человека подражать себе. Когда же последний, называя себя христианином, отказался,—тот прибавил:
+                                        «Тем менее надобно отказываться, ибо Слово Божие изрекло: Вся чиста чистым <em>(Тит. 1, 15)</em>».</p>
+
+                                </li>
+                                <li pagename="p20">
+                                    <h3>Поучение корыстолюбивому купцу</h3>
+                                    <p>Один тримифунтский купец имел обычай брать у святого взаймы деньги для торговых оборотов, и когда, по возвращении из поездок по своим делам, приносил взятое обратно, то святой обыкновенно говорил ему, чтобы он сам положил
+                                        деньги в ящик, из которого взял. Так мало заботился он о временном приобретении, что и не справлялся даже никогда, правильно ли уплачивает должник! Между тем купец много раз уже поступал таким образом, сам вынимая,
+                                        с благословения святого, из ковчега деньги и сам опять вкладывая туда принесенные обратно, и дела его процветали. Но однажды он, увлекшись корыстолюбием, не положил принесенного золота в ящик и удержал его у себя,
+                                        а святому сказал, что вложил. В скором времени он обнищал, так как утаённое золото не только не принесло ему прибыли, но и лишило успеха его торговлю и, как огонь, пожрало всё его имущество. Тогда купец опять пришел
+                                        к святому и просит у него взаймы. Святой отослал его в свою спальню к ящику с тем, чтобы он взял сам. Он сказал купцу:</p>
+                                    <p>— Ступай и возьми, если сам ты положил".</p>
+                                    <p>Купец пошел и, не нашедши в ящике денег, воротился к святому с пустыми руками. Святой сказал ему:</p>
+                                    <p>— Но ведь в ящике, брат мой, не было до сих пор ничьей другой руки, кроме твоей. Значит, если бы ты положил тогда золото, то теперь мог бы опять взять его.</p>
+                                    <p>Купец, устыдившись, пал к ногам святого и просил прощения. Святой тотчас же простил его, но при этом сказал, в назидание ему, чтобы он не желал чужого и не осквернял совести своей обманом и ложью. Так, неправдою приобретенная
+                                        прибыль есть не прибыль, а в конце концов — убыток.</p>
+                                </li>
+                                <li pagename="p21">
+                                    <h3>Сокрушение языческого идола</h3>
+                                    <p>В Александрии созван был однажды собор епископов: патриарх александрийский созвал всех подчиненных ему епископов и хотел общею молитвою ниспровергнуть и сокрушить все языческие идолы, которых там было еще очень много.
+                                        И вот, в то время, когда приносились Богу многочисленные усердные молитвы, — как соборные, так и частные, — все идолы и в городе и в окрестностях пали, только один особо чтимый язычниками идол остался цел на своем
+                                        месте.</p>
+                                    <p>После того как патриарх долго и усердно молился о сокрушении этого идола, однажды ночью, когда он стоял на молитве, явилось ему некоторое Божественное видение и повелено было не скорбеть о том, что идол не сокрушается,
+                                        и скорее послать в Кипр и призвать оттуда Спиридона, епископа Тримифунтского, ибо для того и оставлен был идол, чтобы быть сокрушенным молитвою сего святого. Патриарх тотчас же написал послание к святому Спиридону,
+                                        в котором призывал его в Александрию и говорил о своём видении, и немедленно направил это послание в Кипр.</p>
+                                    <p>Получив послание, святой Спиридон сел на корабль и отплыл в Александрию. Когда корабль остановился у пристани, называемой Неаполем, и святой сходил на землю, — в ту же минуту идол в Александрии с его многочисленными
+                                        жертвенниками рушился, почему в Александрии и узнали о прибытии святого Спиридона. Ибо, когда патриарху донесли, что идол пал, патриарх сказал остальным епископам:</p>
+                                    <p>— Друзья! Спиридон Тримифунтский приближается.</p>
+                                    <p>И все, приготовившись, вышли на встречу святому и, с честью приняв его, радовались о прибытии к ним такого великого чудотворца и светильника мира.</p>
+                                </li>
+                                <li pagename="p22">
+                                    <h3>Поучение Трифиллия о смирении и кротости</h3>
+                                    <p>Церковные историки Никифор и Созомен пишут, что святой Спиридон чрезвычайно заботился о строгом соблюдении церковного чина и сохранении во всей неприкосновенности до последнего слова книг Священного Писания. Однажды
+                                        произошло следующее. На о. Кипре было собрание епископов всего острова по делам церковным. Среди епископов находились святой Спиридон и упоминавшийся выше Трифиллий, — человек, искусившийся в книжной премудрости,
+                                        так как в молодости своей он много лет провел в Берите, изучая писание и науки. Собравшиеся отцы просили его произнести в церкви поучение народу. Когда он поучал, пришлось ему помянуть слова Христа, сказанные Им
+                                        расслабленному: "встань и возьми одр твой" <em>(Мк. 2,12)</em>. Трифиллий слово "одр" заменил словом "ложе" и сказал: "встань и возьми ложе твое". Услышав это, святой Спиридон встал с места и, не вынося изменение
+                                        слов Христовых, сказал Трифиллию:</p>
+                                    <p>— Неужели ты лучше сказавшего "одр", что стыдишься употребленного Им слова?</p>
+                                    <p>Сказав это, он при всех вышел из церкви. Итак поступил он не по злобе и не потому, что сам был совсем неученым: пристыдив слегка Трифиллия, кичившегося своим красноречием, он научил его смирению и кротости. К тому же
+                                        святой Спиридон пользовался (среди епископов) великою честью, как самый старший летами, славный жизнью, первый по епископству и великий чудотворец, а потому, из уважение к лицу, всякий мог уважать и его слова.</p>
+
+                                </li>
+                                <li pagename="p23">
+                                    <h3>Предвидение кончины, смерть св. Спиридона</h3>
+                                    <p>На преподобном Спиридоне почивала столь великая благодать и милость Божия, что во время жатвы в самую жаркую пору дня его святая глава оказалась однажды покрытою прохладною росою, нисходившею свыше. Это было в последний
+                                        год его жизни. Вместе с жнецами он вышел на жнитво (ибо был смиренен и работал сам, не гордясь высотою своего сана), и вот, когда он жал свою ниву, внезапно, в самый жар, оросилась глава его, как это было некогда
+                                        с руном Гедеоновым
+                                        <em>(Суд. 6,38)</em>, и все, бывшие с ним на поле, видели это и дивились. Потом волосы на главе у него вдруг изменились: одни сделались желтыми, другие — чёрными, иные — белыми, и только Сам Бог знал, для чего это
+                                        было и что предзнаменовало. Святой осязал голову рукою и сказал бывшим при нем, что приблизилось время разлучения души его с телом, и стал поучать всех добрым делам, и особенно — любви к Богу и ближнему.</p>
+                                    <p>По прошествии нескольких дней святой Спиридон во время молитвы предал свою святую и праведную душу Господу, Которому в праведности и святости служил всю свою жизнь, и был с честью погребен в церкви Святых Апостолов
+                                        в Тримифунте. Там и установлено было совершать ежегодно память его, и при гробе его совершаются многочисленные чудеса во славу дивного Бога, прославляемого во святых Его, Отца и Сына и Святого Духа, Которому и от
+                                        нас да будет слава, благодарение, честь и поклонение во веки. Аминь.</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+
+        </script>
+        <script type="text/ng-template" id="thanks-view">
+
+            <div class="well text-center">
+                <h2>Наши благодарности</h2>
+
+                <div class="row contacts">
+                    <div class="col-lg-4 col-md-6 col-sm-6 ">
+                        <figure class="honorable">
+                            <a href="/img/thanks/Благодарность_1.jpg" class="img">
+                                <img src="/img/thanks/Благодарность_1.jpg" height="360" alt="благодарность">
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 ">
+                        <figure class="honorable">
+                            <a href="/img/thanks/Благодарность_2.jpg" class="img">
+                                <img src="/img/thanks/Благодарность_2.jpg" height="360" alt="благодарность">
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 ">
+                        <figure class="honorable">
+                            <a href="/img/thanks/Благодарность_3.jpg" class="img">
+                                <img src="/img/thanks/Благодарность_3.jpg" height="360" alt="благодарность">
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 ">
+                        <figure class="honorable">
+                            <a href="/img/thanks/Благодарность_4.jpg" class="img">
+                                <img src="/img/thanks/Благодарность_4.jpg" height="360" alt="благодарность">
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 ">
+                        <figure class="honorable">
+                            <a href="/img/thanks/Благодарность_5.jpg" class="img">
+                                <img src="/img/thanks/Благодарность_5.jpg" height="360" alt="благодарность">
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 ">
+                        <figure class="honorable">
+                            <a href="/img/thanks/Благодарность_6.jpg" class="img">
+                                <img src="/img/thanks/Благодарность_6.jpg" height="360" alt="благодарность">
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 ">
+                        <figure class="honorable">
+                            <a href="/img/thanks/Благодарность_7.jpg" class="img">
+                                <img src="/img/thanks/Благодарность_7.jpg" height="360" alt="благодарность">
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 ">
+                        <figure class="honorable">
+                            <a href="/img/thanks/Благодарность_8.jpg" class="img">
+                                <img src="/img/thanks/Благодарность_8.jpg" height="360" alt="благодарность">
+                            </a>
+                        </figure>
+                    </div>
+                </div>
+            </div>
+
+        </script>
+        <script type="text/ng-template" id="the-news-view">
+
+            <section class="well">
+                <h2><i class="icon-file-text-o"></i> </h2>
+                <div class="row">
+                    <div class="col-sm-12">
+
+                        <ul class="news-list">
+                            <li class="news" ng-class="{hot: oneNews.hot}">
+                                <div class="time"><i class="icon-clock"></i> {{oneNews.timeAgo}}</div>
+                                <div class="text text-center" ng-bind-html="oneNews.body">{{oneNews.body}}</div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+        </script>
+        <script type="text/ng-template" id="video-view">
+
+            <div class="row">
+
+                <div class="col-sm-6">
+                    <div class="well video-well" ng-repeat="video in videosLeft" ng-init="video.preview=true">
+                        <div class="video-wrap" ng-switch="video.preview">
+                            <div ng-switch-when="false" class="video-player">
+                                <iframe width="100%" height="100%" src="{{video.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                            </div>
+                            <div ng-switch-when="true" class="video-preview img" style="background-image: url('{{video.thumb_url}}')" ng-click="video.preview=false">
+                                <div class="video-title">{{video.title}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="well video-well" ng-repeat="video in videosRight" ng-init="video.preview=true">
+                        <div class="video-wrap" ng-switch="video.preview">
+                            <div ng-switch-when="false" class="video-player">
+                                <iframe width="100%" height="100%" src="{{video.url}}" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                            </div>
+                            <div ng-switch-when="true" class="video-preview img" style="background-image: url('{{video.thumb_url}}')" ng-click="video.preview=false">
+                                <div class="video-title">{{video.title}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </script>
+
+        <div id="google_translate_element"></div>
+        <script type="text/javascript">
+            function googleTranslateElementInit() {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'ru',
+                    includedLanguages: 'be,de,en,it,pt',
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                    gaTrack: true,
+                    gaId: 'UA-65516468-1'
+                }, 'google_translate_element');
+            }
+        </script>
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <a href="/">
+                    <div class="logo"></div>
+                </a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="title">Православное братство святителя Спиридона Тримифунтского</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+
+                <nav navmenu class="navbar navbar-default" role="navigation">
+                    <ul class="nav navbar-nav">
+                        <li navitem="'/'">Главная</li>
+                        <li navitem="'/news'">Новости</li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">О братстве <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li navitem="'/about'">О братстве</li>
+                                <li navitem="'/life-of-saint-Spyridon'">Житие свт. Спиридона</li>
+                                <li navitem="'/members'">Наши братчики</li>
+                                <li navitem="'/donations'">Поступления</li>
+                                <li navitem="'/memory-book'">Книга памяти</li>
+                                <li navitem="'/honorable'">Почетные братчики</li>
+                                <li navitem="'/thanks'">Наши благодарности</li>
+                            </ul>
+                        </li>
+                        <li navitem="'/how-to-help'">Как помочь?</li>
+                        <li navitem="'/become-a-volunteer'">Стать волонтером</li>
+                        <li navitem="'/video'">Видео</li>
+                        <li navitem="'/contacts'">Контакты</li>
+                    </ul>
+                    <ul class="nav navbar-nav social-nav pull-right">
+                        <li><a href="https://www.facebook.com/bratstvost"><i class="icon-facebook-official"></i></a></li>
+                        <li><a href="http://vk.com/bratstvost"><i class="icon-vkontakte"></i></a></li>
+                        <li><a href="http://twitter.com/bratstvost"><i class="icon-twitter-square"></i></a></li>
+                        <li><a href="https://plus.google.com/u/0/+BratstvostBy"><i class="icon-social-google-plus"></i></a></li>
+                    </ul>
+                </nav>
+
+            </div>
+        </div>
+
+        <ng-view></ng-view>
+
+        <footer class="row footer">
+        </footer>
+    </div>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(d, w, c) {
+            (w[c] = w[c] || []).push(function() {
+                try {
+                    w.yaCounter20900932 = new Ya.Metrika({
+                        id: 20900932,
+                        webvisor: true,
+                        clickmap: true,
+                        accurateTrackBounce: true,
+                        trackHash: true
+                    });
+                } catch (e) {}
+            });
+            var n = d.getElementsByTagName("script")[0],
+                s = d.createElement("script"),
+                f = function() {
+                    n.parentNode.insertBefore(s, n);
+                };
+            s.type = "text/javascript";
+            s.async = true;
+            s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+            if (w.opera == "[object Opera]") {
+                d.addEventListener("DOMContentLoaded", f, false);
+            } else {
+                f();
+            }
+        })(document, window, "yandex_metrika_callbacks");
+    </script>
+    <noscript>
+        <div><img src="//mc.yandex.ru/watch/20900932" style="position:absolute; left:-9999px;" alt="" /></div>
+    </noscript>
+    <!-- /Yandex.Metrika counter -->
+    <!-- Google.Analytics counter -->
+    <script>
+        (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-65516468-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,200,300,300italic,700|Roboto+Condensed:400,300,700&subset=cyrillic,latin' rel='stylesheet' type='text/css'>
+    <script src="/js/app.js"></script>
+    <script type="text/javascript">
+        function downloadJSAtOnload() {
+            var element = document.createElement("script");
+            element.src = "http://api-maps.yandex.ru/2.1-dev/?load=package.map&lang=ru-RU";
+            element.async = true;
+            document.body.appendChild(element);
+        }
+
+        if (window.addEventListener)
+            window.addEventListener("load", downloadJSAtOnload, false);
+        else if (window.attachEvent)
+            window.attachEvent("onload", downloadJSAtOnload);
+        else window.onload = downloadJSAtOnload;
+    </script>
+</body>
+
+</html>
