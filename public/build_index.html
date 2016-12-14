@@ -1,17 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="app">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Волонтеры братства занимаются духовной, благотворительной деятельностью и социальным служением. Спешите творить добро!">
+    <meta name="description" content="{{ ogDesc }}">
+    <!--<meta name="description" content="Волонтеры братства занимаются духовной, благотворительной деятельностью и социальным служением. Спешите творить добро!">-->
     <meta name="keywords" content="православное братство, волонтеры, помощь инвалидам">
+
+    <!--<meta property="og:type"        content="article" />-->
+    <meta property="og:url"         content="http://178.124.167.62:5000/the-news/580a83aae60a21092b07b69c {{ ogUrl }}" />
+    <meta property="og:title"       content="qweqwe {{ ogTitle }}" />
+    <meta property="og:image"       content="http://bratstvost.by/img/logo-100.png" />
+    <meta property="og:description" content="Споры насчет преимуществ и недостатков Scala перед Java напоминают мне споры о C против С++. Плюсы, конечно же, на порядок более сложный язык с огромным..." />
 
 
     <title>Православное братство Спиридона Тримифунтского</title>
 </head>
 <body>
 
-<div class="container" ng-app="app">
+<div class="container">
 <!--
     *** see "htmlbuild" grunt task for full index.html build ***
 -->

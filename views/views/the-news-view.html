@@ -1,0 +1,18 @@
+<script type="text/ng-template" id="the-news-view">
+
+    <section class="well">
+        <h2 ><i class="icon-file-text-o"></i> </h2>
+        <div class="row">
+            <div class="col-sm-12">
+
+                <ul class="news-list">
+                    <li class="news" ng-class="{hot: oneNews.hot}">
+                        <div class="time"><i class="icon-clock"></i> {{oneNews.timeAgo}}</div>
+                        <div class="text text-center" ng-bind-html="oneNews.body">{{oneNews.body}}</div>
+                   </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+</script>

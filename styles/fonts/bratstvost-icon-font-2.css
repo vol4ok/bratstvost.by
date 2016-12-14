@@ -40,9 +40,15 @@
 .icon-bullhorn:before {
     content: "\61";
 }
-.icon-link:before {
-    content: "\63";
+.icon-link-1:before {
+    content: "\78";
+    float: right;
+    color: #f1c40f;
+    padding: 5px;
+    cursor: pointer;
 }
+li.news b.icon-link-1 {display: none;}
+li.news:hover  b.icon-link-1 {display: inline;}
 .icon-calendar:before {
     content: "\65";
 }
@@ -111,4 +117,10 @@
 }
 .icon-results-demographics:before {
     content: "\64";
+}
+.icon-file-text-o:before {
+  content: "\63";
+}
+.icon-gift:before {
+  content: "\79";
 }

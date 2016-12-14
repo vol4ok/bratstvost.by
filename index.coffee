@@ -52,6 +52,11 @@ app.get "/api/news", (req, res) ->
     return res.json(status: "ERR", message: err) if err
     res.json(results)
 
+app.get "/api/news/:id", (req, res) ->
+  News.findOne {published: yes, "_id": mg.Types.ObjectId(req.params.id)}, (err, result) ->
+    return res.json(status: "ERR", message: err) if err
+    res.json(result)
+
 app.get "/api/videos", (req, res) ->
   Video.find {published: yes}, (err, results) ->
     return res.json(status: "ERR", message: err) if err

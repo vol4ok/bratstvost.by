@@ -26,6 +26,9 @@ configure = ($routeProvider, $locationProvider, $sceDelegateProvider, $sceProvid
     .when "/news",
       templateUrl: "news-view"
       controller: "NewsListCtrl"
+    .when "/the-news/:newsId",
+      templateUrl: "the-news-view"
+      controller: "NewsCtrl"
     .when "/become-a-volunteer",
       templateUrl: "become-a-volunteer-view"
     .when "/donations",
@@ -53,6 +56,7 @@ angular.module('appLibs', [])
 angular.module('app.ctrl', [
   'MainCtrl'
   'NewsListCtrl'
+  'NewsCtrl'
   'PastEventCtrl'
   'AboutPageCtrl'
   'ContactPageCtrl'

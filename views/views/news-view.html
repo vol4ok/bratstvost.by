@@ -7,7 +7,7 @@
 
         <ul class="news-list">
           <li class="news" ng-repeat="news in data.news" ng-class="{hot: news.hot}">
-            <div class="time"><i class="icon-clock"></i> {{news.timeAgo}}</div>
+            <div class="time"><i class="icon-clock"></i> {{news.timeAgo}} <a href="the-news/{{news._id}}" target="_blank"><b class="icon-link-1"></b></a></div>
             <div class="text" ng-bind-html="news.body">{{news.body}}</div>
           </li>
         </ul>
