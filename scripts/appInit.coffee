@@ -34,9 +34,9 @@ configure = ($routeProvider, $locationProvider, $sceDelegateProvider, $sceProvid
       templateUrl: "memory-book-view"
     .when "/how-to-help",
       templateUrl: "how-to-help-view"
-    .when "/honorable",
-        templateUrl: "honorable-view"
-        controller: "HonorablePageCtrl"
+#    .when "/honorable",
+#        templateUrl: "honorable-view"
+#        controller: "HonorablePageCtrl"
     .when "/thanks",
         templateUrl: "thanks-view"
         controller: "ThanksPageCtrl"
